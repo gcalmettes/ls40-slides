@@ -1,0 +1,548 @@
+<section data-transition="slide-in">
+  <h3>Two-way ANOVA</h3>
+  <div class="row">
+    <div class="col-50">
+      <p class="smaller">
+        A two-way ANOVA allows to investigate the (individual & combined) effects of <span class="strong">two factors</span> (explanatory/independent variables) on a quantitative variable (response).
+      </p>
+      <p class="fragment em smaller down-2 muted" data-fragment-index=0>
+        In our memorization performance and noise level experiment, we could for example investigate if gender (or the combine effect of gender and noise) also affects our response variable.
+      </p>
+      <p class="smaller fragment" data-fragment-index=3>
+        The results from a two way ANOVA will give information about the <span class="strong">main effect</span> and the <span class="strong">interaction effect</span>: 
+      </p>
+    </div>
+    <div class="col-50">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/anova-family-on-noise-data.svg#axes_1"></use>
+        <use class="fragment fade-out" data-fragment-index=2 xlink:href="content/img/anova-family-on-noise-data.svg#axes_2"></use>
+        <use class="fragment" data-fragment-index=1 xlink:href="content/img/anova-family-on-noise-data.svg#axes_5"></use>
+      </svg>
+    </div>
+  </div>
+  <ul class="smaller push-left fragment" data-fragment-index=3>
+    <li>
+      Main effect of factor 1 (e.g.: noise ... this factor has 4 levels)
+    </li>
+    <li>
+      Main effect of factor 2 (e.g.: gender ... this factor has 2 levels)
+    </li>
+    <li>
+      Effect due to the combination/interaction of factor 1 and factor 2 (e.g.: does the effect of the noise depends on the gender too)
+    </li>
+  </ul>
+</section>
+
+<section data-transition="none">
+  <h3>Two way ANOVA</h3>
+  <p>
+    Data structure
+  </p>
+  <div class="row">
+    <div class="col-65">
+      <p class='em u strong'>
+        "Long form data"
+      </p>
+      <p class="smaller">
+        Long form data works best for $n$-way ANOVA because it copes well with unequal $n$ in each factor level.
+      </p>
+      <p class="smaller">
+        Long form data will have $N$ rows, each group will occupy $n_g$ rows.
+      </p>
+      <p class="smaller">
+        For one-way ANOVA, we have a single <span class="info">factor</span> which contains information about the different groups (levels).
+      </p>
+      <p class="smaller fragment" data-fragment-index=2>
+        For two-way ANOVA, we have <span class="info">two</span> <span class="orange">factors</span>, each having several levels characterizing each measurement.
+      </p>
+      <p class="smaller fragment" data-fragment-index=3>
+        The <span class="strong">groups</span> of study are actually the <span class="strong">combined levels of both factors</span>. Here, that is 8 groups:
+      </p>
+      <div class="row fragment" data-fragment-index=3>
+        <div class="col-50">
+          <ul class="smaller">
+            <li>
+              No noise/male
+            </li>
+            <li>
+              No noise/female
+            </li>
+            <li>
+              Low noise/male
+            </li>
+            <li>
+              Low noise/female
+            </li>
+          </ul>
+        </div>
+        <div class="col-50">
+          <ul class="smaller">
+            <li>
+              Medium noise/male
+            </li>
+            <li>
+              Medium noise/female
+            </li>
+            <li>
+              High noise/male
+            </li>
+            <li>
+              High noise/female
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <table class="col-30 smallest center up-10">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Score</th>
+          <th class="fragment highlight-bg-info-light black" data-fragment-index=1>Noise</th>
+          <th class="fragment bg-orange-light black" data-fragment-index=2>Gender</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>ID1</td>
+          <td>46</td>
+          <td class="fragment highlight-bg-info-light black" data-fragment-index=1>None</td>
+          <td class="fragment bg-orange-light black" data-fragment-index=2>male</td>
+        </tr>
+        <tr>
+          <td>$\vdots$</td>
+          <td>$\vdots$</td>
+          <td class="fragment highlight-bg-info-light black" data-fragment-index=1>$\vdots$</td>
+          <td class="fragment bg-orange-light black" data-fragment-index=2>$\vdots$</td>
+        </tr>
+        <tr>
+          <td>ID11</td>
+          <td>47</td>
+          <td class="fragment highlight-bg-info-light black" data-fragment-index=1>None</td>
+          <td class="fragment bg-orange-light black" data-fragment-index=2>female</td>
+        </tr>
+        <tr>
+          <td>$\vdots$</td>
+          <td>$\vdots$</td>
+          <td class="fragment highlight-bg-info-light black" data-fragment-index=1>$\vdots$</td>
+          <td class="fragment bg-orange-light black" data-fragment-index=2>$\vdots$</td>
+        </tr>
+        <tr>
+          <td>ID21</td>
+          <td>55</td>
+          <td class="fragment highlight-bg-info-light black" data-fragment-index=1>Low</td>
+          <td class="fragment bg-orange-light black" data-fragment-index=2>male</td>
+        </tr>
+        <tr>
+          <td>$\vdots$</td>
+          <td>$\vdots$</td>
+          <td class="fragment highlight-bg-info-light black" data-fragment-index=1>$\vdots$</td>
+          <td class="fragment bg-orange-light black" data-fragment-index=2>$\vdots$</td>
+        </tr>
+        <tr>
+          <td>ID32</td>
+          <td>48</td>
+          <td class="fragment highlight-bg-info-light black" data-fragment-index=1>Low</td>
+          <td class="fragment bg-orange-light black" data-fragment-index=2>female</td>
+        </tr>
+        <tr>
+          <td>$\vdots$</td>
+          <td>$\vdots$</td>
+          <td class="fragment highlight-bg-info-light black" data-fragment-index=1>$\vdots$</td>
+          <td class="fragment bg-orange-light black" data-fragment-index=2>$\vdots$</td>
+        </tr>
+        <tr>
+          <td>ID44</td>
+          <td>67</td>
+          <td class="fragment highlight-bg-info-light black" data-fragment-index=1>Medium</td>
+          <td class="fragment bg-orange-light black" data-fragment-index=2>male</td>
+        </tr>
+        <tr>
+          <td>$\vdots$</td>
+          <td>$\vdots$</td>
+          <td class="fragment highlight-bg-info-light black" data-fragment-index=1>$\vdots$</td>
+          <td class="fragment bg-orange-light black" data-fragment-index=2>$\vdots$</td>
+        </tr>
+        <tr>
+          <td>ID54</td>
+          <td>63</td>
+          <td class="fragment highlight-bg-info-light black" data-fragment-index=1>Medium</td>
+          <td class="fragment bg-orange-light black" data-fragment-index=2>female</td>
+        </tr>
+        <tr>
+          <td>$\vdots$</td>
+          <td>$\vdots$</td>
+          <td class="fragment highlight-bg-info-light black" data-fragment-index=1>$\vdots$</td>
+          <td class="fragment bg-orange-light black" data-fragment-index=2>$\vdots$</td>
+        </tr>
+        <tr>
+          <td>ID62</td>
+          <td>38</td>
+          <td class="fragment highlight-bg-info-light black" data-fragment-index=1>High</td>
+          <td class="fragment bg-orange-light black" data-fragment-index=2>male</td>
+        </tr>
+        <tr>
+          <td>$\vdots$</td>
+          <td>$\vdots$</td>
+          <td class="fragment highlight-bg-info-light black" data-fragment-index=1>$\vdots$</td>
+          <td class="fragment bg-orange-light black" data-fragment-index=2>$\vdots$</td>
+        </tr>
+        <tr>
+          <td>ID77</td>
+          <td>51</td>
+          <td class="fragment highlight-bg-info-light black" data-fragment-index=1>High</td>
+          <td class="fragment bg-orange-light black" data-fragment-index=2>female</td>
+        </tr>
+        <tr>
+          <td>$\vdots$</td>
+          <td>$\vdots$</td>
+          <td class="fragment highlight-bg-info-light black" data-fragment-index=1>$\vdots$</td>
+          <td class="fragment bg-orange-light black" data-fragment-index=2>$\vdots$</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section data-transition="none">
+  <h3>Two way ANOVA</h3>
+  <p>
+    Data structure
+  </p>
+  <div class="row">
+    <div class="col-65">
+      <p class="muted u">
+        Note:
+      </p>
+      <p>
+        <i class="fas fa-arrow-circle-right danger"></i>
+        Simulating the null hypothesis (no effect of any of the factor on your dependent variable) simply consists to <span class="danger">shuffling each factor column independently</span>.
+      </p>
+      <p>
+        (this will simulate the "no-association" situation, in which each label is randomly assigned to each measurement)
+      </p>
+    </div>
+    <table class="col-30 smallest center up-10">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Score</th>
+          <th class="bg-info-light black">Noise</th>
+          <th class="bg-orange-light black">Gender</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>ID1</td>
+          <td>46</td>
+          <td class="bg-info-light black">None</td>
+          <td class="bg-orange-light black">male</td>
+        </tr>
+        <tr>
+          <td>$\vdots$</td>
+          <td>$\vdots$</td>
+          <td class="bg-info-light black">$\vdots$</td>
+          <td class="bg-orange-light black">$\vdots$</td>
+        </tr>
+        <tr>
+          <td>ID11</td>
+          <td>47</td>
+          <td class="bg-info-light black">None</td>
+          <td class="bg-orange-light black">female</td>
+        </tr>
+        <tr>
+          <td>$\vdots$</td>
+          <td>$\vdots$</td>
+          <td class="bg-info-light black">$\vdots$</td>
+          <td class="bg-orange-light black">$\vdots$</td>
+        </tr>
+        <tr>
+          <td>ID21</td>
+          <td>55</td>
+          <td class="bg-info-light black">Low</td>
+          <td class="bg-orange-light black">male</td>
+        </tr>
+        <tr>
+          <td>$\vdots$</td>
+          <td>$\vdots$</td>
+          <td class="bg-info-light black">$\vdots$</td>
+          <td class="bg-orange-light black">$\vdots$</td>
+        </tr>
+        <tr>
+          <td>ID32</td>
+          <td>48</td>
+          <td class="bg-info-light black">Low</td>
+          <td class="bg-orange-light black">female</td>
+        </tr>
+        <tr>
+          <td>$\vdots$</td>
+          <td>$\vdots$</td>
+          <td class="bg-info-light black">$\vdots$</td>
+          <td class="bg-orange-light black">$\vdots$</td>
+        </tr>
+        <tr>
+          <td>ID44</td>
+          <td>67</td>
+          <td class="bg-info-light black">Medium</td>
+          <td class="bg-orange-light black">male</td>
+        </tr>
+        <tr>
+          <td>$\vdots$</td>
+          <td>$\vdots$</td>
+          <td class="bg-info-light black">$\vdots$</td>
+          <td class="bg-orange-light black">$\vdots$</td>
+        </tr>
+        <tr>
+          <td>ID54</td>
+          <td>63</td>
+          <td class="bg-info-light black">Medium</td>
+          <td class="bg-orange-light black">female</td>
+        </tr>
+        <tr>
+          <td>$\vdots$</td>
+          <td>$\vdots$</td>
+          <td class="bg-info-light black">$\vdots$</td>
+          <td class="bg-orange-light black">$\vdots$</td>
+        </tr>
+        <tr>
+          <td>ID62</td>
+          <td>38</td>
+          <td class="bg-info-light black">High</td>
+          <td class="bg-orange-light black">male</td>
+        </tr>
+        <tr>
+          <td>$\vdots$</td>
+          <td>$\vdots$</td>
+          <td class="bg-info-light black">$\vdots$</td>
+          <td class="bg-orange-light black">$\vdots$</td>
+        </tr>
+        <tr>
+          <td>ID77</td>
+          <td>51</td>
+          <td class="bg-info-light black">High</td>
+          <td class="bg-orange-light black">female</td>
+        </tr>
+        <tr>
+          <td>$\vdots$</td>
+          <td>$\vdots$</td>
+          <td class="bg-info-light black">$\vdots$</td>
+          <td class="bg-orange-light black">$\vdots$</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Two-way ANOVA</h3>
+  <div class="row">
+    <div class="col-50">
+      <p>
+        We can think of two-way ANOVA as a nesting of one-way ANOVAs. <br>That is, we end up with, essentially, three one-way ANOVAs:
+      </p>
+      <ul class="smaller">
+        <li>
+          one for each factor
+        </li>
+        <li>
+          and one for the combined factors
+        </li>
+      </ul>
+      <p>
+        <i class="fas fa-arrow-circle-right muted"></i>
+        The computation of the $SS$ terms for each factor and the error terms are virtually similar than for a one-way ANOVA. 
+      </p>
+    </div>
+    <div class="col-50">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/anova-family-on-noise-data.svg#axes_1"></use>
+        <use xlink:href="content/img/anova-family-on-noise-data.svg#axes_5"></use>
+      </svg>
+    </div>
+  </div>
+  <p>
+    <i class="fas fa-arrow-circle-right pop"></i>
+    The <span class="strong">variability due to interaction</span> will be deduced by substracting all those variability to the total variability.
+  </p>
+  <div class="row flex down-3 small">
+    <div class="col-12 flex-center framed border-warning">
+      <p class="center">
+        Total<br>variability
+      </p>
+    </div>
+    <div class="col-4 flex-center">
+        $=$
+    </div>
+    <div class="col-16 flex-center framed border-danger">
+      <p class="center">
+        Variability due<br>to factor A
+      </p>
+    </div>
+    <div class="col-4 flex-center">
+        $+$
+    </div>
+    <div class="col-16 flex-center framed border-info">
+      <p class="center">
+        Variability due<br>to factor B
+      </p>
+    </div>
+    <div class="col-4 flex-center">
+        $+$
+    </div>
+    <div class="col-20 flex-center framed border-pop">
+      <p class="center">
+        Variability due<br>to interaction <br>of A and B
+      </p>
+    </div>
+    <div class="col-4 flex-center">
+        $+$
+    </div>
+    <div class="col-15 flex-center framed border-muted">
+      <p class="center">
+        Variability<br>due to error
+      </p>
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide-in">
+  <h3>Interaction plots</h3>
+  <p class="em u">
+    Understanding the pattern in an interaction plot:
+  </p>
+  <p class="smaller">
+    An interaction is usually described in terms of the simple <span class="u strong">main effects</span> that make it up. A "main effect" is the effect of one of your independent variables on the dependent variable, ignoring the effects of all other independent variables.
+  </p>
+  <img src="content/img/anova-interaction-patterns.svg">
+</section>
+
+<section data-transition="slide-out">
+  <h3>Interaction plots</h3>
+  <div class="row down-4">
+    <div class="col-50">
+      <img src="content/img/anova-noise-data-interaction-f1.svg">
+    </div>
+    <div class="col-50">
+      <img src="content/img/anova-noise-data-interaction-f2.svg">
+    </div>
+  </div>
+  <p>
+    <i class="fas fa-arrow-circle-right pop"></i>
+    Depending on the number of levels in each of your factors, the interaction plots might be more or less easy to interpret ...
+  </p>
+</section>
+
+<section>
+  <h3>Two-way ANOVA</h3>
+  <img src="content/img/anova-family-on-noise-data-two-way.svg">
+  <div class="row">
+    <div class="col-33">
+      <p>
+        The effect of noise on the memorization task is highly significant
+      </p>
+    </div>
+    <div class="col-33">
+      <p>
+        The effect of gender on the memorization task is not significant
+      </p>
+    </div>
+    <div class="col-33">
+      <p>
+        The interaction of the noise and gender is significant
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h3>Two-way ANOVA</h3>
+  <div class="row">
+    <div class="col-100">
+      <pre class="python"><code data-trim>
+        from statsmodels.formula.api import ols
+        from statsmodels.stats.anova import anova_lm
+
+        formula = 'data ~ C(noise) + C(gender) + C(noise):C(gender)'
+        model = ols(formula, dataTW).fit()
+        aov_table = anova_lm(model, typ=2)
+        aov_table
+      </code></pre>
+    </div>
+  </div>
+  <img class="framed col-65" src="content/img/anova-table.png">
+</section>
+
+<section>
+  <h3>Two-way ANOVA: interpretation</h3>
+  <p class="u em">
+    Inference for the Two-way ANOVA table involves:
+  </p>
+  <ul class="small">
+    <li>
+      first checking the interaction p-value to see if we can reject the null hypothesis that the additive model is sufficient.
+    </li>
+    <li>
+      If that p-value is smaller than $\alpha$, then the adequacy of the additive model can be rejected and you should conclude that both factors affect the outcome, and the the effect changes in one factor depend on the level of the other factor, i.e. there is an interaction between the explanatory variables.
+    </li>
+  </ul>
+  <p>
+    <i class="fas fa-arrow-circle-right info"></i>
+    When the interaction term is significant, the usual advice is that you should not test the effects of the individual groups as this is misleading and hard to interpret.
+  </p>
+  <p>
+    <i class="fas fa-arrow-circle-right info"></i>
+    The typical approach is to then break apart the factors and compute One-Way ANOVA on each factor term separately.
+  </p>
+</section>
+
+<section>
+  <h3>ANOVA, final remarks</h3>
+  <svg width="50%" viewBox="16 5 510 311">
+    <use xlink:href="content/img/anova-variabilities.svg#independent"></use>
+    <use xlink:href="content/img/anova-variabilities.svg#dependent"></use>
+    <use xlink:href="content/img/anova-variabilities.svg#labels"></use>
+  </svg>
+  <p class="down-4 u em">
+    Two-way anova:
+  </p>
+  <div class="row flex down-3 small">
+    <div class="col-12 flex-center framed border-warning">
+      <p class="center">
+        Total<br>variability
+      </p>
+    </div>
+    <div class="col-4 flex-center">
+        $=$
+    </div>
+    <div class="col-16 flex-center framed border-danger">
+      <p class="center">
+        Variability due<br>to factor A
+      </p>
+    </div>
+    <div class="col-4 flex-center">
+        $+$
+    </div>
+    <div class="col-16 flex-center framed border-info">
+      <p class="center">
+        Variability due<br>to factor B
+      </p>
+    </div>
+    <div class="col-4 flex-center">
+        $+$
+    </div>
+    <div class="col-20 flex-center framed border-pop">
+      <p class="center">
+        Variability due<br>to interaction <br>of A and B
+      </p>
+    </div>
+    <div class="col-4 flex-center">
+        $+$
+    </div>
+    <div class="col-15 flex-center framed border-muted">
+      <p class="center">
+        Variability<br>due to error
+      </p>
+    </div>
+  </div>
+</section>
+

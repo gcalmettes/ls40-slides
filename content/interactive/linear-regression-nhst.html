@@ -1,0 +1,220 @@
+<!-- Source: modified from https://bl.ocks.org/mbostock/3231298 -->
+
+<!DOCTYPE html>
+<body>
+<style>
+
+</style>
+
+<script src="js/d3.min.js"></script>
+<script src="js/simple-statistics.min.js"></script>
+<script>
+
+const colors = {
+  info: '#00BFFF',
+  danger: '#fb4c52',
+  warning: '#FBC15E',
+  success: '#9fc857',
+  orange: '#FF8B22',
+  muted: '#B4B4B4',
+  pop: '#ce4ad0'
+}
+
+  const margin = {left: 60, top: 50, right: 20, bottom: 60}
+  const width = 550 - margin.left - margin.right,
+        height = 450 - margin.top - margin.bottom
+
+  const radius = 5,
+        xName = "dayOfYear",
+        yName = "draftNumber"
+
+  const data = [{"dayOfYear":1,"draftNumber":305},{"dayOfYear":2,"draftNumber":159},{"dayOfYear":3,"draftNumber":251},{"dayOfYear":4,"draftNumber":215},{"dayOfYear":5,"draftNumber":101},{"dayOfYear":6,"draftNumber":224},{"dayOfYear":7,"draftNumber":306},{"dayOfYear":8,"draftNumber":199},{"dayOfYear":9,"draftNumber":194},{"dayOfYear":10,"draftNumber":325},{"dayOfYear":11,"draftNumber":329},{"dayOfYear":12,"draftNumber":221},{"dayOfYear":13,"draftNumber":318},{"dayOfYear":14,"draftNumber":238},{"dayOfYear":15,"draftNumber":17},{"dayOfYear":16,"draftNumber":121},{"dayOfYear":17,"draftNumber":235},{"dayOfYear":18,"draftNumber":140},{"dayOfYear":19,"draftNumber":58},{"dayOfYear":20,"draftNumber":280},{"dayOfYear":21,"draftNumber":186},{"dayOfYear":22,"draftNumber":337},{"dayOfYear":23,"draftNumber":118},{"dayOfYear":24,"draftNumber":59},{"dayOfYear":25,"draftNumber":52},{"dayOfYear":26,"draftNumber":92},{"dayOfYear":27,"draftNumber":355},{"dayOfYear":28,"draftNumber":77},{"dayOfYear":29,"draftNumber":349},{"dayOfYear":30,"draftNumber":164},{"dayOfYear":31,"draftNumber":221},{"dayOfYear":32,"draftNumber":86},{"dayOfYear":33,"draftNumber":144},{"dayOfYear":34,"draftNumber":297},{"dayOfYear":35,"draftNumber":210},{"dayOfYear":36,"draftNumber":214},{"dayOfYear":37,"draftNumber":347},{"dayOfYear":38,"draftNumber":91},{"dayOfYear":39,"draftNumber":181},{"dayOfYear":40,"draftNumber":338},{"dayOfYear":41,"draftNumber":216},{"dayOfYear":42,"draftNumber":150},{"dayOfYear":43,"draftNumber":68},{"dayOfYear":44,"draftNumber":152},{"dayOfYear":45,"draftNumber":4},{"dayOfYear":46,"draftNumber":89},{"dayOfYear":47,"draftNumber":212},{"dayOfYear":48,"draftNumber":189},{"dayOfYear":49,"draftNumber":292},{"dayOfYear":50,"draftNumber":25},{"dayOfYear":51,"draftNumber":302},{"dayOfYear":52,"draftNumber":363},{"dayOfYear":53,"draftNumber":290},{"dayOfYear":54,"draftNumber":57},{"dayOfYear":55,"draftNumber":236},{"dayOfYear":56,"draftNumber":179},{"dayOfYear":57,"draftNumber":365},{"dayOfYear":58,"draftNumber":205},{"dayOfYear":59,"draftNumber":299},{"dayOfYear":60,"draftNumber":285},{"dayOfYear":61,"draftNumber":108},{"dayOfYear":62,"draftNumber":29},{"dayOfYear":63,"draftNumber":267},{"dayOfYear":64,"draftNumber":275},{"dayOfYear":65,"draftNumber":293},{"dayOfYear":66,"draftNumber":139},{"dayOfYear":67,"draftNumber":122},{"dayOfYear":68,"draftNumber":213},{"dayOfYear":69,"draftNumber":317},{"dayOfYear":70,"draftNumber":323},{"dayOfYear":71,"draftNumber":136},{"dayOfYear":72,"draftNumber":300},{"dayOfYear":73,"draftNumber":259},{"dayOfYear":74,"draftNumber":354},{"dayOfYear":75,"draftNumber":169},{"dayOfYear":76,"draftNumber":166},{"dayOfYear":77,"draftNumber":33},{"dayOfYear":78,"draftNumber":332},{"dayOfYear":79,"draftNumber":200},{"dayOfYear":80,"draftNumber":239},{"dayOfYear":81,"draftNumber":334},{"dayOfYear":82,"draftNumber":265},{"dayOfYear":83,"draftNumber":256},{"dayOfYear":84,"draftNumber":258},{"dayOfYear":85,"draftNumber":343},{"dayOfYear":86,"draftNumber":170},{"dayOfYear":87,"draftNumber":268},{"dayOfYear":88,"draftNumber":223},{"dayOfYear":89,"draftNumber":362},{"dayOfYear":90,"draftNumber":217},{"dayOfYear":91,"draftNumber":30},{"dayOfYear":92,"draftNumber":32},{"dayOfYear":93,"draftNumber":271},{"dayOfYear":94,"draftNumber":83},{"dayOfYear":95,"draftNumber":81},{"dayOfYear":96,"draftNumber":269},{"dayOfYear":97,"draftNumber":253},{"dayOfYear":98,"draftNumber":147},{"dayOfYear":99,"draftNumber":312},{"dayOfYear":100,"draftNumber":219},{"dayOfYear":101,"draftNumber":218},{"dayOfYear":102,"draftNumber":14},{"dayOfYear":103,"draftNumber":346},{"dayOfYear":104,"draftNumber":124},{"dayOfYear":105,"draftNumber":231},{"dayOfYear":106,"draftNumber":273},{"dayOfYear":107,"draftNumber":148},{"dayOfYear":108,"draftNumber":260},{"dayOfYear":109,"draftNumber":90},{"dayOfYear":110,"draftNumber":336},{"dayOfYear":111,"draftNumber":345},{"dayOfYear":112,"draftNumber":62},{"dayOfYear":113,"draftNumber":316},{"dayOfYear":114,"draftNumber":252},{"dayOfYear":115,"draftNumber":2},{"dayOfYear":116,"draftNumber":351},{"dayOfYear":117,"draftNumber":340},{"dayOfYear":118,"draftNumber":74},{"dayOfYear":119,"draftNumber":262},{"dayOfYear":120,"draftNumber":191},{"dayOfYear":121,"draftNumber":208},{"dayOfYear":122,"draftNumber":330},{"dayOfYear":123,"draftNumber":298},{"dayOfYear":124,"draftNumber":40},{"dayOfYear":125,"draftNumber":276},{"dayOfYear":126,"draftNumber":364},{"dayOfYear":127,"draftNumber":155},{"dayOfYear":128,"draftNumber":35},{"dayOfYear":129,"draftNumber":321},{"dayOfYear":130,"draftNumber":197},{"dayOfYear":131,"draftNumber":65},{"dayOfYear":132,"draftNumber":37},{"dayOfYear":133,"draftNumber":133},{"dayOfYear":134,"draftNumber":295},{"dayOfYear":135,"draftNumber":178},{"dayOfYear":136,"draftNumber":130},{"dayOfYear":137,"draftNumber":55},{"dayOfYear":138,"draftNumber":112},{"dayOfYear":139,"draftNumber":278},{"dayOfYear":140,"draftNumber":75},{"dayOfYear":141,"draftNumber":183},{"dayOfYear":142,"draftNumber":250},{"dayOfYear":143,"draftNumber":326},{"dayOfYear":144,"draftNumber":319},{"dayOfYear":145,"draftNumber":31},{"dayOfYear":146,"draftNumber":361},{"dayOfYear":147,"draftNumber":357},{"dayOfYear":148,"draftNumber":296},{"dayOfYear":149,"draftNumber":308},{"dayOfYear":150,"draftNumber":226},{"dayOfYear":151,"draftNumber":103},{"dayOfYear":152,"draftNumber":313},{"dayOfYear":153,"draftNumber":249},{"dayOfYear":154,"draftNumber":228},{"dayOfYear":155,"draftNumber":301},{"dayOfYear":156,"draftNumber":20},{"dayOfYear":157,"draftNumber":28},{"dayOfYear":158,"draftNumber":110},{"dayOfYear":159,"draftNumber":85},{"dayOfYear":160,"draftNumber":366},{"dayOfYear":161,"draftNumber":335},{"dayOfYear":162,"draftNumber":206},{"dayOfYear":163,"draftNumber":134},{"dayOfYear":164,"draftNumber":272},{"dayOfYear":165,"draftNumber":69},{"dayOfYear":166,"draftNumber":356},{"dayOfYear":167,"draftNumber":180},{"dayOfYear":168,"draftNumber":274},{"dayOfYear":169,"draftNumber":73},{"dayOfYear":170,"draftNumber":341},{"dayOfYear":171,"draftNumber":104},{"dayOfYear":172,"draftNumber":360},{"dayOfYear":173,"draftNumber":60},{"dayOfYear":174,"draftNumber":247},{"dayOfYear":175,"draftNumber":109},{"dayOfYear":176,"draftNumber":358},{"dayOfYear":177,"draftNumber":137},{"dayOfYear":178,"draftNumber":22},{"dayOfYear":179,"draftNumber":64},{"dayOfYear":180,"draftNumber":222},{"dayOfYear":181,"draftNumber":353},{"dayOfYear":182,"draftNumber":209},{"dayOfYear":183,"draftNumber":93},{"dayOfYear":184,"draftNumber":350},{"dayOfYear":185,"draftNumber":115},{"dayOfYear":186,"draftNumber":279},{"dayOfYear":187,"draftNumber":188},{"dayOfYear":188,"draftNumber":327},{"dayOfYear":189,"draftNumber":50},{"dayOfYear":190,"draftNumber":13},{"dayOfYear":191,"draftNumber":277},{"dayOfYear":192,"draftNumber":284},{"dayOfYear":193,"draftNumber":248},{"dayOfYear":194,"draftNumber":15},{"dayOfYear":195,"draftNumber":42},{"dayOfYear":196,"draftNumber":331},{"dayOfYear":197,"draftNumber":322},{"dayOfYear":198,"draftNumber":120},{"dayOfYear":199,"draftNumber":98},{"dayOfYear":200,"draftNumber":190},{"dayOfYear":201,"draftNumber":227},{"dayOfYear":202,"draftNumber":187},{"dayOfYear":203,"draftNumber":27},{"dayOfYear":204,"draftNumber":153},{"dayOfYear":205,"draftNumber":172},{"dayOfYear":206,"draftNumber":23},{"dayOfYear":207,"draftNumber":67},{"dayOfYear":208,"draftNumber":303},{"dayOfYear":209,"draftNumber":289},{"dayOfYear":210,"draftNumber":88},{"dayOfYear":211,"draftNumber":270},{"dayOfYear":212,"draftNumber":287},{"dayOfYear":213,"draftNumber":193},{"dayOfYear":214,"draftNumber":111},{"dayOfYear":215,"draftNumber":45},{"dayOfYear":216,"draftNumber":261},{"dayOfYear":217,"draftNumber":145},{"dayOfYear":218,"draftNumber":54},{"dayOfYear":219,"draftNumber":114},{"dayOfYear":220,"draftNumber":168},{"dayOfYear":221,"draftNumber":48},{"dayOfYear":222,"draftNumber":106},{"dayOfYear":223,"draftNumber":21},{"dayOfYear":224,"draftNumber":324},{"dayOfYear":225,"draftNumber":142},{"dayOfYear":226,"draftNumber":307},{"dayOfYear":227,"draftNumber":198},{"dayOfYear":228,"draftNumber":102},{"dayOfYear":229,"draftNumber":44},{"dayOfYear":230,"draftNumber":154},{"dayOfYear":231,"draftNumber":141},{"dayOfYear":232,"draftNumber":311},{"dayOfYear":233,"draftNumber":344},{"dayOfYear":234,"draftNumber":291},{"dayOfYear":235,"draftNumber":339},{"dayOfYear":236,"draftNumber":116},{"dayOfYear":237,"draftNumber":36},{"dayOfYear":238,"draftNumber":286},{"dayOfYear":239,"draftNumber":245},{"dayOfYear":240,"draftNumber":352},{"dayOfYear":241,"draftNumber":167},{"dayOfYear":242,"draftNumber":61},{"dayOfYear":243,"draftNumber":333},{"dayOfYear":244,"draftNumber":11},{"dayOfYear":245,"draftNumber":225},{"dayOfYear":246,"draftNumber":161},{"dayOfYear":247,"draftNumber":49},{"dayOfYear":248,"draftNumber":232},{"dayOfYear":249,"draftNumber":82},{"dayOfYear":250,"draftNumber":6},{"dayOfYear":251,"draftNumber":8},{"dayOfYear":252,"draftNumber":184},{"dayOfYear":253,"draftNumber":263},{"dayOfYear":254,"draftNumber":71},{"dayOfYear":255,"draftNumber":158},{"dayOfYear":256,"draftNumber":242},{"dayOfYear":257,"draftNumber":175},{"dayOfYear":258,"draftNumber":1},{"dayOfYear":259,"draftNumber":113},{"dayOfYear":260,"draftNumber":207},{"dayOfYear":261,"draftNumber":255},{"dayOfYear":262,"draftNumber":246},{"dayOfYear":263,"draftNumber":177},{"dayOfYear":264,"draftNumber":63},{"dayOfYear":265,"draftNumber":204},{"dayOfYear":266,"draftNumber":160},{"dayOfYear":267,"draftNumber":119},{"dayOfYear":268,"draftNumber":195},{"dayOfYear":269,"draftNumber":149},{"dayOfYear":270,"draftNumber":18},{"dayOfYear":271,"draftNumber":233},{"dayOfYear":272,"draftNumber":257},{"dayOfYear":273,"draftNumber":151},{"dayOfYear":274,"draftNumber":315},{"dayOfYear":275,"draftNumber":359},{"dayOfYear":276,"draftNumber":125},{"dayOfYear":277,"draftNumber":244},{"dayOfYear":278,"draftNumber":202},{"dayOfYear":279,"draftNumber":24},{"dayOfYear":280,"draftNumber":87},{"dayOfYear":281,"draftNumber":234},{"dayOfYear":282,"draftNumber":283},{"dayOfYear":283,"draftNumber":342},{"dayOfYear":284,"draftNumber":220},{"dayOfYear":285,"draftNumber":237},{"dayOfYear":286,"draftNumber":72},{"dayOfYear":287,"draftNumber":138},{"dayOfYear":288,"draftNumber":294},{"dayOfYear":289,"draftNumber":171},{"dayOfYear":290,"draftNumber":254},{"dayOfYear":291,"draftNumber":288},{"dayOfYear":292,"draftNumber":5},{"dayOfYear":293,"draftNumber":241},{"dayOfYear":294,"draftNumber":192},{"dayOfYear":295,"draftNumber":243},{"dayOfYear":296,"draftNumber":117},{"dayOfYear":297,"draftNumber":201},{"dayOfYear":298,"draftNumber":196},{"dayOfYear":299,"draftNumber":176},{"dayOfYear":300,"draftNumber":7},{"dayOfYear":301,"draftNumber":264},{"dayOfYear":302,"draftNumber":94},{"dayOfYear":303,"draftNumber":229},{"dayOfYear":304,"draftNumber":38},{"dayOfYear":305,"draftNumber":79},{"dayOfYear":306,"draftNumber":19},{"dayOfYear":307,"draftNumber":34},{"dayOfYear":308,"draftNumber":348},{"dayOfYear":309,"draftNumber":266},{"dayOfYear":310,"draftNumber":310},{"dayOfYear":311,"draftNumber":76},{"dayOfYear":312,"draftNumber":51},{"dayOfYear":313,"draftNumber":97},{"dayOfYear":314,"draftNumber":80},{"dayOfYear":315,"draftNumber":282},{"dayOfYear":316,"draftNumber":46},{"dayOfYear":317,"draftNumber":66},{"dayOfYear":318,"draftNumber":126},{"dayOfYear":319,"draftNumber":127},{"dayOfYear":320,"draftNumber":131},{"dayOfYear":321,"draftNumber":107},{"dayOfYear":322,"draftNumber":143},{"dayOfYear":323,"draftNumber":146},{"dayOfYear":324,"draftNumber":203},{"dayOfYear":325,"draftNumber":185},{"dayOfYear":326,"draftNumber":156},{"dayOfYear":327,"draftNumber":9},{"dayOfYear":328,"draftNumber":182},{"dayOfYear":329,"draftNumber":230},{"dayOfYear":330,"draftNumber":132},{"dayOfYear":331,"draftNumber":309},{"dayOfYear":332,"draftNumber":47},{"dayOfYear":333,"draftNumber":281},{"dayOfYear":334,"draftNumber":99},{"dayOfYear":335,"draftNumber":174},{"dayOfYear":336,"draftNumber":129},{"dayOfYear":337,"draftNumber":328},{"dayOfYear":338,"draftNumber":157},{"dayOfYear":339,"draftNumber":165},{"dayOfYear":340,"draftNumber":56},{"dayOfYear":341,"draftNumber":10},{"dayOfYear":342,"draftNumber":12},{"dayOfYear":343,"draftNumber":105},{"dayOfYear":344,"draftNumber":43},{"dayOfYear":345,"draftNumber":41},{"dayOfYear":346,"draftNumber":39},{"dayOfYear":347,"draftNumber":314},{"dayOfYear":348,"draftNumber":163},{"dayOfYear":349,"draftNumber":26},{"dayOfYear":350,"draftNumber":320},{"dayOfYear":351,"draftNumber":96},{"dayOfYear":352,"draftNumber":304},{"dayOfYear":353,"draftNumber":128},{"dayOfYear":354,"draftNumber":240},{"dayOfYear":355,"draftNumber":135},{"dayOfYear":356,"draftNumber":70},{"dayOfYear":357,"draftNumber":53},{"dayOfYear":358,"draftNumber":162},{"dayOfYear":359,"draftNumber":95},{"dayOfYear":360,"draftNumber":84},{"dayOfYear":361,"draftNumber":173},{"dayOfYear":362,"draftNumber":78},{"dayOfYear":363,"draftNumber":123},{"dayOfYear":364,"draftNumber":16},{"dayOfYear":365,"draftNumber":3},{"dayOfYear":366,"draftNumber":100}]
+
+
+  const svg = d3.select("body")
+    .append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+      .attr("transform", `translate(${margin.left}, ${margin.top})`)
+      .attr("width", width)
+      .attr("height", height)
+
+
+  const xScale = d3.scaleLinear()
+    .range([0, width])
+    .domain(d3.extent(data, d => d[xName]))
+
+  const yScale = d3.scaleLinear()
+    .range([height, 0])
+    .domain(d3.extent(data, d => d[yName]))
+
+  const xAxis = svg.append('g')
+      .attr('class', 'axis xAxis')
+      .attr('transform', `translate(0, ${height})`)
+      .call(d3.axisBottom(xScale))
+
+  svg.append('text')
+      .attr('class', 'axisLabel')
+      .attr('x', width/2)
+      .attr('y', height+margin.bottom/1.3)
+      .style("text-anchor", "middle")
+      .style("font-size","1.5em")
+      .style("font-family", "Raleway")
+      .text('Day of Year');
+
+  const yAxis = svg.append('g')
+      .attr('class', 'axis yAxis')
+      .call(d3.axisLeft(yScale))
+  svg.append('text')
+      .attr('class', 'axisLabel')
+      .attr('transform', `translate(${-margin.left/2}, ${height/2}) rotate(-90)`)
+      .style("text-anchor", "middle")
+      .style("font-size","1.5em")
+      .style("font-family", "Raleway")
+      .text('Draft Number');
+ 
+  const rText = svg.append('text')
+      .attr('class', 'rLabel')
+      .attr('x', 15)
+      .attr('y', -15)
+      .style("text-anchor", "start")
+      .style("font-size","2em")
+       .style("fill", colors.success)
+      .text(updateEquationParameters(data));
+
+
+  plotDataset(data)
+  updateRegressionLine(data, svg, colors.info)
+
+
+  // Original data as outline
+  const outline=false
+  if (outline) {
+    svg.selectAll(".circleOriginal")
+    .data(data)
+    .enter()  
+      .append("circle")
+        .attr("class", "circleOriginal")
+        .attr("cx", d => xScale(d[xName]))
+        .attr("cy", d => yScale(d[yName]))
+        .attr("fill", "none")
+        .attr("stroke", "black")
+        .attr("stroke-width", 2)
+        .attr("r", radius)
+  }
+
+
+
+  function plotDataset(data, shuffle=false, x=xName, y=yName) {
+    let selectedData
+    if (shuffle) {
+      selectedData = breakPair(data)
+    } else {
+      selectedData = data
+    }
+
+    let circles = svg.selectAll(".circle")
+      .data(selectedData)
+
+    // needed for 
+    const size = circles.size();
+    let done = 0;
+
+     circles.exit().remove()
+     circles.enter()
+      .append("circle")
+        .attr("class", "circle")
+        .attr("cx", d => xScale(d[x]))
+        .attr("cy", d => yScale(d[y]))
+        .attr("fill", colors.muted)
+        .attr("r", radius)
+      .merge(circles)
+        .transition().duration(500)
+        .attr("cx", d => xScale(d[x]))
+        .attr("cy", d => yScale(d[y]))
+      .on('end', d => {
+        done += 1;
+        if (done === size) {
+          // Update regression Line when all transitions are done
+          updateRegressionLine(selectedData, svg, colors.danger)
+          rText.text(updateEquationParameters(selectedData))
+        }
+      })
+
+    
+  }
+
+  function updateRegressionLine(data, container, colorLine) {
+    const regLineData = getRegressionLineData(data)
+
+    let regLine = container.selectAll(".regLine")
+      .data([regLineData])
+    regLine.exit().remove()
+    regLine.enter()
+    .append("line")
+      .attr("class", "regLine")
+      .attr("x1", d => xScale(d[0][0]))
+      .attr("y1", d => yScale(d[0][1]))
+      .attr("x2", d => xScale(d[1][0]))
+      .attr("y2", d => yScale(d[1][1]))
+      .attr("stroke-width", 3)
+    .merge(regLine)
+      .transition().duration(500)
+      .attr("x1", d => xScale(d[0][0]))
+      .attr("y1", d => yScale(d[0][1]))
+      .attr("x2", d => xScale(d[1][0]))
+      .attr("y2", d => yScale(d[1][1]))
+      .attr("stroke", colorLine)
+  }
+
+
+  function breakPair(data, x=xName) {
+    const shuffledX = d3.shuffle([...new Array(data.length)].map((d,i) => data[i][x]))
+    
+    return data.map((d,i) => {
+      return {"dayOfYear": shuffledX[i],
+              "draftNumber": d.draftNumber}
+    })
+  }
+
+  function updateEquationParameters(data, x=xName, y=yName){
+    const regParams = ss.linearRegression(data.map(d => [d[x], d[y]]))
+    return `y=${regParams.m.toFixed(3)}x+${regParams.b.toFixed(3)}`
+  }
+
+  function getRegressionLineData(data, x=xName, y=yName){
+    const regParams = ss.linearRegression(data.map(d => [d[x], d[y]]))
+    const regLine = d3.extent(data, d=>d[x]).map(d => [d, ss.linearRegressionLine(regParams)(d)])
+    return regLine
+  }
+
+
+  var _transitions = [
+    {
+      transitionForward: () => plotDataset(data, true),
+      transitionBackward: () => plotDataset(data, false),
+      index: 1
+    },
+    {
+      transitionForward: () => plotDataset(data, true),
+      transitionBackward: () => plotDataset(data, true),
+      index: 2
+    },
+    {
+      transitionForward: () => plotDataset(data, true),
+      transitionBackward: () => plotDataset(data, true),
+      index: 3
+    },
+    {
+      transitionForward: () => plotDataset(data, true),
+      transitionBackward: () => plotDataset(data, true),
+      index: 4
+    },
+    {
+      transitionForward: () => plotDataset(data, true),
+      transitionBackward: () => plotDataset(data, true),
+      index: 5
+    }
+  ]
+</script>

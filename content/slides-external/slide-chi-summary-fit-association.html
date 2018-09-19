@@ -1,0 +1,86 @@
+<section data-transition="slide-in">
+  <h3>Recap on $\chi^2$ tests</h3>
+  <table class="small center">
+    <col width=50%>
+    <col width=50%>
+    <tbody>
+      <tr>
+        <td class="bg-info-light">$\chi^2$ for goodness of fit</td>
+        <td class="bg-danger-light">$\chi^2$ test of independance</td>
+      </tr>
+      <tr>
+        <td>Test hypothesis about shape of discrete distribution </td>
+        <td>Test hypothesis about relationship of categorical variables</td>
+      </tr>
+      <tr class="border-bottom">
+        <td>Are the frequencies I observe for my categorical variable consistent with my theory? </td>
+        <td>Are the two categorical variables associated with one another in the population?</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="smaller down-3">
+    <i class="fas fa-arrow-circle-right"></i>
+    Goodness-of-fit test and test of independence are in fact the <span class="strong">same approach</span> (how different are my data from the theoretical distribution?)</span>.
+  </p>
+  <p class="smaller">
+    <i class="fas fa-arrow-circle-right pop"></i>
+    $\chi^2$ is just another <span class="pop">statistic of interest</span>, and the null randomization distribution can be <span class="pop">easily simulated</span>. The <span class="strong em">MAD</span> could be calculated instead.
+  </p>
+  <p class="smaller">
+    <i class="fas fa-arrow-circle-right warning-dark"></i>
+    The theoretical approach to determine the $\chi^2$ distribution requires the use of the <span class="warning-dark">correct number of degrees of freedom</span> of the contingency table you are studying. Remember that you would also need a <span class="strong">count>10 for all the cells</span> as <span class="warning-dark">validity condition</span> of the theoretical approach.
+  </p>
+</section>
+
+
+<section data-transition="slide-out">
+  <h3>Recap on $\chi^2$ tests</h3>
+  <table class="small center">
+    <col width=50%>
+    <col width=50%>
+    <tbody>
+      <tr>
+        <td class="bg-info-light">$\chi^2$ for goodness of fit</td>
+        <td class="bg-danger-light">$\chi^2$ test of independance</td>
+      </tr>
+      <tr>
+        <td>Test hypothesis about shape of discrete distribution </td>
+        <td>Test hypothesis about relationship of categorical variables</td>
+      </tr>
+      <tr class="border-bottom">
+        <td>Are the frequencies I observe for my categorical variable consistent with my theory? </td>
+        <td>Are the two categorical variables associated with one another in the population?</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="row down-2">
+    <div class="col-60 smaller">
+      <span class="u em">Note:</span> <br>
+      The $\chi^2$ test for independance <span class="pop">can also be applied to 2x2 contingency tables</span> and will give you the <span class="strong">same results</span> (p-value or confidence intervals) than if you were comparing the difference in proportions, or the ratio of the two proportions.
+    </div>
+    <div class="col-40">
+      <table class="center smaller down-10">
+        <tr>
+          <td class="bg-warning-light border-right" rowspan=2>Response <br>variable</td>
+          <td class="bg-success-light border-nobottom" colspan=2>Explanatory var.</td>
+        </tr>
+       <tr>
+         <td class="bg-success-light">Cat. #1</td>
+         <td class="bg-success-light">Cat. #2</td>
+       </tr>
+       <tr>
+         <td class="bg-warning-light border-right border-nobottom">
+          Yes</td>
+         <td class="border-nobottom">50</td>
+         <td class="border-nobottom">65</td>
+       </tr>
+       <tr>
+         <td class="bg-warning-light border-right border-nobottom">
+          No</td>
+         <td class="border-nobottom">30</td>
+         <td class="border-nobottom">45</td>
+       </tr>
+      </table> 
+    </div>
+  </div>
+</section>

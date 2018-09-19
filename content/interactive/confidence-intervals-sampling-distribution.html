@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<body>
+
+<style>
+/*  .popLabel {
+    text-anchor:middle;
+    font-face:bold;
+    font-size:12px;
+    opacity:.7;
+    fill:black;
+  }
+
+  .sampleLabel {
+    text-anchor:middle;
+    font-face:bold;
+    font-size:12px;
+    opacity:.7;
+    fill:red;
+  }
+*/
+
+
+  /*General*/
+  .circle {
+    fill-opacity:.15;
+  }
+
+  /*Population*/
+  .popMean {
+    stroke-width: 3px;
+    stroke:black;
+  }
+   .popMean-symbol {
+    fill: black;
+  }
+
+  /*Sample Theory - multi sampling from population*/
+  .sampleMean-dist {
+    stroke-width: 3px;
+    stroke: #00BFFF;
+  }
+  .sampleMean-dist-symbol {
+    fill: #00BFFF
+  }
+  rect.sampleMean-dist-bar { 
+    fill: #00BFFF; 
+    opacity: 0.5;
+  }
+  circle.active-sampleMean-dist {
+    stroke-width: 2px;
+    stroke:#00BFFF;
+  }
+
+  /*Sample Experiment - multi sampling for experiment*/
+  .sampleMean-exp {
+    stroke-width: 3px;
+    stroke: #fb4c52;
+  }
+  .sampleMean-exp-symbol {
+    fill: #fb4c52;
+  }
+  rect.sampleMean-exp-bar { 
+    fill: #fb4c52; 
+    opacity: 0.5;
+  }
+  circle.active-sampleMean-exp {
+    stroke-width: 2px;
+    stroke:#fb4c52;
+  }
+  
+
+
+
+</style>
+
+<script src="js/d3.min.js"></script>
+<script>
+
+  const width = 400,
+        height = 300,
+        colors = {info: '#00BFFF',
+                  danger: '#fb4c52',
+                  warning: '#FBC15E',
+                  orange: '#FF8B22',
+                  muted: '#B4B4B4',
+                  pop: '#ce4ad0'}
+
+  const margin = {left: 20, top: 10, right: 20, bottom: 10, between: 70}
+
+  // structure: 2 graph rows in the svg
+  const svg = d3.select("body")
+    .append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom + 2*margin.between)
+
+  const gSample = svg.append("g")
+    .attr("id", "sampleGraph")
+    .attr("width", width)
+    .attr("height", height/2)
+    .attr("transform", `translate(${margin.left}, ${margin.top + margin.between + height/2})`)
+
+  const gPop = svg.append("g")
+    .attr("id", "popGraph")
+    .attr("width", width)
+    .attr("height", height/2)
+    .attr("transform", `translate(${margin.left}, ${margin.top})`)
+
+  const sampleSize = 15,
+        populationSize = 150,
+        radius = 6
+
+  const xScale = d3.scaleLinear()
+    .range([0, width])
+
+  const yScale = d3.scaleLinear()
+    .range([height/2, 0])
+
+
+  const pop = initializePopulation(populationSize, radius, gPop)
+  let samplingMeans,
+      oneSample
+  
+  function getNewSampleAndBootstrap(pop, sampleSize, n, sampleClass="sampleMean-exp") {
+    const oneSample = getOneSample(pop, sampleSize, sampleClass)
+    const bootSample = bootstrapSample(oneSample, n)
+    drawHistogram(bootSample, xScale, gSample, sampleClass)
+    return oneSample
+  }
+
+  function bootstrapOneSample(oneSample, n, sampleClass="sampleMean-exp") {
+    const bootSample = bootstrapSample(oneSample, n)
+    drawHistogram(bootSample, xScale, gSample, sampleClass)
+  }
+
+  function bootstrapSample (sample, n){
+    const boot = new Array(n)
+    for (let i=0; i<n; i++){
+      let bootSample = getRandom(sample, sample.length, replace=true)
+      boot[i] = d3.mean(bootSample, d => d.x)
+    }
+    return boot
+  }
+
+  function initializePopulation(populationSize, radius, selection) {
+    const pop = [...new Array(populationSize)]
+      .map((d, i) => {
+        let value = Math.random()
+        return {id: i, value: value, selected:0}
+      })
+      
+    const popBeeswarm = beeswarm(pop, radius, 1, xScale, category="value")
+
+    updateCircles(popBeeswarm, radius, selection)
+    drawMean(popBeeswarm, selection, "popMean")
+    return popBeeswarm
+  }
+
+  function drawHistogram(data, xScale, selection, barClass){
+    // set the parameters for the histogram
+    const histogram = d3.histogram()
+      .value(d => d)
+      .domain(xScale.domain())
+      .thresholds(100)
+
+      // group the data for the bars
+    const bins = histogram(data);
+    // Scale the range of the data in the y domain
+    yScale.domain([0, d3.max(bins, d => d.length)]);
+
+    const sel = selection.selectAll(`.${barClass}-bar`)
+        .data(bins)
+
+    sel.exit().remove()
+    // append the bar rectangles to the svg element
+    
+    sel.enter()
+      .append("rect")
+        .attr("class", `${barClass}-bar`)
+        .attr("x", 1)
+        .attr("transform", d => `translate(${xScale(d.x0)}, ${yScale(0)})`)
+        .attr("width", d => xScale(d.x1) - xScale(d.x0) -1)
+        // .attr("height", d => height/3 - yScale(d.length))
+        .attr("height", 0)
+      .merge(sel)
+        .transition().duration(100)
+        .attr("transform", d => `translate(${xScale(d.x0)}, ${yScale(d.length)})`)
+        .attr("width", d => xScale(d.x1) - xScale(d.x0) -1)
+        .attr("height", d => height/2 - yScale(d.length))
+  }
+
+  function getOneSample(population, sampleSize, sampleClass="sampleMean-dist") {
+    clearSample(population)
+    const indicies = getRandom([... new Array(population.length)].map((d, i) => i), sampleSize)
+    let sample = []
+    indicies.forEach(d => {
+      population[d].data.selected = 1;
+      sample.push(population[d])
+      })
+    updateCircles(population, radius, gPop, sampleClass)
+    drawMean(sample, gPop, sampleClass)
+
+    return sample
+  }
+
+  function updateCircles(pop, radius, selection, circleClass="sampleMean-dist") {    
+    xScale.domain(d3.extent(pop, d => d.x))
+    yScale.domain(d3.extent(pop, d => d.y))
+    const circlesData = selection.selectAll(".circle")
+      .data(pop)
+
+    // reset classList to just .circle
+    circlesData._groups[0].forEach(d => d.classList = "circle")
+
+    circlesData.enter()
+      .append("circle")
+        .attr("class", "circle")
+        .classed(`active-${circleClass}`, d => d.data.selected == 1 ? true : false)
+        .attr("cx", (d, i) => xScale(d.x))
+        .attr("cy", (d, i) => height/2-d.y)
+        .attr("r", radius)
+      .merge(circlesData)
+        .classed(`active-${circleClass}`, d => d.data.selected == 1 ? true : false)
+  }
+
+  function drawMean(pop, selection, lineClass){
+
+    const popMean = d3.mean(pop, d=>d.x)
+
+    // If existing sampleMean/sampleMean-symbol classes, set to the current lineClass
+    let sampleClass = lineClass.split("-")
+    if (sampleClass.length>1) {
+      d3.selectAll("[class^=sampleMean]")._groups[0].forEach(d => {
+        let currentClass = d.classList[0].split("-")
+        if (currentClass[2]!="bar"){
+          // don't update the bars though, we want the 2 histograms
+          currentClass[1] = sampleClass[1]
+          d.classList = currentClass.join("-")
+        }
+      })
+    }
+
+    // line
+    const meanLine = selection.selectAll(`.${lineClass}`)
+      .data([0])
+
+    meanLine.exit().remove()
+
+    meanLine.enter()
+      .append("line")
+        .attr("class", lineClass)
+        .attr("x1", xScale(popMean))
+        .attr("x2", xScale(popMean))
+        .attr("y1", height/2 + margin.between/2)
+        .attr("y2", 2*height/2 + margin.between)
+      .merge(meanLine)
+        .transition().duration(100)
+        .attr("x1", xScale(popMean))
+        .attr("x2", xScale(popMean))
+
+    // triangle
+    const symbol = d3.symbol()
+      .size(200);
+
+    const meanSymbol = selection.selectAll(`.${lineClass}-symbol`)
+      .data([d3.symbolTriangle])
+
+    meanSymbol.exit().remove()
+
+    meanSymbol.enter()
+      .append("path")
+        .attr("class", `${lineClass}-symbol`)
+        .attr("d", d => symbol.type(d)())
+        .attr("transform", `translate(${xScale(popMean)}, ${2*height/2 + margin.between})`)
+      .merge(meanSymbol)
+        .transition().duration(100)
+        .attr("transform", `translate(${xScale(popMean)}, ${2*height/2 + margin.between})`)
+  }
+
+
+  function sampleAndComputeMean(population, sampleSize, update=true){
+    // Randomly sample `sampleSize` values from the population
+    clearSample(population)
+    const indicies = getRandom([... new Array(population.length)].map((d, i) => i), sampleSize)
+    let sum = 0;
+    indicies.forEach(d => {
+      population[d].data.selected = 1;
+      sum += population[d].x;
+      })
+    const sampleMean = sum / sampleSize
+    if (update) updateCircles(population, radius, gPop)
+    return sampleMean
+  }
+
+  function computeSamplingDistribution(population, sampleSize, n){
+    let samplingMeans = []
+    for (let i=0; i<n; i++){
+      let sampleMean = sampleAndComputeMean(population, sampleSize, update=false)
+      samplingMeans.push(sampleMean)
+    }
+    return samplingMeans
+  }
+
+
+  function clearSample(population){
+    population.forEach(d => d.data.selected = false)
+  }
+
+  function getRandom(arr, n, replace=false) {
+    let result = new Array(n),
+        len = arr.length,
+        taken = new Array(len);
+    if (n > len)
+        throw new RangeError("getRandom: more elements taken than available");
+    if (!replace) {
+      while (n--) {
+        let x = Math.floor(Math.random() * len);
+        result[n] = arr[x in taken ? taken[x] : x];
+        taken[x] = --len in taken ? taken[len] : len;
+      }
+    } else {
+      while (n--) {
+        let x = Math.floor(Math.random() * len);
+        result[n] = arr[x];
+      }
+    }
+    return result;
+  }
+
+
+  function beeswarm(data, radius, padding, xscale, category=dataToShow){
+    // code from https://beta.observablehq.com/@mbostock/d3-beeswarm
+    const circles = data.map(d => ({x: xscale(d[category]), data: d}))
+      .sort((a, b) => a.x - b.x);
+    const epsilon = 1e-3;
+    let head = null, tail = null;
+    // Returns true if circle ⟨x,y⟩ intersects with any circle in the queue.
+    function intersects(x, y) {
+      let a = head;
+      while (a) {
+        if ((radius * 2 + padding - epsilon) ** 2 > (a.x - x) ** 2 + (a.y - y) ** 2) {
+          return true;
+        }
+        a = a.next;
+      }
+      return false;
+    }
+    // Place each circle sequentially.
+    for (const b of circles) {
+      // Remove circles from the queue that can’t intersect the new circle b.
+      while (head && head.x < b.x - (radius * 2 + padding)) head = head.next;
+      // Choose the minimum non-intersecting tangent.
+      if (intersects(b.x, b.y = 0)) {
+        let a = head;
+        b.y = Infinity;
+        do {
+          let y = a.y + Math.sqrt((radius * 2 + padding) ** 2 - (a.x - b.x) ** 2);
+          if (y < b.y && !intersects(b.x, y)) b.y = y;
+          a = a.next;
+        } while (a);
+      }
+      // Add b to the queue.
+      b.next = null;
+      if (head === null) head = tail = b;
+      else tail = tail.next = b;
+    }
+    return circles;
+  }
+
+
+  var _transitions = [
+    {
+      transitionForward: () => {
+        getOneSample(pop, sampleSize, sampleClass="sampleMean-dist")
+      }, 
+      transitionBackward: () => {
+        d3.selectAll("[class^=sampleMean-dist]").remove()
+        clearSample(pop)
+        updateCircles(pop, radius, gPop)
+      },
+      index: 1
+    },
+    {
+      transitionForward: () => {
+        getOneSample(pop, sampleSize, sampleClass="sampleMean-dist")
+      }, 
+      index: 2
+    },
+    {
+      transitionForward: () => {
+        getOneSample(pop, sampleSize, sampleClass="sampleMean-dist")
+      }, 
+      index: 3
+    },
+    {
+      transitionForward: () => {
+        samplingMeans = computeSamplingDistribution(pop, sampleSize, 5000)
+        d3.selectAll("[class^=sampleMean-dist]").remove()
+        drawHistogram(samplingMeans, xScale, gSample, "sampleMean-dist")
+      }, 
+      transitionBackward: () => {
+        const selec = d3.selectAll(".sampleMean-dist-bar")
+        selec.remove()
+        getOneSample(pop, sampleSize, sampleClass="sampleMean-dist")
+      },
+      index: 4
+    },
+    {
+      transitionForward: () => {
+        oneSample = getOneSample(pop, sampleSize, "sampleMean-exp")
+      },
+      transitionBackward: () => {
+        oneSample = getOneSample(pop, sampleSize, "sampleMean-dist")
+        d3.selectAll(".sampleMean-dist").remove()
+        d3.selectAll(".sampleMean-dist-symbol").remove()
+      }, 
+      index: 6
+    },
+    {
+      transitionForward: () => {
+        bootstrapOneSample(oneSample, 5000, sampleClass="sampleMean-exp")
+      },
+      transitionBackward: () => {
+        const selec = d3.selectAll(".sampleMean-exp-bar")
+        selec.remove()
+      },
+      index: 7
+    },
+    {
+      transitionForward: () => {
+        oneSample = getNewSampleAndBootstrap(pop, sampleSize, 5000, sampleClass="sampleMean-exp")
+      }, 
+      index: 8
+    },
+    {
+      transitionForward: () => {
+        oneSample = getNewSampleAndBootstrap(pop, sampleSize, 5000, sampleClass="sampleMean-exp")
+      }, 
+      index: 9
+    }
+  ]
+
+</script>

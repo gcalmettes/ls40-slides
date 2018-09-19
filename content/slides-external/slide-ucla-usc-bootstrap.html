@@ -1,0 +1,249 @@
+
+<!-- <section data-transition="slide-in">
+  <h3>Drawing a bootstrap sample</h3>
+  <p style="margin-top: 0;" class="sided">
+    Ideally, we’d like to sample repeatedly from the population to create a sampling distribution <br>
+    => reapeatedly randomly draw 249 other
+    UCLA-USC games from the population and
+    calculate another value for our statistic
+  </p>
+  <p class="em">
+    How can we make the sample data look like data from the entire population?
+  </p>
+  <div class="row fragment">
+    <div class="col-45">
+    <p style="font-size: 0.65em">We assume that the population of all the
+    UCLA-USC basketball games is basically just many, many copies of the games
+    in our original sample (n=249).</p>
+    </div>
+    <div class="col-55">
+      <svg width="100%" viewBox="0 5 226 125.5" style="margin-top: 0; margin-bottom: 0;">
+        <use xlink:href="content/img/bootstrap-population-from-sample.svg#bootstrap"></use>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Drawing a bootstrap sample</h3>
+  <p style="margin-top: 0; font-size: 0.6em" class="sided">
+    In practice, instead of actually making many copies of the sample and
+    sampling from that, we use a sampling technique that is equivalent: <br>
+    => we <span class="danger"> sample with replacement</span> from the original sample.
+  </p>
+    <div class="row">
+    <div class="col-55">
+    <p style="font-size: 0.55em">
+    Once a UCLA-USC game has been selected from the sample,
+    it is <span class="danger">still available to be selected again</span>. <br>
+    => Each UCLA-USC game in the original sample actually represents
+    many other games with a similar outcome (win or loss).
+    Each sample selected in this way, with replacement from the original
+    sample, is called a <span class="warning">bootstrap sample</span>.
+    </p>
+    <p style="font-size: 0.5em" class="fragment framed border-info" data-fragment-index=2>
+    <span class="u em">Note:</span> Recall that the variability of a sample statistic
+    depends on the size of
+    the sample. Because we are trying to uncover the variability of the
+    sample statistic, it is important that <span class="info">each bootstrap sample is the
+    same size as the original sample</span> (n=249).
+  </p>
+    </div>
+    <div class="col-45">
+      <svg width="100%" viewBox="0 0 224 192.5" style="margin-top: 0; margin-bottom: 0;">
+        <use xlink:href="content/img/bootstrap-sample-from-sample.svg#bootstrap"></use>
+        <use class="fragment" data-fragment-index=1 xlink:href="content/img/bootstrap-sample-from-sample.svg#squares"></use>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide-in">
+  <h3>Generating a Bootstrap distribution</h3>
+  <div class="row">
+    <div class="col-100">
+      <svg width="70%" viewBox="0 0 433 204" style="margin-top: 0; margin-bottom: 0;">
+        <use xlink:href="content/img/bootstrap-distribution-generation-process.svg#bootstrap"></use>
+      </svg>
+    </div>
+  </div>
+  <ol style="font-size: 0.65em;">
+      <li><span class="warning">Generate bootstrap samples</span>
+      by sampling <span class="u">with replacement</span> <br>from
+      the original sample, using the
+      <span class="warning">same sample size</span></li>
+      <li><span class="info">Compute the statistic of interest</span>
+       ("bootstrap statistic") <br>
+      for each of the bootstrap samples</li>
+      <li>Collect the statistics for many bootstrap samples <br>to create a
+      <span class="info">bootstrap distribution</span></li>
+    </ol>
+</section> -->
+
+<section data-transition="slide-in">
+  <h3>Estimating $\pi_{\textrm{win}}$ for UCLA against USC</h3>
+  <p class="em u down-3">Let's get back to the UCLA-USC basketball games investigation</p>
+  <p>
+    <i class="fas fa-arrow-circle-right danger"></i> What is the <span class="danger">true probability of UCLA to win a game against USC</span>? <br>
+    In other words, if UCLA and USC were to play an infinite number of basketball games, what parameter $\pi_{\textrm{win}}$ would we observe on the long-run?
+  </p>
+  <div class="down-2 smaller">
+    We can use the bootstrap technic to compute the 95% confidence interval of $\pi_{\textrm{win}}$ for UCLA: <br>
+    <ul class="normal">
+      <li>
+        Reapeatedly randomly draw with replacement <span class="info">249</span> UCLA-USC games outcomes from the sample we have and calculate each time the value of our bootstrap statistic $\hat{p}$.
+      </li>
+      <li>
+        Once a UCLA-USC game has been selected from the sample, it is <span class="danger">still available to be selected again</span> (drawing with replacement). <br>
+        <i class="fas fa-arrow-right"></i> Each UCLA-USC game in the original sample actually represents many other games with a similar outcome (win or loss).
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Estimating $\pi_{\textrm{win}}$ for UCLA against USC</h3>
+  <div class="em u">Generating a Bootstrap distribution</div>
+
+  <div class="row flex">
+    <div class="col-30 flex-center">
+      <p class="smaller">
+        data sample (n=249)<br>
+        <span class="strong">140</span> ones & <span class="strong">109</span> zeros <br>
+        <span class="info">$P(1)=0.562$</span><br>
+        $P(0)=0.438$
+      </p>
+    </div>
+    <div class="col-60 flex-center">
+      <table class="smaller border-top border-bottom">
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>1</td>
+            <td>...</td>
+            <td>1</td>
+            <td>0</td>
+            <td>1</td>
+            <td>1</td>
+            <td>0</td>
+            <td>1</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-10 flex-center">
+      <p>
+        $\hat{p}=0.562$
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-60">
+      <img src="content/img/bootstrap-ucla-usc-proportion.svg" width="100%">
+    </div>
+    <div class="col-40">
+      <svg width="100%" viewBox="34 0 385 285">
+        <use class="fragment" xlink:href="content/img/ucla-usc-bootstrap-ci95.svg#axes_1"></use>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide-in">
+  <h3>Bootstrap confidence intervals</h3>
+  <p class="sided">
+    Now that we have our Bootstrap sampling distribution, we can compute the
+    confidence intervals at the 95% level.
+  </p>
+  <div class="row">
+    <div class="col-55">
+      <svg width="100%" viewBox="34 0 385 285">
+        <use xlink:href="content/img/ucla-usc-bootstrap-ci95.svg#axes_1"></use>
+        <use  class="fragment" data-fragment-index=1 xlink:href="content/img/ucla-usc-bootstrap-ci95.svg#axes_2"></use>
+        <use  class="fragment" data-fragment-index=2 xlink:href="content/img/ucla-usc-bootstrap-ci95.svg#axes_3"></use>
+      </svg>
+    </div>
+    <div class="col-45">
+      <p class="sided border-danger">
+        Where is it centered?<br>
+        <span class="fragment" data-fragment-index=1>
+         centered at <span class="danger">$\hat{p}$</span>
+         <br>
+         (original observed proportion)
+        </span>
+      </p>
+      <p class="sided border-orange">
+        How do we compute the 95% confidence intervals of our population parameter?<br>
+        <span class="fragment" data-fragment-index=2>
+          We consider the <span class="orange">central 95% of the bootstrap statistics</span>
+           (discard the 2.5% more extreme cases on each side)
+        </span>
+      </p>
+    </div>
+  </div>
+  <p class="fragment framed border-info">
+    <i class="fas fa-arrow-circle-right info"></i> We are 95% confident that the <span class="info">true probability</span> of the Bruins to win a game against the Trojans (parameter $\pi_{\textrm{win}}$) is lying in the interval $[0.498-0.622]$
+  </p>
+</section>
+
+<section data-external-replace="slide-definition-bootstrap-confidence-intervals.html"></section>
+
+<section>
+  <h3>Reporting confidence intervals instead of p-values</h3>
+  <p class="">
+    <span class="u em">Confidence intervals provide information about both:</span> <br>
+    <ul>
+      <li>
+        <span class="danger">strength of evidence</span>
+        (<span class="em">Is the parameter value we want to test against,
+        in the interval we obtained?</span>)
+      </li>
+      <li>
+        <span class="danger">uncertainty/estimate of the true parameter value</span>
+        (for a chosen $\alpha$ as confidence level, $\alpha$% of the time our interval will include our true parameter) 
+      </li>
+    </ul>
+  </p>
+  <p class="framed border-orange">
+    <i class="fas fa-arrow-circle-right orange"></i> In that sense, reporting the $\alpha$% confidence intervals is better than
+    just reporting a p-value, since what we really want to know is the true value
+    of our population parameter, not just if our true parameter is different or not from a particular value.
+  </p>
+</section>
+
+<section>
+  <h3>Versatility of the Bootstrap</h3>
+  <div class="row">
+    <div class="col-50">
+      <ul class="smaller margin-bottom-10">
+        <li>
+          The bootstrap procedure <span class="danger">does not require any assumption</span> about the distribution of your data <br>
+          (the data sample is the best approximation of the population)
+        </li>
+        <li class="fragment" data-fragment-index="1">
+          The bootstrap procedure <span class="info">can be applied to any data type</span> <br>
+          (categorical or quantitative variables)
+        </li>
+        <li class="fragment" data-fragment-index="2">
+          The <span class="orange">bootstrap statistic can be anything</span> you're
+          interesed in <br>
+          ($\hat{p}$, median, mean, ratio, correlation coefficient, etc ...)
+        </li>
+        <li class="fragment" data-fragment-index="3">
+          The <span class="pop">bootstrap procedure can be adapted</span> to replace any theoretical statistical test <br>
+          (confidence intervals generation, comparison of groups, etc ...)
+        </li>
+      </ul>
+    </div>
+    <div class="col-50">
+      <p class="em fragment" data-fragment-index="2">
+        Bootstrap regression analysis</p>
+       <img src="content/img/bootstrap-showcase-regression-params.svg"
+       class="fragment" width="100%" data-fragment-index="2">
+    </div>
+  </div>
+</section>

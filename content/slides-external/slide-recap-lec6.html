@@ -1,0 +1,184 @@
+<section>
+  <h3>The goal of statistics</h3>
+  <div class="row">
+    <div class="col-80">
+      <img src="content/img/inferences.svg" width="100%">
+    </div>
+  </div>
+    <p class="sided border-pop">
+      Usually, we do not have the luxury of
+      getting access to the full
+      population of what we want to study. <br>
+      We have to rely on a sample (from this
+      population) to make inferences
+      about the characteristics of the full population.
+    </p>
+</section>
+
+<section data-transition="slide-in fade-out">
+  <h3>Null Hypothesis Significance Testing</h3>
+  <p class="quoted">
+    Could my observed statistic
+    ($\hat{p}$, $\bar{x}$) be coming from a
+    population centered at a certain value of parameter ($\pi$, $\mu$)?
+  </p>
+  <p>
+    <i class="fas fa-arrow-circle-right"></i> What would the distribution of samples statistics ($\hat{p}$, $\bar{x}$, ...) coming from this hypothesized population look like? What is the probability of observing a value of the statistic as extreme as the one I obtained from my sample in this sampling distribution ?
+  </p>
+  <div class="row">
+    <div class="col-40">
+      <p class="framed border-info">
+        <span class="info">Resampling:</span><br>
+        Let's simulate it and see (no assumption)
+      </p>
+    </div>
+    <div class="col-60">
+      <p class="framed border-danger">
+        <span class="danger">Theory:</span> <br>
+        - For a proportion, it's a normal distribution centered at
+        $\pi$, and with a standard deviation of $\sqrt{\frac{\pi(1-\pi)}{n}}$ <br>
+
+        - For a mean, it's a $t$-distribution centered at
+        $\mu$, and with a standard deviation of $\frac{\sigma}{\sqrt{n}}$ (but use $\frac{s}{\sqrt{n}}$ instead).
+      </p>
+    </div>
+  </div>
+</section>
+
+<section data-transition="fade-in slide-out">
+  <h3>Null Hypothesis Significance Testing</h3>
+  <div class="row">
+    <div class="col-85">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/nhst-vs-ci.svg#axes_2"
+          class="fragment current-visible" data-fragment-index=1></use>
+        <use xlink:href="content/img/nhst-vs-ci.svg#axes_7"
+          class="fragment current-visible" data-fragment-index=2></use>
+        <use xlink:href="content/img/nhst-vs-ci.svg#axes_1"></use>
+      </svg>
+    </div>
+    <div class="col-15">
+    <p>
+      <span class="info fragment current-visible" data-fragment-index=1>Resampling</span><br>
+      <span class="danger fragment" data-fragment-index=2>Theory</span>
+    </p>
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide-in">
+  <h3>Confidence intervals</h3>
+  <p class="quoted">
+    What would be a range of values calculated from my statistic ($\hat{p}$, $\bar{x}$) I am confident will contain the true value parameter ($\pi$, $\mu$) for the population my sample is coming from?
+  </p>
+  <p>
+    <i class="fas fa-arrow-circle-right"></i> What is the uncertainty of the parameter I estimate using the statistic from my sample?
+  </p>
+  <div class="row">
+    <div class="col-50">
+      <p class="framed border-info">
+        <span class="info">Resampling:</span><br>
+        Let's use our data and draw lots of Bootstrap samples.
+        We will keep the center $95\%$ values as the range of values we are confident is most likely containing the true value
+        of the parameter of the population our sample is coming from.
+      </p>
+    </div>
+    <div class="col-50">
+      <p class="framed border-danger">
+        <span class="danger">Theory:</span> <br>
+        We will consider a range of values centered at our
+        observed statistic and of width $\pm2SE$ on each
+        side. <br>
+        $SE=\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$ for a sample proportion <br>
+        $SE=\frac{s}{\sqrt{n}}$ for a sample mean
+      </p>
+    </div>
+  </div>
+</section>
+
+<section data-transition="fade-in slide-out">
+  <h3>Confidence intervals</h3>
+  <div class="row">
+    <div class="col-85">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/nhst-vs-ci.svg#axes_5"
+          class="fragment" data-fragment-index=1></use>
+        <use xlink:href="content/img/nhst-vs-ci.svg#axes_6"
+          class="fragment" data-fragment-index=2></use>
+        <use xlink:href="content/img/nhst-vs-ci.svg#axes_1"></use>
+        <use xlink:href="content/img/nhst-vs-ci.svg#axes_8"
+          class="fragment" data-fragment-index=3></use>
+      </svg>
+    </div>
+    <div class="col-15">
+      <p>
+      <span class="warning fragment" data-fragment-index=1>Resampling</span><br>
+      <span class="danger fragment" data-fragment-index=3>Theory</span>
+    </p>
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide-in">
+  <h3>NHST vs Confidence intervals</h3>
+  <div class="row">
+    <div class="col-50">
+      <p class="info center">
+        Null Hypothesis testing
+      </p>
+    </div>
+    <div class="col-50">
+      <p class="warning center">
+        Confidence intervals (95%)
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-50">
+      <p class="quoted">
+        Could my observed statistic
+        ($\hat{p}$, $\bar{x}$) be coming from a
+        population centered at a certain value of parameter [$\pi$, $\mu$]?
+      </p>
+    </div>
+    <div class="col-50">
+      <p class="quoted">
+        What would be a range of values I am confident will contain the true value of the population parameter my sample is coming from?
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-50">
+      <p class="bg-info-light border-info">
+        What would the distribution of samples statistics coming from this hypothesized population look like? What is the probability
+        of my observed statistic happening in this distribution ?
+      </p>
+    </div>
+    <div class="col-50">
+      <p class="bg-warning-light border-warning">
+      What would be the variability of the central $95\%$ of the sampling distribution of my statistic if I had access to other samples from this same distribution? This interval is very likely to contain the true parameter value.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section data-transition="fade-in slide-out">
+  <h3>NHST vs Confidence intervals</h3>
+  <div class="row">
+    <div class="col-85">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/nhst-vs-ci.svg#axes_2"
+          class="fragment" data-fragment-index=1></use>
+        <use xlink:href="content/img/nhst-vs-ci.svg#axes_5"
+          class="fragment" data-fragment-index=2></use>
+        <use xlink:href="content/img/nhst-vs-ci.svg#axes_1"></use>
+      </svg>
+    </div>
+    <div class="col-15">
+      <p>
+      <span class="info fragment" data-fragment-index=1>NHST</span><br>
+      <span class="warning fragment" data-fragment-index=2>95% CI</span>
+    </p>
+    </div>
+  </div>
+</section>

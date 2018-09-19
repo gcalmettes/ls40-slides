@@ -1,0 +1,90 @@
+<section data-transition="slide-in">
+  <h3>Note on assessing normality</h3>
+  <div class="row">
+    <div class="col-60">
+      <div class="u small">
+        <span class="circled-bg-info">1</span>Visual inspection: <span class="info strong">QQ-plot</span>
+      </div>
+      <div class="small">
+        A Quantile-Quantile plot is a scatterplot created by plotting two sets of quantiles against one another.
+      </div>
+      <div class="smaller">
+        <i class="fas fa-arrow-circle-right"></i> If both sets of quantiles came from the same distribution (e.g.: normal distribution), we should see the points forming a line that’s roughly straight.
+      </div>
+    </div>
+    <div class="col-40">
+      <img src="content/img/qqplot.svg">
+    </div>
+  </div>
+  <div class="row flex fragment">
+    <div class="col-30 smaller down-4">
+      To get a sense of them, we need to understand <span class="pop">cumulative density functions (CDF)</span>:
+    </div>
+    <div class="col-70 flex-center">
+      <img src="content/img/cumprob.svg">
+    </div>
+  </div>
+</section>
+
+<section data-transition="none">
+  <h3>Note on assessing normality</h3>
+  <div class="row">
+    <div class="col-60">
+      <div class="u small">
+        <span class="circled-bg-info">1</span>Visual inspection: <span class="info strong">QQ-plot</span>
+      </div>
+      <div class="small">
+        A Quantile-Quantile plot is a scatterplot created by plotting two sets of quantiles against one another.
+      </div>
+      <div class="smaller">
+        <i class="fas fa-arrow-circle-right"></i> If both sets of quantiles came from the same distribution (e.g.: normal distribution), we should see the points forming a line that’s roughly straight.
+      </div>
+    </div>
+    <div class="col-40">
+      <img src="content/img/qqplot.svg">
+    </div>
+  </div>
+  <div class="row flex">
+   <div class="col-30 smaller down-4">
+      To get a sense of them, we need to understand <span class="pop">cumulative density functions (CDF)</span>:
+    </div>
+    <div class="col-70 flex-center">
+      <img src="content/img/cumprob-norm-skewed.svg">
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Note on assessing normality</h3>
+  <div class="row">
+    <div class="col-50">
+      <div class="u small">
+        <span class="circled-bg-pink">2</span>Statistical test:
+      </div>
+      <div class="small">
+        In complement to visual inspection of normality (<span class="em">QQ plot</span>), statistical tests for normality, like the <span class="pink strong">Shapiro-Wilk test</span> can be used.
+      </div>
+    </div>
+    <div class="col-50">
+      <pre class="python">
+        <code data-trim>
+          # import Scipy
+          from scipy import stats
+
+          stats.shapiro(array)
+          #(0.9831042289733887, 0.9676246047019958)
+          #   test statistic         p-value
+        </code>
+      </pre>
+    </div>
+  </div>
+  <p class="smaller">
+    The null-hypothesis of this test is that the population is normally distributed.
+  </p>
+  <p class="smaller col-80 right-5 sided-bg-orange border-orange">
+    <span class="orange-dark strong">$p<\alpha$:</span> if the p-value is less than the chosen alpha level, then the null hypothesis is rejected and there is evidence that the data tested are not from a normally distributed population.
+  </p>
+  <p class="smaller col-80 right-5 sided-bg-info border-info">
+    <span class="info-dark strong">$p>\alpha$:</span> if the p-value is greater than the chosen alpha level, then the null hypothesis that the data came from a normally distributed population can not be rejected (e.g., for an alpha level of 0.05, a data set with a p-value of 0.05 rejects the null hypothesis that the data are from a normally distributed population)
+  </p>
+</section>

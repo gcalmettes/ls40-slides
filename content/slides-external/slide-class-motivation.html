@@ -1,0 +1,154 @@
+<section>
+  <h3>Understanding > knowing</h3>
+  <div class="row">
+    <div class="col-50">
+      <img class="framed" src="content/img/answer.jpg">
+    </div>
+    <div class="col-50">
+      <p>
+        Getting an answer is very different from knowing <span class="danger">WHY</span> 
+        we get this answer.</p>
+      <p style="margin-bottom: 0;">
+        Understanding statistics implies understanding the
+        <span class="danger">underlying process</span> leading to the answer we get.
+      </p>
+      <img src="content/img/push-button.svg" class="fragment" width=65%>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>
+      This class is a bit different => RESAMPLING & SIMULATIONS.
+      <br>
+      We believe understanding how things work is far more interesting
+      and useful, because it can be applied and tweaked to very specific situations.
+      <br>
+      Formula have been developed for a certain kind of data.
+      <br>
+      The problem is that we are living in a rapidly evolving world, with new kind of data being generated every day. We need to be able to analyze this new kind of data.
+      Formula applies to a very narrow range of data. We are not living in a fantasy world.
+      <br>
+      I am not here to train you to be a bunch of robots who know how to apply some recipe by heart and just press a button and just read the results.
+      <br>
+      I am here is to train the next generation of scientists, the next generation of entrepreneurs,
+      the next generation of leader, who will be able to understand to analyze any kind of new data they encounter.
+    </p>
+  </aside>
+</section>
+
+
+<section data-transition="slide-in">
+  <h3>Motivation for this class</h3>
+  <p class="quoted">
+    What we teach is largely the <span class="danger">technical machinery of numerical approximations based on the normal
+    distribution</span> and its many subsidiary cogs. 
+    This machinery was once necessary, because 
+    <span class="fragment highlight-bg-warning"> the conceptually simpler alternative based on permutations was computationally beyond our reach</span> [...]
+    <br>
+    <br>
+    Before computers statisticians had no choice. These days we have no excuse. 
+    <span class="fragment highlight-bg-info">Randomization-based
+    inference makes a direct connection between data production and the logic of inference</span> that
+    deserves to be at the core of every introductory course.”
+  </p>
+  <p class="push-right em">
+   <span class="u">George W. Cobb </span><br> (2005 USCOTS presentation)</p>
+
+   <aside class="notes">
+     Cobb is a Professor Emeritus of Statistics.
+     <br>
+     He served as vice-president of American Statistical Association
+     <br>
+     He has published numerous books.
+   </aside>
+</section>
+
+<section data-transition="none">
+  <h3>Two approaches for solving a statistical problem</h3>
+  <div class="row">
+    <div class="col-60">
+      You toss a coin <span class="danger">28</span> times and see <span class="danger">19</span> heads. <br>
+      <bspan class="down-5 em">Is it a fair coin?</bspan>
+      <bspan class="down-5 fragment">
+        <i class="fas fa-arrow-circle-right orange"></i> Assuming fair coin, compute the <span class="orange">probability</span> of seeing 19 heads
+        out of 28 tosses <span class="orange">simply by chance</span>.
+      </bspan>
+    </div>
+    <div class="col-30">
+      <img src="content/img/coin-toss.svg" width="100%">
+    </div>
+  </div>
+</section>
+
+<section data-transition="none">
+  <h3>Two approaches for solving a statistical problem</h3>
+    <div class="down-5">
+      <span class="circled-bg-warning">1</span>
+      <span class="u-warning">Formula</span>
+      <p>
+        The probability of getting exactly $k$ successes (heads) in $n$ trials (for a known probability $p$ of getting a success in a trial) is given by the <span class="warning">probability mass function</span>:
+      </p>
+      <div class="center">
+        $f(k;n,p) = \fragapply{danger 0}{{n\choose k}} \fragapply{info 1}{p^k} \fragapply{success 2}{(1-p)^{n-k}}$
+      </div>
+    </div>
+    <div class="row down-4">
+      <div class="col-33 fragment danger smaller" data-fragment-index=0>
+        # different ways of distributing $k$ successes in a sequence of $n$ trials (binomial coefficient)
+      </div>
+      <div class="col-33 fragment info smaller" data-fragment-index=1>
+        probability of getting $k$ successes
+      </div>
+      <div class="col-33 fragment success smaller" data-fragment-index=2>
+        probability of getting $n-k$ failures
+      </div>
+    </div>
+</section>
+
+<section data-transition="none">
+  <h3>Two approaches for solving a statistical problem</h3>
+    <div class="down-5">
+      <span class="circled-bg-warning">1</span>
+      <span class="u-warning">Formula</span>
+      <p>
+        The probability of getting exactly $k$ successes (heads) in $n$ trials (for a known probability $p$ of getting a success in a trial) is given by the <span class="warning">probability mass function</span>:
+      </p>
+      <div class="row">
+        <div class="col-50 small down-5">
+          $P(n_H, n_T)={n\choose n_H}(\frac{1}{2})^{n_H}(1-\frac{1}{2})^{n_T}$ <br>
+        </div>
+      </div>
+    </div>
+</section>
+
+<section data-transition="none">
+  <h3>Two approaches for solving a statistical problem</h3>
+    <div class="down-5">
+      <span class="circled-bg-warning">1</span>
+      <span class="u-warning">Formula</span>
+      <p>
+        The probability of getting exactly $k$ successes (heads) in $n$ trials (for a known probability $p$ of getting a success in a trial) is given by the <span class="warning">probability mass function</span>:
+      </p>
+      <div class="row">
+        <div class="col-50 small down-5">
+          $P(n_H, n_T)={\texclass{danger}{28}\choose n_H}(\frac{1}{2})^{n_H}(1-\frac{1}{2})^{n_T}$ <br>
+          <bspan class="fragment down-5" data-fragment-index=1> Is the coin fair?</bspan>
+        </div>
+        <div class="col-50">
+          <img class="fragment" data-fragment-index=0 src="content/img/binomial-coinflip.svg" width=100%>
+        </div>
+      </div>
+    </div>
+</section>
+
+<section data-transition="none">
+  <h3>Two approaches for solving a statistical problem</h3>
+    <div class="down-5">
+      <span class="circled-bg-warning">1</span>
+      <span class="u-warning">Formula</span>
+    </div>
+    <div class="col-75 right-20 up-10">
+      <img src="content/img/jackie-chang-scratch-head.svg" width=100%>
+    </div>
+</section>
+
+<section data-external-replace="slide-animation-binomial-resampling.html"></section>

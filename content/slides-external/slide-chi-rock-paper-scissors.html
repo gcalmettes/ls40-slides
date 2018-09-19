@@ -1,0 +1,766 @@
+<section data-transition="slide-in">
+  <h3>Let's start with a simple example</h3>
+  <div class="row">
+    <div class="col-65">
+      <p>
+        <span class="u">Rock-Paper-Scissors (RPS) tournament</span> <br>
+        Let's consider that you want to enter a RPS competition (it does exist!), but you're looking to get an advantage and wonder if there is a <span class="danger">pattern</span> in the signs the other players tend to chose.
+      </p>
+      <p class="framed border-muted">
+        Do players <span class="pop">equally</span> use each hand sign? Or is one hand sign usually used <span class="pop">more</span> than the others?
+      </p>
+      <p>
+        <i class="fas fa-arrow-circle-right pop"></i>
+        Can we use statistics to help us win?
+      </p>
+    </div>
+    <div class="col-35">
+      <img src="content/img/rock-paper-scissors-game.svg" width=100%>
+    </div>
+  </div>
+</section>
+
+<section data-transition="none">
+  <h3>Rock Paper Scissors</h3>
+  <div class="row">
+    <div class="col-65">
+      <p>
+        A study analyzed the distribution of hand signs used by a group of students during a total of <span class="success">381</span> games. The results are shown in the table below:
+      </p>
+      <table class="small center">
+        <col width=25%>
+        <col width=20%>
+        <col width=20%>
+        <col width=20%>
+        <col width=20%>
+        <tr>
+          <td></td>
+          <td class="bg-danger-light border-left">Rock</td>
+          <td class="bg-info-light">Paper</td>
+          <td class="bg-warning-light border-right">Scissors</td>
+          <td>Total</td>
+        </tr>
+        <tr>
+          <td class="border-right">Observed count</td>
+          <td >107</td>
+          <td >124</td>
+          <td class="border-right">150</td>
+          <td >381</td>
+        </tr>
+        <tr class="fragment border-bottom">
+          <td class="border-right">Observed proportion</td>
+          <td>0.281</td>
+          <td>0.325</td>
+          <td class="border-right">0.394</td>
+          <td>1</td>
+        </tr>
+      </table>
+      <div class="fragment framed border-muted down-2">
+        <p>
+          Is the proportion of each signs equal?
+        </p>
+        <p>
+          <i class="fas fa-arrow-circle-right pop"></i> 
+          What is the probability of observing such a distribution of proportions if there were an equal chance for the 3 hand signs to be played?
+        </p>
+      </div>
+    </div>
+    <div class="col-35">
+      <img src="content/img/rock-paper-scissors-game.svg" width=100%>
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Rock Paper Scissors</h3>
+  <div class="row">
+    <div class="col-65">
+      <p>
+        A study analyzed the distribution of hand signs 
+        used by a group of students during a total of 381 games.
+        The results are shown in the table below:
+      </p>
+      <table class="small center">
+        <col width=25%>
+        <col width=20%>
+        <col width=20%>
+        <col width=20%>
+        <col width=20%>
+        <tr>
+          <td></td>
+          <td class="bg-danger-light border-left">Rock</td>
+          <td class="bg-info-light">Paper</td>
+          <td class="bg-warning-light border-right">Scissors</td>
+          <td>Total</td>
+        </tr>
+        <tr>
+          <td class="border-right">Observed count</td>
+          <td >107</td>
+          <td >124</td>
+          <td class="border-right">150</td>
+          <td >381</td>
+        </tr>
+        <tr class="border-bottom">
+          <td class="border-right">Observed proportion</td>
+          <td>0.281</td>
+          <td>0.325</td>
+          <td class="border-right">0.394</td>
+          <td>1</td>
+        </tr>
+      </table>
+      <p class="sided-no-bg">
+        $H_0: \pi_\texclass{danger}{\mathrm{rock}} = \pi_\texclass{info}{\mathrm{paper}} = \pi_\texclass{warning-dark}{\mathrm{scissor}}=\frac{1}{3}$
+      </p>
+      <p class="sided-no-bg">
+        $H_a:$ at least one of the 3 $\pi_\mathrm{sign}$ is different from the others
+      </p>
+    </div>
+    <div class="col-35">
+      <img src="content/img/rock-paper-scissors-game.svg" width=100%>
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide-in">
+  <h3>The single categorical variable case</h3>
+  <div class="row">
+    <div class="col-65">
+      <p>
+        When we were studying the distribution of a single categorical variable with <span class="danger">only two possible outcomes</span>, we were comparing our observed proportion of success/failure to a null hypothesis (the value of the null hypothesis depends on the situation).
+      </p>
+      <table class="center small push-left">
+        <col width=34%>
+        <col width=22%>
+        <col width=22%>
+        <col width=22%>
+        <tr>
+          <td></td>
+          <td class="bg-danger-light">Head</td>
+          <td class="bg-info-light">Tail</td>
+          <td>Total</td>
+        </tr>
+        <tr>
+          <td class="border-right">Observed count</td>
+          <td>10</td>
+          <td class="border-right">6</td>
+          <td>16</td>
+        </tr>
+        <tr class='border-bottom'>
+          <td class="border-right">Observed proportion</td>
+          <td>0.625</td>
+          <td class="border-right">0.375</td>
+          <td>1</td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-21 right-2">
+      <img src="content/img/coin-flipping.svg" width=100%>
+    </div>
+  </div>
+  <p class="down-2">
+        $H_0: \texclass{danger}{\pi_\mathrm{head}}=\frac{1}{2}$
+      </p>
+</section>
+
+<section data-transition="none">
+  <h3>The single categorical variable case</h3>
+  <div class="row">
+    <div class="col-65">
+      <p>
+        When we were studying the distribution of a single categorical variable with <span class="danger">only two possible outcomes</span>, we were comparing our observed proportion of success/failure to a null hypothesis (the value of the null hypothesis depends on the situation).
+      </p>
+      <table class="small center push-left">
+        <col width=34%>
+        <col width=22%>
+        <col width=22%>
+        <col width=22%>
+        <tr>
+          <td></td>
+          <td class="bg-warning-light">Correct</td>
+          <td class="bg-success-light">Incorrect</td>
+          <td>Total</td>
+        </tr>
+        <tr>
+          <td class="border-right">Observed count</td>
+          <td>16</td>
+          <td class="border-right">5</td>
+          <td>21</td>
+        </tr>
+        <tr class="border-bottom">
+          <td class="border-right">Observed proportion</td>
+          <td>0.76</td>
+          <td class="border-right">0.24</td>
+          <td>1</td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-25">
+      <img src="content/img/police-dog-luggages-choice.svg" width=100%>
+    </div>
+  </div>
+  <p class="down-2">
+    $H_0: \texclass{pop}{\pi_\mathrm{correct}}=\frac{1}{3}$
+  </p>
+</section>
+
+<section data-transition="none">
+  <h3>Rock Paper Scissors</h3>
+  <p class="framed border-success bg-success-light black">
+    Could we apply the same strategy here?
+  </p>
+  <div class="row down-2">
+    <div class="col-50">
+      <p class="smaller">
+        <i class="fas fa-arrow-circle-right success"></i>
+        Couldn't we just <span class="success-dark">test independently</span> $H_0: \pi_\mathrm{sign}=\frac{1}{3}$ for all three possible outcomes?  
+      </p>
+      <table class="smallest center down-5">
+        <col width=25%>
+        <col width=20%>
+        <col width=20%>
+        <col width=20%>
+        <col width=20%>
+        <tr>
+          <td></td>
+          <td class="bg-danger-light">Rock</td>
+          <td class="bg-info-light">Paper</td>
+          <td class="bg-warning-light">Scissors</td>
+          <td>Total</td>
+        </tr>
+        <tr>
+          <td class="border-right">Observed count</td>
+          <td>107</td>
+          <td>124</td>
+          <td class="border-right">150</td>
+          <td>381</td>
+        </tr>
+        <tr class="border-bottom">
+          <td class="border-right">Observed proportion</td>
+          <td>0.281</td>
+          <td>0.325</td>
+          <td class="border-right">0.394</td>
+          <td>1</td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-50">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/rock-paper-scissors-simulation-multiple-testing.svg#axes_1"></use>
+        <use xlink:href="content/img/rock-paper-scissors-simulation-multiple-testing.svg#axes_2"></use>
+        <use xlink:href="content/img/rock-paper-scissors-simulation-multiple-testing.svg#axes_3"></use>
+        <use xlink:href="content/img/rock-paper-scissors-simulation-multiple-testing.svg#axes_4"></use>
+      </svg>
+    </div>
+  </div>
+  <div class="row flex fragment">
+    <div class="col-7 flex-center">
+      <i class="fas fa-exclamation-triangle danger"></i>
+    </div>
+    <div class="col-93 small flex-center">
+      <div>
+        No! The more inferences are made, the more likely erroneous inferences are to occur (<span class="danger">multiple testing problem</span>).
+      </div>
+    </div>
+  </div>
+  <p class="fragment">
+    <i class="fas fa-arrow-circle-right pop"></i>
+    We want to compare our data to a <span class="pop">single distribution pattern</span> ($\frac{1}{3}/\frac{1}{3}/\frac{1}{3}$), so we need to find a way to perform the analysis in only <span class="pop">one testing</span>.
+  </p>
+</section>
+
+<section data-transition="none">
+  <h3>Rock Paper Scissors</h3>
+  <p class="framed border-success bg-success-light black">
+    Could we apply the same strategy here?
+  </p>
+  <div class="row down-2">
+    <div class="col-50">
+      <p class="smaller">
+        <i class="fas fa-arrow-circle-right success"></i>
+        Couldn't we just <span class="success-dark">test independently</span> $H_0: \pi_\mathrm{sign}=\frac{1}{3}$ for all three possible outcomes?  
+      </p>
+      <table class="smallest center down-5">
+        <col width=25%>
+        <col width=20%>
+        <col width=20%>
+        <col width=20%>
+        <col width=20%>
+        <tr>
+          <td></td>
+          <td class="bg-danger-light">Rock</td>
+          <td class="bg-info-light">Paper</td>
+          <td class="bg-warning-light">Scissors</td>
+          <td>Total</td>
+        </tr>
+        <tr>
+          <td class="border-right">Observed count</td>
+          <td>107</td>
+          <td>124</td>
+          <td class="border-right">150</td>
+          <td>381</td>
+        </tr>
+        <tr class="border-bottom">
+          <td class="border-right">Observed proportion</td>
+          <td>0.281</td>
+          <td>0.325</td>
+          <td class="border-right">0.394</td>
+          <td>1</td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-50">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/rock-paper-scissors-simulation-multiple-testing.svg#axes_1"></use>
+        <use xlink:href="content/img/rock-paper-scissors-simulation-multiple-testing.svg#axes_2"></use>
+        <use xlink:href="content/img/rock-paper-scissors-simulation-multiple-testing.svg#axes_3"></use>
+        <use xlink:href="content/img/rock-paper-scissors-simulation-multiple-testing.svg#axes_4"></use>
+      </svg>
+    </div>
+  </div>
+  <p class="u em">
+    Comparing the distribution pattern of the three proportions to the theoretical distribution pattern:
+  </p>
+  <p>
+    <i class="fas fa-arrow-circle-right pop"></i>
+    How far the observed counts are from the expected (theoretical) counts if the null hypothesis ($\pi_\texclass{danger}{\mathrm{rock}} = \pi_\texclass{info}{\mathrm{paper}} = \pi_\texclass{warning-dark}{\mathrm{scissor}}$) was true?
+  </p>
+</section>
+
+<section>
+  <h3>Expected counts</h3>
+  <div class="row">
+    <div class="col-50">
+      <p>
+        The <span class="pop">expected counts</span> are the amounts we should see in  each category (cell) <span class="pop">if the null hypothesis was true</span> for that sample size.
+      </p>
+      <div class="border-pop bg-pop-light black framed normal center">
+        $\mathrm{Expected}_i = n_\mathrm{total}\times\pi_i$
+      </div>
+      <p>
+        For each cell, the expected count is the total sample size ($n_\mathrm{total}$) times the null proportion for each hand sign, $\pi_\mathrm{i}$.
+      </p>
+    </div>
+    <div class="col-50">
+      <table class="smaller center">
+        <col width=25%>
+        <col width=20%>
+        <col width=20%>
+        <col width=20%>
+        <col width=20%>
+        <tr>
+          <td></td>
+          <td class="bg-danger-light">Rock</td>
+          <td class="bg-info-light">Paper</td>
+          <td class="bg-warning-light">Scissors</td>
+          <td>Total</td>
+        </tr>
+        <tr>
+          <td class="border-right">Observed count</td>
+          <td>107</td>
+          <td>124</td>
+          <td class="border-right">150</td>
+          <td>381</td>
+        </tr>
+        <tr>
+          <td class="border-right">Observed proportion</td>
+          <td>0.281</td>
+          <td>0.325</td>
+          <td class="border-right">0.394</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td class="border-right">Expected proportion</td>
+          <td>$\frac{1}{3}$</td>
+          <td>$\frac{1}{3}$</td>
+          <td class="border-right">$\frac{1}{3}$</td>
+          <td>1</td>
+        </tr>
+        <tr class="fragment pop border-bottom">
+          <td class="border-right">Expected count</td>
+          <td>127</td>
+          <td>127</td>
+          <td class="border-right">127</td>
+          <td>381</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h3>Analyzing the expected counts</h3>
+  <div class="row">
+    <div class="col-50">
+      <p>
+        We have the <span class="orange">observed</span> and <span class="pop">expected</span> counts, now what could we do with these?
+      </p>
+      <p class="fragment" data-fragment-index=1>
+        <i class="fas fa-arrow-circle-right pop"></i>
+        calculate the difference between observed and expected
+      </p>
+    </div>
+    <div class="col-50">
+      <table class="small center">
+        <col width=34%>
+        <col width=22%>
+        <col width=22%>
+        <col width=22%>
+        <tr>
+          <td></td>
+          <td class="bg-danger-light">Rock</td>
+          <td class="bg-info-light">Paper</td>
+          <td class="bg-warning-light">Scissors</td>
+        </tr>
+        <tr class="border-bottom">
+          <td>Observed</td>
+          <td>107</td>
+          <td>124</td>
+          <td>150</td>
+        </tr>
+        <tr class="border-bottom">
+          <td>Expected</td>
+          <td>127</td>
+          <td>127</td>
+          <td>127</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-50">
+      <p class="fragment em" data-fragment-index=5>
+        How could we <span class="strong">combine</span> those 3 differences into a <span class="success">single statistic</span> of interest?
+        Add them up? Average them?
+      </p>
+    </div>
+    <div class="col-50">
+      <div class="row small">
+        <div class="col-28">
+          <span class="fragment u em danger push-right" data-fragment-index=2>Rock:</span><br>
+          <span class="fragment u em info push-right" data-fragment-index=3>Paper:</span><br>
+          <span class="fragment u em warning-dark push-right" data-fragment-index=4>Scissors:</span>
+        </div>
+        <div class="col-70">
+          <span class="fragment" data-fragment-index=2>$d_1 = 107-127=-20$</span><br>
+          <span class="fragment" data-fragment-index=3>$d_2 = 124-127=-3$</span><br>
+          <span class="fragment" data-fragment-index=4>$d_3 = 150-127=23$</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="fragment framed border-success" data-fragment-index=7>
+        What could we do so we don't get a sum of zero?
+      </p>
+  <ul class="fragment small push-left" data-fragment-index=8>
+          <li>
+            Compute the Mean Absolute Difference of the proportions using absolute values (this statistic is called <span class="strong">MAD</span>, <span class="u">no theoretical distribution for this statistic</span>)
+          </li>
+          <li>
+            Compute a dedicated statistics: $\chi^2$ (theory exists)
+          </li>
+        </ul>
+</section>
+
+<section data-external-replace="slide-definition-chi-square.html"></section>
+
+<section>
+  <h3>Does that remind you of anything?</h3>
+  <div class="row fragment">
+    <div class="col-50">
+      <p>
+        It's kind of like calculating the normalized squared residuals of a linear regression model but for 
+        an histogram (categories) instead!
+      </p>
+      <p>
+        <i class="fas fa-arrow-circle-right danger"></i>
+        How far is the observed <span class="danger">distribution pattern</span> of the observed frequencies from the theoretical distribution pattern?
+      </p>
+    </div>
+    <div class="col-50">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/rock-paper-scissors-bars.svg#axes_1"></use>
+        <use xlink:href="content/img/rock-paper-scissors-bars.svg#axes_2"></use>
+        <use xlink:href="content/img/rock-paper-scissors-bars.svg#axes_3"></use>
+      </svg>
+    </div>
+  </div>
+  <div class="row flex fragment bordered border-muted">
+    <div class="col-10 flex-center">
+      <div class="muted center small">
+        <span class="u small">Key idea</span><br>
+        <i class="fas fa-lightbulb"></i>
+      </div>
+    </div>
+    <div class="col-90 flex-center small">
+      <div>
+        When we calculate a $\chi^2$ statistic to compare distribution patterns of categorical variables, this is called a <span class="strong">$\chi^2$ goodness of fit test.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h3>$\chi^2$ goodness of fit test</h3>
+  <p class="quoted down-2">
+    When we calculate a $\chi^2$ statistic to compare distribution patterns of categorical variables, this is called a <span class="strong">$\chi^2$ goodness of fit test.</span>
+  </p>
+  <div class="row down-3 flex">
+    <div class="col-45 smaller flex-center">
+      $\chi^2=\sum_{i=1}^n\frac{(\mathrm{Observed}_i-\mathrm{Expected}_i)^2}{\mathrm{Expected}_i}$
+    </div>
+    <div class="col-50">
+      <table class="small center">
+        <col width=34%>
+        <col width=22%>
+        <col width=22%>
+        <col width=22%>
+        <tr>
+          <td></td>
+          <td class="bg-danger-light">Rock</td>
+          <td class="bg-info-light">Paper</td>
+          <td class="bg-warning-light">Scissors</td>
+        </tr>
+        <tr class="border-bottom">
+          <td>Observed</td>
+          <td>107</td>
+          <td>124</td>
+          <td>150</td>
+        </tr>
+        <tr class="border-bottom">
+          <td>Expected</td>
+          <td>127</td>
+          <td>127</td>
+          <td>127</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="row down-3 flex">
+    <div class="col-65 fragment flex-center">
+      <div>
+        <p>
+          $\chi^2=\frac{(107-127)^2}{127}+\frac{(124-127)^2}{127}+\frac{(150-127)^2}{127}$
+        </p>
+        <p>
+          $\chi^2=3.150+0.071+4.165$
+        </p>
+        <p class="pop">
+          $\chi^2=7.386$
+        </p>
+      </div>
+    </div>
+    <div class="col-35 fragment flex-center">
+      <p class="framed border-pop">
+        What does a $\chi^2$ of 7.386 mean? Is it a large or a small value?
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h3>$\chi^2$ sampling distribution</h3>
+  <p>
+    What values of $\chi^2$ would we observe for a multitude of samples coming from the null distribution?
+  </p>
+  <p>
+    <i class="fas fa-arrow-circle-right pop"></i>
+    We need to compare the $\chi^2$ that we calculated to the <span class="pop">distribution of this statistic assuming $H_0$ is true</span>.
+  </p>
+  <p class="u em down-5">
+    How do we get this?
+  </p>
+  <ul class="small push-left">
+      <li><span class="danger">simulation</span></li>
+      <li>theoretical distribution (requires validity conditions!)</li>
+    </ul>
+</section>
+
+<section>
+  <h3>Simulating the null hypothesis</h3>
+  <p>
+    <span class="u em">For equally likely choices:</span>
+  </p>
+  <ol class="push-left small">
+    <li>
+      Take 3 scraps of paper and label them Rock, Paper, Scissors. Fold or crumple them so they are indistinguishable
+    </li>
+    <li class="fragment">
+      Choose one at random and record the result. Repeat a number of times to match the <span class="danger">original sample size</span> and get a new table of observed counts.
+    </li>
+    <li class="fragment">
+      Calculate the $\chi^2$-statistic (compare the observed counts to the expected counts).
+    </li>
+    <li class="fragment">
+      <span class="orange">Repeat this many times</span> (10000) to get a <span class="orange">randomization distribution</span> of many $\chi^2$-statistics under the assumption that the null hypothesis is true.
+    </li>
+    <li class="fragment">
+      How extreme is the actual test statistic in this randomization distribution? How many simulations ended up with a $\chi^2$ as extreme as the one you calculated from your original sample? (<span class="strong">p-value</span>)
+    </li>
+  </ol>
+  </p>
+</section>
+
+<section data-transition="slide-in">
+  <h3>Simulating the null hypothesis</h3>
+  <div class="row">
+    <div class="col-40">
+      <p>  
+        Rock-Paper-Scissors $\chi^2$ randomization distribution
+      </p>
+      <p class="framed">
+        <span class="u em">Note:</span> $\chi^2$ will always be positive. Always use the <span class="danger">right tail</span> to find a p-value.
+      </p>
+      <p>  
+        <span class="em">Observed $\chi^2$:</span> 7.39 
+      </p>
+      <p class="fragment" data-fragment-index=1>  
+        <span class="danger">$\textrm{p-value} < 0.05$ 
+      </p>
+    </div>
+    <div class="col-60">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/rock-paper-scissors-simulation-chi2.svg#axes_1"></use>
+        <use xlink:href="content/img/rock-paper-scissors-simulation-chi2.svg#axes_2"></use>
+        <use class="fragment" data-fragment-index=1 xlink:href="content/img/rock-paper-scissors-simulation-chi2.svg#axes_3"></use>
+      </svg>
+    </div>
+  </div>
+  <p class="fragment" data-fragment-index=1>
+    <i class="fas fa-arrow-circle-right danger"></i>
+    We have strong evidence against the null hypothesis. At least one of the hand signs frequency can be considered statistically different to the expected frequency of this hand sign if the probability of choosing either hand sign was $\frac{1}{3}$. 
+  </p>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Simulating the null hypothesis</h3>
+  <div class="row flex">
+    <div class="col-20 right-15 flex-center center framed bg-pink-light black">
+      <p>
+        $\chi^2$
+      </p>
+    </div>
+    <div class="col-20 right-30 flex-center center framed bg-pink-light black">
+      <p>
+        MAD
+      </p>
+    </div>
+  </div>
+  <div class="row down-3">
+    <div class="col-50">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/rock-paper-scissors-simulation-chi2.svg#axes_1"></use>
+        <use xlink:href="content/img/rock-paper-scissors-simulation-chi2.svg#axes_2"></use>
+        <use xlink:href="content/img/rock-paper-scissors-simulation-chi2.svg#axes_3"></use>
+      </svg>
+    </div>
+    <div class="col-50">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/rock-paper-scissors-simulation-mad.svg#axes_1"></use>
+        <use xlink:href="content/img/rock-paper-scissors-simulation-mad.svg#axes_2"></use>
+        <use xlink:href="content/img/rock-paper-scissors-simulation-mad.svg#axes_3"></use>
+      </svg>
+    </div>
+  </div>
+  <p>
+    <i class="fas fa-arrow-circle-right pink"></i>
+    Same result with the MAD, only the sampling distributions look different ($\chi^2$ and MAD are just two possible statistics of interest: if we analyze the same data, as long as the statistics of interest we are using are <span class="strong">valid</span>, we will get similar results).
+  </p>
+</section>
+
+
+<section data-transition="slide-in">
+  <h3>Theory: $\chi^2$ distribution</h3>
+  <p>
+    <span class="strong">If each of the expected counts are at least 10</span> (validity condition), AND if the null hypothesis is true, then the $\chi^2$ statistic follows a $\chi^2$–distribution, with degrees of freedom equal to:
+  </p>
+  <div class="center">
+    <span class="small danger">$df = (\textrm{number of categories} – 1)$</span>
+  </div>
+  <div class="row down-3 flex">
+    <div class="col-50 flex-center">
+      <img src="content/img/chi2-table.png" width=100% class="framed">
+    </div>
+    <div class="col-50 flex-center">
+      <img src="content/img/chi2-distribution.svg" width=100%>
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Theory: $\chi^2$ distribution</h3>
+  <p class="down-2">
+    <span class="u">For Rock-Paper-Scissors:</span><br>
+    df = 3 – 1 = 2
+  </p>
+  <div class="row down-3">
+    <div class="col-50">
+      <p class="smaller em">Simulation</p>
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/rock-paper-scissors-simulation-chi2.svg#axes_1"></use>
+        <use xlink:href="content/img/rock-paper-scissors-simulation-chi2.svg#axes_2"></use>
+        <use xlink:href="content/img/rock-paper-scissors-simulation-chi2.svg#axes_3"></use>
+      </svg>
+    </div>
+    <div class="col-50">
+      <p class="smaller em">Theoretical distribution</p>
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/rock-paper-scissors-theory-chi2.svg#axes_1"></use>
+        <use xlink:href="content/img/rock-paper-scissors-theory-chi2.svg#axes_2"></use>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide-in">
+  <h3>Follow up?</h3>
+  <p class="em">
+    We found that there is a difference in distribution pattern that can be considered statistically significant (p-value<0.05) ... now what's next?
+  </p>
+  <p>
+    The $\chi^2$ test tells you whether you have an overall difference between the observed and expected pattern, but <span class="strong">it does not tell you which specific groups differ</span>: <span class="danger u">post hoc tests</span> do. 
+  </p>
+  <p class="down-4">
+    <span class="muted u em">Note:</span>
+    Because post hoc tests are run to confirm where the differences occurred between groups, they should only be run when you have shown an overall statistically significant difference. Post hoc tests are termed <span class="strong">a posteriori tests</span>, that is, performed after the event (the event in this case being the overall analysis).
+
+  </p>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Follow up?</h3>
+  <p class="em">
+    We found that there is a difference in distribution pattern that can be considered statistically significant (p-value<0.05) ... now what's next?
+  </p>
+  <div>
+    <p>
+      <i class="fas fa-arrow-circle-right danger"></i>
+      <span class="danger">No standard approach</span> to follow, there are many different follow-up approaches possible.
+    </p>
+    <p class="framed border-pop">
+      We want to know if one of the hand sign (rock, paper, scissors) is used more often compared to the others so we could play the opposite sign more often to get an advantage.
+    </p>
+  </div>
+  <div class="fragment down-3">
+    <p>
+      <i class="fas fa-arrow-circle-right pink"></i>
+      Now that we know that there is a statistical difference in the distribution pattern of the signs, we could use <span class="pink">pairwise analysis of difference in proportions</span> to determine exactly which signs are more often played (i.e.: <span class="em">Tukey post hoc test</span>).
+    </p>
+    <div class="row">
+      <div class="col-33">
+        <p class="framed border-muted center">
+          Paper vs Scissors <br> $d=-0.068$ <br> pvalue=0.0583
+        </p>
+      </div>
+      <div class="col-33">
+        <p class="framed border-muted center">
+          Paper vs Rock <br> $d=0.045$ <br> pvalue=0.2058
+        </p>
+      </div>
+      <div class="col-33">
+        <p class="framed border-muted fragment highlight-current-bg-pink-light black center">
+          Rock vs Scissors <br> $d=-0.113$ <br> pvalue=0.0010
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

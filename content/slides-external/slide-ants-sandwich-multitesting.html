@@ -1,0 +1,51 @@
+<section>
+  <h3>Comparing means</h3>
+  <p>
+    We have 3 groups. 
+    Why not just carry out a bunch of pair-wise analyses of the difference in mean?
+  </p>
+  <div class="row">
+    <div class="col-33">
+      <p class="framed center" style="padding-top: 0.2em; padding-bottom: 0.2em;">
+        $H_0$: $\mu_\texclass{warning}{1}\neq\mu_\texclass{info}{2}$
+      </p>
+    </div>
+    <div class="col-33">
+      <p class="framed center" style="padding-top: 0.2em; padding-bottom: 0.2em;">
+        $H_0$: $\mu_\texclass{warning}{1}\neq\mu_\texclass{danger}{3}$
+      </p>
+    </div>
+    <div class="col-33">
+      <p class="framed center" style="padding-top: 0.2em; padding-bottom: 0.2em;">
+        $H_0$: $\mu_\texclass{info}{2}\neq\mu_\texclass{danger}{3}$
+      </p>
+    </div>
+  </div>
+  <img class="down-2" src="content/img/multi-testing-angel-demon.svg" width=62%>
+</section>
+
+<section>
+  <h3>Controlling for Type I error</h3>
+  <p>
+    Each test is carried out at $\alpha=0.05$, so the risk of <span class="danger">making a Type I error</span> (rejecting the null when we should not) is <span class="danger">$5\%$ <span class="u">each time</span></span>.
+  </p>
+  <p class="down-3">
+    The risk of making a Type I errors increases as we multiply the number of tests on the same data:
+  </p>
+  <div class="row">
+    <ul class="push-left small">
+      <li>
+        At the $5\%$ significance level, the probability of making at least one type I error for <span class="strong">3 tests</span> would be <span class="strong">$14\%$</span>
+      </li>
+      <li>
+        Comparing <span class="strong">4 means</span> (6 tests), this jumps to <span class="strong">$26\%$</span>
+      </li>
+      <li>
+        Comparing <span class="strong">5 means</span> (10 tests), this jumps to <span class="strong">$40\%$</span>
+      </li>
+    </ul>
+  </div>
+  <p class="small down-4 framed bg-warning-light black">
+    We need to make multiple comparisons with an <span class="danger">overall</span> Type I error of $\alpha=0.05$ (or whichever level is specified). We need an alternative approach that uses one overall test that compares all means at once.
+  </p>
+</section>

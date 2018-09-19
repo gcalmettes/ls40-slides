@@ -1,0 +1,241 @@
+<section data-transition="slide-in">
+  <h3>Theory: Standardized statistic</h3>
+  <p style="margin-top: 0;" class="sided">
+    Another way (than p-value) to measure strength of evidence is to
+    <span class="warning">standardize the observed statistic</span> by
+    measuring <span class="u" style="text-decoration-color: #f0ad4e;-webkit-text-decoration-color: #f0ad4e;">how far it is from the mean of the
+    null distribution using standard deviation units</span>. <br>
+    This measure is commonly noted <span class="warning">$z$</span>.
+  </p>
+  <div class="row">
+    <div class="col-40">
+      <p style="margin-top: 2em;" class="fragment" data-fragment-index=2>
+      $z=\frac{\textrm{observed statistic-}\fragindex{2}{\fraglight{highlight-blue-gc}{\textrm{mean of null distribution}}}}{\fragindex{4}{\fraglight{highlight-red-gc}{\textrm{standard deviation of null distribution}}}}$
+      <span class="fragment" data-fragment-index=3></span>
+      <span class="fragment" data-fragment-index=5</span>
+      </p>
+      <p style="margin-top: 1em;" class="fragment sided border-info" data-fragment-index=4>
+        Mean of null distribution: <br>
+        <span style="margin-left: 1.2em;">$\mu = 0.5$ ($\pi$)</span>
+      </p>
+      <p class="fragment sided border-danger" data-fragment-index=6>
+        SD of null distribution: <br>
+        <span style="margin-left: 1.2em;">???</span>
+      </p>
+    </div>
+    <div class="col-60">
+      <img src="assets/img/lec/sd-normal.svg" class="unbordered fragment"
+      data-fragment-index=1 width=100% style="margin-bottom: 0;">
+      <div style="font-size: 0.65em; margin-top: 0;" class="fragment em" data-fragment-index=1>Normal distribution</div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>
+      Using p-value is the most common way of assessing the strength of evidence by indicating the probability, under the null hypothesis, of getting a statistic at least as extreme the the one observed.
+    </p>
+  </aside>
+</section>
+
+<section data-transition="none">
+  <h3>Theory: Central limit theorem</h3>
+  <p style="margin-top: 0; font-size: 0.6em;">
+    In the early 1900s (and even earlier), computers weren't available to
+    do simulations, and as peole didn't want to sit around and flip coins
+    all day long, they focused their attention on mathematical and
+    probabilistic rules and theories that could predict what would happen
+    if someone did simulate.
+  </p>
+  <p <p style="margin-top: 0; font-size: 0.65em;">
+    They proved the following result:
+  </p>
+  <p class="sided">
+    <span class="u em info">Central limit theorem:</span><br>
+    If the sample size (n) is <span class="u">large enough</span>, the distribution of sample
+    proportion will be bell-shaped (or normal), centered at the long-run
+    proportion, with a standard deviation of
+    <span class="warning">$\sqrt{\frac{\pi(1-\pi)}{n}}$</span>
+  </p>
+  <p class="fragment" style="font-size: 0.6em;">
+    <span class="u em">Validity conditions:</span><br>
+    The normal approximation can be thought of as a prediction of what would occur if
+    simulation was done. Many times this prediction is valid, but
+    <span class="danger">not always</span>. The prediction is considered valid when there
+    are at least 10 successes and 10 failures in the sample.
+  </p>
+</section>
+
+
+<section data-transition="none">
+  <h3>Theory: one proportion z-test</h3>
+  <div style="margin-top: 1em;">
+    $z=\frac{\textrm{observed statistic-mean of null distribution}}{\textrm{standard deviation of null distribution}}$
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-55 fragment" data-fragment-index=1>
+      <p style="text-align: right;">
+        Applied to the coin flip model, this correspond to:
+      </p>
+    </div>
+    <div class="col-40 fragment" data-fragment-index=1>
+      $z=\frac{\overset{\hat{}}{p}-\pi}{\sqrt{\frac{\pi(1-\pi)}{n}}}$
+    </div>
+  </div>
+  <div class="row" style="margin-top: 1em;">
+    <div class="col-55 fragment" data-fragment-index=2>
+      <p style="text-align: right;">
+        In the second experiment, Buzz got 16 correct choices
+        out of 28 attempts.
+      </p>
+    </div>
+    <div class="col-40 fragment" data-fragment-index=2>
+      $z=\frac{\frac{16}{28}-0.5}{\sqrt{\frac{0.5(1-0.5)}{28}}}$
+    </div>
+  </div>
+    <div class="row">
+    <div class="col-55 fragment" data-fragment-index=3>
+      <p ></p>
+    </div>
+    <div class="col-40 fragment" data-fragment-index=3>
+      $z=0.756$
+    </div>
+  </div>
+</section>
+
+<section data-transition="none">
+  <h3>Theory: one proportion z-test</h3>
+  <div class="row">
+    <div class="col-30">
+      <p style="font-size: 0.65em;">
+        Buzz got 16 correct choices
+        out of 28 attempts
+      </p>
+      <span class="fragment framed border-success" data-fragment-index=2>$z=0.756$</span>
+      <p style="font-size: 0.65em;" class="fragment" data-fragment-index=2>
+        the number of correct choices is 0.756 SD away from the mean of the null
+        <span class="u">normal</span> distribution
+      </p>
+    </div>
+    <div class="col-70">
+      <svg width="100%" viewBox="34 0 410 288" style="margin-top: 2%;">
+        <use xlink:href="assets/img/lec/simulation-graph-coinflip-zscore.svg#axes_1"></use>
+        <use class="fragment" data-fragment-index=1 xlink:href="assets/img/lec/simulation-graph-coinflip-zscore.svg#axes_3"></use>
+        <use  class="fragment current-visible" xlink:href="assets/img/lec/simulation-graph-coinflip-zscore.svg#axes_4"></use>
+        <use  class="fragment current-visible" xlink:href="assets/img/lec/simulation-graph-coinflip-zscore.svg#axes_6"></use>
+        <use  class="fragment" xlink:href="assets/img/lec/simulation-graph-coinflip-zscore.svg#axes_5"></use>
+        <use  class="fragment" xlink:href="assets/img/lec/simulation-graph-coinflip-zscore.svg#axes_2"></use>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section data-transition="none">
+  <h3>Theory: Binomial distribution</h3>
+  <div class="row">
+    <div class="col-30">
+      <p class="framed border-light" style="font-size: 0.65em; margin-bottom: 0;">
+        <span class="u em">Note:</span><br>
+        Mathematically, it is possible to calculate the exact probability of getting $\geq16$ heads in 28 tosses using the binomial distribution.
+      <br>
+      <span class="warning">p = 0.2858</span>
+    </div>
+    <div class="col-70">
+      <img src="assets/img/lec/binomial.svg" class="unbordered flat" width=100%>
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Theory: one proportion z-test</h3>
+  <div class="row">
+    <div class="col-30">
+      <p class="framed border-light" style="font-size: 0.65em; margin-bottom: 0;">
+        <span class="u em">Note:</span><br>
+        Mathematically, it is possible to calculate the exact probability of getting $\geq16$ heads in 28 tosses using the binomial distribution.
+      <br>
+      <span class="warning">p = 0.2858</span>
+      <p class="sided fragment" style="font-size: 0.6em;">Which method gives the p-value closest to the true probability? Why?</p>
+    </div>
+    <div class="col-70">
+      <svg width="100%" viewBox="34 0 410 288" style="margin-top: 2%;">
+        <use xlink:href="assets/img/lec/simulation-graph-coinflip-zscore.svg#axes_1"></use>
+        <use xlink:href="assets/img/lec/simulation-graph-coinflip-zscore.svg#axes_3"></use>
+        <use xlink:href="assets/img/lec/simulation-graph-coinflip-zscore.svg#axes_5"></use>
+        <use xlink:href="assets/img/lec/simulation-graph-coinflip-zscore.svg#axes_2"></use>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h3>Hypothesis testing for one proportion</h3>
+  <div class="row" style="margin-top: 0;">
+    <div class="col-50">
+      <p></p>
+    </div>
+    <div class="col-50">
+      <p class="fragment danger" data-fragment-index=6 style="text-align: center;">
+        Lots of assumptions &
+        required validity conditions!
+      </p>
+    </div>
+  </div>
+  <table style="font-size: 0.9em; margin-top: 0;">
+    <thead class="table-vert">
+      <tr>
+        <th bgcolor="#636c72" style="border-left: none;">
+          Resampling simulation
+        </th>
+        <th bgcolor="#636c72" style="border-right: none;">
+          Normal approximation (Z-test)
+        </th>
+      </tr>
+    </thead>
+    <tbody class="table-vert">
+      <tr>
+        <td colspan="2" style="border-left: none; border-right: none;"
+          class="fragment" data-fragment-index=1>
+          Collect your sample and calculate your statistic of interest
+          (<span class="info">$\overset{\hat{}}{p}$</span>)
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" style="border-left: none; border-right: none;"
+          class="fragment" data-fragment-index=2>
+          State your null (<span class="info">H$_0$</span>) and
+          alternative (<span class="info">H$_a$</span>) hypotheses
+        </td>
+      </tr>
+      <tr>
+        <td style="border-left: none;" class="fragment" data-fragment-index=3>
+          <span class="info">Directly simulate</span> your null hypothesis distribution
+        (this results in a resampling distribution <span class="warning">centered at the stated H$_0$ proportion $\pi$</span>)
+        </td>
+        <td style="border-right: none;" class="fragment" data-fragment-index=3>
+            <div class="fragment highlight-bckg-red" data-fragment-index=6>
+            Consider the normal distribution <span class="warning">centered at the long-run
+            H$_0$ proportion $\pi$</span>, with a standard deviation of
+            <span class="warning">$\sqrt{\frac{\pi(1-\pi)}{n}}$</div>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td style="border-left: none;" class="fragment" data-fragment-index=4>
+          Calculate the proportion of resampling samples that resulted in cases at least as extreme
+          as your initial observed statistic. <br> This is your p-value
+        </td>
+        <td style="border-right: none;" class="fragment" data-fragment-index=4>
+          Determine the proportion of area under the curve that is at least as extreme
+        as your initial observed statistic. <br> This is your p-value
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" style="border-left: none; border-right: none;"
+          class="fragment" data-fragment-index=5>
+          Conclude about whether your have evidence <span class="warning">in favor</span>
+          or <span class="warning">against</span> the null hypothesis
+        </td>
+      </tr>
+    </tbody>
+    </table>
+</section>

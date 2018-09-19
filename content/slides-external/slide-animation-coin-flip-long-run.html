@@ -1,0 +1,53 @@
+
+<section>
+  <h3>Long-run pattern a single coin-flip</h3>
+  <p>
+    We really need to simulate this random selection process hundreds, preferably
+    <span class="info">thousands of times</span> to obtain the
+    <span class="danger">long-run pattern</span> of our simulation.
+  </p>
+  <div class="row">
+    <div class="col-60">
+      <div class="fig-container" data-file="interactive/coin-flip-long-run.html"></div>
+    </div>
+    <div class="col-40 smallest framed">
+      <span class="em u">One Simulation:</span> <br>
+      Observational unit: a set of 1 coin flip <br>
+      Variable: # of heads obtained
+    </div>
+  </div>
+  <aside class="notes">
+    Eventually, heads and tails even out.
+  </aside>
+</section>
+
+<section>
+  <h3>Long-run pattern for 16 coin-flips</h3>
+  <p>
+    This would be very tedious and time-consuming with coins to obtain the
+    long-run distribution of the number of heads for 16 coin-flips, so we'll turn
+    to technology to simulate it.
+  </p>
+  <div class="row">
+    <div class="col-30">
+      <p class="sided fragment border-danger" data-fragment-index=3>
+        How many of the simulations produced <span class="danger">15 or more</span> correct choices by Buzz? <br>
+      </p>
+      <p class="sided fragment border-pop" data-fragment-index=5>
+        What is the corresponding <span class="pop">proportion of simulations</span> that produced such an extreme result? <br>
+      </p>
+    </div>
+    <div class="col-70">
+      <div class="fig-container" data-file="interactive/coin-flip-long-run-16.html"></div>
+    </div>
+  </div>
+  <!-- blank fragments for inline viz -->
+  <span class="fragment" data-fragment-index=0></span>
+  <span class="fragment" data-fragment-index=1></span>
+  <span class="fragment" data-fragment-index=2></span>
+  <span class="fragment" data-fragment-index=4></span>
+  <aside class="notes">
+    1000 is a number large enough to give us a fairly accurate sense
+    of the long-run behavior for the number of heads in 16 tosses.
+  </aside>
+</section>

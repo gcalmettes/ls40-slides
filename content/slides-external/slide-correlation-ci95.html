@@ -1,0 +1,68 @@
+<section data-transition="slide-in fade-out">
+  <h3>Inference for correlation - 95% CIs</h3>
+  <div class="row">
+    <div class="col-35">
+      <p class="smaller no-margin-top">
+        <span class="u em">Resampling methodology:</span><br>
+        To construct the 95% confidence intervals, we construct
+        the <span class="warning">sampling distribution of our statistic of interest ($r$)</span>
+        by drawing (with replacement)
+        random <span class="u-warning">bootstrap samples</span> of the pairs from our original data sample.
+      </p>
+      <p class="no-margin-top smaller">
+        <i class="fa fa-arrow-circle-right info"></i>
+        For each simulation, we calculate the new $r$ resulting from this
+        new obtained sample.
+      </p>
+    </div>
+    <div class="col-65">
+      <svg width="100%" viewBox="0 0 432 288" style="margin-top: 0;">
+        <use xlink:href="content/img/correlation-simulation-ci95-steps.svg#axes_1"></use>
+        <use class="fragment current-visible" data-fragment-index=2 xlink:href="content/img/correlation-simulation-ci95-steps.svg#axes_2"></use>
+        <use class="fragment current-visible" data-fragment-index=3 xlink:href="content/img/correlation-simulation-ci95-steps.svg#axes_3"></use>
+        <use class="fragment" data-fragment-index=4 xlink:href="content/img/correlation-simulation-ci95-steps.svg#axes_4"></use>
+      </svg>
+    </div>
+  </div>
+</section>
+</section>
+
+<section data-transition="fade">
+  <h3>Inference for correlation - 95% CIs</h3>
+  <div class="row">
+    <div class="col-35">
+      <p class="smaller sided border-warning">
+        By repeating this process 10000 times, we obtain
+        the sampling distribution of $r$, centered at the value
+        of $r$ observed in our original sample.
+      </p>
+      <p class="no-margin-top smaller fragment" data-fragment-index=2>
+        <i class="fa fa-arrow-circle-right info"></i>
+        The 95% confidence intervals can then be calculated from
+        this distribution.
+      </p>
+    </div>
+    <div class="col-65">
+      <svg width="100%" viewBox="0 0 432 288" style="margin-top: 0;">
+        <use xlink:href="content/img/correlation-simulation-ci95.svg#axes_1"></use>
+        <use class="fragment" data-fragment-index=1 xlink:href="content/img/correlation-simulation-ci95.svg#axes_2"></use>
+        <use class="fragment" data-fragment-index=2 xlink:href="content/img/correlation-simulation-ci95.svg#axes_3"></use>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section data-transition="fade-in slide-out">
+  <h3>Inference for correlation - 95% CIs</h3>
+  <p class="smaller framed border-danger no-margin-top">
+    The correlation coefficient between height and
+    foot length is 0.711, with a 95% CI of [0.54, 0.86].
+  </p>
+  <p>
+    <i class="fa fa-arrow-circle-right danger"></i>
+    $0$ (the <span class="em">"no-association value"</span>) is not
+    in this interval. We have strong evidence suggesting that
+    height and foot length are positively
+    correlated.
+  </p>
+</section>

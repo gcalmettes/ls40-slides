@@ -1,0 +1,112 @@
+<section>
+  <h3>Sum of squares</h3>
+  <div class="row flex">
+    <div class="col-50 flex-center">
+      <p class="smallest">
+       $\textrm{Grand mean}= (18 + 29 + ... + 59 + 53)/24$
+       $\textrm{Grand mean}= 38$
+      </p>
+    </div>
+    <table class="col-49 center tiny">
+      <tr>
+        <td class="border-nobottom"></td>
+        <td class="bg-muted-light black border-nobottom border-right border-left border-top" colspan="8">Number of ants visiting sandwiches</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td class="bg-muted-light black border-left">#1</td>
+        <td class="bg-muted-light black">#2</td>
+        <td class="bg-muted-light black">#3</td>
+        <td class="bg-muted-light black">#4</td>
+        <td class="bg-muted-light black">#5</td>
+        <td class="bg-muted-light black">#6</td>
+        <td class="bg-muted-light black">#7</td>
+        <td class="bg-muted-light black border-right">#8</td>
+        <td>$\bar{x}$</td>
+      </tr>
+      <tr class="border-bottom">
+        <td class="bg-warning-light border-left border-right">Vegemite</td>
+        <td class="bg-warning-light black">18</td>
+        <td class="bg-warning-light black">29</td>
+        <td class="bg-warning-light black">42</td>
+        <td class="bg-warning-light black">42</td>
+        <td class="bg-warning-light black">31</td>
+        <td class="bg-warning-light black">21</td>
+        <td class="bg-warning-light black">38</td>
+        <td class="bg-warning-light black border-right">25</td>
+        <td class="warning-dark border-nobottom">30.8</td>
+      </tr>
+      <tr class="border-bottom">
+        <td class="bg-info-light border-left border-right">Peanut Butter</td>
+        <td class="bg-info-light black">43</td>
+        <td class="bg-info-light black">59</td>
+        <td class="bg-info-light black">22</td>
+        <td class="bg-info-light black">25</td>
+        <td class="bg-info-light black">36</td>
+        <td class="bg-info-light black">47</td>
+        <td class="bg-info-light black">19</td>
+        <td class="bg-info-light black border-right">21</td>
+        <td class="info border-nobottom">34.0</td>
+      </tr>
+      <tr>
+        <td class="bg-danger-light border-left border-right">Ham & Pickles</td>
+        <td class="bg-danger-light black">44</td>
+        <td class="bg-danger-light black">34</td>
+        <td class="bg-danger-light black">36</td>
+        <td class="bg-danger-light black">49</td>
+        <td class="bg-danger-light black">54</td>
+        <td class="bg-danger-light black">65</td>
+        <td class="bg-danger-light black">59</td>
+        <td class="bg-danger-light black border-right">53</td>
+        <td class="danger">49.3</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="row">
+    <div class="col-42 smaller">
+        <span class = "u em danger">Variability between groups:</span>
+        Sum of squares of the distance from each group means to the Grand mean.
+    </div>
+    <div class="col-15 tiny down-4">
+      <span class="small">$\sum_{g=1}^{k}n_{g}(\bar{x}_{g}-\hat{x})^2$</span>
+    </div>
+    <div class="col-43 tiny down-2">
+        $8\times (30.8-38)^2 + 8\times (34-38)^2$ <br>
+        $+ 8\times (49.3-38)^2 = 1561$
+    </div>
+  </div>
+  <div class="row down-2">
+    <div class="col-42 smaller">
+      <span class = "u em info">Variability within groups:</span>
+      Sum of squares of the distance from each data point to their sample mean.
+    </div>
+    <div class="col-15 tiny down-4">
+      <span class="small">$\sum_{g=1}^{k}\sum_{i=1}^{n_g}(x_{gi}-\bar{x}_{g})^2$</span>
+    </div>
+    <div class="col-43 tiny">
+        $(18-30.8)^2 + (29-30.8)^2 + ... + (25-30.8)^2$ <br>
+        $+ (43-34)^2 + (59-34)^2 + ... + (21-34)^2$ <br>
+        $+ (44-49.3)^2 + (34-49.3)^2 + ... + (53-49.3)^2$ <br>
+        $= 2913$
+    </div>
+  </div>
+  <div class="row down-2">
+    <div class="col-42 smaller">
+      <span class = "u em warning">Total variability:</span>
+      Sum of squares of the distance from each data point to the Grand mean.
+    </div>
+    <div class="col-15 tiny down-4">
+      <span class="small">$\sum_{i=1}^{n}(x_{i}-\hat{x})^2$</span>
+    </div>
+    <div class="col-43 tiny">
+        $(18-38)^2 + (29-38)^2 + ... + (25-38)^2$ <br>
+        $+ (43-38)^2 + (59-38)^2 + ... + (21-38)^2$ <br>
+        $+ (44-38)^2 + (34-38)^2 + ... + (53-38)^2$ <br>
+        $= 4474$
+    </div>
+  </div>
+  <div class="smaller down-2 push-left">
+    $$1561 + 2913 = 4474$$
+  </div>
+</section>

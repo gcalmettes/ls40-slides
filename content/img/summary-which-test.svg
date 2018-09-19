@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.4, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="829px" height="520.329px" viewBox="0 0 829 520.329" enable-background="new 0 0 829 520.329" xml:space="preserve">
+<g id="Layer_2">
+	<path fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+		M237.269,31.292c0,13.968-11.323,25.292-25.292,25.292h-48.7c-13.968,0-25.291-11.323-25.291-25.292l0,0
+		C137.985,17.323,149.309,6,163.276,6h48.7C225.945,6,237.269,17.323,237.269,31.292L237.269,31.292z"/>
+	
+		<circle fill="#FAC15E" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="485.83" cy="359.018" r="13.883"/>
+	
+		<circle fill="#FAC15E" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="376.716" cy="373.418" r="13.883"/>
+	
+		<circle fill="#FAC15E" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="67.703" cy="71.601" r="13.883"/>
+	
+		<circle fill="#FAC15E" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="294.213" cy="25.292" r="13.883"/>
+	
+		<circle fill="#FAC15E" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="89.712" cy="212.631" r="13.883"/>
+	
+		<circle fill="#FAC15E" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="145.971" cy="229.004" r="13.883"/>
+	
+		<circle fill="#FAC15E" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="720.868" cy="116.064" r="13.883"/>
+	
+		<circle fill="#FAC15E" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="691.395" cy="201.271" r="13.883"/>
+	
+		<circle fill="#FAC15E" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="375.562" cy="294.306" r="13.883"/>
+	
+		<circle fill="#FAC15E" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="315.865" cy="271.262" r="13.883"/>
+</g>
+<text transform="matrix(1 0 0 1 256.2686 178.7466)" fill="#FB4C52" font-family="'MyriadPro-Regular'" font-size="16">Quantitative</text>
+<text transform="matrix(1 0 0 1 449.8857 180.5884)" fill="#FB4C52" font-family="'MyriadPro-Regular'" font-size="16">Quantitative</text>
+<text transform="matrix(1 0 0 1 342.2236 227.0005)" fill="#00BFFF" font-family="'MyriadPro-Regular'" font-size="16">Categorical</text>
+<text transform="matrix(1 0 0 1 133.7588 166.0923)" fill="#00BFFF" font-family="'MyriadPro-Regular'" font-size="16">Categorical</text>
+<text transform="matrix(1 0 0 1 499.1533 37.7446)" fill="#FB4C52" font-family="'MyriadPro-Regular'" font-size="16">Quantitative</text>
+<text transform="matrix(1 0 0 1 502.9219 67.6001)" fill="#00BFFF" font-family="'MyriadPro-Regular'" font-size="16">Categorical</text>
+<rect x="618.862" y="5.679" fill="none" width="205.138" height="65.665"/>
+<text transform="matrix(1 0 0 1 671.1357 17.0405)" font-family="'MyriadPro-Regular'" font-size="16">CI of descriptor.</text>
+<text transform="matrix(1 0 0 1 623.6094 36.2388)" font-family="'MyriadPro-Regular'" font-size="16">Is the value I want to compare </text>
+<text transform="matrix(1 0 0 1 672.7119 55.4399)" font-family="'MyriadPro-Regular'" font-size="16">to (null) inside?</text>
+<rect x="8.943" y="159.203" fill="none" width="115.52" height="31.833"/>
+<text transform="matrix(1 0 0 1 39.7568 167.7231)" fill="#B4B4B5" font-family="'MyriadPro-Regular'" font-size="12">How many</text>
+<text transform="matrix(1 0 0 1 15.4932 182.1235)" fill="#B4B4B5" font-family="'MyriadPro-Regular'" font-size="12">explanatory groups?</text>
+<rect x="365.652" y="238.476" fill="none" width="115.521" height="31.833"/>
+<text transform="matrix(1 0 0 1 400.4668 246.9966)" fill="#B4B4B5" font-family="'MyriadPro-Regular'" font-size="12">How many</text>
+<text transform="matrix(1 0 0 1 371.6616 261.397)" fill="#B4B4B5" font-family="'MyriadPro-Regular'" font-size="12">explanatory variables?</text>
+<rect x="393.102" y="300.686" fill="none" width="105.155" height="30.211"/>
+<text transform="matrix(1 0 0 1 419.7334 310.2065)" fill="#B4B4B5" font-family="'MyriadPro-Regular'" font-size="12">How many</text>
+<text transform="matrix(1 0 0 1 395.4692 324.6069)" fill="#B4B4B5" font-family="'MyriadPro-Regular'" font-size="12">explanatory groups?</text>
+<rect x="131.088" y="362.418" fill="none" width="206.365" height="43.199"/>
+<text transform="matrix(1 0 0 1 121.624 383.7778)" font-family="'MyriadPro-Regular'" font-size="16">Difference in means/medians</text>
+<text transform="matrix(1 0 0 1 139.0801 402.978)" font-family="'MyriadPro-Regular'" font-size="16">Ratio in means/medians</text>
+<rect x="-11.579" y="448.583" fill="none" width="143.667" height="62.543"/>
+<text transform="matrix(1 0 0 1 14.375 471.9438)" font-family="'MyriadPro-Regular'" font-size="16">Student t-test</text>
+<text transform="matrix(1 0 0 1 4.6631 491.144)" font-family="'MyriadPro-Regular'" font-size="16">(pool the groups </text>
+<text transform="matrix(1 0 0 1 28.751 510.3442)" font-family="'MyriadPro-Regular'" font-size="16">together)</text>
+<rect x="141.085" y="464.184" fill="none" width="181.147" height="59.799"/>
+<text transform="matrix(1 0 0 1 215.6992 475.5444)" font-family="'MyriadPro-Regular'" font-size="16">Welch t-test</text>
+<text transform="matrix(1 0 0 1 167.2202 494.7446)" font-family="'MyriadPro-Regular'" font-size="16">(keep the group separated </text>
+<text transform="matrix(1 0 0 1 192.6914 513.9458)" font-family="'MyriadPro-Regular'" font-size="16">but recenter them)</text>
+<text transform="matrix(1 0 0 1 382.6953 460.8237)" font-family="'MyriadPro-Regular'" font-size="16">Study of quantititative variable of the </text>
+<text transform="matrix(1 0 0 1 383.5186 480.0229)" font-family="'MyriadPro-Regular'" font-size="16">paired differences in means/medians</text>
+<text transform="matrix(1 0 0 1 461.3975 499.2231)" font-family="'MyriadPro-Regular'" font-size="16">(paired t-test)</text>
+<rect x="301.198" y="9.416" fill="none" width="141.128" height="36.628"/>
+<text transform="matrix(1 0 0 1 311.5312 20.7759)" font-family="'MyriadPro-Regular'" font-size="16" text-decoration=" underline">Response variable</text>
+<text transform="matrix(1 0 0 1 312.355 39.9771)" font-family="'MyriadPro-Regular'" font-size="16">only (one sample)</text>
+<rect x="281.943" y="19.95" fill="none" width="22.538" height="17.561"/>
+<text transform="matrix(1 0 0 1 289.7725 30.3091)" font-family="'MyriadPro-Bold'" font-size="16">1</text>
+<rect x="77.443" y="200.304" fill="none" width="22.538" height="17.561"/>
+<text transform="matrix(1 0 0 1 84.2725 216.6655)" font-family="'MyriadPro-Bold'" font-size="16">2</text>
+<rect x="133.218" y="218.173" fill="none" width="22.538" height="17.561"/>
+<text transform="matrix(1 0 0 1 135.0674 233.5337)" font-family="'MyriadPro-Bold'" font-size="16">≥</text>
+<text transform="matrix(1 0 0 1 144.6035 233.5337)" font-family="'MyriadPro-Bold'" font-size="12"> </text>
+<text transform="matrix(1 0 0 1 147.0264 233.5337)" font-family="'MyriadPro-Bold'" font-size="16">2</text>
+<rect x="358.509" y="282.524" fill="none" width="22.538" height="17.561"/>
+<text transform="matrix(1 0 0 1 370.3379 298.8853)" font-family="'MyriadPro-Bold'" font-size="16">1</text>
+<rect x="303.674" y="259.963" fill="none" width="22.537" height="17.561"/>
+<text transform="matrix(1 0 0 1 304.5225 276.3237)" font-family="'MyriadPro-Bold'" font-size="16">≥</text>
+<text transform="matrix(1 0 0 1 314.0586 276.3237)" font-family="'MyriadPro-Bold'" font-size="12"> </text>
+<text transform="matrix(1 0 0 1 316.4824 276.3237)" font-family="'MyriadPro-Bold'" font-size="16">2</text>
+<rect x="454.947" y="347.436" fill="none" width="22.537" height="17.561"/>
+<text transform="matrix(1 0 0 1 474.7959 363.7954)" font-family="'MyriadPro-Bold'" font-size="16">≥</text>
+<text transform="matrix(1 0 0 1 484.332 363.7954)" font-family="'MyriadPro-Bold'" font-size="12"> </text>
+<text transform="matrix(1 0 0 1 486.7559 363.7954)" font-family="'MyriadPro-Bold'" font-size="16">2</text>
+<rect x="356.447" y="358.92" fill="none" width="22.537" height="17.562"/>
+<text transform="matrix(1 0 0 1 371.2754 378.2817)" font-family="'MyriadPro-Bold'" font-size="16">2</text>
+<rect x="55.434" y="64.819" fill="none" width="22.538" height="17.561"/>
+<text transform="matrix(1 0 0 1 62.2627 76.1782)" font-family="'MyriadPro-Bold'" font-size="16">2</text>
+<rect x="388.31" y="73.149" fill="none" width="62.207" height="20.9"/>
+<text transform="matrix(1 0 0 1 406.749 85.6704)" fill="#B4B4B5" font-family="'MyriadPro-Regular'" font-size="12">Type?</text>
+<rect x="10.911" y="84.864" fill="none" width="212.497" height="42.965"/>
+<text transform="matrix(1 0 0 1 37.1611 101.2231)" font-family="'MyriadPro-Regular'" font-size="16" text-decoration=" underline">Response &amp; explanatory</text>
+<text transform="matrix(1 0 0 1 15.7295 120.4233)" font-family="'MyriadPro-Regular'" font-size="16">(2 samples in different groups)</text>
+<rect x="242.4" y="101.649" fill="none" width="88.498" height="36.065"/>
+<text transform="matrix(1 0 0 1 271.1035 110.1704)" fill="#B4B4B5" font-family="'MyriadPro-Regular'" font-size="12">Type of </text>
+<text transform="matrix(1 0 0 1 264.4497 124.5688)" fill="#B4B4B5" font-family="'MyriadPro-Regular'" font-size="12">response?</text>
+<rect x="140.291" y="9.728" fill="none" width="91.511" height="36.006"/>
+<text transform="matrix(1 0 0 1 153.1187 25.0884)" font-family="'MyriadPro-Regular'" font-size="16">How many </text>
+<text transform="matrix(1 0 0 1 156.1357 44.2876)" font-family="'MyriadPro-Regular'" font-size="16">variables?</text>
+<rect x="714.932" y="89.311" fill="none" width="117.256" height="36.729"/>
+<text transform="matrix(1 0 0 1 732.4326 100.6704)" font-family="'MyriadPro-Regular'" font-size="16">Probabilistic </text>
+<text transform="matrix(1 0 0 1 752.0879 119.8716)" font-family="'MyriadPro-Regular'" font-size="16">model</text>
+<text transform="matrix(1 0 0 1 28.751 298.8853)" font-family="'MyriadPro-Regular'" font-size="16">(z-test)</text>
+<rect x="705.92" y="112.714" fill="none" width="28" height="15.229"/>
+<text transform="matrix(1 0 0 1 716.4795 121.0747)" font-family="'MyriadPro-Bold'" font-size="16">1</text>
+<rect x="119.157" y="223.722" fill="none" width="134.377" height="35.729"/>
+<text transform="matrix(1 0 0 1 165.5361 241.228)" font-family="'Helvetica'" font-size="16">χ</text>
+<text transform="matrix(1 0 0 1 174.4346 235.8979)" font-family="'Helvetica'" font-size="9.328">2 </text>
+<text transform="matrix(1 0 0 1 182.2139 241.228)" font-family="'MyriadPro-Regular'" font-size="16">test</text>
+<text transform="matrix(1 0 0 1 138.0596 261.4272)" font-family="'MyriadPro-Regular'" font-size="16">for association</text>
+<rect x="692.69" y="188.874" fill="none" width="139.497" height="70.261"/>
+<text transform="matrix(1 0 0 1 721.2314 202.2329)" font-family="'MyriadPro-Regular'" font-size="16">Chi square</text>
+<text transform="matrix(1 0 0 1 706.9355 221.4341)" font-family="'MyriadPro-Regular'" font-size="16">goodness of fit</text>
+<rect x="673.277" y="194.543" fill="none" width="33.723" height="19.087"/>
+<text transform="matrix(1 0 0 1 679.7188 205.9028)" font-family="'MyriadPro-Bold'" font-size="16">≥</text>
+<text transform="matrix(1 0 0 1 689.2549 205.9028)" font-family="'MyriadPro-Bold'" font-size="12"> </text>
+<text transform="matrix(1 0 0 1 691.6787 205.9028)" font-family="'MyriadPro-Bold'" font-size="16">2</text>
+<rect x="588.091" y="81.978" fill="none" width="93.188" height="29.704"/>
+<text transform="matrix(1 0 0 1 611.7383 90.4966)" fill="#B4B4B5" font-family="'MyriadPro-Regular'" font-size="12">How many </text>
+<text transform="matrix(1 0 0 1 610.2803 104.897)" fill="#B4B4B5" font-family="'MyriadPro-Regular'" font-size="12">categories?</text>
+<rect x="510.31" y="370.499" fill="none" width="79.785" height="30.83"/>
+<text transform="matrix(1 0 0 1 534.3623 380.019)" fill="#B4B4B5" font-family="'MyriadPro-Regular'" font-size="12">Paired</text>
+<text transform="matrix(1 0 0 1 530.9121 394.4185)" fill="#B4B4B5" font-family="'MyriadPro-Regular'" font-size="12">design?</text>
+<rect x="354.417" y="380.915" fill="none" width="54.083" height="30.83"/>
+<text transform="matrix(1 0 0 1 366.6191 405.4351)" fill="#B4B4B5" font-family="'MyriadPro-Regular'" font-size="12">Paired</text>
+<text transform="matrix(1 0 0 1 363.1689 419.8345)" fill="#B4B4B5" font-family="'MyriadPro-Regular'" font-size="12">design?</text>
+<rect x="74.088" y="399.329" fill="none" width="99.341" height="30.832"/>
+<text transform="matrix(1 0 0 1 83.1318 421.8481)" fill="#B4B4B5" font-family="'MyriadPro-Regular'" font-size="12">Same variance?</text>
+<text transform="matrix(1 0 0 1 76.4424 436.2485)" fill="#B4B4B5" font-family="'MyriadPro-Regular'" font-size="12">Same population?</text>
+<text transform="matrix(1 0 0 1 243.8613 294.4067)" font-family="'MyriadPro-Regular'" font-size="16">Two-way </text>
+<text transform="matrix(1 0 0 1 249.0522 313.6069)" font-family="'MyriadPro-Regular'" font-size="16">ANOVA</text>
+<rect x="338.483" y="147.556" fill="none" width="99.65" height="30.211"/>
+<text transform="matrix(1 0 0 1 338.6963 156.0767)" fill="#B4B4B5" font-family="'MyriadPro-Regular'" font-size="12">Type of explanatory </text>
+<text transform="matrix(1 0 0 1 366.0024 170.4771)" fill="#B4B4B5" font-family="'MyriadPro-Regular'" font-size="12">variable?</text>
+<rect x="492.629" y="189.391" fill="none" width="124.743" height="36.479"/>
+<text transform="matrix(1 0 0 1 513.0967 198.7505)" font-family="'MyriadPro-Regular'" font-size="16">Correlation &amp; </text>
+<text transform="matrix(1 0 0 1 499.9775 217.9517)" font-family="'MyriadPro-Regular'" font-size="16">Linear regression</text>
+<rect x="-1" y="221" fill="none" width="116.5" height="54.329"/>
+<text transform="matrix(1 0 0 1 22.7227 239.3608)" font-family="'MyriadPro-Regular'" font-size="16">Difference </text>
+<text transform="matrix(1 0 0 1 28.6191 258.561)" font-family="'MyriadPro-Regular'" font-size="16">(or ratio)</text>
+<text transform="matrix(1 0 0 1 7.4922 277.7612)" font-family="'MyriadPro-Regular'" font-size="16"> of proportions</text>
+<text transform="matrix(1 0 0 1 596.4316 395.0454)" font-family="'MyriadPro-Regular'" font-size="16">No</text>
+<text transform="matrix(1 0 0 1 302.4316 421.7446)" font-family="'MyriadPro-Regular'" font-size="16">No</text>
+<text transform="matrix(1 0 0 1 186.4316 466.8979)" font-family="'MyriadPro-Regular'" font-size="16">No</text>
+<text transform="matrix(1 0 0 1 605.584 342.936)" font-family="'MyriadPro-Regular'" font-size="16">Yes</text>
+<text transform="matrix(1 0 0 1 354.9434 452.3813)" font-family="'MyriadPro-Regular'" font-size="16">Yes</text>
+<text transform="matrix(1 0 0 1 113.2549 462.3813)" font-family="'MyriadPro-Regular'" font-size="16">Yes</text>
+<text transform="matrix(1 0 0 1 620.3447 409.5454)" font-family="'MyriadPro-Regular'" font-size="16">One-way ANOVA</text>
+<rect x="639.314" y="316.648" fill="none" width="132.686" height="42.123"/>
+<text transform="matrix(1 0 0 1 637.4023 330.0073)" font-family="'MyriadPro-Regular'" font-size="16">Repeated-measures </text>
+<text transform="matrix(1 0 0 1 678.625 349.2075)" font-family="'MyriadPro-Regular'" font-size="16">ANOVA</text>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" x1="589.5" y1="34.278" x2="604.939" y2="34.278"/>
+		<g>
+			<polygon points="612,34.278 602.051,38.343 604.412,34.278 602.051,30.213 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<g>
+			<path fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M555,76.344l89,54.37
+				c0,0,29.787,18.923,56.494-0.4"/>
+			<g>
+				<polygon points="705.92,125.795 700.773,135.23 700.036,130.587 695.639,128.927 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			<path fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M644,130.714
+				c0,0,28.385,19.857,40.487,47.51"/>
+			<g>
+				<polygon points="687,184.829 679.569,177.063 684.217,177.769 687.133,174.082 				"/>
+			</g>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<g>
+			<path fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M139.432,171.54
+				c-1.741,2.903-7.434,18.124-2.526,36.959"/>
+			<g>
+				<polygon points="139.078,215.223 132.222,206.946 136.807,207.982 139.979,204.514 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			<path fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M139.432,171.54
+				c-3.208,5.738-11.731,18.862-29.854,28.712"/>
+			<g>
+				<polygon points="103.236,203.372 110.311,195.281 110.021,199.974 113.952,202.55 				"/>
+			</g>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<g>
+			<path fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M369.562,233.712
+				c-1.742,2.903-7.436,18.124-2.527,36.958"/>
+			<g>
+				<polygon points="369.208,277.396 362.352,269.12 366.938,270.155 370.109,266.686 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			<path fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M369.562,233.712
+				c-3.211,5.738-11.732,18.862-29.854,28.712"/>
+			<g>
+				<polygon points="333.366,265.543 340.441,257.454 340.151,262.146 344.083,264.723 				"/>
+			</g>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<g>
+			<path fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M191.234,407.661
+				l-5.381,8.203c0,0-6.354,11.168-1.587,29.389"/>
+			<g>
+				<polygon points="186.44,451.971 179.578,443.7 184.165,444.733 187.333,441.26 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			<path fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M188.922,411.184
+				c-10.225,13.834-22.431,31.803-42.232,40.643"/>
+			<g>
+				<polygon points="140.085,454.329 147.869,446.917 147.152,451.563 150.832,454.489 				"/>
+			</g>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<g>
+			<path fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M363.867,390.674
+				l-4.794,6.854c0,0-7.972,10.84-2.301,30.777"/>
+			<g>
+				<polygon points="359.073,434.987 352.072,426.833 356.675,427.788 359.785,424.262 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			<path fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M359.073,397.53
+				c0,0-6.448,12.545-25.466,22.566"/>
+			<g>
+				<polygon points="327.232,423.135 334.4,415.127 334.057,419.817 337.957,422.44 				"/>
+			</g>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<g>
+			<path fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M509.31,359.631
+				l10.343-0.354c18.324,0,30.799-19.346,71.291-21.394"/>
+			<g>
+				<polygon points="598,337.709 588.174,342.064 590.415,337.931 587.938,333.938 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			<path fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M519.65,359.278
+				c0,0,40.554,1.651,65.476,16.15"/>
+			<g>
+				<polygon points="591,379.329 580.434,377.366 584.618,375.223 584.832,370.528 				"/>
+			</g>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<g>
+			<path fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M383.597,310.525
+				l3.976,7.819c0,0,14.307,33.146,68.128,42.787"/>
+			<g>
+				<polygon points="462.68,362.215 452.194,364.577 455.196,360.958 453.542,356.558 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			<path fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M387.57,318.344
+				c0,0,10.653,14.688,3.264,34.33"/>
+			<g>
+				<polygon points="387.842,359.075 388.216,348.333 390.955,352.153 395.63,351.667 				"/>
+			</g>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" x1="240.553" y1="26.292" x2="264.273" y2="26.292"/>
+		<g>
+			<polygon points="271.334,26.292 261.385,30.357 263.746,26.292 261.385,22.227 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" x1="352.529" y1="175.73" x2="434.483" y2="175.73"/>
+		<g>
+			<polygon points="441.544,175.73 431.595,179.795 433.955,175.73 431.595,171.666 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<path fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M408.31,50.329
+			c16.485,21.9,55.793,13.165,82.139-6.009"/>
+		<g>
+			<polygon points="496,39.957 490.604,49.252 489.991,44.591 485.64,42.814 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<path fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M412.963,55.258
+			c11.627,11.626,45.753,34.246,79.896,19.285"/>
+		<g>
+			<polygon points="499.153,71.344 492.062,79.42 492.361,74.729 488.436,72.144 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<path fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M235.5,97.829
+			c49.679-3.671,35.686,19.128-35.989,49.762"/>
+		<g>
+			<polygon points="193,150.329 200.543,142.673 199.975,147.339 203.746,150.146 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<path fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M245.082,124.7
+			c-13.738,10.599-4.147,21.467,4.32,29.617"/>
+		<g>
+			<polygon points="254.5,159.203 244.521,155.211 249.044,153.929 250.172,149.365 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<path fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M374.934,175.829
+			c36.073,0,45.141,15.951,27.862,30.253"/>
+		<g>
+			<polygon points="397.037,210.173 402.641,201.002 403.148,205.675 407.459,207.55 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<path fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M131.759,26.292
+			c-31.89,0-47.533,14.885-52.885,24.735"/>
+		<g>
+			<polygon points="76.667,57.733 76.161,46.998 79.204,50.582 83.823,49.715 			"/>
+		</g>
+	</g>
+</g>
+</svg>

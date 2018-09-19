@@ -1,0 +1,288 @@
+<section data-transition="slide-in">
+  <h3>Null sampling distribution simulation</h3>
+  <div class="row">
+    <div class="col-65 center">
+      <p class="sided border-warning">
+        <span class="u em">Statistic of interest?</span> <br>
+        <span class="right-3">Difference in average commute time</span>
+        <br>
+        <span class="right-3">$d=\bar{x}_{\mathrm{carbon}} - \bar{x}_{\mathrm{steel}}$</span>
+      </p>
+      <p class="down-3">
+        <i class="fas fa-lightbulb"></i> <span class="em u">Null hypothesis simulation key idea:</span> <br>
+        In the actual data, there were 56 commute times. <span class="danger">If there was no association of the commute time with 
+        the bike frame type</span>  (explanatory variable) then <span class="u-danger">each commute time could have been observed regardless 
+        of the type of bike frame used</span>.
+      </p>
+    </div>
+    <div class="col-35 center">
+      <svg width="100%" viewBox="0 85 400 615">
+        <use xlink:href="content/img/two-groups-NHST.svg#layer1"></use>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section data-transition="none">
+  <h3>Null sampling distribution simulation</h3>
+  <div class="row">
+    <div class="col-65 center">
+      <p class="sided border-warning">
+        <span class="u em">Statistic of interest?</span> <br>
+        <span class="right-3">Difference in average commute time</span>
+        <br>
+        <span class="right-3">$d=\bar{x}_{\mathrm{carbon}} - \bar{x}_{\mathrm{steel}}$</span>
+      </p>
+      <div class="down-3 small framed">
+        We can simulate this study with index cards:
+        <ol>
+          <li>Write all 56 times on 56 cards</li>
+          <li>Shuffle all 56 cards and randomly redistribute into two stacks
+            <ul>
+              <li>One with 26 cards (times w/ carbon bike)</li>
+              <li>Another with 30 cards (times w/ steel bike)</li>
+            </ul>
+          </li>
+          <li>Calculate the difference in the average time between the two stacks of cards</li>
+        </ol>
+      </div>
+      <p>
+        <i class="fas fa-arrow-circle-right"></i> Shuffling assumes the null hypothesis of no association between commute time and bike (<span class="danger">random reassignment of the explanatory variable</span>).
+      </p>
+    </div>
+    <div class="col-35 center">
+      <svg width="100%" viewBox="0 85 400 615">
+        <use xlink:href="content/img/two-groups-NHST.svg#layer1"></use>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section data-transition="none">
+  <h3>Null sampling distribution simulation</h3>  
+  <p class="u em">
+    Shuffling procedure
+  </p>
+  <img src="content/img/two-groups-simulation-mean.svg" width=100%>
+  </div>
+</section>
+
+<section data-external-replace="slide-animation-bike-commute-time-permutation.html"></section>
+
+<section>
+  <h3>Simulating the random assignment of bike frame (difference in means)</h3>
+  <div class="row">
+    <div class="col-40">
+      <p class="sided border-danger">
+        How many simulations gave a result as extreme as the
+        initial statistic? <br>
+        ($\bar{x}_{\mathrm{carbon}}-\bar{x}_{\mathrm{steel}}$)
+      </p>
+      <p class="down-8">
+        <span class="u em">Note:</span> "as extreme as" in both 
+        directions (2 tailed test)
+      </p>
+      <p>
+        Upper limit: <br>
+        <span class="danger">
+        $\bar{x}_{\mathrm{carbon}}-\bar{x}_{\mathrm{steel}}\geq0.53$
+        </span>
+      </p>
+      <p>
+        Lower limit:
+        <br>
+        <span class="danger">
+        $\bar{x}_{\mathrm{carbon}}-\bar{x}_{\mathrm{steel}}\leq0-0.53$
+        </span>
+      </p>
+    </div>
+    <div class="col-60">
+      <div class="row">
+        <div class="col-80 right-5 smallest">
+          <span class="u em">Statistic calculated for each simulation:</span><br>
+           difference in mean 
+           ($\bar{x}_{\mathrm{carbon}}-\bar{x}_{\mathrm{steel}}$)
+           <br>
+          <span class="success">10000 simulations</span>
+        </div>
+      </div>
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/bike-commute-simulation-diff-mean-all.svg#axes_1"></use>
+        <use xlink:href="content/img/bike-commute-simulation-diff-mean-all.svg#axes_2"></use>
+        <use xlink:href="content/img/bike-commute-simulation-diff-mean-all.svg#axes_3"></use>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h3>Simulating the random assignment of bike frame (difference in medians)</h3>
+  <div class="row">
+    <div class="col-40">
+      <p class="sided border-danger">
+        How many simulations gave a result as extreme as the
+        initial statistic? <br>
+        ($\mathrm{m}_{\mathrm{carbon}}-\mathrm{m}_{\mathrm{steel}}$)
+      </p>
+      <p class="down-8">
+        <span class="u em">Note:</span> "as extreme as" in both 
+        directions (2 tailed test)
+      </p>
+      <p>
+        Upper limit: <br>
+        <span class="danger">
+        $\mathrm{m}_{\mathrm{carbon}}-\mathrm{m}_{\mathrm{steel}}\geq0.17$
+        </span>
+      </p>
+      <p>
+        Lower limit:
+        <br>
+        <span class="danger">
+        $\mathrm{m}_{\mathrm{carbon}}-\mathrm{m}_{\mathrm{steel}}\leq0-0.17$
+        </span>
+      </p>
+    </div>
+    <div class="col-60">
+      <div class="row">
+        <div class="col-5">
+          <p></p>
+        </div>
+        <div class="col-80">
+          <p class="smaller">
+            <span class="u em">Statistic calculated for each simulation:</span><br>
+             difference in median 
+             ($\mathrm{m}_{\mathrm{carbon}}-\mathrm{m}_{\mathrm{steel}}$)
+             <br>
+            <span class="info">10000 simulations</span>
+          </p>
+        </div>
+      </div>
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/bike-commute-simulation-diff-median-all.svg#axes_1"></use>
+        <use xlink:href="content/img/bike-commute-simulation-diff-median-all.svg#axes_2"></use>
+        <use xlink:href="content/img/bike-commute-simulation-diff-median-all.svg#axes_3"></use>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h3>What does this p-value mean?</h3>
+  <div class="small down-3">
+    If the mean commute times for the bikes were the same in the long
+    run, and we were repeating random assignment of the lighter bike
+    (carbon) to 26 days and the heavier (steel) to 30 days,
+    <span class="danger">a difference at least as extreme as 0.53 minutes</span> would occur in
+    about <span class="danger">72% of the repetitions</span>.
+  </div>
+  <div class="small down-1">
+    <i class="fas fa-arrow-circle-right danger"></i> Therefore, <span class="u-danger">we don’t have evidence that the commute times for 
+    the two bikes will differ in the long run</span>.
+  </div>
+  <div class="sided border-pop down-3">
+    <p class="u em">
+      Have we proven that the bike Groves chooses is not associated  with commute time? (<span class="pop">Can we conclude the null?</span>)
+    </p>
+    <p class="fragment" data-fragment-index=1>
+      No! A large p-value is not “strong evidence that the null hypothesis is true.”
+      It suggests that the <span class="pop">null hypothesis is plausible</span>.
+    </p>
+    <p class="fragment" data-fragment-index=1>
+      <i class="fas fa-arrow-circle-right pop"></i> There could be long-term difference just like we saw, but it is just very small.
+    </p>
+  </div>
+</section>
+
+<section>
+  <h3>Scope of conclusions of the study</h3>
+  <div class="framed border-danger small center">
+    Can we generalize our conclusion to a larger population? <br>
+  </div>
+  <div class="u em small down-2">
+    Two Key questions:
+  </div>
+  <div class="sided border-pop down-1 small">
+    <span class="u em pop">Was the sample randomly obtained from a larger population?</span>
+    <div class="row flex">
+      <div class="col-5 flex-center fragment" data-fragment-index=1>
+        <span class="strong">NO!</span>
+      </div>
+      <div class="col-92 right-3 fragment" data-fragment-index=1>
+        <p class="normal">
+          Groves commuted on consecutive days which didn’t include all seasons. <br>
+          <i class="fas fa-arrow-right"></i> We <span class="strong">cannot generalize</span> to all the commute trips
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="sided border-pop down-1 small">
+    <span class="u em pop">Were the observational units randomly assigned to treatments?</span>
+    <div class="row flex">
+      <div class="col-5 flex-center fragment" data-fragment-index=2>
+        <span class="strong">YES!</span>
+      </div>
+      <div class="col-92 right-3 fragment" data-fragment-index=2>
+        <p class="normal">
+          He flipped a coin to choose which bike to ride each day. <br>
+          <i class="fas fa-arrow-right"></i> We can draw <span class="strong">cause-and-effect</span> conclusions.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="smaller fragment down-2">
+    We can’t generalize beyond Groves and his two bikes.
+    A limitation is that this study is <span class="danger">not double-blind</span>.
+    The researcher and the subject (which happened to be the same person) were not blind to which treatment (bike) was being used.
+    (Perhaps Groves likes his old bike and wanted (unconsciously) to show it was just as good as the new carbon-frame bike for commuting to work.)
+  </div>
+</section>
+
+<section data-transition="slide-in">
+  <h3>Note on simulating the null</h3>
+  <div class="row">
+    <div class="col-50 center">
+      <p>
+        Drawing new samples from the pooled population: <br>
+        <span class="strong">Permutation</span> vs <span class="strong">Resampling</span>
+      </p>
+      <p>
+        <span class="em u">Permutation:</span> reallocation of outcomes to explanatory groups, as is done in the classic randomization tests (e.g.: Fisher exact test).
+      </p>
+      <p>
+        <span class="em u">Resampling:</span> random sample with replacement from the original sample or population, of the same sample size as the original sample (Bootstrap).
+      </p>
+      <p class="framed">
+        Permutation mimics random allocation/assignment of the explanatory variable, while resampling mimics random sampling from a greater population.
+      </p>
+    </div>
+    <div class="col-50 center">
+      <svg width="74%" viewBox="0 85 400 615">
+        <use xlink:href="content/img/two-groups-NHST.svg#layer1"></use>
+        <use xlink:href="content/img/two-groups-NHST.svg#layer3"></use>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section data-external-replace="slide-animation-bike-commute-time-permutation.html"></section>
+<section data-external-replace="slide-animation-bike-commute-time-bootstrap.html"></section>
+
+<section>
+  <h3>Permutation vs Resampling</h3>
+  <div class="row">
+    <div class="col-50">
+      <p>
+        Both methods are widely used often irrespective of the data collection method or inferential goal.
+      </p>
+      <p>
+        There is a general agreement about the use of <span class="danger">permutation for testing</span> (e.g.: null hypothesis testing) and the use of <span class="pop">resampling for estimation</span> (e.g.: computing confidence intervals). But both can actually be used in most of the situations.
+      </p>
+    </div>
+    <div class="col-50">
+      <img width=100% src="content/img/bike-commute-simulation-permutation-vs-bootstrap.svg">
+    </div>
+  </div>
+  <p>
+    <i class="fas fa-arrow-circle-right"></i> Resampling is better for interval estimation, permutation is better for testing in small samples, and the two are asymptotically equivalent for testing in large samples.
+  </p>
+</section>

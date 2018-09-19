@@ -1,0 +1,112 @@
+<section data-transition="slide-in fade-out">
+  <h3>Inference for correlation - NHST</h3>
+  <div class="row">
+    <div class="col-35">
+      <p class="smaller fragment framed border-danger no-margin-top">
+        If there was <span class="danger">no association</span> between height and foot length,
+        <span class="u-danger">what is the probability</span> we would get a correlation as high as
+        0.711 just by chance?
+      </p>
+      <p class="smaller fragment">
+        <i class="fa fa-arrow-circle-right danger"></i>
+        If there is no association between height and foot length,
+        it means that there is no pairing between the two variables.
+      </p>
+    </div>
+    <div class="col-65">
+      <svg width="100%" viewBox="0 0 432 288" style="margin-top: 0;">
+        <use xlink:href="content/img/correlation-simulation-graph.svg#axes_1"></use>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- <section data-transition="fade">
+  <h3>Inference for correlation - NHST</h3>
+  <div class="row">
+    <div class="col-35">
+      <p class="smaller no-margin-top">
+        <span class="u em">Resampling methodology:</span><br>
+        We can break apart the heights and their corresponding foot lengths
+        by <span class="warning">shuffling one of the variables</span> while
+        keeping the other one untouched.
+      </p>
+      <p class="smaller fragment" data-fragment-index=1>
+        <i class="fa fa-arrow-circle-right danger"></i>
+        We create hypothetical pairs that could have been observed
+        if there was no association between height and foot length.
+      </p>
+    </div>
+    <div class="col-65">
+      <svg width="100%" viewBox="0 0 432 288" style="margin-top: 0;">
+        <use xlink:href="content/img/correlation-simulation-graph.svg#axes_1"></use>
+        <use class="fragment current-visible" data-fragment-index=2 xlink:href="content/img/correlation-simulation-graph.svg#axes_2"></use>
+        <use class="fragment current-visible" data-fragment-index=3 xlink:href="content/img/correlation-simulation-graph.svg#axes_3"></use>
+        <use class="fragment" data-fragment-index=4 xlink:href="content/img/correlation-simulation-graph.svg#axes_4"></use>
+      </svg>
+    </div>
+  </div>
+  <p class="no-margin-top smaller fragment" data-fragment-index=2>
+    <i class="fa fa-arrow-circle-right info"></i>
+    For each simulation, we calculate the new $r$ resulting from this possible association.
+  </p>
+</section> -->
+
+<section data-external-replace="slide-animation-correlation-nhst.html"></section>
+
+<section data-transition="fade">
+  <h3>Inference for correlation - NHST</h3>
+  <div class="row">
+    <div class="col-35">
+      <p class="smaller framed border-info">
+        By repeating this process 10000 times, we obtain
+        the sampling distribution
+        of the correlation coefficient if there was
+        <span class="info">no
+        association</span> between the two variables in our dataset.
+        This is the <span class="info">sampling
+        distribution of the null hypothesis</span>.
+      </p>
+    </div>
+    <div class="col-65">
+      <svg width="100%" viewBox="0 25 432 272" style="margin-top: 0;">
+        <use xlink:href="content/img/correlation-simulation-nhst.svg#axes_1"></use>
+        <use class="fragment" data-fragment-index=1 xlink:href="content/img/correlation-simulation-nhst.svg#axes_2"></use>
+        <use class="fragment" data-fragment-index=2 xlink:href="content/img/correlation-simulation-nhst.svg#axes_3"></use>
+      </svg>
+    </div>
+  </div>
+  <p class="no-margin-top smaller">
+    <i class="fa fa-arrow-circle-right info"></i>
+    A p-value can be calculated by counting how many simulations resulted in
+    a $r$ as extreme as our initial observation and dividing it by the
+    total number of simulations.
+  </p>
+</section>
+
+<section data-transition="fade-in slide-out">
+  <h3>Inference for correlation - NHST</h3>
+  <div class="row">
+    <div class="col-35">
+      <p class="smaller framed border-danger no-margin-top">
+        $p=0.0005$
+      </p>
+      <p class="smaller no-margin-top">
+        <i class="fa fa-arrow-circle-right danger"></i>
+        We have strong evidence against the null hypothesis,
+        a correlation coefficient as extreme as $r=0.711$ would
+        only be observed 0.5% of the time if the null hypothesis
+        was true.
+        <br>
+        <i class="fa fa-arrow-circle-right danger"></i>
+        We can conclude that foot length is positively
+        correlated with height.
+      </p>
+    </div>
+    <div class="col-65">
+      <svg width="100%" viewBox="0 0 432 288" style="margin-top: 0;">
+        <use xlink:href="content/img/correlation-simulation-graph.svg#axes_1"></use>
+      </svg>
+    </div>
+  </div>
+</section>

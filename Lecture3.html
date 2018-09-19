@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Slides</title>
+<link href="lib/css/presentation.bundle.css" rel="stylesheet"><link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet"><link href="https://fonts.googleapis.com/css?family=Source+Sans Pro|Passion+One" rel="stylesheet"><link href="lib/css/app.css" rel="stylesheet"><link href="lib/css/ttf.css" rel="stylesheet"></head>
+<body>
+
+<div class="reveal">
+<div class="slides">
+
+<section class="title-slide" data-background='content/img/bckg/bckg6.jpg' data-state="alpha-07">
+  <div class="center huge framed bordered font-passionone col-80 border-3x bg-black-alpha-08">
+    <span class="white">LS 40</span><br>
+    <span class="white">Lecture 3</span><br>
+  </div>
+  <div class="down-3 warning center">
+    Introduction to<br>
+    hypothesis testing
+  </div>
+</section>
+
+
+<section data-external-replace="content/slides-external/slide-recap-lec2.html"></section>
+<section data-external-replace="content/slides-external/slide-visualization-data-presentation.html"></section>
+<section data-external-replace="content/slides-external/slide-definition-statistical-inference.html"></section>
+<section data-external-replace="content/slides-external/slide-dolphins-communication.html"></section>
+<section data-external-replace="content/slides-external/slide-animation-live-coin-flip.html"></section>
+<section data-external-replace="content/slides-external/slide-animation-coin-flip-long-run.html"></section>
+<section data-external-replace="content/slides-external/slide-definition-pvalue.html"></section>
+
+
+<section data-transition="slide">
+  <h3>Can dolphins communicate?</h3>
+ 
+  <div class="row">
+    <div class="col-49 center">
+      <span class="small info">Null Hypothesis</span>
+      <div class="framed border-info smallest">
+        <div>
+          Buzz is <span class="info">just guessing</span> (his probability of choosing the correct button is 0.50) and he
+          <span class="info">got really lucky</span> in these 16 attempts.
+        </div>
+        <div class="info center">
+          $\pi=0.5$
+        </div>
+      </div>
+    </div>
+    <div class="col-49 center">
+      <span class="small danger">Alternative hypothesis</span>
+      <div class="right-2 framed border-danger smallest">
+        <div>
+          Buzz is <span class="danger">doing something other than just guessing</span> (his probability of choosing the correct button is more than 0.50).
+        </div>
+        <div class="danger center">
+          $\pi>0.5$
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="down-2 smaller">
+    The very small p-value we obtained when simulating random chance means our evidence is strong enough to be considered
+    <span class="orange">statistically significant</span>.
+  </p>
+  <p class="down-2 smaller">
+    <i class="fas fa-arrow-circle-right orange"></i> That is, we don't think the result of the experiment (15 out of 16 correct button choices by Buzz)
+    happened by chance alone, but rather, <span class="orange">something other than
+    "random chance" was at play</span>.
+  </p>
+</section>
+
+
+
+</div> <!-- slides -->
+</div> <!-- reveal -->
+<script type="text/javascript" src="lib/js/app.bundle.js"></script><script type="text/javascript" src="lib/js/fa-Lecture3.js"></script><script type="text/javascript" src="lib/js/app.js"></script></body>
+</html>

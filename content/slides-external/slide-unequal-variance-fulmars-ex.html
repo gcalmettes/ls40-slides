@@ -1,0 +1,103 @@
+<section data-transition="slide-in">
+  <h3>Metabolic rate in Northern fulmars</h3>
+  <div class="row">
+    <div class="col-50">
+      <p class="smaller">
+        Two researchers, Dr. Furness and Dr. Bryant measured the resting metabolic rate for 8 males and 6 females breeding Northern fulmars.
+      </p>
+      <p>
+        <i class="fas fa-arrow-circle-right pop"></i>
+        Visually, we clearly see that there is a <span class="pop">difference in the spread</span> of the metabolic rate data they obtained from the males and females fulmars.
+      </p>
+    </div>
+    <div class="col-50">
+      <img src="content/img/fulmars-mr-data.svg">
+    </div>
+  </div>
+  <div class="quoted small">
+    Are these medians different? Is $d$ significant <span class="danger">statistically</span>? <span class="danger">Biologically</span>?
+  </div>
+  <div class="em small">
+    Which strategy could we used to compare these two groups?
+  </div>
+</section>
+
+<section data-transition="none">
+  <h3>Metabolic rate in Northern fulmars</h3>
+  <div class="row">
+    <div class="col-50">
+      <p class="smaller">
+        Remember, we are testing:
+      </p>
+      <p>
+       $\mathrm{H}_0: \bar{x}_A = \bar{x}_B | p_A(x) \neq p_B(x)$
+      </p>
+      <p>
+        <span class="em u muted">Question:</span>
+        If <span class="pop">only the medians of the two different populations were equal</span>, what is the chance of seeing a difference as big and bigger than observed?
+      </p>
+    </div>
+    <div class="col-50">
+      <img src="content/img/fulmars-mr-data.svg">
+    </div>
+  </div>
+  <div class="row fragment">
+    <div class="col-50 small">
+      <div>
+        <i class="fas fa-arrow-circle-right pop"></i>
+        We simulate this by first setting the medians equal to each other (<span class="pop">recentering</span> of the data).
+      </div>
+      <div>
+        $X_A\leftarrow x_A - m_A\\~X_B\leftarrow x_B - m_B$
+      </div>
+      <div>
+        Thus, $m(X_A) = m(X_B) = 0$
+      </div>
+    </div>
+    <div class="col-50">
+      <img src="content/img/fulmars-mr-data-recentered.svg">
+    </div>
+  </div> 
+</section>
+
+
+<section data-transition="slide-out">
+  <h3>Metabolic rate in Northern fulmars</h3>
+  <div class="row">
+    <div class="col-62">
+      <div class="small">
+        Then we resample from each recentered data with replacement, keeping our populations separated, and compute our statistic, $d$ for each simulation.
+      </div>
+      <div class="col-100">
+        <img class="down-4 col-90" src="content/img/fulmars-mr-diff-resampling.svg">
+      </div>
+      <div class="smaller fragment">
+        <i class="fas fa-arrow-circle-right danger"></i>
+        We do not have strong evidence against the hypothesis of the metabolic rate of males and females fulmars having the same value.
+      </div>
+    </div>
+    <div class="col-38">
+      <img src="content/img/two-groups-NHST-unequal-var.svg">
+    </div>
+</section>
+ 
+<section>
+  <h3>Comparing two groups</h3>
+  <div class="row">
+    <div class="col-62 small">
+      <div class="em u">Welch's T-Test</div>
+      <div>
+        What we just seen is equivalent to what you'll hear being called the Welch's T-Test, which is a variance of the Student's T-Test dealing with the comparison of two groups with <span class="danger">unequal variance</span>:
+      </div>
+      <div class="center down-1">
+        $\mathrm{H}_0: \bar{x}_A = \bar{x}_B | N(\mu_A, \sigma_A) \neq N(\mu_B, \sigma_B)$
+      </div>
+      <div class="down-1">
+        <i class="fas fa-arrow-circle-right"></i> it does not assumes that A and B have the same "true variance" and such the variances are kept separated in the denominator when calculating the standardized Welch's t statistic. <br>
+        <bspan class="right-30">$t=\frac{\bar{x}_A - \bar{x}_B}{\sqrt{\frac{s_A^2}{n_A}+\frac{s_B^2}{n_B}}}$</bspan>
+      </div>
+    </div>
+    <div class="col-38">
+      <img src="content/img/two-groups-NHST-unequal-var.svg">
+    </div>
+</section>

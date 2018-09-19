@@ -1,0 +1,206 @@
+<section>
+  <h3>Can we find an association?</h3>
+  <p class="framed border-orange down-2">
+    This difference of -35.5% between the conditional proportions
+    (or similarly, the relative risk of 3.31), appears quite
+    substantial.
+  </p>
+  <p class="sided border-pop down-2">
+    <span class="em u-pop">What is the <span class="pop">null hypothesis</span> in this investigation?</span><br>
+    <span class="fragment" data-fragment-index=1>
+    Winning a home-game is as likely to occur in front of a sold-out crowd or not (<span class="pop">$d=0$</span> or
+    <span class="pop">$RR=1$</span>).<br>
+    The observed difference in relative proportion of wins (or the high RR) could be explained by <span class="u-pop">chance alone</span>.
+    </span>
+  </p>
+  <p class="sided border-danger down-2">
+    We are interested in investigating whether the presence of a sold-out crowd during a home-game is associated with a pattern of wins. <br>
+    <span class="fragment" data-fragment-index=2>
+    <span class="danger u em">Alternative hypothesis:</span>
+    There is an <span class="danger">association</span> between whether the team plays its home-game in front of a sold-out crowd and the chance of winning a game
+    (<span class="danger">$d\neq 0$</span> or <span class="danger">$RR\neq 1$</span>).
+    </span>
+  </p>
+</section>
+
+<section data-transition="slide-in">
+  <h3>Simulating the null</h3>
+  <p class="sided border-danger">
+    Our strategy will be to determine
+    <span class="danger">how surprising the
+    observed result would be if the null hypothesis were true
+    </span>.
+    We can determine this by using simulation to generate a
+    large number of "could have been" results under that null
+    hypothesis and examine the null distribution of our statistic.
+  </p>
+  <p>
+    <i class="fas fa-arrow-circle-right danger"></i> If the observed result from our investigation falls in one of the
+    tails of that distribution, then we have strong evidence against
+    the null hypothesis (the probability of it to happen by <span class="danger">random chance alone</span> is very low).
+  </p>
+  <div class="small framed down-2">
+    In the actual data, there were 15 total wins by the OKC Thunnder during a home-game of the 2008-2009 season. <br>
+    <ul class="normal">
+      <li>
+        <span class="orange">If there was no association of winning with the explanatory variable</span> (presence or not of a sold-out crowd), then <span class="orange">those wins would have occurred regardless</span> of whether or not the stadium was full or not.
+      </li>
+      <li>
+        if this is true, then any differences we do see between the two groups arise solely from the randomness in the assignment to the explanatory variable groups.
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section data-transition="none">
+  <h3>Simulating the null</h3>
+  <p class="framed border-danger">
+    To evaluate the statistical significance of the observed
+    difference in our groups ($\hat{p}_{\textrm{win, sold-out}}-\hat{p}_{\textrm{win, not sold-out}}=-0.355$), we
+    will investigate how large the difference in conditional
+    proportion tends to be just from the random assignment of
+    outcomes (sold-out or not) to the explanatory variable groups.
+  </p>
+  <div class="row">
+    <div class="col-45">
+      <p class="sided">
+        Think of this simulation as a simulation with colored balls. <br>
+        <span class="right-5 danger">15 red balls (wins)</span> <br>
+        <span class="right-5 info">26 blue balls (losses)</span><br>
+      We will simulate the random assignment process of crowd presence to the two groups by shuffling the balls and putting 18 of them in one bucket and the 23 other in another bucket.
+      </p>
+    </div>
+    <div class="col-55">
+      <table class="small center">
+        <tbody>
+          <tr>
+            <td class="border-right" rowspan=2>Game <br>outcome?</td>
+            <td class="border-right border-nobottom" colspan=2 >Sold-out crowd?</td>
+            <td class="border-nobottom"></td>
+          </tr>
+         <tr>
+           <td>Yes</td>
+           <td class="border-right">No</td>
+           <td>Total</td>
+         </tr>
+         <tr>
+           <td class="border-right border-nobottom">Win</td>
+           <td class="border-nobottom">3</td>
+           <td class="border-right border-nobottom">12</td>
+           <td class="border-nobottom">15</td>
+         </tr>
+         <tr>
+           <td class="border-right">Loss</td>
+           <td>15</td>
+           <td class="border-right">11</td>
+           <td>26</td>
+         </tr>
+         <tr>
+           <td class="border-right">Total</td>
+           <td>18</td>
+           <td class="border-right">23</td>
+           <td>41</td>
+         </tr>
+       </tbody>
+      </table> 
+      <p class="smaller">
+        <span class="u em">Statistic of interest:</span> difference in proportions
+        $d = \hat{p}_{\textrm{win, sold-out}}-\hat{p}_{\textrm{win, not sold-out}}$
+        <br> ($RR$ would have been valid too)
+      </p>
+    </div>
+  </div>
+</section>
+
+<section data-external-replace="slide-animation-resampling-two-categorical.html"></section>
+
+<section data-transition="slide-in">
+  <h3>Simulating the null</h3>
+  <div class="row">
+    <div class="col-100">
+      <svg width="100%" viewBox="0 0 620.5 197" style="margin-top: 0;">
+        <use xlink:href="content/img/two-groups-simulation-proportion.svg#layer1"></use>
+      </svg>
+    </div>
+  </div>
+  <p class="sided border-muted" style="margin-top: 0;">
+    We perform this simulation 10000 times, so at the end
+    we obtain
+    10000 differences of the conditional proportions between the 2 groups. <br>
+    <i class="fas fa-arrow-right"></i> 10 000 differences $\hat{p}_{\textrm{1}}-\hat{p}_{\textrm{2}}$ that we could have observed if the presence of a sold-out crowd during a game
+    did not play a role in the likelihood of observing win for the team.
+  </p>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Simulating the null</h3>
+  <div class="row">
+    <div class="col-40">
+      <p class="sided border-orange">
+        What would be the probability of observing a difference in proportion of -0.355
+        if there was no association between a sold-out crowd and winning or losing?
+      </p>
+      <p class="fragment" data-fragment-index=3>
+        <i class="fas fa-arrow-circle-right orange"></i> The probability is very low (only $\approx$2.5% of the simulations 
+        had such an extreme difference in proportions in both directions).
+      </p>
+    </div>
+    <div class="col-60">
+    <p class="info">
+      10000 simulations
+    </p>
+      <svg width="100%" viewBox="0 10 432 288">
+        <use xlink:href="content/img/nba-okc-thunder-crowd-simulation-diff-pvalue.svg#axes_1"></use>
+        <use class="fragment" data-fragment-index=1 xlink:href="content/img/nba-okc-thunder-crowd-simulation-diff-pvalue.svg#axes_2"></use>
+        <use class="fragment" data-fragment-index=2 xlink:href="content/img/nba-okc-thunder-crowd-simulation-diff-pvalue.svg#axes_3"></use>
+      </svg>
+    </div>
+  </div>
+  <p class="fragment framed border-danger" data-fragment-index=3>
+    We have strong evidences supporting the idea that it is 
+    less likely for the Oklahoma City Thunder to win when
+    they play in front of a sell out crowd.
+  </p>     
+</section>
+
+<section data-transition="slide-in">
+  <h3>Possible explanations for home court disadvantage</h3>
+  <p class="sided">
+    There are three possible explanations for this odd finding that the
+    team had a better winning percentage with smaller crowds:
+  </p>
+  <div class="row flex down-2">
+    <div class="col-25 flex-center framed fragment bg-success">
+      <p class="center">
+        Random chance (but we pretty much ruled it out)
+      </p>
+    </div>
+    <div class="col-32 right-1 flex-center fragment framed bg-info">
+      <p class="center">
+        The sell out crowd caused the Thunder to play worse, perhaps 
+        because of pressure or nervousness
+      </p>
+    </div>
+    <div class="col-42 right-1 flex-center framed fragment bg-warning">
+      <p class="center">
+        The sell out crowd did not cause a worse performance, and some other issue (variable) explains why they had a worse 
+        winning percentage with sell out crowds
+      </p>
+    </div>
+  </div>
+  <p class="fragment down-2">
+    <i class="fas fa-arrow-circle-right"></i> In other words, for #3, a third variable is at play, which is related to both the crowd size and the game outcome. (<span class="bg-warning-light">confounding variable</span>)
+    </p>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Possible explanations for home court disadvantage</h3>
+  <div class="row">
+    <div class="col-100">
+      <svg width="100%" viewBox="0 0 410.4 165.6" style="margin-top: 0;">
+        <use xlink:href="content/img/nba-okc-thunder-confounding-variable.svg#layer1"></use>
+        <use class="fragment" xlink:href="content/img/nba-okc-thunder-confounding-variable.svg#layer2"></use>
+      </svg>
+    </div>
+  </div>
+</section>

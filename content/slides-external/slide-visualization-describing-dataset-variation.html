@@ -1,0 +1,220 @@
+<section class="title-slide fullwidth" data-transition="slide-in">
+  <h1 class="center">-- 3 --<br>Variation, spread</h1>
+  <div class="center">
+    <svg width="75%" viewBox="0 42 576 216"">
+      <use xlink:href="content/img/dotplot-distribution.svg#axes_1"></use>
+      <use xlink:href="content/img/dotplot-distribution.svg#axes_2"></use>
+      <use xlink:href="content/img/dotplot-distribution.svg#axes_3"></use>
+      <use  class="fragment" xlink:href="content/img/dotplot-distribution.svg#axes_4"></use>
+    </svg>
+  </div>
+</section>
+
+<section data-transition="none">
+  <h3>The standard deviation</h3>
+  <p class="quoted">A common measure of data variability is <br>the <span class="orange">standard deviation</span> (SD). It measures the spread of the data in a sample</p>
+  <div class="row">
+    <div class="col-60 down-3">
+      $s=\sqrt{\fragapply{highlight-danger 0}{\frac{\sum(x_{i}-\bar{x})^2}{n-1}}}$ <span class="danger fragment" data-fragment-index=1>Variance</span>
+    </div>
+    <div class="col-35">
+      <!-- <spa n class="danger">Variance</span> -->
+      <p>
+        <span class="info">$s$</span> for a sample <br>
+        <span class="info">$\sigma$</span> for a population
+      </p>
+    </div>
+  </div>
+  <p>
+    $s=\sqrt{\frac{(x_{1}-\bar{x})^2+(x_{2}-\bar{x})^2+...+(x_{n}-\bar{x})^2}{n-1}}$
+  </p>
+  <p>
+    $s=\sqrt{\frac{\textrm{sum of observed squared difference from sample mean}}{\textrm{number of observations - 1}}}$
+  </p>
+  <aside class="notes">
+    <p>The SD can be loosely interpreted as the typical distance (in absolute value) between the data values and the mean of the distribution.</p>
+    <p>The larger the standard deviation, the more variability there is in the data and the more spread out the data are.</p>
+    <p>In practice, we generally compute the standard deviation using a calculator or computer software. The units for the standard deviation are the same as the units for the original data.</p>
+    <p>
+      We would want the average of the sample variances for all possible samples
+      to equal the population variance.
+      It seems like a logical property and a reasonable thing to happen. This is called “unbiased”
+      When we divide by (n −1) when calculating the sample variance, then it turns out that
+      the average of the sample variances for all possible samples is equal the population variance.
+      So the sample variance is what we call an unbiased estimate of the population variance.
+      If instead we were to divide by n (rather than n −1) when calculating the sample variance, then
+      the average for all possible samples would NOT equal the population variance. Dividing by n 
+      does not give an “unbiased” estimate of the population standard deviation.
+      Dividing by n−1 satisfies this property of being “unbiased”, but dividing by n does not.
+      Therefore we prefer to divide by n-1 when calculating the sample variance.
+    </p>
+  </aside>
+</section>
+
+<section data-transition="none">
+  <h3>The standard deviation</h3>
+  <div class="row">
+    <div class="col-50">
+      <p class="sided">Let's consider 2 sets of data, both have a mean of 100</p>
+    </div>
+    <div class="col-50">
+      <table class="smaller">
+        <thead>
+          <th class="bg-muted">Numbers</th>
+          <th class="bg-muted">Mean</th>
+          <th class="bg-muted">SD</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>100, 100, 100, 100, 100</td>
+            <td>100</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>90, 90, 100, 110, 110</td>
+            <td>100</td>
+            <td>10</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-35">
+      <p style="font-size: 0.6em;"><span class="em u">Set 1:</span> all values are equal to the mean, so there is no variablility at all</p>
+    </div>
+    <div class="col-2">
+      <p></p>
+    </div>
+    <div class="col-63">
+      <p style="font-size: 0.6em;"><span class="em u">Set 2:</span> one value equals the mean and
+       other four values are 10 points away from the mean. So the 
+       <span class="danger">average distance away from the
+      mean</span> is about 10</p>
+    </div>
+  </div>
+  <p class="u em fragment" data-fragment-index=1 style="font-size: 0.5em; margin-bottom: 0;">Example, procedure for Set 2:</p>
+  <ol class="push-left fragment" data-fragment-index=1 style="font-size: 0.5em;">
+    <li>Calculate the sample mean: $\bar{x}=100$</li>
+    <li>For each observation, calculate the difference between the data value <br> and the mean:
+      [-10, -10, 0, 10, 10]</li>
+    <li>Square each difference in step 2: [100, 100, 0, 100, 100]</li>
+    <li>Sum the squared differences in step 3, and then divide this sum by $(n-1)$: <br>
+      variance $s^2=\frac{400}{5-1}=\frac{400}{4}=100$</li>
+    <li>Take the square root of the value in step 4: $s=\sqrt{100}=10$</li>
+  </ol>
+</section>
+
+<section data-transition="none">
+  <h3>Beware of the standard deviation</h3>
+  <p class="sided">
+    Like the mean, the standard deviation does not cope well with skewed distributions.
+  </p>
+  <div class="row down-4">
+    <div class="col-45">
+      <img class="framed" src="content/img/sd-bad-use-cell-paper-title.png" width="100%">
+    </div>
+    <div class="col-55">
+      <svg width="100%" viewBox="0 0 199.92 129.601" class="bordered">
+        <use xlink:href="content/img/sd-bad-use-cell-paper-fig.svg#figure"></use>
+        <use class="fragment" xlink:href="content/img/sd-bad-use-cell-paper-fig.svg#circle"></use>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section data-transition="none">
+  <h3>The SD is only useful in the context of the normal distribution</h3>
+  <div class="row down-3">
+    <div class="col-60">
+      <img src="content/img/sd-normal.svg" width=100%>
+    </div>
+    <div class="col-40 small">
+        <span class="u em">The Empirical Rule:</span> <br>
+        For any bell-shaped curve, approximately <br>
+        <ul class="normal">
+          <li><span class="orange">68%</span> of the values fall within <span class="orange">1 SD</span> of 
+          the mean in either direction</li>
+          <li><span class="danger">95%</span> of the values fall within <span class="danger">2 SD</span> of 
+          the mean in either direction</li>
+          <li><span class="orange">99.7%</span> of the values fall within <span class="orange">3 SD</span> of 
+          the mean in either direction</li>
+        </ul>      
+    </div>
+  </div>
+</section>
+
+<section data-transition="none">
+  <h3>Misuse of SD is everywhere</h3>
+  <!-- <img src="content/img/sd-barplot.svg"> -->
+  <svg width="90%" viewBox="0 0 813.114 458.502">
+    <use xlink:href="content/img/sd-barplot.svg#fig"></use>
+    <use class="fragment" xlink:href="content/img/sd-barplot.svg#inset"></use>
+    <use class="fragment" xlink:href="content/img/sd-barplot.svg#range"></use>
+  </svg>
+</section>
+
+<section data-transition="none">
+  <h3>The range</h3>
+  <p class="quoted">
+    The <span class="danger">range</span> gives you the most basic information about the spread of a dataset. It is calculated by the (arithmetic) <span class="u-danger">difference between the lowest and highest data value</span>.
+  </p>
+  <svg width="75%" viewBox="0 0 239.5 81" style="margin-top: 1%;">
+    <use xlink:href="content/img/min-max-range.svg#minmax"></use>
+    <use class="fragment" xlink:href="content/img/min-max-range.svg#range"></use>
+  </svg>
+</section>
+
+<section data-transition="none">
+  <h3>Interquantile range</h3>
+  <p class="quoted">
+    The median divides the data into two equal halves (it is the $50^{th}$ percentile). If we divide each of those halves again, we obtain two additional statistics known as the <span class="danger">first (Q1) and third (Q3) quartiles</span>, which are the $25^{th}$ and $75^{th}$ percentiles.
+  </p>
+  <p>
+    <span class="u">Interquartile range:</span> <span class="span">$\textrm{IQR} = Q3 − Q1$</span>
+  </p>
+  <div class="row down-3">
+    <div class="col-55">
+      <img src="content/img/quartiles.svg" width=100%>
+    </div>
+    <div class="col-45 fragment">
+      <p class="smaller">
+        A value is considered an <span class="info">outlier</span> if it is:
+      </p>
+      <div class="row framed border-info down-3">
+        <div class="col-10 down-3 smaller">
+          or
+        </div>
+        <div class="col-90 left smaller">
+          smaller than $Q1−1.5\times IQR$<br>
+          larger than $Q3+1.5\times IQR$
+        </div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    Consider again the data on mammal longevity in Data 2.2 on page 64. Our intuition suggests that the longevity of 40 years for the elephant is an unusually high value compared to the other lifespans in this sample. How do we determine objec- tively when such a value is an outlier? The criteria should depend on some measure of location for “typical” values and a measure of spread to help us judge when a data point is “far” from those typical cases. One approach, typically used for identifying outliers for boxplots, uses the quartiles and interquartile range. As a rule, most data values will fall within about 1.5(IQR)’s of the quartiles.
+  </aside>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Percentiles</h3>
+  <p class="quoted">
+    The <span class="danger">$k^{th}$ percentile</span> is a value in
+    the dataset that has $k\%$ of the data values at or below it and $(100 – k)\%$
+    of the data values at or above it.
+  </p>
+  <div class="row down-3">
+    <div class="col-55">
+      <svg width="100%" viewBox="0 0 576 252">
+        <use xlink:href="content/img/quartiles.svg#axes_1"></use>
+      </svg>
+    </div>
+    <div class="col-45 small">
+        <span class="u em">Note:</span> <br>
+        Here our dataset contains 40 data points.
+        So each data point correspond to $\frac{100}{40}=2.5\%$ of the data.
+    </div>
+  </div>
+</p>
+</section>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Slides</title>
+<link href="lib/css/presentation.bundle.css" rel="stylesheet"><link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet"><link href="https://fonts.googleapis.com/css?family=Source+Sans Pro|Passion+One" rel="stylesheet"><link href="lib/css/app.css" rel="stylesheet"><link href="lib/css/ttf.css" rel="stylesheet"></head>
+<body>
+
+<div class="reveal">
+<div class="slides">
+
+<section class="title-slide" data-background='content/img/bckg/bckg13.png' data-state="alpha-07">
+  <div class="center huge framed bordered font-passionone col-80 border-3x bg-black-alpha-08">
+    <span class="white">- LS 40 -</span><br>
+    <span class="white">Statistics for<br>Life Sciences</span><br>
+  </div>
+  <div class="down-3 white center">
+    Why another statistical class?
+  </div>
+</section>
+
+<section>
+  <h3>Bonjour, I'm Guillaume</h3>
+  <div class="row down-5">
+    <div class="col-50">
+      <img src="content/img/french.svg">  
+    </div>  
+    <div class="col-50 small">
+    	<div class="normal">Assistant Project Scientist</div>
+    	<div>
+    		<i class="fas fa-building"></i>: Medicine Department
+    	</div>
+      <div class="down-5">
+      	Developped the initial LS40 class (pilot class of STATS13, spring 2017)
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-external-replace="content/slides-external/slide-class-motivation-administrators.html"></section>
+
+<section>
+  <h3>Statistics is all about the sampling distribution</h3>
+  <div class="small framed border-danger">
+    Every statistical test consists of studying how far from the center of the sampling distribution is the observed data we collected in the first place.
+  </div>
+  <div class="row flex">
+    <div class="col-40 smaller flex-center">
+      <span>
+        Formula-based statistics requires us to know which equation to apply to describe the sampling distribution relevant to our study (1 group? two groups? more than two groups?).
+      </span>
+    </div>
+    <div class="col-60 flex-center">
+      <img src="content/img/_administrators/t-and-f-distributions.svg">
+    </div>
+  </div>
+  <div class="smaller">
+    <i class="fas fa-arrow-circle-right danger"></i>
+    Resampling-based statistics involves using the <span class="strong">exact same procedure</span> to compute the sampling distribution and does not require any assumption about the data. It is a <span class="u-danger">general method</span> that you can apply to every situations and even to situations for which there is no theory about (Have you heard of a t-test for median? No, me neither)
+  </div>
+</section>
+
+<section data-external-replace="content/slides-external/slide-animation-bike-commute-time-permutation.html"></section>
+
+<section>
+  <h3>Toward a randomization-based statistic curriculum</h3>
+  <img src="content/img/_administrators/timeline-stats-books.png" width = 75%>
+</section>
+
+<!-- <section>
+  <h3>Theory: Two-sample $t$-test</h3>
+  <p class="framed border-danger">
+    If <span class="danger">the underlying populations are reasonably normal or the sample sizes are large</span>, we can estimate the standard error (standard deviation of the sampling distribution) of $\bar{x}_1 − \bar{x}_2$ with $SE = \sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}$, where $s_1$ and $s_2$ are the standard deviations in the two samples.
+  </p>
+  <div class="row flex">
+    <div class="col-50 small flex-center">
+      <span>
+        <span class="u em">Note:</span> When we use the samples standard deviations in estimating SE (we don't know the standard deviation $\sigma$ of the underlying populations), we need to switch to a <span class="em strong">t-distribution</span> rather than the standard normal when computing a p-value.
+      </span>
+    </div>
+    <div class="col-50 flex-center">
+      <img width=100% src="content/img/distribution-t-vs-z.svg">
+    </div>
+  </div>
+</section> -->
+
+
+
+
+
+</div> <!-- slides -->
+</div> <!-- reveal -->
+<script type="text/javascript" src="lib/js/app.bundle.js"></script><script type="text/javascript" src="lib/js/fa-meeting-academic-administrators.js"></script><script type="text/javascript" src="lib/js/app.js"></script></body>
+</html>

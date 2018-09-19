@@ -1,0 +1,587 @@
+<section data-transition="slide-in">
+  <h4>Is soda preference associated with age?</h4>
+  <div class="row down-3 flex">
+    <div class="col-50 flex-center">
+      <table class="smaller center">
+        <tbody>
+          <tr>
+            <td class="bg-info-light border-right" rowspan=2>Soda</td>
+            <td class="bg-danger-light border-nobottom border-right" colspan=3>Age group</td>
+            <td rowspan=2>Total</td>
+          </tr>
+         <tr>
+           <td class="bg-danger-light">15-25</td>
+           <td class="bg-danger-light">26-40</td>
+           <td class="bg-danger-light border-right">41-55</td>
+         </tr>
+         <tr>
+           <td class="bg-info-light border-nobottom border-right">
+            Coke</td>
+           <td class="border-nobottom">54</td>
+           <td class="border-nobottom">45</td>
+           <td class="border-nobottom border-right">69</td>
+           <td class="border-nobottom">168</td>
+         </tr>
+         <tr>
+           <td class="bg-info-light border-nobottom border-right">Pepsi</td>
+           <td class="border-nobottom">19</td>
+           <td class="border-nobottom">41</td>
+           <td class="border-nobottom border-right">38</td>
+           <td class="border-nobottom">98</td>
+         </tr>
+         <tr class="border-bottom">
+          <td class="bg-info-light border-nobottom border-right">Sprite</td>
+           <td class="border-nobottom">19</td>
+           <td class="border-nobottom">22</td>
+           <td class="border-nobottom border-right">28</td>
+           <td class="border-nobottom">69</td>
+        </tr>
+         <tr>
+           <td class="border-right">Total</td>
+           <td>92</td>
+           <td>108</td>
+           <td class="border-right">135</td>
+           <td>335</td>
+         </tr>
+        </tbody>
+      </table> 
+    </div>
+    <div class="col-50 flex-center">
+      <p>
+        We are interested to know if the proportions of preferences for each soda is <span class="pop">dependent of (associated to)</span> the age group the person we asked the question to is in. <br>
+        <span class="muted"><span class="u em">Note:</span> we are not asking which soda is the most chosen per age group.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section data-transition="none">
+  <h4>Is soda preference associated with age?</h4>
+  <div class="row down-3 flex">
+    <div class="col-50 flex-center">
+      <table class="smaller center">
+        <tbody>
+          <tr>
+            <td class="bg-info-light border-right" rowspan=2>Soda</td>
+            <td class="bg-danger-light border-nobottom border-right" colspan=3>Age group</td>
+            <td rowspan=2>Total</td>
+          </tr>
+         <tr>
+           <td class="bg-danger-light">15-25</td>
+           <td class="bg-danger-light">26-40</td>
+           <td class="bg-danger-light border-right">41-55</td>
+         </tr>
+         <tr>
+           <td class="bg-info-light border-nobottom border-right">
+            Coke</td>
+           <td class="border-nobottom">54</td>
+           <td class="border-nobottom">45</td>
+           <td class="border-nobottom border-right">69</td>
+           <td class="border-nobottom">168</td>
+         </tr>
+         <tr>
+           <td class="bg-info-light border-nobottom border-right">Pepsi</td>
+           <td class="border-nobottom">19</td>
+           <td class="border-nobottom">41</td>
+           <td class="border-nobottom border-right">38</td>
+           <td class="border-nobottom">98</td>
+         </tr>
+         <tr class="border-bottom">
+          <td class="bg-info-light border-nobottom border-right">Sprite</td>
+           <td class="border-nobottom">19</td>
+           <td class="border-nobottom">22</td>
+           <td class="border-nobottom border-right">28</td>
+           <td class="border-nobottom">69</td>
+        </tr>
+         <tr>
+           <td class="border-right">Total</td>
+           <td>92</td>
+           <td>108</td>
+           <td class="border-right">135</td>
+           <td>335</td>
+         </tr>
+        </tbody>
+      </table> 
+    </div>
+    <div class="col-50 flex-center">
+      <div>
+        <p class="sided-no-bg border-orange">
+          <span class="u em orange">Null Hypothesis:</span> <br>
+          $H_0$: Soda preference is not associated with age
+        </p>
+        <p class="sided-no-bg border-success">
+          <span class="u em success">Alternative Hypothesis:</span> <br>
+          $H_a$: Soda preference is associated with age
+        </p>
+      </div>
+    </div>
+  </div>
+  <p class="smaller fragment down-2" data-fragment-index=1>
+    The $\chi^2$-test for independence also compares expected and observed counts. However, here there is no expected probabilities and the computation for the expected counts is based on the rows and columns totals:
+  </p>
+  <div class="framed border-pop bg-pop-light black center fragment down-1" data-fragment-index=1 style="padding-top: 10px">
+    $\textrm{Expected Count}=\frac{\textrm{Row total}\times\textrm{Column total}}{\textrm{Sample size}}$
+  </div>
+</section>
+
+<section data-transition="none">
+  <h4>Is soda preference associated with age?</h4>
+  <div class="row down-3 flex">
+    <div class="col-50 flex-center">
+      <table class="smaller center">
+        <tbody>
+          <tr>
+            <td class="bg-info-light border-right" rowspan=2>Soda</td>
+            <td class="bg-danger-light border-nobottom border-right" colspan=3>Age group</td>
+            <td rowspan=2>Total</td>
+          </tr>
+         <tr>
+           <td class="bg-danger-light">15-25</td>
+           <td class="bg-danger-light">26-40</td>
+           <td class="bg-danger-light border-right">41-55</td>
+         </tr>
+         <tr>
+           <td class="bg-info-light border-nobottom border-right">
+            Coke</td>
+           <td class="border-nobottom">54</td>
+           <td class="border-nobottom">45</td>
+           <td class="border-nobottom border-right">69</td>
+           <td class="border-nobottom">168</td>
+         </tr>
+         <tr>
+           <td class="bg-info-light border-nobottom border-right">Pepsi</td>
+           <td class="border-nobottom">19</td>
+           <td class="border-nobottom">41</td>
+           <td class="border-nobottom border-right">38</td>
+           <td class="border-nobottom">98</td>
+         </tr>
+         <tr class="border-bottom">
+          <td class="bg-info-light border-nobottom border-right">Sprite</td>
+           <td class="border-nobottom">19</td>
+           <td class="border-nobottom">22</td>
+           <td class="border-nobottom border-right">28</td>
+           <td class="border-nobottom">69</td>
+        </tr>
+         <tr>
+           <td class="border-right">Total</td>
+           <td>92</td>
+           <td>108</td>
+           <td class="border-right">135</td>
+           <td>335</td>
+         </tr>
+        </tbody>
+      </table> 
+    </div>
+    <div class="col-50 flex-center smaller">
+      $\textrm{Expected Count}=\frac{\textrm{Row total}\times\textrm{Column total}}{\textrm{Sample size}}$
+    </div>
+  </div>
+  <p class="u em down-3">
+    Example for coke in the (15-25) age group:
+  </p>
+  <p class="down-2">
+    $\mathrm{Expected}_\mathrm{coke}^\textrm{(15-25)}=\frac{168\times92}{335}=46.14$
+  </p>
+  <p class="u em down-3 fragment" data-fragment-index=1>
+    Example for sprite in the (26-40) age group:
+  </p>
+  <p class="down-2 fragment" data-fragment-index=1>
+    $\mathrm{Expected}_\mathrm{sprite}^\textrm{(26-40)}=\frac{69\times108}{335}=22.24$
+  </p>
+</section>
+
+<section data-transition="none">
+  <h4>Is soda preference associated with age?</h4>
+  <div class="row down-3 flex">
+    <div class="col-50 flex-center">
+      <table class="smaller center">
+        <tbody>
+          <tr>
+            <td class="bg-info-light border-right" rowspan=2>Soda</td>
+            <td class="bg-danger-light border-nobottom border-right" colspan=3>Age group</td>
+            <td rowspan=2>Total</td>
+          </tr>
+         <tr>
+           <td class="bg-danger-light">15-25</td>
+           <td class="bg-danger-light">26-40</td>
+           <td class="bg-danger-light border-right">41-55</td>
+         </tr>
+         <tr>
+           <td class="bg-info-light border-nobottom border-right">
+            Coke</td>
+           <td class="border-nobottom">54</td>
+           <td class="border-nobottom">45</td>
+           <td class="border-nobottom border-right">69</td>
+           <td class="border-nobottom">168</td>
+         </tr>
+         <tr>
+           <td class="bg-info-light border-nobottom border-right">Pepsi</td>
+           <td class="border-nobottom">19</td>
+           <td class="border-nobottom">41</td>
+           <td class="border-nobottom border-right">38</td>
+           <td class="border-nobottom">98</td>
+         </tr>
+         <tr class="border-bottom">
+          <td class="bg-info-light border-nobottom border-right">Sprite</td>
+           <td class="border-nobottom">19</td>
+           <td class="border-nobottom">22</td>
+           <td class="border-nobottom border-right">28</td>
+           <td class="border-nobottom">69</td>
+        </tr>
+         <tr>
+           <td class="border-right">Total</td>
+           <td>92</td>
+           <td>108</td>
+           <td class="border-right">135</td>
+           <td>335</td>
+         </tr>
+        </tbody>
+      </table> 
+    </div>
+    <div class="col-50">
+      <table class="smaller center">
+        <tbody>
+          <tr>
+            <td class="bg-info-light border-right" rowspan=2>Soda</td>
+            <td class="bg-danger-light border-nobottom border-right" colspan=3>Age group</td>
+            <td rowspan=2>Total</td>
+          </tr>
+         <tr>
+           <td class="bg-danger-light">15-25</td>
+           <td class="bg-danger-light">26-40</td>
+           <td class="bg-danger-light border-right">41-55</td>
+         </tr>
+         <tr>
+           <td class="bg-info-light border-nobottom border-right">
+            Coke</td>
+           <td class="border-nobottom">46.14</td>
+           <td class="border-nobottom">54.16</td>
+           <td class="border-nobottom border-right">67.7</td>
+           <td class="border-nobottom">168</td>
+         </tr>
+         <tr>
+           <td class="bg-info-light border-nobottom border-right">Pepsi</td>
+           <td class="border-nobottom">26.91</td>
+           <td class="border-nobottom">31.59</td>
+           <td class="border-nobottom border-right">39.49</td>
+           <td class="border-nobottom">98</td>
+         </tr>
+         <tr class="border-bottom">
+          <td class="bg-info-light border-nobottom border-right">Sprite</td>
+           <td class="border-nobottom">18.95</td>
+           <td class="border-nobottom">22.24</td>
+           <td class="border-nobottom border-right">27.81</td>
+           <td class="border-nobottom">69</td>
+        </tr>
+         <tr>
+           <td class="border-right">Total</td>
+           <td>92</td>
+           <td>108</td>
+           <td class="border-right">135</td>
+           <td>335</td>
+         </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <p class="u em down-3">
+    Example for coke in the (15-25) age group:
+  </p>
+  <p class="down-2">
+    $\mathrm{Expected}_\mathrm{coke}^\textrm{(15-25)}=\frac{168\times92}{335}=46.14$
+  </p>
+  <p class="u em down-3">
+    Example for sprite in the (26-40) age group:
+  </p>
+  <p class="down-2">
+    $\mathrm{Expected}_\mathrm{sprite}^\textrm{(26-40)}=\frac{69\times108}{335}=22.24$
+  </p>
+</section>
+
+
+<section data-transition="none">
+  <h4>Is soda preference associated with age?</h4>
+  <div class="row down-3">
+    <div class="col-50">
+      <table class="smaller center">
+        <tbody>
+          <tr>
+            <td class="bg-info-light border-right" rowspan=2>Soda</td>
+            <td class="bg-danger-light border-nobottom border-right" colspan=3>Age group</td>
+            <td rowspan=2>Total</td>
+          </tr>
+         <tr>
+           <td class="bg-danger-light">15-25</td>
+           <td class="bg-danger-light">26-40</td>
+           <td class="bg-danger-light border-right">41-55</td>
+         </tr>
+         <tr>
+           <td class="bg-info-light border-nobottom border-right">
+            Coke</td>
+           <td class="border-nobottom">54</td>
+           <td class="border-nobottom">45</td>
+           <td class="border-nobottom border-right">69</td>
+           <td class="border-nobottom">168</td>
+         </tr>
+         <tr>
+           <td class="bg-info-light border-nobottom border-right">Pepsi</td>
+           <td class="border-nobottom">19</td>
+           <td class="border-nobottom">41</td>
+           <td class="border-nobottom border-right">38</td>
+           <td class="border-nobottom">98</td>
+         </tr>
+         <tr class="border-bottom">
+          <td class="bg-info-light border-nobottom border-right">Sprite</td>
+           <td class="border-nobottom">19</td>
+           <td class="border-nobottom">22</td>
+           <td class="border-nobottom border-right">28</td>
+           <td class="border-nobottom">69</td>
+        </tr>
+         <tr>
+           <td class="border-right">Total</td>
+           <td>92</td>
+           <td>108</td>
+           <td class="border-right">135</td>
+           <td>335</td>
+         </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-50">
+      <table class="smaller center">
+        <tbody>
+          <tr>
+            <td class="bg-info-light border-right" rowspan=2>Soda</td>
+            <td class="bg-danger-light border-nobottom border-right" colspan=3>Age group</td>
+            <td rowspan=2>Total</td>
+          </tr>
+         <tr>
+           <td class="bg-danger-light">15-25</td>
+           <td class="bg-danger-light">26-40</td>
+           <td class="bg-danger-light border-right">41-55</td>
+         </tr>
+         <tr>
+           <td class="bg-info-light border-nobottom border-right">
+            Coke</td>
+           <td class="border-nobottom">46.14</td>
+           <td class="border-nobottom">54.16</td>
+           <td class="border-nobottom border-right">67.7</td>
+           <td class="border-nobottom">168</td>
+         </tr>
+         <tr>
+           <td class="bg-info-light border-nobottom border-right">Pepsi</td>
+           <td class="border-nobottom">26.91</td>
+           <td class="border-nobottom">31.59</td>
+           <td class="border-nobottom border-right">39.49</td>
+           <td class="border-nobottom">98</td>
+         </tr>
+         <tr class="border-bottom">
+          <td class="bg-info-light border-nobottom border-right">Sprite</td>
+           <td class="border-nobottom">18.95</td>
+           <td class="border-nobottom">22.24</td>
+           <td class="border-nobottom border-right">27.81</td>
+           <td class="border-nobottom">69</td>
+        </tr>
+         <tr>
+           <td class="border-right">Total</td>
+           <td>92</td>
+           <td>108</td>
+           <td class="border-right">135</td>
+           <td>335</td>
+         </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+   <p class="down-3">
+    <span class="u em muted">Note:</span> The <span class="pop">expected counts maintain row and column totals</span>, but redistribute the counts as if there were no association.
+  </p>
+
+  <p class="down-3">
+    Compute the $\chi^2$ <span class="strong">from all the cells</span> in the table
+  </p>
+  <p>
+    <i class="fa fa-arrow-circle-right"></i>
+    How do the observed results compare to the scenario of no-association?
+  </p>
+  <p class="fragment">
+    <i class="fa fa-arrow-circle-right orange"></i>
+    We can compute the $\chi^2$ statistics to characterize the difference.
+  </p>
+</section>
+
+<section data-transition="slide-out">
+  <h4>Is soda preference associated with age?</h4>
+  <div class="row down-3">
+    <div class="col-50">
+      <table class="smaller center">
+        <tbody>
+          <tr>
+            <td class="bg-info-light border-right" rowspan=2>Soda</td>
+            <td class="bg-danger-light border-nobottom border-right" colspan=3>Age group</td>
+            <td rowspan=2>Total</td>
+          </tr>
+         <tr>
+           <td class="bg-danger-light">15-25</td>
+           <td class="bg-danger-light">26-40</td>
+           <td class="bg-danger-light border-right">41-55</td>
+         </tr>
+         <tr>
+           <td class="bg-info-light border-nobottom border-right">
+            Coke</td>
+           <td class="border-nobottom">54</td>
+           <td class="border-nobottom">45</td>
+           <td class="border-nobottom border-right">69</td>
+           <td class="border-nobottom">168</td>
+         </tr>
+         <tr>
+           <td class="bg-info-light border-nobottom border-right">Pepsi</td>
+           <td class="border-nobottom">19</td>
+           <td class="border-nobottom">41</td>
+           <td class="border-nobottom border-right">38</td>
+           <td class="border-nobottom">98</td>
+         </tr>
+         <tr class="border-bottom">
+          <td class="bg-info-light border-nobottom border-right">Sprite</td>
+           <td class="border-nobottom">19</td>
+           <td class="border-nobottom">22</td>
+           <td class="border-nobottom border-right">28</td>
+           <td class="border-nobottom">69</td>
+        </tr>
+         <tr>
+           <td class="border-right">Total</td>
+           <td>92</td>
+           <td>108</td>
+           <td class="border-right">135</td>
+           <td>335</td>
+         </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-50">
+      <table class="smaller center">
+        <tbody>
+          <tr>
+            <td class="bg-info-light border-right" rowspan=2>Soda</td>
+            <td class="bg-danger-light border-nobottom border-right" colspan=3>Age group</td>
+            <td rowspan=2>Total</td>
+          </tr>
+         <tr>
+           <td class="bg-danger-light">15-25</td>
+           <td class="bg-danger-light">26-40</td>
+           <td class="bg-danger-light border-right">41-55</td>
+         </tr>
+         <tr>
+           <td class="bg-info-light border-nobottom border-right">
+            Coke</td>
+           <td class="border-nobottom">46.14</td>
+           <td class="border-nobottom">54.16</td>
+           <td class="border-nobottom border-right">67.7</td>
+           <td class="border-nobottom">168</td>
+         </tr>
+         <tr>
+           <td class="bg-info-light border-nobottom border-right">Pepsi</td>
+           <td class="border-nobottom">26.91</td>
+           <td class="border-nobottom">31.59</td>
+           <td class="border-nobottom border-right">39.49</td>
+           <td class="border-nobottom">98</td>
+         </tr>
+         <tr class="border-bottom">
+          <td class="bg-info-light border-nobottom border-right">Sprite</td>
+           <td class="border-nobottom">18.95</td>
+           <td class="border-nobottom">22.24</td>
+           <td class="border-nobottom border-right">27.81</td>
+           <td class="border-nobottom">69</td>
+        </tr>
+         <tr>
+           <td class="border-right">Total</td>
+           <td>92</td>
+           <td>108</td>
+           <td class="border-right">135</td>
+           <td>335</td>
+         </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <p class="down-3">
+    $\chi^2=\frac{(54-46.14)^2}{46.14}+\frac{(45-54.16)^2}{54.16}+\frac{(69-67.7)^2}{67.7}+...+\frac{(22-22.24)^2}{22.24}+\frac{(28-27.81)^2}{27.81}$
+  </p>
+  <p class="danger">
+    $\chi^2=8.10$
+  </p>
+  <p class="down-4">
+    How likely is to get such a $\chi^2$?
+  </p>
+  <p>
+    <i class="fas fa-arrow-right"></i>
+    We need the $\chi^2$ sampling distribution
+  </p>
+</section>
+
+<section data-external-replace="slide-chi-test-association-nhst-simulation-procedure.html"></section>
+
+<section>
+  <h4> Is soda preference associated with age?</h4>
+  <div class="col-60 right-20">
+    <svg width="100%" viewBox="0 0 432 288">
+      <use xlink:href="content/img/soda-age-simulation-chi2.svg#axes_1"></use>
+      <use xlink:href="content/img/soda-age-simulation-chi2.svg#axes_2"></use>
+      <use class="fragment" data-fragment-index=1 xlink:href="content/img/soda-age-simulation-chi2.svg#axes_3"></use>
+    </svg>
+  </div>
+  <p class="fragment" data-fragment-index=2>
+    <i class="fas fa-arrow-circle-right danger"></i>
+     p-value > 0.05, we do not have strong evidence against the null hypothesis of no-association.
+  </p>
+  <p class="fragment" data-fragment-index=2>
+    <i class="fas fa-arrow-circle-right danger"></i>
+    Soda preference does not seem to be associated with age.
+  </p>
+</section>
+
+<section data-external-replace="slide-chi-test-association-nhst-theory.html"></section>
+
+<section>
+  <h4> Is soda preference associated with age?</h4>
+  <div class="row">
+    <div class="col-50">
+      <p class="smaller">Theoretical distribution</p>
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/soda-age-theory-chi2.svg#axes_1"></use>
+        <use xlink:href="content/img/soda-age-theory-chi2.svg#axes_2"></use>
+      </svg>
+    </div>
+    <div class="col-50">
+      <p class="smaller">Simulation</p>
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/soda-age-simulation-chi2.svg#axes_1"></use>
+        <use xlink:href="content/img/soda-age-simulation-chi2.svg#axes_2"></use>
+        <use xlink:href="content/img/soda-age-simulation-chi2.svg#axes_3"></use>
+      </svg>
+    </div>
+  </div>
+  <p>
+    <i class="fas fa-arrow-circle-right danger"></i>
+     p-value > 0.05, we do not have strong evidence against the null hypothesis of no-association.
+  </p>
+  <p>
+    <i class="fas fa-arrow-circle-right danger"></i>
+    Soda preference does not seem to be associated with age.
+  </p>
+</section>
+
+<section>
+  <h3>Follow up</h3>
+  <p>
+    What if you find evidence of an association? How do we determine exactly where the association is? (<span class="strong">post-hoc test</span>)
+  </p>
+  <p class="down-3">
+    Again, <span class="u-pink strong">no standard approach to follow</span>, several options 
+    are possible.
+  </p>
+  <p class="down-3">
+    <i class="fas fa-arrow-circle-right pink"></i>
+    pairwise confidence intervals for the difference in proportions to determine exactly <span class="pink">where the association lies</span>.
+  </p>
+</section>

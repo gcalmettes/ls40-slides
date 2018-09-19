@@ -1,0 +1,214 @@
+<section>
+  <h4>Comparing multiple means: another approach</h4>
+  <p>
+    Like for comparing multiple proportions ($\chi^2$), 
+    comparing multiple means also has its own <span class="pop">more complex statistic</span> with a distribution that can be pretty much modeled by theory.
+  </p>
+  <p class="down-4">
+    <i class="fas fa-arrow-circle-right orange"></i>
+    This new statistic is called an <span class="orange">$F$-statistic</span>.
+  </p>
+  <p>
+    The resampling-based (or theory-based) distribution that estimates the null distribution is called an <span class="orange">$F$-distribution</span>.
+  </p>
+  <p class="fragment down-3">
+    What is this $F$-statistic? <br>
+    How is it defined? <br>
+    On which measures/information does its calculation rely?
+  </p>
+</section>
+
+<section data-transition="slide-in">
+  <h3>Difference and variability difference</h3>
+  <div class="row">
+    <div class="col-100">
+      <svg width="100%" viewBox="0 0 864 288">
+        <use class="fragment" data-fragment-index=0 xlink:href="content/img/anova-all-spreads.svg#axes_9"></use>
+        <use class="fragment" data-fragment-index=0 xlink:href="content/img/anova-all-spreads.svg#axes_10"></use>
+        <use xlink:href="content/img/anova-all-spreads.svg#axes_1"></use>
+        <use xlink:href="content/img/anova-all-spreads.svg#axes_2"></use>
+      </svg>
+    </div>
+  </div>
+  <p>
+    Consider those 3 groups (same mean in left and right panels). Intuitively, in which case the groups seem <span class="strong">more different from one to another</span>? Why?
+  </p>
+  <p class="fragment" data-fragment-index=0>
+    <i class="fas fa-arrow-circle-right pop"></i>
+    While the <span class="u">variability</span> between groups in the two panels are similar, the increased <span class="u">variability</span> of the data within the groups (right panel) makes it harder to differentiate the different groups.
+  </p>
+</section>
+
+<section data-transition="none">
+  <h3>Difference and variability difference</h3>
+  <div class="row">
+    <div class="col-100">
+      <svg width="100%" viewBox="0 0 864 288">
+        <use xlink:href="content/img/anova-all-spreads.svg#axes_9"></use>
+        <use xlink:href="content/img/anova-all-spreads.svg#axes_10"></use>
+        <use xlink:href="content/img/anova-all-spreads.svg#axes_1"></use>
+        <use xlink:href="content/img/anova-all-spreads.svg#axes_2"></use>
+      </svg>
+    </div>
+  </div>
+  <p>
+    Consider those 3 groups (same mean in left and right panels). Intuitively, in which case the groups seem <span class="strong">more different from one to another</span>? Why?
+  </p>
+  <p class="smaller">
+    <span class="muted u em">Note:</span>
+    Here, the $MAD$ calculated from the two datasets would have been the same. The $MAD$ cannot really gives information about how different two datasets are, each dataset will give its own $MAD$ sampling distribution.
+  </p>
+  <p class="smaller">
+    <i class="fas fa-arrow-circle-right orange"></i>
+    Using the difference in variability in the data allow directly comparing datasets.
+  </p>
+</section>
+
+<section data-transition="none">
+  <h3>Difference and variability difference</h3>
+  <div class="row">
+    <div class="col-100">
+      <svg width="100%" viewBox="0 0 864 288">
+        <use xlink:href="content/img/anova-all-spreads.svg#axes_9"></use>
+        <use xlink:href="content/img/anova-all-spreads.svg#axes_10"></use>
+        <use xlink:href="content/img/anova-all-spreads.svg#axes_1"></use>
+        <use xlink:href="content/img/anova-all-spreads.svg#axes_2"></use>
+      </svg>
+    </div>
+  </div>
+  <p>
+    An assessment of the difference in means between several groups depends on <span class="u">two kinds of variability</span>: 
+  </p>
+  <div class="row up-1">
+    <ol class="smaller push-left">
+      <li>
+        <span class="strong">how different the means are from each other</span>
+      </li>
+      <li>
+        AND the <span class="strong">amount of variability in the samples</span>
+      </li>
+    </ol>
+  </div>
+  <p class="smaller">
+    <i class="fas fa-arrow-circle-right danger"></i>
+    <span class="danger u">Just knowing the sample means for the groups is not enough</span>. If the values within each sample are very close to each other, we can detect a small difference in means as significant (as in the left panel). If there is more variability in the samples, we need the group means to be farther apart (as in the right panel).
+  </p>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Difference and variability difference</h3>
+  <p class="framed bg-pink-light black center down-2">
+    Why analyze variability to test for a difference between multiple means?
+  </p>
+  <p>
+    If the null hypothesis is true (no difference between the sample means), the samples are generated from population(s) with the same mean (in fact, they are coming from the same population).
+  </p>
+  <p class="em smaller u down-2">
+     If we select samples of size eight from a population where the mean is 38, how likely is it to see sample means as different as 30.75, 34.0, and 49.25?
+  </p>
+  <ol class="smaller">
+    <li>
+       We know that variability in sample means (sampling distribution) depends not only on the <span class="strong">sample size</span> but also on the <span class="strong">variability in the population</span>.
+    </li>
+    <li>
+      Furthermore, while we can easily find the difference between any pair of group means, we want a <span class="strong">single measure</span> that reflects how far apart the means are for all groups (<i class="fas fa-arrow-right danger"></i> better chance to avoid <span class="danger">type 1 error</span>).
+    </li>
+  </ol>
+  <p>
+    <i class="fas fa-arrow-circle-right danger"></i>
+    We address both of these issues by measuring <span class="strong">different aspects of the variability in the data</span>.
+  </p>
+  <p class="em">
+    Let's analyze what are all the different aspects of the variability in a dataset.
+  </p>
+</section>
+
+<section data-transition="slide-in">
+  <h3>Variability in a multiple-group dataset</h3>
+  <div class="row">
+    <div class="col-100">
+      <svg width="100%" viewBox="0 0 864 288">
+        <use class="fragment" data-fragment-index=1 xlink:href="content/img/anova-all-spreads.svg#axes_3"></use>
+        <use class="fragment" data-fragment-index=1 xlink:href="content/img/anova-all-spreads.svg#axes_4"></use>
+        <use class="fragment" data-fragment-index=2 xlink:href="content/img/anova-all-spreads.svg#axes_5"></use>
+        <use class="fragment" data-fragment-index=2 xlink:href="content/img/anova-all-spreads.svg#axes_6"></use>
+        <use class="fragment" data-fragment-index=3 xlink:href="content/img/anova-all-spreads.svg#axes_11"></use>
+        <use class="fragment" data-fragment-index=3 xlink:href="content/img/anova-all-spreads.svg#axes_12"></use>
+        <use xlink:href="content/img/anova-all-spreads.svg#axes_7"></use>
+        <use xlink:href="content/img/anova-all-spreads.svg#axes_8"></use>
+        <use xlink:href="content/img/anova-all-spreads.svg#axes_1"></use>
+        <use xlink:href="content/img/anova-all-spreads.svg#axes_2"></use>
+      </svg>
+    </div>
+  </div>
+  <p class="fragment">
+    <i class="fas fa-arrow-circle-right"></i>
+    We want a single measure that reflects how far apart the means are for all groups, without the need to calculate the difference between all the pairs of group means (as the number of groups increases, the number of pairs would increase even more).
+  </p>
+  <p class="fragment">
+    <i class="fas fa-arrow-circle-right pop"></i>
+    We could calculate how far each group mean is from the <span class="pop">"Grand mean"</span> (the overall combined mean) instead.
+  </p>
+</section>
+
+<section data-transition="none">
+  <h3>Variability in a multiple-group dataset</h3>
+  <svg width="90%" viewBox="0 0 720 288">
+    <use xlink:href="content/img/anova-all-variabilities.svg#axes_1"></use>
+    <use xlink:href="content/img/anova-all-variabilities.svg#axes_2"></use>
+    <use class="fragment" data-fragment-index=1 xlink:href="content/img/anova-all-variabilities.svg#axes_3"></use>
+    <use class="fragment" data-fragment-index=2 xlink:href="content/img/anova-all-variabilities.svg#axes_4"></use>
+    <use class="fragment" data-fragment-index=3 xlink:href="content/img/anova-all-variabilities.svg#axes_5"></use>
+  </svg>
+  <div class="row fragment" data-fragment-index=1>
+    <div class="col-40">
+      <p class="u em danger right">
+        Variability between groups:
+      </p>
+    </div>
+    <div class="col-55 right-2">
+      <p>
+        distance from each group means to the Grand mean.
+      </p>
+    </div>
+  </div>
+  <div class="row fragment" data-fragment-index=2">
+    <div class="col-40">
+      <p class="u em info right">
+        Variability within groups:
+      </p>
+    </div>
+    <div class="col-55 right-2">
+      <p>
+        distance from each data point to the sample mean.
+      </p>
+    </div>
+  </div>
+  <div class="row fragment" data-fragment-index=3>
+    <div class="col-40">
+      <p class="u em warning right">
+        Total variability:
+      </p>
+    </div>
+    <div class="col-55 right-2">
+      <p>
+        distance from each data point to the Grand mean.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Variability in a multiple-group dataset</h3>
+  <svg width="90%" viewBox="0 0 720 288">
+    <use xlink:href="content/img/anova-all-variabilities.svg#axes_1"></use>
+    <use xlink:href="content/img/anova-all-variabilities.svg#axes_2"></use>
+    <use xlink:href="content/img/anova-all-variabilities.svg#axes_3"></use>
+    <use xlink:href="content/img/anova-all-variabilities.svg#axes_4"></use>
+    <use xlink:href="content/img/anova-all-variabilities.svg#axes_5"></use>
+  </svg>
+  <p class="down-3">
+    <i class="fa fa-arrow-circle-right"></i>
+    Intuitively, for the same total variability, the <span class="strong">greater the <span class="u-danger">variability between groups</span> will be compared the the <span class="u-info">variability within groups</span></span>, the more likely the groups will be <span class="u">different</span> from one to another.
+  </p>
+</section>

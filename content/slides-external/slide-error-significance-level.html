@@ -1,0 +1,54 @@
+<section>
+  <h3>Significance Level and Errors</h3>
+  <p>
+    While we wish to avoid both types of errors, in practice 
+    <span class="danger">we have to accept some trade-off</span>
+     between them:
+  </p>
+  <ul>
+    <li class="fragment">
+      If we set <span class="pop strong">$\alpha$ to be very low</span>, we make it very hard to reject H$_0$ and we 
+      <span class="u-pop">reduce the chance of making a Type I error
+      </span>
+      (If we make 
+      $\alpha$ smaller, fewer samples would be considered "extreme", meaning we would reject H$_0$ less often),
+      but then we would <span class="strong">make Type II errors more often</span>.
+    </li>
+    <li class="fragment down-2">
+      On the other hand, setting a <span class="orange strong">larger $\alpha$</span> makes it easier to reject H$_0$ (more samples would be considered "extreme") and we would <span class="u-orange">reduce the chance of making a Type II error</span>. But we would
+      also <span class="strong">increase the chance of making a Type I error</span>, ending up rejecting too many H$_0$’s that were actually true. 
+    </li>
+  </ul>
+  <p class="framed border-danger bg-danger-light black fragment">
+    This balance is set by how easy or hard it is to reject H$_0$, which is exactly <span class="strong">determined by the significance level $\alpha$</span>! 
+  </p>
+</section>
+
+<section>
+  <h3>Understanding the Significance Level</h3>
+  <p class="em">
+    The significance level $\alpha$, represents the <span class="success strong">tolerable probability of making a Type I error</span>.
+  </p>
+  <p class="down-3">
+    <i class="fas fa-arrow-circle-right info"></i>
+    <span class="info">If the consequences of a Type I error are severe</span> (for example, approving a new drug that is potentially dangerous) we might use a very small $\alpha$ (perhaps even $\alpha=0.005$).
+  </p>
+  <p class="down-3">
+    <i class="fa fa-arrow-circle-right danger"></i>
+    <span class="danger">If the consequences of a Type II error are severe</span> (for example, failing to diagnose a treatable disease), we would want to make it easier to reject $\mathrm{H}_0$, so
+    we might use a relatively large $\alpha$. 
+  </p>
+  <div class="row flex down-3 framed border-muted">
+    <div class="col-10 flex-center">
+      <p class="center muted">
+        Key idea <br>
+        <i class="fas fa-lightbulb"></i>
+      </p>
+    </div>
+    <div class="col-90 flex-center">
+      <p>
+        Remember that there is always a trade-off between the two types of errors, so people usually use the common significance levels of <span class="pop">5%</span>, 10% or 1% (but where the perfect balance lies is a complicated question and the increasing subject of debate).
+      </p>
+    </div>
+  </div> 
+</section>

@@ -1,0 +1,170 @@
+<section data-transition="slide-in">
+  <h3>Studying dolphins mental abilities</h3>
+  <div class="row">
+    <div class="col-60 smaller sided">
+      In the early 1960's the U.S. Navy started a program to study the potential use of marine mammals for military tasks such as ship and harbor protection, mine detection and clearance, and equipment recovery. One of the area of interest for the program was about <span class="danger">understanding dolphins mental abilities</span>.
+    </div>
+    <div class="col-36 push-3">
+      <img class="framed" src="content/img/nmmp-dolphin.jpg">
+    </div>
+  </div>
+  <div class="smallest em"><span class="u">Note:</span> The program has been dogged by controversy over the treatment of the animals and speculation as to the nature of its mission and training. </div>
+  <div class="smaller down-2">
+    In 1964, Dr. Jarvis Bastian conducted one of the three studies dealing with <span class="danger">dolphins communication</span>.
+  </div>
+  <div class="smaller">
+    <i class="fas fa-arrow-circle-right"></i> The experiment encouraged a three year old female dolphin (<span class="strong">Doris</span>) and a four year old male dolphin (<span class="strong">Buzz</span>) to devise their own abstract and arbitrary acoustic solution to an experimental problem. Dr. Bastian thought that the dolphins might be able to indicate the use of <span class="u-orange">dolphin "natural" language</span> or at least the equivalent of a word in solving the task. This experiment was called <span class="em">"The Transmission of Arbitrary Environmental Information Between Bottlenosed Dolphins"</span>.
+  </div>
+</section>
+
+<section data-transition="none">
+  <h3>Can dolphins communicate?</h3>
+  <p class="push-right smaller">Dr. Jarvins Bastian's experiment (1964)</p>
+  <div class="col-100">
+    <svg width="85%" viewBox="0 0 584.8 360">
+      <use xlink:href="content/img/doris-buzz.svg#dolphins"></use>
+      <use class="fragment" xlink:href="content/img/doris-buzz.svg#curtain"></use>
+    </svg>
+  </div>
+  <aside class="notes">
+    A famous study from the 1960s explored whether two dolphins (Doris and Buzz) could
+    communicate abstract ideas. Researchers believed dolphins could communicate simple
+    feelings like “Watch out!” or “I’m happy,” but Dr. Jarvis Bastian wanted to explore
+    whether they could also communicate in a more abstract way, much like humans do.
+    To investigate this, Dr. Bastian spent many years training Doris and Buzz and exploring
+    the limits of their communicative ability. <br>
+    During a training period lasting many months, Dr. Bastian placed buttons underwater on
+    each end of a large pool—two buttons for Doris and two buttons for Buzz. He then used an
+    old automobile headlight as his signal. When he turned on the headlight and let it shine
+    steadily, he intended for this signal to mean “push the button on the right.”
+    When he let the headlight blink on and off, this was meant as a signal to “push the button
+    on the left.” Every time the dolphins pushed the correct button, Dr. Bastian gave the dolphins
+    a reward of some fish. Over time Doris and Buzz caught on and could earn their fish reward
+    every time.
+  </aside>
+</section>
+
+<section data-transition="none">
+  <h3>Can dolphins communicate?</h3>
+  <p>
+    In one phase of the study, Dr. Bastian had Buzz attempt to push the correct button
+    a total of 16 different times. <br>
+    <span>
+      <i class="fas fa-arrow-right"></i> Buzz pushed the correct button
+      <span class="danger">15 out of 16 times</span>. <bspan class="fragment danger border-danger framed">$\hat{p} = \frac{15}{16} = 0.938$</bspan>
+    </span>
+  </p>
+  <div class="down-4 fragment">
+    <p class="sided border-info small">
+      <span class="u em">Think about it:</span><br>
+      Based on these data, do you think Buzz somehow knew which button to push? <br>
+      Is 15 out of 16 correct pushes convincing to you? <br>
+      Or do you think that Buzz <span class="u-info">could have just been guessing</span>? <br>
+    </p>
+    <p class="down-4">
+      Could this observed result be considered <span class="orange">statistically significant</span>? <br>
+      Is this result unlikely to happen by <span class="u-orange">random chance</span>?
+    </p>
+  </div>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Can dolphins communicate?</h3>
+ <div class="center small">
+    2 possible explanations
+  </div>
+  <div class="row">
+    <div class="col-49 framed border-info smaller">
+      <div>
+        Buzz is <span class="info">just guessing</span> (his probability of choosing the correct button is 0.50) and he
+        <span class="info">got really lucky</span> in these 16 attempts.
+      </div>
+      <div class="info center">
+        $\pi=0.5$
+      </div>
+    </div>
+    <div class="col-49 right-2 framed border-danger smaller">
+      <div>
+        Buzz is <span class="danger">doing something other than just guessing</span> (his probability of choosing the correct button is more than 0.50).
+      </div>
+      <div class="danger center">
+        $\pi>0.5$
+      </div>
+    </div>
+  </div>
+  <p class="fragment" data-fragment-index=1>
+    The key question here is to determine
+    <span class="orange">what results would occur in
+    the long-run under the assumption that Buzz is
+    just guessing.</span>
+  </p>
+  <div class="row">
+    <div class="col-75 right-10">
+      <p class="fragment" data-fragment-index=3>
+        <i class="fas fa-arrow-circle-right warning"></i> We call this assumption of random guess by Buzz the
+      <span class="bg-warning">null hypothesis</span> (or null model)
+      </p>
+    </div>
+  </div>
+  <p class="fragment" data-fragment-index=4>How could we decide between our 2 hypotheses?</p>
+</section>
+
+
+<section>
+  <h3>The chance model</h3>
+  <p class="sided border-danger">
+    Statisticians often employ <span class="danger">chance models</span> to generate data
+    from random processes to help them investigate such processes.
+  </p>
+  <div class="row down-4">
+    <div class="col-50 fragment" data-fragment-index=1>
+      <div class="small">
+        What probability do we need to simulate to test our hypothesis?
+      </div>
+      <div class="fragment info small" data-fragment-index=2>
+        <i class="fas fa-arrow-circle-right info"></i> 50/50 chance model
+      </div>
+      <div class="small down-5">
+        What would be a good simulation model for Buzz & Doris communication experiment?
+      </div>
+      <div class="fragment info small" data-fragment-index=3>
+        <i class="fas fa-arrow-circle-right"></i> coin flip
+      </div>
+    </div>
+    <div class="col-50">
+      <table class="fragment smallest" data-fragment-index=3>
+        <thead>
+          <tr>
+            <th class="bg-muted">Model</th>
+            <th class="bg-muted">Experiment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Coin flip</td>
+            <td>Button choice by Buzz</td>
+          </tr>
+          <tr>
+            <td class="fragment highlight-current-bg-info" data-fragment-index=4>Heads</td>
+            <td class="fragment highlight-current-bg-info" data-fragment-index=4>Correct button</td>
+          </tr>
+          <tr>
+            <td>Tails</td>
+            <td>Wrong button</td>
+          </tr>
+          <tr>
+            <td class="fragment highlight-current-bg-info" data-fragment-index=5 style="vertical-align: middle;">Chance of heads</td>
+            <td class="fragment highlight-current-bg-info" data-fragment-index=5>Probability of Buzz <br>pressing the correct button</td>
+          </tr>
+          <tr>
+            <td class="fragment highlight-current-bg-info" data-fragment-index=6>One set of <br>16 coin flips</td>
+            <td class="fragment highlight-current-bg-info" data-fragment-index=6>One set of <br>16 experiments</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="left fragment success down-3" data-fragment-index=7>
+  Let's simulate it!
+  </div>
+</section>

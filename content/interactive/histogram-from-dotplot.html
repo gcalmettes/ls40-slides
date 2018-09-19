@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<body>
+<style>
+
+
+</style>
+
+<script src="js/d3.min.js"></script>
+<script>
+
+  const radius = 4,
+        padding = 1,
+        colors = {info: '#00BFFF',
+                  danger: '#fb4c52',
+                  warning: '#FBC15E',
+                  orange: '#FF8B22'}
+
+  let dataToShow = 'waiting'
+
+  const margin = { topSwarm: 10, rightSwarm: 10, bottomSwarm: 40, leftSwarm: 35,
+                   topHist: 10, rightHist: 10, bottomHist: 20, leftHist: 35
+                  },
+        fullWidth = 600,
+        fullHeight = 350,
+        swarmWidth = fullWidth - margin.leftSwarm - margin.rightSwarm,
+        swarmHeight = fullHeight * 0.6 - margin.topSwarm - margin.bottomSwarm,
+        histWidth = fullWidth - margin.leftHist - margin.rightHist,
+        histHeight = fullHeight - swarmHeight - margin.topSwarm - margin.bottomSwarm - margin.topHist - margin.bottomHist
+
+  // full SVG
+  const svg = d3.select('body')
+    .append('svg')
+      .attr('width', fullWidth)
+      .attr('height', fullHeight)
+
+  // Beeswarm plot
+  const xScaleSwarm = d3.scaleLinear()
+    .range([margin.leftSwarm, swarmWidth - margin.rightSwarm])
+
+  const gSwarm = svg.append('g')
+    .attr('width', swarmWidth)
+    .attr('height', swarmHeight)
+    .attr('transform', `translate(${margin.leftSwarm}, ${margin.topSwarm})`)
+
+  const xAxisSwarm = g => g
+    .attr("transform", `translate(0, ${swarmHeight})`)
+    .call(d3.axisBottom(xScaleSwarm).tickSizeOuter(0))
+
+  // Growing histogram
+  const yScaleHist =  d3.scaleLinear()
+    .range([histHeight, 0])
+
+  const yAxisHist = g => g
+    .call(d3.axisLeft(yScaleHist).tickSizeOuter(0))
+
+  const gHist = svg.append('g')
+    .attr('width', histWidth)
+    .attr('height', histHeight)
+    .attr('transform', `translate(${margin.leftHist}, ${swarmHeight + margin.topSwarm + margin.bottomSwarm + margin.topHist})`)
+
+  // Inital viz (only beeswarm plot)
+  let data,
+      balls
+
+  d3.csv("data/geyser.csv").then(dataSet => {
+    // parse to numbers
+    data = dataSet.map(d => {
+      return {waiting: +d.waiting, duration: +d.duration}
+    })
+    // initialize beeswarm
+    drawBeeswarm(data)
+  })
+
+
+  function drawBeeswarm(data) {
+    xScaleSwarm
+      .domain(d3.extent(data, d => d[dataToShow]))
+
+    // in case graph was already drawn
+    gSwarm.selectAll(".xaxis")
+      .remove()
+    gSwarm.selectAll(".ballContainer")
+      .remove()
+
+    gSwarm.append("g")
+      .attr("class", "axis xaxis")
+      .call(xAxisSwarm);
+  
+    balls = gSwarm.append("g")
+      .attr("class", "ballContainer")
+      .selectAll(".ball")
+        .data(beeswarm(data, radius, padding, xScaleSwarm))
+      .enter().append("circle")
+        .attr("class", "ball")
+        .attr("cx", d => d.x)
+        .attr("cy", d => swarmHeight - radius - padding - d.y)
+        .attr("r", radius)
+  }
+
+
+  function getBinnedData(data, category=dataToShow, binNumber){
+    // bin the data
+
+    const dataValues = data.map(d => d[dataToShow]),
+          dataMin = d3.min(dataValues),
+          dataMax = d3.max(dataValues)
+    const nBins = binNumber == undefined ? sturges(dataValues) : binNumber,
+          breaks = pretty([dataMin, dataMax], nBins)
+
+    const dataBins = []
+    for (let bi=0; bi<breaks.length-1; bi++) {
+        dataBins.push({
+          valueSet: filterToBin(dataValues, bi, breaks),
+          left: breaks[bi],
+          right: breaks[bi+1],
+          index: bi
+        });
+    }
+
+    // update yScaleHist domain from calculated number of bins
+    const bins = d3.histogram()
+      .domain(xScaleSwarm.domain())
+      .thresholds(xScaleSwarm.ticks(nBins))
+      (data.map(d => d[dataToShow]));
+    yScaleHist
+      .domain([0, d3.max(bins, d => d.length)])
+
+    return dataBins
+  }
+
+
+  function beeswarm(data, radius, padding, xscale, category=dataToShow){
+    // code from https://beta.observablehq.com/@mbostock/d3-beeswarm
+    const circles = data.map(d => ({x: xscale(d[category]), data: d}))
+      .sort((a, b) => a.x - b.x);
+    const epsilon = 1e-3;
+    let head = null, tail = null;
+    // Returns true if circle ⟨x,y⟩ intersects with any circle in the queue.
+    function intersects(x, y) {
+      let a = head;
+      while (a) {
+        if ((radius * 2 + padding - epsilon) ** 2 > (a.x - x) ** 2 + (a.y - y) ** 2) {
+          return true;
+        }
+        a = a.next;
+      }
+      return false;
+    }
+    // Place each circle sequentially.
+    for (const b of circles) {
+      // Remove circles from the queue that can’t intersect the new circle b.
+      while (head && head.x < b.x - (radius * 2 + padding)) head = head.next;
+      // Choose the minimum non-intersecting tangent.
+      if (intersects(b.x, b.y = 0)) {
+        let a = head;
+        b.y = Infinity;
+        do {
+          let y = a.y + Math.sqrt((radius * 2 + padding) ** 2 - (a.x - b.x) ** 2);
+          if (y < b.y && !intersects(b.x, y)) b.y = y;
+          a = a.next;
+        } while (a);
+      }
+      // Add b to the queue.
+      b.next = null;
+      if (head === null) head = tail = b;
+      else tail = tail.next = b;
+    }
+    return circles;
+  }
+
+
+  function sturges(data) {
+    // calculate optimized number of bins from Sturges' formula
+    return Math.ceil(Math.log(data.length)/Math.log(2))+1
+  }
+
+
+  function filterToBin(data, binNum, breaks) {
+    // filter data by their bin membership
+    const filterFn = binNum === 0
+        ? (v => v >= breaks[0] && v <= breaks[1])
+        : (v => v > breaks[binNum] && v <= breaks[binNum+1]); 
+    return data.filter(filterFn);
+  }
+
+
+  function pretty(range, n, internal_only){
+    // from https://gist.github.com/Frencil/aab561687cdd2b0de04a
+    //  Generate a "pretty" set of ticks (multiples of 1, 2, or 5 on 
+    // the same order of magnitude for the range)
+    if (typeof n == "undefined" || isNaN(parseInt(n))){
+      n = 5;
+    }
+    n = parseInt(n);
+    if (typeof internal_only == "undefined"){
+      internal_only = false;
+    }
+    const min_n = n / 3,
+          shrink_sml = 0.75,
+          high_u_bias = 1.5,
+          u5_bias = 0.5 + 1.5 * high_u_bias,
+          d = Math.abs(range[0] - range[1])
+    let c = d / n;
+    if ((Math.log(d) / Math.LN10) < -2){
+      c = (Math.max(Math.abs(d)) * shrink_sml) / min_n;
+    }
+    
+    const base = Math.pow(10, Math.floor(Math.log(c)/Math.LN10));
+    let base_toFixed = 0;
+    if (base < 1){
+      base_toFixed = Math.abs(Math.round(Math.log(base)/Math.LN10));
+    }
+
+    let unit = base;
+    if ( ((2 * base) - c) < (high_u_bias * (c - unit)) ){
+      unit = 2 * base;
+      if ( ((5 * base) - c) < (u5_bias * (c - unit)) ){
+        unit = 5 * base;
+        if ( ((10 * base) - c) < (high_u_bias * (c - unit)) ){
+          unit = 10 * base;
+        }
+      }
+    }
+    let ticks = [];
+    let i
+    if (range[0] <= unit){
+      i = 0;
+    } else {
+      i = Math.floor(range[0]/unit)*unit;
+      i = parseFloat(i.toFixed(base_toFixed));
+    }
+    while (i < range[1]){
+      ticks.push(i);
+      i += unit;
+      if (base_toFixed > 0){
+        i = parseFloat(i.toFixed(base_toFixed));
+      }
+    }
+    ticks.push(i);
+
+    if (internal_only){
+      if (ticks[0] < range[0]){ ticks = ticks.slice(1); }
+      if (ticks[ticks.length-1] > range[1]){ ticks.pop(); }
+    }
+    return ticks;
+  }
+
+  let binLimits
+  function drawBinLimits(binnedData) {
+    binLimits = [];
+    
+    binnedData.forEach((valuesInBin, i) => {
+      binLimits.push({value: valuesInBin.left, index: i });
+      if (i === valuesInBin.length-1) {
+        binLimits.push({ value: valuesInBin.right, index: i+1 });
+      }
+    });
+
+    // console.log(xScaleSwarm.domain())
+    const lines = gSwarm.selectAll("line.binbreak")
+      .data(binLimits.filter(d => d.value >= xScaleSwarm.domain()[0]));
+    lines.exit().remove();
+    lines.enter().append("line")
+        .attr("class", "binbreak")
+        .attr("stroke-dasharray", "2 6")
+        .attr("y1", swarmHeight)
+        .attr("y2", swarmHeight + margin.bottomSwarm + margin.topHist + histHeight)
+        .style("stroke-width", 2)
+        .style("stroke", "grey")
+      .merge(lines)
+        .attr("x1", def => xScaleSwarm(def.value))
+        .attr("x2", def => xScaleSwarm(def.value))
+        .style("opacity", 1);
+  }
+
+
+  function removeBinLimits() {
+    gSwarm.selectAll("line.binbreak")
+      .remove()
+  }
+
+  function dropBallsIntoBins(data) {
+    const binnedData = getBinnedData(data, category=dataToShow)
+    
+    //2- initialize the histogram that will grow
+    const histBins = binnedData.map( (d,i) => {return {x1: xScaleSwarm(d.left), x2: xScaleSwarm(d.right), index: d.index, value: 0}}) // data for growing histogram
+    const histogram = gHist.selectAll("rect.bins")
+      .data(histBins)
+      .enter()
+      .append('rect')
+        .attr('class', 'bins')
+        .attr('x', d => d.x1)
+        .attr('y', histHeight)
+        .attr('width', d => d.x2 - d.x1)
+        .attr('height', 0)
+        .attr('fill', colors.info)
+        .attr('stroke', "white")
+
+    gHist.append("g")
+      .attr("class", "axis yaxis")
+      .attr("transform", `translate(${xScaleSwarm(binLimits[0].value)}, 0)`)
+      .call(yAxisHist)
+      .append("text")
+        .attr("class", "ylabel")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0 - margin.leftHist*1.3)
+        .attr("x", 0 - (histHeight / 2))
+        .attr("dy", "1em")
+        .style("text-anchor", "middle")
+        .style("font-size","1.5em")
+        .style("font-family", "Raleway")
+        .style('fill', "black")
+        .text("Count");
+
+        // .style('fill', colors.info)
+        // .attr('x', 30)
+        // .attr('y', 20)
+        // .attr('text-anchor', 'end')
+        // .html('count')
+
+    //3- drop the balls (and let outline) and grow histogram
+    const delayBetweenBins = 200,
+          delayBetweenPiles = 50,
+          delayBetweenDots = 20,
+          dropTime = 500,
+          dropDistance = histHeight + margin.topHist + margin.bottomSwarm;
+    let binDropDelay = 0
+
+    // loop over randomized bins
+    shuffle(binnedData) // shuffle order of bins being dropped
+    binnedData.forEach( (d, i) => {
+      const eezer = t => d3.easePolyIn(t, 2);
+
+      d3.transition()
+        .delay(binDropDelay)
+        .on("start", () => {
+          let filteredBalls = balls
+            .filter(k => d.valueSet.includes(+k.data[dataToShow]))
+
+          //loop over shuffled order of balls being dropped inside bins
+          shuffle(filteredBalls._groups[0])
+          filteredBalls.each(function(vd, vi) {
+            // create clone so outline stays
+            let clone = this.cloneNode();
+            let seln = d3.select(this);
+            showBallAsOutline(seln);
+
+            this.parentNode.appendChild(clone);
+            let cloneSeln = d3.select(clone),
+                yStart = +cloneSeln.attr("cy");
+            
+            cloneSeln
+              .datum(vd)
+                .attr("class", "movingBall")
+                .style("stroke", "none")
+                .transition()
+                  .delay( vi*delayBetweenPiles + i*delayBetweenDots)
+                  .ease(eezer)
+                  .duration(dropTime)
+                    .attr("cy", yStart + dropDistance)
+                    .style("opacity", 0.2)
+                .remove()
+                .on("end", s => {
+                  // grow the corresponding bin
+                  histBins.filter(m => m.index == d.index)[0].value += 1
+
+                  histogram
+                    .data(histBins)
+                    .transition().duration(30)
+                      .attr('y', l => yScaleHist(l.value))
+                      .attr('height', l => histHeight - yScaleHist(l.value) )
+                });
+          });
+        });
+      binDropDelay += d.valueSet.length*delayBetweenPiles + delayBetweenBins
+    });
+
+  }
+
+  function shuffle(array) {
+    // Shuffles array in place
+    // modern version of the Fisher–Yates shuffle algorithm
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+
+  function showBallAsOutline(seln) {
+    // use fill of "none", rather than fillOpacity
+    // so we can always highlight by setting fill colour
+    seln
+        .attr("class", "dropped")
+        .style("fill", "none")
+        .style("stroke-width", 0.5)
+        .style("stroke", 'black')
+        .style("stroke-opacity", 1);
+  }
+
+  function removeHist(){
+    gHist.selectAll("rect.bins")
+      .remove()
+
+    gHist.selectAll(".yaxis")
+      .remove()
+  }
+
+  function stopAllTransitions() {
+    d3.transition()
+  }
+
+  var _transitions = [
+    {
+      transitionForward: () => {
+        const binnedData = getBinnedData(data, category=dataToShow)
+        drawBinLimits(binnedData)
+      },
+      transitionBackward: () => removeBinLimits(), 
+      index: 0
+    },
+    {
+      transitionForward: () => dropBallsIntoBins(data),
+      transitionBackward: () => {
+        stopAllTransitions()
+        removeHist()
+        drawBeeswarm(data)
+      }, 
+      index: 1
+    }
+  ]
+
+
+</script>

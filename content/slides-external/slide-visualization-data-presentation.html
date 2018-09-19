@@ -1,0 +1,229 @@
+<section class="title-slide fullwidth">
+  <h1 class="center">Present your<br> (quantitative) data</h1>
+  <div class="center">
+    <img src="content/img/data-presentation.svg">
+  </div>
+</section>
+
+<section data-transition="slide-in">
+  <h3>Bar graphs are evil</h3>
+  <p class="em col-80">1) Part of the range covered by the bar might have <span class="danger">never been observed in the sample</span></p>
+  <svg width="80%" viewBox="0 0 504 288" style="margin-top: 1%;">
+    <use xlink:href="content/img/barplot-distributions.svg#axes_1"></use>
+    <use xlink:href="content/img/barplot-distributions.svg#axes_2"></use>
+  </svg>
+</section>
+
+<section data-transition="none">
+  <h3>Bar graphs are evil</h3>
+  <p class="em col-80">2) They <span class="danger">conceal the variance and the underlying distribution</span> of the data</p>
+  <div class="row">
+    <div class="col-45 info">Look the same?</div>
+    <div class="col-50 danger fragment" data-fragment-index=1>It's not!</div>
+  </div>
+  <div class="col-90">
+    <svg width="100%" viewBox="0 0 576 252" style="margin-top: 1%;">
+      <use xlink:href="content/img/barplot-same-side.svg#axes_1"></use>
+      <use class="fragment" data-fragment-index=1 xlink:href="content/img/barplot-same-side.svg#axes_2"></use>
+    </svg>
+  </div>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Bar graphs are evil</h3>
+  <p class="em col-100">
+    3) They are associated with (usually not defined) <span class="danger">error bars</span></p>
+  <div class="row">
+    <div class="col-50">
+      <p>Different types, different meanings: <br>
+      <bspan class="right-3">
+        - <span class="info">Descriptive</span> statistics (SD, range)</bspan>
+      <bspan class="right-3">
+        - <span class="info">Inferential</span> statistics (SEM, CI)</bspan>
+      </p>
+      <img src="content/img/barplot-cartoon.svg" width=100%>
+    </div>
+    <div class="col-50">
+      <img class="framed" src="content/img/error-bars.png" width=80%>
+      <div class="tiny em">
+      	Cumming, G. et al. (2007). 'Error bars in experimental biology'. <br>
+      	J Cell Biol 177 (1): 7–11"
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide-in">
+  <h3>Avoid making bar graphs</h3>
+  <div class="row">
+    <div class="col-60">
+      <p class="small">
+        <span class="u">To reveal the distribution of the data:</span>
+        <ul class="smaller">
+          <li>Display data in their raw form</li>
+          <li>A dot plot is a good start</li>
+          <li>Dynamite plunger plots conceal data</li>
+          <li>Check the pattern of distribution of the values</li>
+        </ul>
+      </p>
+      <p class="fragment" data-fragment-index=1>
+      <span class="u">About Figure 1:</span>
+      <ul class="fragment smaller" data-fragment-index=1>
+        <li> 
+        	<span class="info">First set:</span> Gaussian (or normal) distribution (symmetrically distributed)
+        </li>
+        <li> 
+        	<span class="info">Second set:</span> right skewed, lognormal (few large values). <span class="danger">This type of distribution of values is quite common in biology</span> (ex: plasma concentrations of immune or inflammatory mediators)”
+        </li>
+      </ul>
+      </p>
+      <p class="quoted fragment small" data-fragment-index=1>
+        Plunger plots only: who would know that the values were skewed [...]
+        and that <span class="u-danger">the common statistical tests would be inappropriate?</span>”
+      </p>
+    </div>
+    <div class="col-35">
+      <img src="content/img/j-physiol-drummond-title.png" class="framed" width="100%" style="margin-top: 0; margin-bottom: 0;">
+      <img src="content/img/j-physiol-drummond-bargraph.png" class="fra fragment" data-fragment-index=1 width="100%" style="margin-top: 0; margin-bottom: 0;">
+    </div>
+  </div>
+  <!-- <p class="sided" style="font-size: 0.65em;">
+    <span class="danger">"For better characterization of a sample, we prefer dots plots, or box plots</span> for their ability to display a minimum of five measures of the underlying data."
+  </p> -->
+</section>
+
+
+<section data-transition="none">
+  <h3>Avoid making bar graphs</h3>
+  <div class="row">
+    <div class="col-55">
+      <img src="content/img/jci-spelled-out-black-on-transparent.png" class="bordered" width="100%">
+      <p>
+        <ul class="smallest">
+          <li>Impact Factor: 12.575 (2015). <br>The JCI is one of the top journals in the “Medicine, Research & Experimental” category.</li>
+        </ul>
+      </p>
+      <p class="quoted smaller">
+        To maintain the <span class="u-danger">highest level of trustworthiness of data</span>, <span class="danger">we are encouraging authors to display data in their raw form</span> and not in a fashion that conceals their variance.
+      </p>
+      <p class="quoted smaller">
+        <span class="pop">Presenting data as columns with error bars (dynamite plunger plots) conceals data</span>. We recommend that <span class="pop">individual data be presented</span> as dot plots shown next to the average for the group with appropriate error bars (Figure 1).
+      </p>
+    </div>
+    <div class="col-45">
+      <img class="framed" src="content/img/jci-editorial-fig1.png" width="100%">
+    </div>
+  </div>  
+</section>
+
+
+<section data-transition="none">
+  <h3>Avoid making bar graphs</h3>
+  <div class="row">
+    <div class="col-60">
+      <img src="content/img/nature-methods-editorial.png" class="framed" width="100%">
+    </div>
+    <div class="col-40">
+      <p class="quoted small">
+        [...] the <span class="danger">amount of information</span> they provide is still <span class="danger">limited to two values</span>, the mean and the spread.
+      </p>
+    </div>
+  </div>
+  <p class="sided border-pop smaller">
+    <span class="pop">"For better characterization of a sample, we prefer dots plots, or box plots</span> for their ability to display a minimum of five measures of the underlying data."
+  </p>
+</section>
+
+<section data-transition="slide-out">
+  <h3>You've been warned before!</h3>
+  <div class="row">
+    <div class="col-5">
+      <p></p>
+    </div>
+    <div class="col-90 down-5">
+      <svg width="100%" viewBox="0 0 924 351">
+        <use xlink:href="content/img/wiley-coyote-plunger.svg#coyote"></use>
+        <use class="fragment" xlink:href="content/img/wiley-coyote-plunger.svg#arrow"></use>
+      </svg>
+    </div>
+  </div>
+  <aside class="notes">
+    Use bar graphs at your own risk
+    <br>
+    Bar grahs are dangerous material
+  </aside>
+</section>
+
+<section>
+  <h3>Dotplot</h3>
+  <p>
+    If the number of data is relatively small, showing directly the raw data and accompanying mean/median is best.
+  </p>
+  <img src="content/img/dotplot-data.svg">
+  
+  <aside class="notes">
+    <p>
+      Average temperature on April 14th for the 21 years ending in 2015 is given in Table 2.20 for Des Moines, Iowa, and San Francisco, California.
+    </p>
+  </aside>
+</section>
+
+<section data-transition="slide-in">
+  <h3>Boxplot</h3>
+  <p class="sided">
+    A boxplot is a graphical display of the <span class="danger">five number summary</span> for a quantitative variable. It shows the general shape of the distribution, identifies the middle 50% of the data, and highlights any outliers.
+  </p>
+  <div class="row">
+    <div class="col-55">
+      <img src="content/img/boxplot-general.svg" width=100%></img>
+    </div>
+    <div class="col-45">
+      <p class="u em">A boxplot includes:
+      <ul class="smaller">
+        <li>A box stretching from <span class="orange">Q1</span> to <span class="orange">Q3</span></li>
+        <li>A line that divides the box drawn at the <span class="orange">median</span></li>
+        <li>A line from each quartile to the <span class="orange">most extreme data value</span> <span class="u-orange">that is not an outlier</span>. (if no outliers minimum and maxixum)</li>
+        <li>Each <span class="orange">outlier</span> plotted individually</li>
+      </ul>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section data-transition="none">
+  <h3>Boxplot (example)</h3>
+  <p class="sided" style="margin-top:0; font-size: 0.7em;">
+    A boxplot is a graphical display of the <span class="danger">five number summary</span> for a quantitative variable. It shows the general shape of the distribution, identifies the middle 50% of the data, and highlights any outliers.
+  </p>
+  <div class="row">
+    <div class="col-55">
+      <img src="content/img/boxplot-ex.svg" width=100%></img>
+    </div>
+    <div class="col-45 down-3">
+      <img src="content/img/boxplot-ex-distributions.svg" width=100%></img>
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide-out">
+  <h3>But still ... showing the data is better</h3>
+  <div>
+  	<img class="framed" src="content/img/boxplots-samestats.gif">
+  </div>
+  <div>
+  	<img class="framed" src="content/img/boxplots-violin-samestats.gif">
+  </div>
+  <div>
+  	<div class="tiny em right">
+      " Same Stats, Different Graphs:
+      Generating Datasets with Varied Appearance and
+      Identical Statistics through Simulated Annealing"
+      </div>
+      <div class="tiny right">
+        Justin Matejka and George Fitzmaurice,
+        <p class="muted right">
+          ACM SIGCHI Conference on Human Factors in Computing System (2017) 
+        </p>
+      </div>
+  </div>
+</section>

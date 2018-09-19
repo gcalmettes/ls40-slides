@@ -1,0 +1,101 @@
+<section data-transition="slide-in">
+  <h3>The $F$-statistic</h3>
+  <p>
+    The $F$-statistic is a <span class="strong">ratio</span> of the <span class="u-danger">variability between groups</span> and the <span class="u-info">variability withing groups</span>,
+    but <span class="strong">uses the mean variability</span> instead of the total variability for each component.
+  </p>
+  <p class="down-4">
+    $F=\frac{\texclass{danger}{\textrm{Mean variability between groups}}}{\texclass{info}{\textrm{Mean variability within groups}}}$
+  </p>
+  <p>
+    $F=\frac{\texclass{danger}{\textrm{Mean SS}_{Group}}}{\texclass{info}{\textrm{Mean SS}_{Error}}}=\frac{\texclass{danger}{\frac{\textrm{SS}_{Group}}{(k-1)}} }{\texclass{info}{\frac{\textrm{SS}_{Error}}{(n-k)}}}$
+  </p>
+  <p class="smaller">
+    <span class="u em">Notes:</span>
+  </p>
+  <ul class="smaller push-left" >
+    <li>
+      $k$: number of groups 
+    </li>
+    <li>
+      $n$: number of data points
+    </li>
+    <li>
+      $(k-1)$ and $(n-k)$ are the respective degrees of freedom for the variability between and within groups (degree of freedom for the total varaibility is $(n-1)$).
+    </li>
+  </ul>
+</section>
+
+<section data-transition="none">
+  <h3>The $F$-statistic</h3>
+  <div class="row">
+    <div class="col-50">
+      <p>
+        $F=\frac{\texclass{danger}{\frac{\textrm{SS}_{Group}}{(k-1)}} }{\texclass{info}{\frac{\textrm{SS}_{Error}}{(n-k)}}}\fragment{0}{=\frac{\texclass{danger}{\frac{\sum_{g=1}^{k}n_{g}(\bar{x}_{g}-\hat{x})^2}{(k-1)}}}{\texclass{info}{\frac{\texclass{success}{\sum_{g=1}^{k}\sum_{i=1}^{n_g}(x_{gi}-\bar{x}_{g})^2} }{(n-k)}}}}$
+      </p>
+    </div>
+    <div class="col-50">
+      <p class="fragment smaller" data-fragment-index=0>
+        $\bar{x}_g$: the mean of each group <br>
+        $n_g$: sample size for each group <br>
+        $\hat{x}$: Grand mean
+      </p>
+    </div>
+  </div>
+  <p class="fragment smaller" data-fragment-index=1>
+    Recall the formula for computing a standard deviation is:
+    $s=\sqrt{\frac{\texclass{success}{\sum(x_{i}-\bar{x})^2}}{n-1}}$.
+  </p>
+  <p class="fragment smaller" data-fragment-index=1>
+    With a little algebra, we can turn this into an easy formula for computing the sum of squared deviations from the group mean within any group ($\textrm{SS}_{Error}$) using <span class="success">$(n_g-1)s_g^2$</span> where $n_g$ is the sample size and $s_g$ is the standard deviation from the sample in the $g^{th}$ group.  
+  </p>
+  <div class="row fragment flex up-2" data-fragment-index=2>
+    <div class="col-40 flex-center">
+      <p>We can then rewrite:</p>
+    </div>
+    <div class="col-50 framed border-pop center flex-center small">
+        $F=\frac{\frac{\sum_{g=1}^{k}n_{g}(\bar{x}_{g}-\hat{x})^2}{(k-1)}}{\frac{\sum_{g=1}^{k}(n_g-1)s_g^2}{(n-k)}}$
+    </div>
+  </div>
+  <div class="fragment" data-fragment-index=2>
+    <p class="smaller">
+      <span class="u em">Notes:</span>
+    </p>
+    <ul class="smaller push-left" >
+      <li>
+        This is like normalizing the difference in means between each group and the <span class="strong">"Grand mean"</span> with their respective <span class="pop">variance ($s^2$)</span>. The $F$-statistic is a <span class="em pop">standardized</span> statistic.
+      </li>
+      <li>
+        Nobody calculates it by hand, you can rely on technology for the computation!
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section data-transition="slide-out">
+  <h3>The $F$-statistic</h3>
+
+  <pre class="python"><code data-trim>
+    def f_statistic(data):
+      gpMeans = np.array([np.mean(gp) for gp in data])
+      gpSizes = np.array([len(gp) for gp in data])
+      gpStd = np.array([np.std(gp, ddof=1) for gp in data])
+      grandMean = gpMeans.mean()
+      overallSampleSize = len(np.ravel(data))
+      nGroups = len(data)
+      mSSG = np.sum(gpSizes*(gpMeans-grandMean)**2)/(nGroups-1)
+      mSSE = np.sum(((gpSizes-1)*gpStd**2)/(overallSampleSize-nGroups))
+      return mSSG/mSSE
+
+    original_f = f_statistic(data)
+    # 5.626673532440782
+  </code></pre>
+
+  <pre class="python"><code data-trim>
+    from scipy import stats
+
+    stats.f_oneway(gp1, gp2, gp3)
+    # F_onewayResult(statistic=5.626673532440782, pvalue=0.011047583712832985)
+  </code></pre>
+
+</section>

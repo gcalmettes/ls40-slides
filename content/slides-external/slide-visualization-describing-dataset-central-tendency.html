@@ -1,0 +1,262 @@
+<section class="title-slide fullwidth" data-transition="slide-in">
+  <h1 class="center">-- 2 --<br> Central tendency</h1>
+  <div class="center">
+    <svg width="75%" viewBox="0 42 576 216"">
+      <use xlink:href="content/img/dotplot-distribution.svg#axes_1"></use>
+      <use xlink:href="content/img/dotplot-distribution.svg#axes_2"></use>
+      <use  class="fragment" xlink:href="content/img/dotplot-distribution.svg#axes_3"></use>
+    </svg>
+  </div>
+</section>
+
+<section data-transition="none">
+  <h3>The mean</h3>
+  <p class="quoted">A common measure of central location is the (arithmetic) <span class="danger">mean</span>.
+  It is sometimes called the <span class="u-danger">average</span>.</p>
+  <div class="row">
+    <div class="danger col-50 biggest down-3 center">
+      $\bar{x}=\sum x_{i}$
+    </div>
+    <div class="col-50 small down-2">
+      <span class="u em">Notation:</span><br>
+      <span class="info">$\bar{x}$</span> for a sample (read "x-bar") <br>
+      <span class="info">$\mu$</span> for a population
+    </div>
+  </div>
+  <div class="small down-5">
+    Which corresponds to:
+  </div>
+  <div class="down-3">
+    $\bar{x}=\frac{x_{1}+x_{2}+...+x_{n}}{n}$
+  </div>
+  <div class="down-3">
+    $\bar{x}=\frac{\textrm{sum of all the observations}}{\textrm{number of observations}}$
+  </div>
+</section>
+
+<section data-transition="none">
+  <h3>The trimmed mean</h3>
+  <p class="quoted">
+    A <span class="danger">trimmed mean</span> refers to the calculation of the mean after discarding given parts of a sample (or distribution) at the high and low end (typically discarding an equal amount of both).
+  </p>
+  <p>
+    Some people consider that the use of a trimmed mean "helps" eliminate the influence of data points on the tails that may affect the traditional mean.
+  </p>
+
+  <table class="small">
+    <tr>
+      <td class="fragment highlight-bg-warning" data-fragment-index=2>1</td>
+      <td>23</td>
+      <td>19</td>
+      <td>24</td>
+      <td>17</td>
+      <td>26</td>
+      <td>20</td>
+      <td>23</td>
+      <td class="fragment highlight-bg-warning" data-fragment-index=2>89</td>
+      <td class="fragment highlight-bg-warning" data-fragment-index=2>82</td>
+    </tr>
+  </table>
+  <div class="row down-4">
+    <div class="col-66">
+      <p class="fragment" data-fragment-index=1>
+        $\bar{x}=\frac{1+23+19+24+17+26+20+23+89+82}{10}=32.4$
+      </p>
+       <p class="fragment down-2" data-fragment-index=3>
+        $\bar{x}_{trimmed}=\frac{23+19+24+17+26+20+23}{7}=21.7$
+      </p>
+    </div>
+    <div class="col-33">
+      <p class="fragment danger" data-fragment-index=4 style="font-size: 1.2em">Never use it!</p>
+    </div>
+  </div>
+
+  <aside class="notes">
+    We'll talk about that later.
+    <br>
+    The median can be regarded as a fully truncated mean and is most robust. As with other trimmed estimators, the main advantage of the trimmed mean is robustness and higher efficiency for mixed distributions and heavy-tailed distribution (like the Cauchy distribution), at the cost of lower efficiency for some other less heavily-tailed distributions (such as the normal distribution). For intermediate distributions the differences between the efficiency of the mean and the median are not very big, e.g. for the student-t distribution with 2 degrees of freedom the variances for mean and median are nearly equal.
+  </aside>
+</section>
+
+<section data-transition="none">
+  <h3>The median</h3>
+  <p class="quoted">
+    The <span class="danger">median</span> of a set of <span class="u-danger">ordered</span> data values is: <br>
+    <span class="right-4">- the middle entry (for an odd number of entries)</span><br>
+    <span class="right-4">- the average of the middle 2 values (for an even number</span> <br>
+      <span class="right-4">of entries)</span>
+  </p>
+  <div class="row">
+    <div class="col-60 down-3">
+      <svg width="100%" viewBox="0 0 239.5 109.5">
+        <use class="fragment" data-fragment-index=2 xlink:href="content/img/median.svg#median1"></use>
+        <use class="fragment" data-fragment-index=1 xlink:href="content/img/median.svg#median2"></use>
+      </svg>
+    </div>
+    <div class="col-40 down-4">
+      <p class="fragment warning" data-fragment-index=2> 
+        mean of $(\frac{n}{2})^{th}$ and $(\frac{n}{2}+1)^{th}$ observations</p>
+      <br>
+      <p class="fragment warning" data-fragment-index=1> $(\frac{n+1}{2})^{th}$ observation</p>
+    </div>
+  </div>
+  <aside class="notes">
+    Sometimes referred to as a measure of location as it tells us where the data are.
+    <br>
+    Median is the value which occupies the middle position when all the observations are arranged in an ascending/descending order. It divides the frequency distribution exactly into two halves. Fifty percent of observations in a distribution have scores at or below the median. Hence median is the 50th percentile.[2] Median is also known as ‘positional average’
+    <br>
+    To find the median, your numbers have to be listed in numerical order from smallest to largest, so you may have to rewrite your list before you can find the median.
+  </aside>
+</section>
+
+<section data-transition="none">
+  <h3>The mode</h3>
+  <p class="quoted">
+    The <span class="danger">mode</span> is the value that occurs most often in the dataset. If no value in the dataset is repeated, then there is no mode this particular dataset.
+  </p>
+  <p class="down-3">
+    What is the mode in the dataset below?
+  </p>
+  <table class="normal">
+    <tr>
+      <td>4</td>
+      <td class="fragment highlight-bg-warning" data-fragment-index=1>5</td>
+      <td>9</td>
+      <td class="fragment highlight-bg-warning" data-fragment-index=1>5</td>
+      <td>11</td>
+      <td>7</td>
+      <td class="fragment highlight-bg-warning" data-fragment-index=1>5</td>
+      <td>3</td>
+      <td>7</td>
+      <td>8</td>
+      <td>6</td>
+      <td class="fragment highlight-bg-warning" data-fragment-index=1>5</td>
+      <td>12</td>
+    </tr>
+  </table>
+
+  <div class="row fragment down-3">
+    <div class="col-60">
+      <img src="content/img/distribution-multimodal.svg" width=100%>
+    </div>
+    <div class="col-40 small down-7">
+      <span class="u em">Note:</span> In a bimodal distribution, the taller peak is called the <span class="strong em">major mode</span> and the shorter one is referred as the <span class="strong em">minor mode</span>.
+    </div>
+  </div>
+</section>
+
+<section data-transition="none">
+  <h3>Resistance</h3>
+  <p class="quoted">
+    The term <span class="danger">resistance</span> is related to the <span class="u-danger">impact of outliers</span> on a statistic.
+    In general, we say that a statistic is resistant if it is relatively <span class="danger">unaffected by extreme values</span>.
+  </p>
+  <p>The median and the mode are resistant, while the mean is not.</p>
+  <div class="row">
+    <div class="col-70">
+      <table class="fragment border-top border-bottom smaller down-2" data-fragment-index=0>
+        <tr>
+          <td>2.5</td>
+          <td>3.2</td>
+          <td>3.5</td>
+          <td>3.9</td>
+          <td>4.0</td>
+          <td>4.4</td>
+          <td>5.3</td>
+          <td>5.9</td>
+          <td>6.1</td>
+          <td>6.4</td>
+          <td class="fragment highlight-bg-warning" data-fragment-index=2><span class="fragment" data-fragment-index=2>30</span></td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-15 smaller fragment right" data-fragment-index=1>
+        <span class="em u">Mean:</span> 4.52 <br>
+        <span class="em u">Median:</span> 4.2
+    </div>
+    <div class="col-15 smaller fragment right" data-fragment-index=3>
+        <span class="em u">Mean:</span> <span class="fragment highlight-bg-warning" data-fragment-index=3>6.84</span> <br>
+        <span class="em u">Median:</span> <span class="fragment highlight-bg-warning" data-fragment-index=3>4.4</span>
+    </div>
+  </div>  
+  <div>
+    <img width="100%" src="content/img/mean-median-mode.svg">  
+  </div>
+  
+  <aside class="notes">
+    In positively skewed distributions, the mean is greater than the median
+    <br>
+    In negatively skewed distributions, the mean is smaller than the median
+    <br>
+    What about the minimum and maximum?
+  </aside>
+</section>
+
+<section data-transition="none">
+  <h3>Resistance</h3>
+  <div class="row">
+    <div class="col-50">
+      <img class="framed" src="content/img/mean-resistance-paper.png">
+    </div>
+    <div class="col-50">
+      Fig. 4
+      <p class="em">
+        "Potential role of intratumor bacteria in mediating tumor resistance to the chemotherapeutic drug gemcitabine"
+      </p>
+      <p class="right">
+        Geller LT et al.
+      </p>
+      <p class="right">
+         <span class="u">Science</span>. 2017 Sep 15;357(6356):1156-1160. doi: 10.1126/science.aah5043
+      </p>
+    </div>
+  </div>  
+</section>
+
+
+<section data-transition='none'>
+  <h3>Averages can be misleading</h3>
+  <svg width="60%" viewBox="0 0 432 432" style="margin-top: 1%;">
+      <use xlink:href="content/img/map-usa-ship.svg#map"></use>
+      <use class="fragment" data-fragment-index=1 xlink:href="content/img/map-usa-ship.svg#panama"></use>
+      <use class="fragment" data-fragment-index=2 xlink:href="content/img/map-usa-ship.svg#caphorn"></use>
+      <use class="fragment" data-fragment-index=3 xlink:href="content/img/map-usa-ship.svg#average"></use>
+    </svg>
+    <aside class="notes">
+      Not only mean is not resistant, but also it doesn't represent well the data.
+    </aside>
+</section>
+
+
+<section data-transition="none">
+  <h3>Pick your central descriptor wisely</h3>
+  <div class="row">
+    <div class="col-50">
+      <p>Number of children per household in China (2012)</p>
+      <p class="normal"><span class="fragment" data-fragment-index=1>Mean: <span class="warning">1.55</span></span><br>
+      <span class="fragment" data-fragment-index=2>Median: <span class="info">1</span></span></p>
+      <p class="fragment down-5" data-fragment-index=3>
+        <i class="fas fa-arrow-circle-right"></i> More representative of the "typical" 2012 family
+        (<span class="u-info">One Child Policy</span>)
+      </p>
+    </div>
+    <div class="col-50">
+      <svg width="100%" viewBox="0 0 300 225">
+        <use xlink:href="content/img/family.svg#family"></use>
+        <use class="fragment current-visible" data-fragment-index=1 xlink:href="content/img/family.svg#childrenhalf"></use>
+        <use class="fragment" data-fragment-index=2 xlink:href="content/img/family.svg#childrenfull"></use>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Other locations</h3>
+  <p class="quoted">The <span class="orange">minimum</span> is the <span class="u-orange">smallest number</span> in the (sorted) dataset.
+  <br> <br>
+  The <span class="info">maximum</span> is the <span class="u-info">largest number</span> in the (sorted) dataset</p>
+  <svg width="75%" viewBox="0 0 239.5 60.5">
+    <use xlink:href="content/img/min-max-range.svg#minmax"></use>
+  </svg>
+</section>
+

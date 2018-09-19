@@ -1,0 +1,105 @@
+<section>
+  <h3>The $\chi^2$ test is a general method</h3>
+  <p>
+    The $\chi^2$ is a statistic describing the discrepancy between an observed and an expected distribution pattern.
+  </p>
+  <p>
+    <i class="fas fa-arrow-circle-right danger"></i> It could be calculated to study categorical variables with <span class="danger">any number of possible outcomes</span> (including coin flip-like experiments, with only 2 categories)
+  </p>
+  <p class="em smaller fragment">
+    We flip a coin 20 times. We get 12 heads. <br>
+    Could we doubt about the fairness of the coin?
+  </p>
+  <div class="row flex fragment">
+    <div class="col-50 flex-center">
+      <div>
+        <div class="small center">
+          Probabilistic model
+        </div>
+        <img src="content/img/coin-toss-simulation-probabilitic-model.svg">
+      </div>
+    </div>
+    <div class="col-50 flex-center">
+      <div>
+        <div class="small center">
+          $\chi^2$
+        </div>
+        <img src="content/img/coin-toss-simulation-chi2.svg">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h3>From "fit" to "association"</h3>
+  <div class="row flex">
+    <div class="col-75 flex-center">
+      <p class="smaller">
+        <i class='fas fa-arrow-circle-right pop'></i>
+        So far we have computed a $\chi^2$ to investigate how compatible an observed distribution pattern of a categorical variable was with the expected distribution pattern for this same categorical variable <span class="em">(how good is the fit between the observed and expected patterns?)</span>.
+      </p>
+    </div>
+    <div class="col-25 flex-center">
+      <table class="center smallest push-left">
+        <tr>
+          <td class="bg-info-light border-right" rowspan=2>Response <br>variable</td>
+        </tr>
+         <tr>
+           <td class="bg-danger-light">Cat. #1</td>
+         </tr>
+         <tr>
+           <td class="bg-info-light border-nobottom border-right">Yes</td>
+           <td class="border-nobottom">50</td>
+         </tr>
+         <tr>
+           <td class="bg-info-light border-nobottom border-right">No</td>
+           <td class="border-nobottom">30</td>
+         </tr>
+         <tr>
+          <td class="bg-info-light border-nobottom border-right">Maybe</td>
+          <td class="border-nobottom">20</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="row flex down-3 fragment">
+    <div class="col-60">
+      <p class="smaller">
+        <i class="fas fa-arrow-circle-right pop"></i>
+        The statistics behind a $\chi^2$ can also be extended to test the difference between different explanatory groups <span class="em">(is there an association between the response and the explanatory variable? is there an effect of the explanatory variable on the response variable?)</span>.
+      </p>
+    </div>
+    <div class="col-40 flex-center">
+      <table class="smallest center push-left">
+        <tr>
+          <td class="bg-info-light border-right" rowspan=2>Response<br>variable</td>
+          <td class="bg-danger-light border-nobottom border-right" colspan=3>Explanatory variable</td>
+        </tr>
+         <tr>
+           <td class="bg-danger-light">Cat. #1</td>
+           <td class="bg-danger-light">Cat. #2</td>
+           <td class="bg-danger-light border-right">Cat. #3</td>
+         </tr>
+         <tr>
+           <td class="bg-info-light border-nobottom border-right">Yes</td>
+           <td class="border-nobottom">50</td>
+           <td class="border-nobottom">65</td>
+           <td class="border-nobottom border-right">35</td>
+         </tr>
+         <tr>
+           <td class="bg-info-light border-nobottom border-right">No</td>
+           <td class="border-nobottom">30</td>
+           <td class="border-nobottom">45</td>
+           <td class="border-right border-nobottom">15</td>
+         </tr>
+         <tr>
+          <td class="bg-info-light border-nobottom border-right">Maybe</td>
+           <td class="border-nobottom">20</td>
+           <td class="border-nobottom">10</td>
+           <td class="border-nobottom border-right">10</td>
+        </tr>
+      </table> 
+    </div>
+  </div>
+</section>

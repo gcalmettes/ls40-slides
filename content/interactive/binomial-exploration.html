@@ -1,0 +1,344 @@
+<!-- Source: modified from https://bl.ocks.org/mbostock/3231298 -->
+
+<!DOCTYPE html>
+<body>
+<style>
+
+  .tossText {
+    font: 25px sans-serif;
+  }
+
+  .simulText {
+    font: 25px sans-serif;
+  }
+
+  .pvalueText {
+    font: 20px sans-serif;
+  }
+
+  .axisLabel {
+    font: 25px sans-serif; 
+  }
+
+
+  div.tooltip { 
+    position: absolute;     
+    text-align: left;     
+    width: 150px;          
+    height: 40px;         
+    padding: 2px;       
+    font: 15px sans-serif;    
+    background: lightsteelblue; 
+    border: 0px;    
+    border-radius: 8px;     
+    pointer-events: none;     
+  }
+
+</style>
+
+<script src="js/d3.min.js"></script>
+<script src="js/simple-statistics.min.js"></script>
+<script>
+
+  const svgWidth = 650,
+        svgHeight = 500
+
+  const nThrow = 28,
+        probability = 0.5
+
+  const binomialData = ss.binomialDistribution(nThrow, probability)
+
+  const colors = {info: '#00BFFF', danger: '#fb4c52', warning:  '#FBC15E'},
+        t = 600
+  
+  let data = d3.range(nThrow + 1).map(d => {
+    return {name: d,
+            count: 0}
+  })
+
+  let nIter = 0
+
+  const svg = d3.select("body").append("svg")
+    .attr("width", svgWidth)
+    .attr("height", svgHeight)
+
+  //Single throw
+  const svgTosses = svg.append("g")
+    .attr("width", +svg.attr("width"))
+    .attr("height", 80)
+    .attr("transform", `translate(0, 0)`);
+
+  svgTosses.selectAll('.toss')
+    .data(d3.range(nThrow))
+    .enter()
+    .append('rect')
+      .attr('class', 'toss')
+      .attr('x', d => d * 22)
+      .attr('y', 20)
+      .attr('rx', 5)
+      .attr('ry', 5)
+      .attr('width', 18)
+      .attr('height', 30)
+      .style('fill', 'grey')
+
+  const headCountText = svgTosses.append("text")
+    .attr('class', 'tossText')
+    .style('fill', colors.info)
+    .attr('x', 600)
+    .attr('y', 80)
+    .attr('text-anchor', 'end')
+    .html(`0 heads`)
+
+
+  //Graph
+  const margin = {top: 20, right: 20, bottom: 80, left: 80};
+  const width = +svg.attr("width") - margin.left - margin.right,
+        height = +svg.attr("height") - (+svgTosses.attr("height")) - margin.top - margin.bottom;
+
+  const svgGraph = svg.append("g")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom - (+svgTosses.attr("height")))
+      .attr("transform", `translate(${margin.left}, ${+svgTosses.attr("height")+margin.top})`);
+
+  const xScale = d3.scaleLinear()
+    .range([0, width])
+    .domain([0, nThrow])
+
+  const yScale = d3.scaleLinear()
+    .range([height, 0])
+    .domain([0, d3.max(binomialData)])
+
+  const xAxis = d3.axisBottom(xScale)
+    
+  const yAxis = d3.axisLeft(yScale)
+
+  // clip defs to be used so axis transitions are hidden
+  svgGraph.append("defs").append("clipPath")
+    .attr("id", "clip")
+  .append("rect")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top/3 + margin.bottom)
+    .attr("transform", `translate(${-margin.left}, ${-margin.top/3})`)
+
+  svgGraph.append('g')
+      .attr('class', 'axis xAxis')
+      .attr('transform', `translate(0, ${height})`)
+    .call(xAxis)
+  svgGraph.append('text')
+      .attr('class', 'axisLabel')
+      .attr('x', width/2)
+      .attr('y', height+margin.bottom/1.5)
+      .style('text-anchor', 'middle')
+      .text('Number of heads');
+
+  svgGraph.append('g')
+      .attr('class', 'axis yAxis')
+      .attr("clip-path", "url(#clip)")
+      .attr('transform', `translate(0, 0)`)
+    .call(yAxis)
+  svgGraph.append('text')
+      .attr('class', 'axisLabel')
+      .attr('transform', `translate(${-margin.left/1.5}, ${height/2}) rotate(-90)`)
+      .style('text-anchor', 'middle')
+      .text('Relative Frequency');
+
+
+  // Exact binomial
+  const binomialBars = svgGraph.selectAll('.binomialBar')
+    .data(binomialData)
+    .enter()
+    .append('rect')
+      .attr('class', 'binomialBar')
+      .attr('x', (d, i) => xScale(i))
+      .attr('y', (d, i) => yScale(d))
+      .attr('width', 1)
+      .attr('height', d => height - yScale(d))
+
+
+  // Define the div for the tooltip
+  const div = d3.select("body").append("div") 
+    .attr("class", "tooltip")       
+    .style("opacity", 0);
+
+  const dots = svgGraph.selectAll('.dots')
+    .data(data)
+    .enter()
+    .append('circle')
+      .attr('class', 'dot')
+      .attr('cx', d => xScale(d.name))
+      .attr('cy', d => yScale(d.count))
+      .attr('r', 8)
+      .style('fill', colors.danger)
+    .on("mouseover", d => {    
+      div.transition()    
+        .duration(200)    
+        .style("opacity", .9);    
+      div.html(`# Heads: ${d.name}<br/>Frequency: ${(d.count/d3.sum(data, k => k.count)).toFixed(4)}`)  
+        .style("left", (d3.event.pageX) + "px")   
+        .style("top", (d3.event.pageY - 28) + "px");  
+      })          
+    .on("mouseout", function(d) {   
+      div.transition()    
+          .duration(500)    
+          .style("opacity", 0); 
+    });
+
+  const simulCountText = svgGraph.append("text")
+    .attr('class', 'simulText')
+    .attr('x', 20)
+    .attr('y', 10)
+    .attr('text-anchor', 'start')
+    .html(`Simulations: ${nIter}`)
+
+  svgGraph.append("text")
+    .attr('class', 'pvalueText')
+    .attr('x', 500)
+    .attr('y', 70)
+    .attr('text-anchor', 'middle')
+    .html(`p (>=19 heads)`)
+  const pvalueText = svgGraph.append("text")
+    .attr('class', 'simulText')
+    .attr('x', 500)
+    .attr('y', 100)
+    .attr('text-anchor', 'middle')
+    .html(`0`)
+
+
+  function simulate (nThrow, probability) {
+    return d3.range(nThrow).map(d => Math.random()<probability?1:0)
+  }
+
+  function simulateMulti (nThrow, probability, nTimes) {
+    const tosses = d3.range(nTimes).map(d => simulate(nThrow, probability))
+
+     //display last throw
+    svgTosses.selectAll('.toss')
+      .data(tosses[tosses.length-1])
+      .style('fill', d => d==0?colors.warning:colors.info)
+
+    headCountText
+      .html(`${d3.sum(tosses[tosses.length-1])} heads`)
+
+    return tosses
+  }
+
+  function countWins (nThrow, probability, nTimes) {
+    return simulateMulti(nThrow, probability, nTimes).map(d => d3.sum(d))
+  }
+
+  function playAndGetNewData (nThrow, probability, nTimes, originalData) {
+    const update = countWins(nThrow, probability, nTimes).reduce((total, val) => {
+      total[val] = (total[val] || 0) + 1 ;
+      return total
+    }, {})
+
+    return originalData.map(d => {
+      return {name: d.name, count: d.count + (update[d.name] || 0)}
+    })
+  }
+
+  function playSimulation (nThrow, probability, nTimes, originalData, t) {
+    data = playAndGetNewData (nThrow, probability, nTimes, originalData)
+
+    nIter += nTimes
+
+    yScale.domain([0, d3.max(data, d=>d.count)/d3.sum(data, d => d.count)])
+
+    dots.data(data)
+      .transition()
+        .duration(t)
+      .attr('cx', d => xScale(d.name))
+      .attr('cy', d => yScale(d.count/d3.sum(data, k => k.count)))
+
+    svgGraph.select('.yAxis')
+      .transition().duration(t)
+      .call(yAxis)
+
+
+    binomialBars.transition().duration(t)
+      .attr('y', (d, i) => yScale(d))
+      .attr('height', d => height - yScale(d))
+
+    simulCountText
+      .html(`Simulations: ${nIter}`)
+
+    pvalueText
+      .html(`${(d3.sum(data.filter(d=>d.name>=19), d=>d.count)/nIter).toFixed(4)}`)
+  }
+
+
+  var _transitions = [
+    {
+      transitionForward: () => playSimulation (nThrow, probability, 1, data, t),
+      transitionBackward: () => {
+        data = d3.range(nThrow + 1).map(d => {
+          return {name: d, count: 0}
+        })
+
+        svgTosses.selectAll('.toss')
+          .style('fill', d => 'grey')
+
+        headCountText
+          .html(`0 heads`)
+
+        yScale.domain([0, d3.max(binomialData)])
+
+        dots.data(data)
+          .transition()
+            .duration(t)
+          .attr('cx', d => xScale(d.name))
+          .attr('cy', d => yScale(0))
+
+        svgGraph.select('.yAxis')
+          .transition().duration(t)
+          .call(yAxis)
+
+
+        binomialBars.transition().duration(t)
+          .attr('y', (d, i) => yScale(d))
+          .attr('height', d => height - yScale(d))
+
+        nIter = 0
+        simulCountText
+          .html(`Simulations: ${nIter}`)
+
+      }, 
+      index: 0
+    },
+    {
+      transitionForward: () => playSimulation (nThrow, probability, 1, data, t),
+      index: 1
+    },
+    {
+      transitionForward: () => playSimulation (nThrow, probability, 1, data, t),
+      index: 2
+    },
+    {
+      transitionForward: () => {
+        //Run the simulation for iterMax iterations
+        let iter = 0;
+        const iterMax = 997;
+
+        const timer = d3.interval(function(d) {
+          //euler method to calculate new state
+          playSimulation (nThrow, probability, 1, data, 20)
+
+          iter += 1
+
+          if (iter >= iterMax) timer.stop()
+
+        }, 30);//d3.timer
+        
+      },
+      index: 3
+    },
+    {
+      transitionForward: () => playSimulation (nThrow, probability, 1000, data, 600),
+      index: 4
+    },
+    {
+      transitionForward: () => playSimulation (nThrow, probability, 8000, data, 600),
+      index: 5
+    },
+  ]
+</script>

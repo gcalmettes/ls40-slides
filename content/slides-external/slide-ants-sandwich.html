@@ -1,0 +1,158 @@
+<section>
+  <h3>What about multiple explanatory categories for quantitative variables</h3>
+  <p class="down-3">
+    We know how to do inference for a difference in means in the case of a two-groups explanatory variable.
+  </p>
+  <div class="row flex">
+    <div class="col-50 flex-center">
+      <div>
+        <p>
+          How to do hypothesis testing for a <span class="danger">difference in mean (or median) across multiple categories</span> (i.e. compare more than two groups)?
+        </p>
+        <p class="em">
+          Could a similar approach than for multiple categorical variables be applied?
+        </p>
+      </div>
+    </div>
+    <div class="col-50 flex-center">
+      <img src="content/img/multiple-means-ex.svg" width=100%>
+    </div>
+  </div>
+</section>
+
+
+<section data-transition="slide-in">
+  <h3>The gluttonous ants experiment</h3>
+  <div class="row down-2">
+    <div class="col-65">
+      <p>
+        As young students in Australia, Dominic Kelly and his friends enjoyed watching ants gather on pieces of sandwiches. Later, as a university student, Dominic decided to study this with a <span class="strong">more formal experiment</span>. He chose three types of sandwich fillings to compare:
+      </p>
+      <div class="row">
+        <ul class="small no-margin-top no-margin-bottom push-left">
+          <li>Vegemite</li>
+          <li>Peanut Butter</li>
+          <li>Ham and Pickles</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-35">
+      <img src="content/img/ants-sandwich.png" width=100%>
+    </div>
+  </div>
+  <p class="col-70 push-right tiny right muted">
+    Mackisack, M., <span class="em">“Favourite Experiments: An Addendum to What Is the Use of Experiments Conducted by Statistics Students?”</span> Journal of Statistics Education, 1994 <br><a href="https://ww2.amstat.org/publications/jse/v2n1/mackisack.supp.html">http://www.amstat.org/publications /jse/v2n1/mackisack.supp.html</a>
+  </p>
+</section>
+
+<section data-transition="none">
+  <h3>The gluttonous ants experiment</h3>
+  <p class="down-3">
+    To conduct the experiment Dominic was: 
+  </p>
+  <ol class="smaller col-80">
+    <li>
+      <span class="strong">randomly chosing a sandwich</span>, breaking off a piece and leaving it on the ground near an ant hill.
+    </li>
+    <li>
+      After several minutes (5min) he was placing a jar over the sandwich bit and he <span class="strong">counted the number of ants</span>.
+    </li>
+  </ol>
+  <p>
+    He <span class="danger">repeated the process</span>, allowing time for ants to return to the hill after each trial, until he had <span class="strong">eight samples for each</span> of the three sandwich fillings.
+  </p>
+  <table class="col-80 center smallest">
+    <tr>
+      <td class="border-nobottom"></td>
+      <td class="bg-muted-light black border-nobottom border-right border-left border-top" colspan="8">Number of ants visiting sandwiches</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td class="bg-muted-light black border-left">#1</td>
+      <td class="bg-muted-light black">#2</td>
+      <td class="bg-muted-light black">#3</td>
+      <td class="bg-muted-light black">#4</td>
+      <td class="bg-muted-light black">#5</td>
+      <td class="bg-muted-light black">#6</td>
+      <td class="bg-muted-light black">#7</td>
+      <td class="bg-muted-light black border-right">#8</td>
+      <td>$\bar{x}$</td>
+      <td>$s$</td>
+    </tr>
+    <tr class="border-bottom">
+      <td class="bg-warning-light border-left border-right">Vegemite</td>
+      <td>18</td>
+      <td>29</td>
+      <td>42</td>
+      <td>42</td>
+      <td>31</td>
+      <td>21</td>
+      <td>38</td>
+      <td class="border-right">25</td>
+      <td class="warning-dark border-nobottom">30.75</td>
+      <td class="warning-dark border-nobottom">9.25</td>
+    </tr>
+    <tr class="border-bottom">
+      <td class="bg-info-light border-left border-right">Peanut Butter</td>
+      <td>43</td>
+      <td>59</td>
+      <td>22</td>
+      <td>25</td>
+      <td>36</td>
+      <td>47</td>
+      <td>19</td>
+      <td class="border-right">21</td>
+      <td class="info border-nobottom">34.0</td>
+      <td class="info border-nobottom">14.63</td>
+    </tr>
+    <tr>
+      <td class="bg-danger-light border-left border-right">Ham & Pickles</td>
+      <td>44</td>
+      <td>34</td>
+      <td>36</td>
+      <td>49</td>
+      <td>54</td>
+      <td>65</td>
+      <td>59</td>
+      <td class="border-right">53</td>
+      <td class="danger">49.25</td>
+      <td class="danger">10.79</td>
+    </tr>
+  </table>
+</section>
+
+<section data-transition="fade-in slide-out">
+  <h3>The gluttonous ants experiment</h3>
+  <div class="row">
+    <div class="col-45">
+      <p>
+        <span class="u">Question:</span><br>
+        <span class="em">Do ants have a preferential sandwich filling?</span>
+      </p>
+      <div class="row flex down-6">
+        <div class="col-20 flex-center">
+          <i class="fas fa-question fa-3x warning"></i>
+        </div>
+        <div class="col-60 flex-center">
+         <img src="content/img/ants-sandwich-preferred.png" width=100%>
+        </div>
+        <div class="col-20 flex-center">
+          <i class="fas fa-question fa-3x warning"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-55">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/ants-sandwich-dotplot.svg#axes_1"></use>
+      </svg>
+    </div>
+  </div>
+  <div class="fragment">
+    <p class="sided-no-bg border-muted">
+      $H_0$: $\mu_\texclass{warning}{1}=\mu_\texclass{info}{2}=\mu_\texclass{danger}{3}$
+    </p>
+    <p class="sided-no-bg border-pop">
+      $H_a$: At least one $\mu_i\neq\mu_j$
+    </p>
+  </div>
+</section>

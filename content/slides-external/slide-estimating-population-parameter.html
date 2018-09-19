@@ -1,0 +1,371 @@
+
+
+<section data-transition="slide-in">
+  <h3>Estimating $\pi_{\textrm{win}}$ for UCLA against USC</h3>
+  <p class="em u down-3">Let's get back to the UCLA-USC basketball games investigation</p>
+  <p>
+    <i class="fas fa-arrow-circle-right danger"></i> What is the <span class="danger">true probability of UCLA to win a game against USC</span>? <br>
+    In other words, if UCLA and USC were to play an infinite number of basketball games, what parameter $\pi_{\textrm{win}}$ would we observe on the long-run?
+  </p>
+  <p class="fragment down-3 sided">
+    How could we gain more knowledge about the true value of
+    the probability of UCLA to win a game against USC by using the inference method we have seen so far (significance)?
+  </p>
+</section>
+
+<section data-transition="none">
+  <h3>Estimating $\pi_{\textrm{win}}$ for UCLA against USC</h3>
+  <p>
+    We have tested the compatibility of our sample of 249 games with a
+    <span class="u orange">specific parameter value</span> for
+    our null hypothesis (<span class="orange">0.5</span>).
+  </p>
+  <p class="fragment down-2" data-fragment-index=2>
+    <i class="fas fa-arrow-circle-right"></i> What if we were testing the compatibility of our sample with other null-hypothesis
+    parameter values? Or even over a full range of null hypothesis parameter values?
+  </p>
+  <table class="normal center right-5">
+    <tbody>
+      <tr>
+        <td class="border-right">$\hat{p}$</td>
+        <td colspan="7"><span class="info">0.562</span></td>
+      </tr>
+      <tr>
+        <td class="border-right">$\pi_0$</td>
+        <td><span class="fragment" data-fragment-index=3>0.48</span></td>
+        <td class="fragment highlight-bg-info" data-fragment-index=1>0.5</td>
+        <td><span class="fragment" data-fragment-index=3>0.55</span></td>
+        <td><span class="fragment" data-fragment-index=3>0.58</span></td>
+        <td><span class="fragment" data-fragment-index=3>0.6</span></td>
+        <td><span class="fragment" data-fragment-index=3>0.62</span></td>
+        <td><span class="fragment" data-fragment-index=3>0.65</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section data-transition="none">
+  <h3>Estimating $\pi_{\textrm{win}}$ for UCLA against USC</h3>
+  <table class="normal center right-5">
+    <tbody>
+      <tr>
+        <td class="border-right">$\hat{p}$</td>
+        <td colspan="7"><span class="info">0.562</span></td>
+      </tr>
+      <tr>
+        <td class="border-right">$\pi_0$</td>
+        <td><span>0.48</span></td>
+        <td class="bg-info">0.5</td>
+        <td><span>0.55</span></td>
+        <td><span>0.58</span></td>
+        <td><span>0.6</span></td>
+        <td><span>0.62</span></td>
+        <td><span>0.65</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <div class="row">
+    <div class="col-45 smallest">
+      10000 simulations of 249 game outcomes <br> (win, $\pi_0=0.48$)
+    </div>
+    <div class="col-45 smallest right-10">
+      10000 simulations of 249 game outcomes <br> (win, $\pi_0=0.65$)
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-45">
+      <table class="tiny center">
+        <thead>
+          <th class="bg-muted">Simulation <br> #</th>
+          <th class="bg-muted" colspan="8">Random sample <br> ($n=249$)</th>
+          <th class="bg-muted">sample <br> $\hat{p}$</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="border-right">1</td>
+            <td>0</td>
+            <td>1</td>
+            <td>0</td>
+            <td>...</td>
+            <td>1</td>
+            <td>0</td>
+            <td>0</td>
+            <td class="border-right">1</td>
+            <td class="fragment highlight-bg-pop" data-fragment-index=1>0.476</td>
+          </tr>
+          <tr>
+            <td class="border-right">2</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>...</td>
+            <td>0</td>
+            <td>1</td>
+            <td>1</td>
+            <td class="border-right">0</td>
+            <td class="fragment highlight-bg-pop" data-fragment-index=1>0.498</td>
+          </tr>
+          <tr>
+            <td class="border-right">3</td>
+            <td>1</td>
+            <td>1</td>
+            <td>0</td>
+            <td>...</td>
+            <td>0</td>
+            <td>1</td>
+            <td>1</td>
+            <td class="border-right">1</td>
+            <td class="fragment highlight-bg-pop" data-fragment-index=1>0.482</td>
+          </tr>
+          <tr class="vertical-align">
+            <td class="border-right">...</td>
+            <td class="border-right" colspan=8>...</td>
+            <td class="fragment highlight-bg-pop" data-fragment-index=1>...</td>
+          </tr>
+          <tr>
+            <td class="border-right">9999</td>
+            <td>0</td>
+            <td>1</td>
+            <td>0</td>
+            <td>...</td>
+            <td>0</td>
+            <td>1</td>
+            <td>0</td>
+            <td class="border-right">1</td>
+            <td class="fragment highlight-bg-pop" data-fragment-index=1>0.481</td>
+          </tr>
+          <tr>
+            <td class="border-right">10000</td>
+            <td>0</td>
+            <td>1</td>
+            <td>0</td>
+            <td>...</td>
+            <td>0</td>
+            <td>1</td>
+            <td>1</td>
+            <td class="border-right">0</td>
+            <td class="fragment highlight-bg-pop" data-fragment-index=1>0.509</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="col-10 center biggest">
+      ...
+    </div>
+
+    <div class="col-45">
+      <table class="tiny center">
+        <thead>
+          <th class="bg-muted">Simulation <br> #</th>
+          <th class="bg-muted" colspan="8">Random sample <br> ($n=249$)</th>
+          <th class="bg-muted">sample <br> $\hat{p}$</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="border-right">1</td>
+            <td>1</td>
+            <td>0</td>
+            <td>1</td>
+            <td>...</td>
+            <td>1</td>
+            <td>0</td>
+            <td>1</td>
+            <td class="border-right">1</td>
+            <td class="fragment highlight-bg-pop" data-fragment-index=1>0.649</td>
+          </tr>
+          <tr>
+            <td class="border-right">2</td>
+            <td>0</td>
+            <td>1</td>
+            <td>1</td>
+            <td>...</td>
+            <td>0</td>
+            <td>1</td>
+            <td>0</td>
+            <td class="border-right">0</td>
+            <td class="fragment highlight-bg-pop" data-fragment-index=1>0.682</td>
+          </tr>
+          <tr>
+            <td class="border-right">3</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>...</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td class="border-right">1</td>
+            <td class="fragment highlight-bg-pop" data-fragment-index=1>0.628</td>
+          </tr>
+          <tr class="vertical-align">
+            <td class="border-right">...</td>
+            <td class="border-right" colspan=8>...</td>
+            <td class="fragment highlight-bg-pop" data-fragment-index=1>...</td>
+          </tr>
+          <tr>
+            <td class="border-right">9999</td>
+            <td>0</td>
+            <td>0</td>
+            <td>1</td>
+            <td>...</td>
+            <td>0</td>
+            <td>0</td>
+            <td>1</td>
+            <td class="border-right">1</td>
+            <td class="fragment highlight-bg-pop" data-fragment-index=1>0.617</td>
+          </tr>
+          <tr>
+            <td class="border-right">10000</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>...</td>
+            <td>0</td>
+            <td>1</td>
+            <td>1</td>
+            <td class="border-right">0</td>
+            <td class="fragment highlight-bg-pop" data-fragment-index=1>0.696</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<section data-transition="none">
+  <h3>Estimating $\pi_{\textrm{win}}$ for UCLA against USC</h3>
+  <div class="row">
+    <div class="col-100">
+      <svg width="100%" viewBox="0 20 648 432">
+        <use xlink:href="content/img/ucla-usc-simulation-increasing-null.svg#axes_1"></use>
+        <use  class="fragment" xlink:href="content/img/ucla-usc-simulation-increasing-null.svg#axes_2"></use>
+        <use  class="fragment" xlink:href="content/img/ucla-usc-simulation-increasing-null.svg#axes_3"></use>
+        <use  class="fragment" xlink:href="content/img/ucla-usc-simulation-increasing-null.svg#axes_4"></use>
+        <use  class="fragment" xlink:href="content/img/ucla-usc-simulation-increasing-null.svg#axes_5"></use>
+        <use  class="fragment" xlink:href="content/img/ucla-usc-simulation-increasing-null.svg#axes_6"></use>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section data-transition="none">
+  <h3>Estimating $\pi_{\textrm{win}}$ for UCLA against USC</h3>
+  <div class="bg-danger-light"> animation of full process with cursors</div>
+</section>
+
+<section data-transition="none">
+  <h3>Estimating $\pi_{\textrm{win}}$ for UCLA against USC</h3>
+  <table class="normal center right-5">
+    <tbody>
+      <tr>
+        <td class="border-right">$\hat{p}$</td>
+        <td colspan="7"><span class="info">0.562</span></td>
+      </tr>
+      <tr>
+        <td class="border-right">$\pi_0$</td>
+        <td class="fragment highlight-bg-danger" data-fragment-index=1>0.48</td>
+        <td class="bg-info">0.5</td>
+        <td class="fragment highlight-bg-info" data-fragment-index=1>0.55</td>
+        <td class="fragment highlight-bg-info" data-fragment-index=1>0.58</td>
+        <td class="fragment highlight-bg-info" data-fragment-index=1>0.6</td>
+        <td class="fragment highlight-bg-info" data-fragment-index=1>0.62</td>
+        <td class="fragment highlight-bg-danger" data-fragment-index=1>0.65</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="sided border-orange fragment down-3">
+    The sample we calculated our statistic of interest from could have been drawn from
+    population distributions with parameter $\pi$
+    ranging at least from 0.5 to 0.62 (we could not reject the null hypothesis at the two tailed 0.05 level for this range of values).
+  </p>
+  <p class="fragment down-3">
+    <i class="fas fa-arrow-circle-right orange"></i> The long-run probability $\pi_\textrm{win}$ for UCLA to win a game against USC is
+    in this <span class="orange">range estimate</span>.
+  </p>
+</section>
+
+<section data-transition="none">
+  <h3>Estimating $\pi_{\textrm{win}}$ for UCLA against USC</h3>
+  <table class="normal center right-5">
+    <tbody>
+      <tr>
+        <td class="border-right">$\hat{p}$</td>
+        <td colspan="7"><span class="info">0.562</span></td>
+      </tr>
+      <tr>
+        <td class="border-right">$\pi_0$</td>
+        <td class="bg-danger">0.48</td>
+        <td class="bg-info">0.5</td>
+        <td class="bg-info">0.55</td>
+        <td class="bg-info">0.58</td>
+        <td class="bg-info">0.6</td>
+        <td class="bg-info">0.62</td>
+        <td class="bg-danger">0.65</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="down-5 em u muted">
+    <i class="fas fa-lightbulb"></i> Key ideas:
+  </p>
+  <ul class="smaller margin-bottom-10">
+    <li>
+      The interval of <span class="em danger">plausible values</span> we just obtained approximates what is called the <span class="danger">95% confidence interval</span> of the long-run probability for UCLA to win a game against USC. (we used $\alpha=0.05$ as statistical significance threshold)
+    </li>
+    <li>
+      The <span class="pop">95%</span> value
+      is called the <span class="pop">confidence level</span>, and is a
+      measure of how confident we are about our interval containing the
+      true population parameter.
+    </li>
+    <li>
+      If you think about it, we can also actually use the 95%
+    confidence interval as a
+    <span class="info">measure of the strength of evidence</span>! <br>
+    <i class="fas fa-arrow-circle-right info"></i> if the parameter of the
+    null distribution we're testing is in the interval, then we cannot
+    reject that our sample has been drawn from such a null distribution.
+    </li>
+  </ul>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Estimating $\pi_{\textrm{win}}$ for UCLA against USC</h3>
+  <table class="normal center right-5">
+    <tbody>
+      <tr>
+        <td class="border-right">$\hat{p}$</td>
+        <td colspan="7"><span class="info">0.562</span></td>
+      </tr>
+      <tr>
+        <td class="border-right">$\pi_0$</td>
+        <td class="bg-danger">0.48</td>
+        <td class="bg-info">0.5</td>
+        <td class="bg-info">0.55</td>
+        <td class="bg-info">0.58</td>
+        <td class="bg-info">0.6</td>
+        <td class="bg-info">0.62</td>
+        <td class="bg-danger">0.65</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="down-3 sided">
+    Right now, we only have a rough idea of the boundaries of the 95% confidence interval, since we only tested a limited quantity of plausible values.
+  </p>
+  <p>
+    (for example, we only know that the lower limit of our confidence interval is somewhere between 0.48 and 0.50, we don't know its exact value).
+  </p>
+  <p>
+    <span class="fragment">
+      <i class="fas fa-arrow-right"></i> We could test against other values.
+    </span>
+    <span class="fragment em">
+      But this would be time consuming, and still limited to the values we would test.
+    </span>
+  </p>
+  <p class="down-3 fragment framed bg-info-light">
+    What if we could directly compute the 95% confidence interval of the population parameter from our sample?
+  </p>
+</section>

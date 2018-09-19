@@ -1,0 +1,179 @@
+<section>
+  <h3>Example of different expected $\pi_i$</h3>
+  <div class="row">
+    <div class="col-50">
+      <p>
+        In 1866, <span class="strong">Gregor Mendel</span>, the “father of genetics” published the results of his experiments on peas.
+      </p>
+      <p class="down-5">
+        He found that <span class="pop">his experimental distribution of peas closely matched the theoretical distribution predicted by his theory of genetics</span> (involving alleles, and dominant and recessive genes)
+      </p>
+    </div>
+    <div class="col-50">
+      <img class="framed" src="content/img/mendel-pea-genetics.png" width=100%>
+      <img class="framed fragment" src="content/img/mendel-pea-results.png">
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide-in">
+  <h3>Mendel's pea experiment</h3>
+  <div class="row">
+    <div class="col-50">
+      <p class="framed border-light">
+        Does the observed experimental distribution match the
+        theoretical distribution predicted by genetics?
+      </p>
+      <p class="down-5">
+        <i class="fas fa-arrow-circle-right pop"></i>
+        Let’s test these data against the <span class="pop">null hypothesis of the proportions distribution</span> based on the theory of genetics.
+      </p>
+    </div>
+    <div class="col-50">
+      <table class="smaller center">
+        <col width=44%>
+        <col width=28%>
+        <col width=28%>
+        <tr class="bg-warning-light black">
+          <td>Phenotype</td>
+          <td>Theoretical proportion</td>
+          <td>Observed count</td>
+        </tr>
+        <tr>
+          <td>Round, Yellow</td>
+          <td>$9/16$</td>
+          <td>$315$</td>
+        </tr>
+        <tr>
+          <td>Round, Green</td>
+          <td>$3/16$</td>
+          <td>$108$</td>
+        </tr>
+        <tr>
+          <td>Wrinkled, Yellow</td>
+          <td>$3/16$</td>
+          <td>$101$</td>
+        </tr>
+        <tr>
+          <td>Wrinkled, Green</td>
+          <td>$1/16$</td>
+          <td>$32$</td>
+        </tr>
+        <tr class="bg-muted-light black">
+          <td>Total</td>
+          <td>$1$</td>
+          <td>$556$</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <p>
+    <span class="u em">Null Hypothesis:</span> <br>
+    <bspan>$H_0: \pi_1=\frac{9}{16}$</bspan>, <bspan class="right-2">$\pi_2=\frac{3}{16}$</bspan>, <bspan class="right-2">$\pi_3=\frac{3}{16}$</bspan>, <bspan class="right-2">$\pi_4=\frac{1}{16}$</bspan>
+  </p>
+  <p class="down-3">
+    <span class="u em">Alternative Hypothesis:</span> <br>
+    $H_a:$ at least one $\pi_i$ is not as specified in $H_0$
+  </p>
+</section>
+
+<section data-transition="none">
+  <h3>Mendel's pea experiment</h3>
+  <p>
+    What is the <span class="pop">expected count for each pea category</span>? ($n_\mathrm{total}\times\pi_i$)
+  </p>
+  <table class="smaller center col-90 down-3">
+    <col width=29%>
+    <col width=18%>
+    <col width=18%>
+    <col width=35%>
+    <tr class="bg-warning-light black">
+      <td>Phenotype</td>
+      <td>Theoretical proportion</td>
+      <td>Observed count</td>
+      <td>Expected count</td>
+    </tr>
+    <tr>
+      <td>Round, Yellow</td>
+      <td>$9/16$</td>
+      <td>$315$</td>
+      <td>$556\times9/16=\texclass{pop}{312.75}$</td>
+    </tr>
+    <tr>
+      <td>Round, Green</td>
+      <td>$3/16$</td>
+      <td>$108$</td>
+      <td>$556\times3/16=\texclass{pop}{104.25}$</td>
+    </tr>
+    <tr>
+      <td>Wrinkled, Yellow</td>
+      <td>$3/16$</td>
+      <td>$101$</td>
+      <td>$556\times3/16=\texclass{pop}{104.25}$</td>
+    </tr>
+    <tr>
+      <td>Wrinkled, Green</td>
+      <td>$1/16$</td>
+      <td>$32$</td>
+      <td>$556\times1/16=\texclass{pop}{34.75}$</td>
+    </tr>
+    <tr class="bg-muted-light black">
+      <td>Total</td>
+      <td>$1$</td>
+      <td>$556$</td>
+      <td>$556$</td>
+    </tr>
+  </table>
+  <p class="u fragment down-2" data-fragment-index=1>
+    <i class="fas fa-arrow-circle-right info"></i>
+    What is the calculated $\chi^2$ from these results?
+  </p>
+  <p class="fragment" data-fragment-index=2>
+    $\chi^2=\frac{(315-312.75)^2}{312.75}+\frac{(108-104.25)^2}{104.25}+\frac{(101-104.25)^2}{104.25}+\frac{(32-34.75)^2}{34.75}$
+  </p>
+  <p class="fragment" data-fragment-index=2>
+    $\chi^2=0.016+0.135+0.101+0.218$
+  </p>
+  <p class="fragment info" data-fragment-index=2>
+    $\chi^2=0.470$
+  </p>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Mendel's pea experiment</h3>
+  <div class="row">
+    <div class="col-50">
+      <p class="smaller">Simulation</p>
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/mendel-pea-simulation-chi2.svg#axes_1"></use>
+        <use xlink:href="content/img/mendel-pea-simulation-chi2.svg#axes_2"></use>
+        <use xlink:href="content/img/mendel-pea-simulation-chi2.svg#axes_3"></use>
+      </svg>
+    </div>
+    <div class="col-50">
+      <p class="smaller">Theoretical distribution</p>
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/mendel-pea-theory-chi2.svg#axes_1"></use>
+        <use xlink:href="content/img/mendel-pea-theory-chi2.svg#axes_2"></use>
+      </svg>
+    </div>
+  </div>
+  <p class="smaller u em down-2">
+    Does this prove Mendel’s theory of genetics?
+  </p>
+  <div class="fragment">
+    <div class="row flex">
+      <div class="col-8 flex-center">
+        <i class="fas fa-exclamation-triangle danger"></i>
+      </div>
+      <div class="col-92 smaller flex-center">
+        <div>
+          No!</span> You should never accept the null hypothesis!!! A high p-value doesn’t “prove” or give evidence for anything.
+        </div>
+      </div>
+    </div>
+    <p class="smaller">
+      This p-value only <span class="danger">suggests</span> that the obtained distribution of pea phenotypes <span class="danger">could have been observed if the null hypothesis was true</span>. 
+    </p>
+  </div>
+</section>

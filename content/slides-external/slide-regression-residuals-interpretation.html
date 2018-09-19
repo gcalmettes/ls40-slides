@@ -1,0 +1,93 @@
+<section>
+  <h3>Interpreting the residuals plot</h3>
+  <div class="orange">
+    <span class="circled-bg-orange black">1</span> Outlier (response variable)
+  </div>
+  <div class="row down-3">
+    <div class="col-45">
+      <p>
+        A value much lower or much larger than the other ones in the residual plot might
+        be the sign of the presence of an outlier in the dataset,
+        that may <span class="danger">reduce the strength of the regression model</span>
+        (large error = lower $R^2$).
+      </p>
+      <p class="down-3">
+        <i class="fas fa-arrow-circle-right danger"></i>
+        Depending of your study, you may decide to use a robust linear regression method.
+      </p>
+    </div>
+    <div class="col-55">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/regression-residuals-exploration-1.svg#axes_1"></use>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h3>Interpreting the residuals plot</h3>
+  <div class="pink">
+    <span class="circled-bg-pink black">2</span> Outlier (explanatory variable)
+  </div>
+  <div class="row down-3">
+    <p class="col-45">
+      A residual lying at the far end of the plot, directly on the $0$ line is the sign of an outlier that has pulled the regression line towards it.
+      This type of outlier <span class="danger">"artificially" increases the strength of the regression model (higher $R^2$)</span>, (this outlier has no error because the line has passed right through it). 
+    </p>
+    <div class="col-55">
+      <svg width="100%" viewBox="0 0 432 288" style="margin-top: 0;">
+        <use xlink:href="content/img/regression-residuals-exploration-2.svg#axes_1"></use>
+      </svg>
+    </div>
+  </div>
+  <p>
+    <i class="fas fa-arrow-circle-right danger"></i>
+    The equation and predictions from the obtained regression line are <span class="strong">likely to be incorrect</span>.
+  </p>
+</section>
+
+<section>
+  <h3>Interpreting the residuals plot</h3>
+  <div class="success">
+    <span class="circled-bg-success black">3</span> Fan shape
+  </div>
+  <div class="row down-3">
+    <div class="col-45">
+      <p>
+        A fan shape in the residuals plot indicates that the amount of <span class="warning">error is not constant along the regression line</span>. At the lower end of the line, the errors are small; at the high end, the errors are large.
+      </p>
+      <p>
+        <i class="fa fa-arrow-circle-right danger"></i>
+        You often encounter this kind of heteroscedasticity (hetero = different, scedastic = scatter) when <span class="warning">an additional variable is influencing the relationship</span>.
+      </p>
+    </div>
+    <div class="col-55">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/regression-residuals-exploration-3.svg#axes_1"></use>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h3>Interpreting the residuals plot</h3>
+  <div class="info">
+    <span class="circled-bg-info black">3</span> Curved residuals
+  </div>
+  <div class="row down-3">
+    <div class="col-45">
+      <p>
+        Residuals in a curve indicate that the relationship between the two variables is <span class="danger">not linear</span>.
+      </p>
+      <p class="down-2">
+        <i class="fas fa-arrow-circle-right danger"></i>
+        You need to reconsider your variables or conduct non-linear regression analysis (not covered in this class).
+      </p>
+    </div>
+    <div class="col-55">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/regression-residuals-exploration-4.svg#axes_1"></use>
+      </svg>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,392 @@
+<section>
+  <h3>What influences the p-value?</h3>
+  <p class="sided border-danger em">
+    What factors could influence the p-value? <br>
+    What <span class="danger">characteristics of the sample</span> could influence the p-value? <br>
+    What characteristics in <span class="danger">the way we compute the p-value</span> could influence the p-value?
+  </p>
+  <!-- <p class="sided border-danger">
+    So far we've looked at a measure of the <span class="u-danger">strength of evidence</span> (p-value).
+    However, we've not yet formally looked at
+    <span class="danger">what factors impact the
+    strength of evidence</span>.
+  </p>
+  <p>
+    In other words, why is the strength of evidence (measured by p-value)
+    sometimes strong and sometimes weak or non-existant?
+  </p> -->
+  <div class="row flex down-3">
+    <div class="col-44 framed border-info small center bg-info-light fragment">
+        Difference between the observed statistic and
+        the null hypothesis parameter value $(\hat{p}-\pi_0)$
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide-in">
+  <h3><span class="circled-bg-info">1</span> Difference between the sample statistic and the null
+  parameter value</h3>
+  <p>
+    What if instead of 140 wins out of the 249 games, UCLA had won
+    155 games of those games?
+    Or what if they only had won 135 of those games?
+  </p>
+  <p class="quoted down-3">
+    How would the number of UCLA wins in the sample impact our strength
+    of evidence against the null?
+  </p>
+  <div class="fragment framed border-danger small down-3">
+    <i class="fas fa-arrow-circle-right danger"></i> Intuitively, the more extreme the observed statistic,
+    the more evidence there is against the null hypothesis.
+  </div>
+</section>
+
+<section data-transition="slide-out">
+  <h3><span class="circled-bg-info">1</span> Difference between the sample statistic and the null
+  parameter value</h3>
+  <div class="row">
+    <div class="col-35">
+      <p class="sided border-orange fragment smaller" data-fragment-index=1>
+        If UCLA had won 155 games that is a success rate of
+        $\hat{p}=\frac{155}{249}=0.622$ <br>
+        <span class="fragment" data-fragment-index=3>
+          <span class="orange">$0$ simulations</span><br>
+          (p-value < 0.0001)
+        </span>
+      </p>
+      <p class="sided border-danger fragment smaller" data-fragment-index=4>
+        If UCLA had only won 135 games that is a success rate of
+        $\hat{p}=\frac{135}{249}=0.542$ <br>
+        <span class="fragment" data-fragment-index=6>
+          <span class="danger">$1005$ simulations</span><br>
+          (p-value = 0.1)
+        </span>
+      </p>
+    </div>
+    <div class="col-65">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/ucla-usc-simulation-hist.svg#axes_1"></use>
+        <use xlink:href="content/img/ucla-usc-simulation-hist.svg#axes_2"></use>
+        <use class="fragment" data-fragment-index=2 xlink:href="content/img/ucla-usc-simulation-hist.svg#axes_4"></use>
+        <use class="fragment" data-fragment-index=5 xlink:href="content/img/ucla-usc-simulation-hist.svg#axes_5"></use>
+      </svg>
+    </div>
+  </div>
+  <p class="quoted fragment">
+    The <span class="danger">further away</span> the observed statistic is from the center of the null distribution,
+    the <span class="danger">more evidence</span> there is against the null
+    hypothesis.
+  </p>
+</section>
+
+<section>
+  <h3>What influences the p-value?</h3>
+  <p class="sided border-danger em">
+    What factors could influence the p-value? <br>
+    What <span class="danger">characteristics of the sample</span> could influence the p-value? <br>
+    What characteristics in <span class="danger">the way we compute the p-value</span> could influence the p-value?
+  </p>
+  <!-- <p class="sided border-danger">
+    So far we've looked at a measure of the <span class="u-danger">strength of evidence</span> (p-value).
+    However, we've not yet formally looked at
+    <span class="danger">what factors impact the
+    strength of evidence</span>.
+  </p>
+  <p>
+    In other words, why is the strength of evidence (measured by p-value)
+    sometimes strong and sometimes weak or non-existant?
+  </p> -->
+  <div class="row flex down-3">
+    <div class="col-44 framed border-info small center bg-info-light">
+        Difference between the observed statistic and
+        the null hypothesis parameter value $(\hat{p}-\pi_0)$
+    </div>
+    <div class="col-20 right-1 small framed border-warning center bg-warning-light flex-center fragment">
+        Sample size
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide-in">
+  <h3><span class="circled-bg-warning">2</span> Sample size</h3>
+  <p>
+    What if the relative proportion of basketball wins of UCLA
+    over USC (0.562) was the result of 124 games instead of 249?
+    Or what if it was obtained from 498 games (twice as many)?
+  </p>
+  <p class="quoted down-2">
+    How would the sample size, for the same observed statistic,
+    impact the strength
+    of evidence against the null?
+  </p>
+  <div class="row down-3">
+    <div class="col-33 small center">
+      Do you think that <span class="danger">increasing the sample size</span> would:
+    </div>
+    <div class="col-66 border-left-2x">
+      <ul style="font-size: 0.65em;">
+        <li>increase the strength of evidence?</li>
+        <li>decrease the strength of evidence?</li>
+        <li>or have no impact on the strength of evidence?</li>
+      </ul>
+    </div>
+  </div>
+  <div class="fragment framed border-danger down-2 small">
+    <i class="fas fa-arrow-circle-right danger"></i> Intuitively, it seems reasonable to think that as we increase
+    the sample size, the strength of evidence against the null hypothesis
+    will increase. If the same proportion of UCLA wins had been
+    observed over more games, we would have <span class="bg-danger-light">more knowledge about the truth</span>.
+  </div>
+</section>
+
+<section data-transition="none">
+  <h3><span class="circled-bg-warning">2</span> Sample size</h3>
+  <p>
+    Effect of changing the sample size (number of UCLA-USC games played)
+    on the null distribution. <br>
+    <span class="fragment danger">
+      <i class="fas fa-arrow-circle-right"></i> The greater the sample size, the less variability in the sample statistic
+    </span>
+  </p>
+  <div class="row flex down-1">
+    <div class="col-32 smaller sided border-danger">
+        sample size decreased to <span class="danger">124</span>
+        ($\simeq$ half as many)
+    </div>
+    <div class="col-32 right-1 sided border-danger smaller">
+        original observation <br>
+        sample size <span class="danger">249</span>
+    </div>
+    <div class="col-32 right-1 sided border-danger smaller">
+        sample size increased to <span class="danger">498</span>
+        (twice as many)
+    </div>
+  </div>
+  <img class="down-2" src="content/img/ucla-usc-simulation-sample-size.svg">
+  <p class="quoted fragment">
+    As the <span class="danger">sample size increases</span>
+    (and the value of the observed statistic stays the same),
+    the <span class="danger">strength of evidence against the null
+    hypothesis increases.</span>
+  </p>
+</section>
+
+<section data-transition="none">
+  <h3>Notes on the sample size (1)</h3>
+  <p class="sided border-orange">
+    The bigger the sample size, the more reliable ("trustable")
+    the observed statistic will be (less variability in the sample statistic
+    from sample to sample)
+  </p>
+  <p class="down-3">
+    If you are trying to pass a true/false test (let's say 60% or higher) but
+    know NOTHING about what is going to be on the test, would you rather
+    have more questions or fewer questions on the test?
+  </p>
+  <ul class="smaller down-2">
+    <li class="fragment">
+      YOU, <span class="info">the student, would rather have fewer qestions</span>. If there was
+      only one question on the test, you would have a 50% chance
+      of passing!</li>
+    <li class="fragment">
+      The <span class="danger">teacher would rather have more questions</span> on the test because
+      the
+      more questions on the test, the more likely the outcome on the test
+      will be close to 50% (long run probability of "guessing") and the less likely the
+      students would be
+      to "get lucky" and pass the test by just guessing.</li>
+  </ul>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Notes on the sample size (2)</h3>
+  <p class="sided border-orange">
+    As the sample size changes, the observed statistic will likely change
+    as well
+  </p>
+  <p class="down-3">
+    Importantly, we can't automatically assume that if we collect more data
+    and have a bigger sample size the strength of evidence will increase
+    (smaller p-value), because
+    <span class="danger">if we collect more data, our observed statistic
+    will almost always change as well</span>.
+  </p>
+  <p class="down-3">
+    If UCLA and USC are playing more games, the proportion of wins by UCLA
+    won't be <span class="u">exactly</span> 0.562 forever.
+  </p>
+</section>
+
+<section>
+  <h3>What influences the p-value?</h3>
+  <p class="sided border-danger em">
+    What factors could influence the p-value? <br>
+    What <span class="danger">characteristics of the sample</span> could influence the p-value? <br>
+    What characteristics in <span class="danger">the way we compute the p-value</span> could influence the p-value?
+  </p>
+  <!-- <p class="sided border-danger">
+    So far we've looked at a measure of the <span class="u-danger">strength of evidence</span> (p-value).
+    However, we've not yet formally looked at
+    <span class="danger">what factors impact the
+    strength of evidence</span>.
+  </p>
+  <p>
+    In other words, why is the strength of evidence (measured by p-value)
+    sometimes strong and sometimes weak or non-existant?
+  </p> -->
+  <div class="row flex down-3">
+    <div class="col-44 framed border-info small center bg-info-light">
+        Difference between the observed statistic and
+        the null hypothesis parameter value $(\hat{p}-\pi_0)$
+    </div>
+    <div class="col-20 right-1 small framed border-warning center bg-warning-light flex-center">
+        Sample size
+    </div>
+    <div class="col-33 right-1 small framed border-success bg-success-light center fragment flex-center">
+        Whether we do a <br> one- or <br> two-sided test
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide-in">
+  <h3><span class="circled-bg-success">3</span> One-sided vs two-sided tests</h3>
+  <p class="quoted">
+    What if we were wrong and instead of UCLA being better than USC at
+    basketball, it was USC that was better?
+  </p>
+  <p class="down-3">
+    <i class="fas fa-arrow-circle-right"></i> Currently, as we've stated our null and alternative hypotheses we haven't allowed for this possibility:<br>
+  </p>
+
+  <div class="row fragment smaller flex down-3">
+    <div class="col-80">
+      The null hypothesis says that UCLA is as good as USC at basketball
+      (the two teams are
+      <span class="danger">equally likely to win a game</span>)
+    </div>
+    <div class="col-20 danger flex-center">
+      <span>$\pi=0.5$</span>
+    </div>
+  </div>
+  <div class="row fragment smaller flex">
+    <div class="col-80">
+      The alternative hypothesis says that UCLA is better than USC
+      at basketball
+      (UCLA <span class="danger">more likely to win a game</span>)
+    </div>
+    <div class="col-20 danger flex-center">
+      <span>$\pi>0.5$</span>
+    </div>
+  </div>
+  <div class="row fragment smaller flex">
+    <div class="col-80">
+      There is no mention of USC being possibly better than UCLA
+      (UCLA <span class="pop">less likely to win a game</span>)
+    </div>
+    <div class="col-20 pop flex-center">
+      <span>$\pi<0.5$ <br>
+      for UCLA</span>
+    </div>
+  </div>
+  <div class="fragment framed border-danger small down-3">
+    <i class="fas fa-arrow-circle-right danger"></i> This type of alternative hypothesis is called
+    "<span class="danger">one-sided</span>" because it only looks at one
+    of the two possible ways that the null hypothesis could be wrong.
+  </div>
+</section>
+
+<section data-transition="none">
+  <h3><span class="circled-bg-success">3</span> One-sided vs two-sided tests</h3>
+  <p class="em">
+   If we only consider the possibility that UCLA can win, this way
+   of formulating our altenative hypothesis could be considered <span class="danger">too
+   narrow and too biased towards assuming that we are correct ahead
+   of time</span>.
+  </p>
+  <div class="framed border-pop small">
+   <i class="fas fa-arrow-circle-right pop"></i> A more objective approach would be to conduct a
+   "<span class="pop">two-sided</span>" test, which allow all the
+   possibility of the null hypothesis to be wrong.
+  </div>
+  <p class="fragment down-2" data-fragment-index=1>
+    In this case our hypothesis would be:
+  </p>
+  
+  <div class="row fragment smaller flex">
+    <div class="col-80">
+      <span class="em u">Null hypothesis:</span>
+      UCLA and USC are equally good at basketball.
+      (the two teams are <span class="danger">equally likely to win a game</span>)
+    </div>
+    <div class="col-20 danger flex-center">
+      <span>$\pi=0.5$</span>
+    </div>
+  </div>
+  <div class="row fragment smaller flex">
+    <div class="col-80">
+      <span class="em u">Alternative hypothesis:</span>
+      UCLA and USC are not equally good at basketball
+      (UCLA and USC are <span class="pop">not equally likely to win a game</span>)
+    </div>
+    <div class="col-20 pop flex-center">
+      <span>$\pi\neq0.5$</span>
+    </div>
+  </div>
+</section>
+
+<section data-transition="none">
+  <h3><span class="circled-bg-success">3</span> One-sided vs two-sided tests</h3>
+  <p class="sided border-danger">
+    We create the <span class="danger">randomization distribution</span>
+    by assuming the <span class="danger">null hypothesis</span> is true. <br>
+    <i class="fas fa-arrow-circle-right danger"></i> The alternative hypothesis does not play any role in this process
+    as the randomization samples depend only on the null hypothesis. <br>
+    <span class="fragment" data-fragment-index=0>
+    <i class="fas fa-arrow-circle-right pop"></i> However, the <span class="pop">alternative hypothesis</span> is important
+    in determining the p-value because it determines
+    <span class="pop">which tail(s) to use to calculate the p-value</span>.
+    </span>
+  </p>
+  <div class="row">
+    <div class="col-50">
+      <p class="fragment smallest" data-fragment-index=1>
+        If the alternative hypothesis specifies a <span class="info">particular direction</span>,
+        we refer to these as <span class="info">right-tailed</span> or
+        <span class="info">left-tailed tests</span>, depending on whether the
+        alternative hypothesis is <span class="info">greater than</span> or
+        <span class="info">less than</span>, respectively.
+      </p>
+      <p class="fragment smallest" data-fragment-index=3>
+        Otherwise, we are only looking to see if there is a <span class="success">difference
+        without specifying in
+        advance in which direction</span> it might lie.
+        These are called <span class="success">two-tailed</span> tests.
+      </p>
+      <p class="fragment smallest framed border-light" data-fragment-index=7>
+        The definition of <span class="em u">“more extreme”</span> to compute a p-value depends on whether the
+        alternative hypothesis yields a test that is right-, left-, or two-tailed.
+      </p>
+    </div>
+    <div class="col-50">
+      <svg width="100%" viewBox="34 0 385 285">
+        <use xlink:href="content/img/ucla-usc-simulation-two-tailed.svg#axes_1"></use>
+        <use  class="fragment" data-fragment-index=5 xlink:href="content/img/ucla-usc-simulation-two-tailed.svg#axes_2"></use>
+        <use  class="fragment" data-fragment-index=2 xlink:href="content/img/ucla-usc-simulation-two-tailed.svg#axes_3"></use>
+        <use  class="fragment" data-fragment-index=4 xlink:href="content/img/ucla-usc-simulation-two-tailed.svg#axes_4"></use>
+        <use  class="fragment" data-fragment-index=6 xlink:href="content/img/ucla-usc-simulation-two-tailed.svg#axes_5"></use>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide-out">
+  <h3><span class="circled-bg-success">3</span> One sided vs two sided tests</h3>
+  <p class="quoted">
+    Because the p-value for a <span class="danger">two-sided test</span>
+    is about twice as large
+    as that for a one-sided test, two-sided tests <span class="danger">provide less evidence against
+    the null hypothesis</span>. <br>
+    However, note that two-sided tests are used more often in
+    scientific practice.
+  </p>
+</section>

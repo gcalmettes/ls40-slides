@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<body>
+
+
+<script src="js/d3.min.js"></script>
+<script>
+
+  const width = 700,
+        height = 400,
+        colors = {info: '#00BFFF',
+                  danger: '#fb4c52',
+                  warning: '#FBC15E',
+                  orange: '#FF8B22',
+                  muted: '#B4B4B4',
+                  pop: '#ce4ad0'}
+
+  const time = 1000 // transition time
+
+  const margin = {left: 50, top: 70, right: 10, bottom: 50}
+
+
+  const nFlips = 16
+  let data = [...new Array(nFlips+1)].map(d => 0)
+
+  const xScale = d3.scaleLinear()
+    .range([0, width])
+    .domain([-0.5, nFlips+0.5])
+
+  const yScale = d3.scaleLinear()
+    .range([height, 0])
+    .domain([0, 1])
+
+  const yAxis = d3.axisLeft(yScale)
+    .ticks(5)
+
+
+  const svg = d3.select("body")
+    .append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+
+  const barChart = svg.append("g")
+      .attr("id", "barChart")
+      .attr("width", width)
+      .attr("height", height)
+      .attr("transform", `translate(${margin.left}, ${margin.top})`)
+
+  const gyAxis = barChart.append('g')
+    .attr("class", "y axis")
+    .attr("transform", `translate(0, 0)`)
+    .call(yAxis)
+  barChart.append("text")
+    .attr('transform', `translate(${-margin.left/1.5}, ${height/2}) rotate(-90)`)
+    .style('text-anchor', 'middle')
+    .style("font-family", "Raleway")
+    .style("font-size", "1em")
+    .text('Relative frequency');
+
+  barChart.selectAll('.xTicksLabel')
+    .data(data)
+    .enter()
+    .append("text")
+    .attr('transform', (d, i) => `translate(${xScale(i)}, ${height + margin.bottom/3})`)
+    .style('text-anchor', 'middle')
+    .style("font-family", "Raleway")
+    .text((d, i) => i)
+  barChart.append("text")
+    .attr('transform', `translate(${width/2}, ${height + margin.bottom/1.5})`)
+    .style('text-anchor', 'middle')
+    .style("font-family", "Raleway")
+    .style("font-size", "1em")
+    .text("# of heads in a trial")
+  barChart.append("text")
+    .attr('transform', `translate(${width/2}, ${-margin.top + 15})`)
+    .style('text-anchor', 'middle')
+    .style("font-family", "Raleway")
+    .style("font-size", "1em")
+    .text("Distribution of # of heads in all the simulations")
+
+  const simulationText = barChart.append("text")
+    .attr('transform', `translate(${width - 10}, ${0})`)
+    .style('text-anchor', 'end')
+    .style("font-family", "Raleway")
+    .style("font-size", "1em")
+    .text("0 simulations");
+
+
+  function updateBarChart(data) {
+    // relative frequencies
+    const dataToShow = data.map(d => d/d3.sum(data)) 
+
+    yScale.domain([0, d3.max(dataToShow)])
+    gyAxis
+      .transition()
+      .duration(10)
+      .call(yAxis);
+
+    const bars = barChart.selectAll(".bars")
+      .data(dataToShow) // relative frequencies
+
+    bars.exit().remove()
+    bars.enter()
+      .append("rect")
+        .attr("class", "bars")
+        .attr("x", (d, i) => xScale(i-0.25))
+        .attr("width", xScale(0.5)-xScale(0))
+        .attr("fill", colors.info)
+        .attr("y", d => height)
+        .attr("height", 0)
+      .merge(bars)
+        .transition().duration(time)
+        .attr("y", d => yScale(d))
+        .attr("height", d => height - yScale(d))
+
+    const textBars = barChart.selectAll(".textBars")
+      // .data(dataToShow)
+      .data(data)
+
+    textBars.exit().remove()
+    textBars.enter()
+    .append("text")
+      .attr("class", "textBars")
+      .attr("x", (d, i) => xScale(i))
+      .attr("y", d => height)
+      .attr("fill", colors.muted)
+      .style("text-anchor", "middle")
+      .style("font-family", "Raleway")
+      .style("font-size", "0.8em")
+      // .text("0.000")
+      .text("0")
+    .merge(textBars)
+      .transition().duration(time)
+      // .attr("y", d => yScale(d)-10)
+      .attr("y", d => yScale(d/d3.sum(data))-10)
+      .tween("text", function(d) {
+          const node = d3.select(this)
+          let i = d3.interpolate(this.textContent, d)
+          return function(t) {
+              // node.text(i(t).toFixed(3));
+              node.text(Math.round(i(t)));
+          };
+      });
+  }
+
+  function tweenText(a){
+    return function() {
+      var node = d3.select(this),
+          i = d3.interpolateNumber(1, a);
+      return function(t) {
+        node.text(i(t));
+      };
+    };
+  }
+
+ function simulateProba(nSample, nSimul, prob) {
+    return [...new Array(nSimul)].map(d => [...new Array(nSample)].map(f => Math.random()<prob))
+  }
+
+  function countHits(simulations) {
+    return simulations.map(d => d3.sum(d))
+  }
+
+  function updateData(hits, data) {
+    return data.map((d,i) => d + hits.filter(h => h==i).length)
+  }
+
+  function runSimulation(nSimulation, data, prob){
+    const simulations = simulateProba(data.length-1, nSimulation, prob)
+    const hits = countHits(simulations)
+    return updateData(hits, data)
+
+  }
+
+  function updateScene(nSimulation, prob) {
+    const currentN = d3.sum(data),
+          nextN = currentN + nSimulation
+
+    data = runSimulation(nSimulation, data, prob)
+    updateBarChart(data)
+
+    simulationText.transition()
+        .duration(time)
+        .tween("text", function(d) {
+          const node = d3.select(this)
+          let i = d3.interpolate(currentN, nextN)
+          return function(t) {
+              node.text(`${Math.round(i(t))} simulations`);
+          };
+      });
+  }
+
+  function countEvents(lim, data){
+    const nEvents = d3.sum(data.filter((d, i) => i >= lim))
+
+    const gEvents = barChart.append("g")
+      .attr("class", "countEvents")
+      .attr("transform", `translate(${xScale(lim-0.35)}, ${height/2})`)
+
+    gEvents.append("rect")
+      .attr("x", 0)
+      .attr("y", 0)
+      .attr("width", xScale(data.length-1 + 0.35) - xScale(lim-0.35))
+      .attr("height", height/2 + margin.bottom/2)
+      .attr("fill", "none")
+      .attr("stroke", colors.danger)
+      .attr("stroke-width", 2)
+
+    gEvents.append("text")
+      .attr('transform', `translate(${(xScale(data.length-1 + 0.35) - xScale(lim-0.35))/2}, ${-10})`)
+      .style('text-anchor', 'middle')
+      .style("font-family", "Raleway")
+      .style("font-size", "1em")
+      .style("fill", colors.danger)
+      .text(`${nEvents} out of ${d3.sum(data)}`);
+  }
+
+  function displayProba(lim, data){
+    const probability = d3.sum(data.filter((d, i) => i >= lim))/d3.sum(data)
+
+    const gProba = barChart.append("g")
+      .attr("class", "displayProba")
+      .attr("transform", `translate(${xScale(lim-0.35)}, ${height/2})`)
+
+    gProba.append("text")
+      .attr('transform', `translate(${xScale(xScale.domain()[1])-xScale(lim-0.35)-10}, ${-80})`)
+      .style('text-anchor', 'end')
+      .style("font-family", "Raleway")
+      .style("font-size", "2em")
+      .style("fill", colors.pop)
+      .text(`p = ${probability.toFixed(4)}`);
+  }
+
+
+
+  var _transitions = [
+    {
+      transitionForward: () => updateScene(100, 0.5), 
+      index: 0
+    },
+    {
+      transitionForward: () => updateScene(200, 0.5), 
+      index: 1
+    },
+    {
+      transitionForward: () => updateScene(9700, 0.5), 
+      index: 2
+    },
+    {
+      transitionForward: () => countEvents(15, data), 
+      transitionBackward: () => d3.selectAll(".countEvents").remove(), 
+      index: 4
+    },
+    {
+      transitionForward: () => displayProba(15, data), 
+      transitionBackward: () => d3.selectAll(".displayProba").remove(), 
+      index: 6
+    },
+  ]
+
+</script>

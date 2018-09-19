@@ -1,0 +1,37 @@
+<section data-transition="slide-in">
+  <h3>Resampling p-value</h3>
+  <div class="framed center small">-- One categorical variable (simulation = chance model) --</div>
+  <div class="row">
+    <div class="col-55">
+      <p class="smaller">
+        1- Collect your sample and calculate your statistic
+        of interest (ex: <span class="danger">$\hat{p}=\frac{17}{24}=0.708$</span>)
+      </p>
+      <p class="fragment smaller" data-fragment-index=1>
+        2- State your null and alternative hypothesis <br>
+        (ex: <span class="danger">H$_0$ $\pi=0.5$</span> / <span class="danger">H$_a$ $\pi>0.5$</span>)
+      </p>
+      <p class="fragment smaller" data-fragment-index=2>
+        3- Simulate your null hypothesis distribution.
+        (it should be <span class="danger">centered at the stated H$_0$ parameter of interest</span>)
+      </p>
+      <p class="fragment smaller" data-fragment-index=3>
+        4- Calculate the proportion of samples that resulted in cases at least as extreme
+        as your initial observed statistic. This is your p-value. <br>
+        (ex: <span class="danger">$\textrm{p-value}=\frac{289}{10000}=0.029$</span>)
+      </p>
+      <p class="fragment smaller" data-fragment-index=4>
+        5- Conclude about whether your have evidence <span class="danger">in favor</span>
+        or <span class="danger">against</span> the null hypothesis.
+      </p>
+    </div>
+    <div class="col-45">
+      <svg width="100%" viewBox="34 0 375 285">
+        <use class="fragment" data-fragment-index=2 xlink:href="content/img/simulation-graph-two-tails.svg#axes_1"></use>
+        <use class="fragment" data-fragment-index=3 xlink:href="content/img/simulation-graph-two-tails.svg#axes_4"></use>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section data-external-replace="slide-animation-chance-model-parameters.html"></section>

@@ -1,0 +1,126 @@
+<section>
+  <h3>Is this situation hopeless?</h3>
+  <div class="row">
+    <div class="col-45">
+      <p class="framed bg-info-light black">
+        <span class="em u">Point #1:</span> <br>
+        Errors (e.g: false positive) are possible
+      </p>
+    </div>
+    <div class="col-55">
+      <p class="framed bg-danger-light black">
+        <span class="em u">Point #2:</span> <br>
+        Multiple testing and publication bias are a huge problem
+      </p>
+    </div>
+  </div>
+  <p class="u em">
+    What can you do?<br>
+  </p>
+  <ul style="font-size: 0.75em;">
+    <li>Recognize (and be <span class="strong">skeptical</span>) when a claim is one of many tests</li>
+    <li>Look for <span class="strong pop">replication</span> of results</li>
+  </ul>
+</section>
+
+<section>
+  <h3>Replication</h3>
+  <p class="quoted">
+    Replication (or reproducibility) of a study in <span class="strong">another setting</span> or by <span class="strong">another researcher</span> is extremely important!
+  </p>
+  <div class="row flex">
+    <div class="col-49 framed">
+      <p class="smaller">
+        <i class="fa fa-arrow-circle-right"></i> Studies that have been replicated with similar conclusions gain credibility
+      </p>
+    </div>
+    <div class="right-2 col-49 framed">
+      <p class="smaller">
+        <i class="fa fa-arrow-circle-right"></i> Studies that have been replicated with different conclusions lose credibility
+      </p>
+    </div>
+  </div>
+  <p class="bg-pink-light black smaller">
+    Replication helps guard against false positive errors AND helps with generalizability
+  </p>
+  <div class="row">
+    <div class="col-30 right-5">
+      <img src="content/img/cartoon-multiple-testing-1.png" class="framed">
+    </div>
+    <div class="col-30">
+      <img src="content/img/cartoon-multiple-testing-2.png" class="framed">
+    </div>
+    <div class="col-30">
+      <img src="content/img/cartoon-multiple-testing-3.png" class="framed">
+    </div>
+    <p class="push-right em smallest">
+      J.B. Landers (CAUSEweb.org)
+    </p>
+  </div>
+</section>
+
+<section>
+  <h3>Mate choice and offspring survival</h3>
+  <p class="sided border-success">
+    Actually, the research at Penn State included <span class="strong">3 different experiments</span>.
+  </p>
+  <div class="row flex">
+    <div class="col-38 flex-center smaller">
+      <span>2 different species of fruit flies <br> 3 different mutant types</span>
+    </div>
+    <div class="col-62 flex-center">
+      <ul class="smaller push-left">
+        <li>Drosophila melanogaster, Mutant: sparkling eyes</li>
+        <li>Drosophila melanogaster, Mutant: white eyes</li>
+        <li>Drosophila pseudoobscura, Mutant: orange eyes</li>
+      </ul>
+    </div>
+  </div>
+  <p>
+    <i class="fas fa-arrow-circle-right"></i>
+     Multiple possible measures as outcome (% surviving in each group, % of survivors who were from experimental group (not mutants)
+  </p>
+  <p>
+    <i class="fa fa-arrow-circle-right"></i>
+    Multiple ways to analyze – proportions, quantitative paired analysis
+  </p>
+
+  <div class="row">
+    <div class="col-50">
+      <p class="smaller">
+        <span class="muted u">Original study:</span><br>
+        Significant in <span class="pop">favor of choice</span>
+        (p < 0.01)
+        <bspan class="down-6 bg-danger-light black fragment" data-fragment-index=2>(The effect, if there is one, is small)</bspan>
+      </p>
+    </div>
+    <div class="col-50">
+      <p class="smaller">
+        <span class="muted u">Follow-up study #1:</span><br>
+        <span class="info">Not significant</span> ($p = 0.102$)<br> 
+        $d = \frac{6067}{10000}-\frac{5976}{10000}$ <br>
+        $d = 0.6067 - 0.5976 = \fragapply{highlight-current-bg-danger-light 1}{0.009}$
+      </p> 
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-50">
+      <p class="fragment smaller" data-fragment-index=1>
+        <span class="muted u">Follow-up study #2:</span><br>
+         Significant in <span class="danger">favor of no choice</span><br>
+         $d = \frac{4579}{10000}-\frac{4749}{10000}$ <br>
+         $d = 0.4579 - 0.4749 = \fragapply{highlight-current-bg-danger-light 1}{-0.017}$ <br>
+         ($p= 0.008$)
+      </p>
+    </div>
+    <div class="col-50">
+      <p class="fragment smaller" data-fragment-index=1>
+        <span class="muted u"">Follow-up study #3:</span><br>
+         Significant in <span class="danger">favor of no choice</span><br>
+         $d = \frac{1641}{5000}-\frac{1758}{5000}$ <br>
+         $d = 0.3282 - 0.3516 = \fragapply{highlight-current-bg-danger-light 1}{-0.02}$ <br>
+         ($p=0.007$)
+      </p> 
+    </div>
+  </div>
+</section>

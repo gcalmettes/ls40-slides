@@ -1,0 +1,262 @@
+<section data-transition="slide-in">
+  <h3>Repeated measures ANOVA</h3>
+  <div class="row">
+    <div class="col-50">
+      <p>
+        Repeated measures design uses the <span class="strong">same subjects with every condition</span> of the research, including the control.
+      </p>
+      <p class="smaller">
+        <i class="fas fa-arrow-circle-right info"></i>
+        In this design, data for a particular dependent variable (factor) are collected more than once (different levels) on the same observational units.
+      </p>
+    </div>
+    <div class="col-50">
+      <img src="content/img/anova-repeated-measures.svg">
+    </div>
+  </div>
+  <p class='u em'>
+    Investigating <span class="strong">changes</span> in mean scores over three or more time points:
+  </p>
+  <p class="smaller">
+    You want to study the effect of a 6-month exercise training program on blood pressure and want to measure blood pressure at 3 separate time points (pre-, midway and post-exercise intervention), which would allow you to develop a time-course for any exercise effect.
+  </p>
+  <p class='u em down-2'>
+    Investigating differences in mean scores under three or more <span class="strong">different conditions</span>:
+  </p>
+  <p class="smaller">
+    You might get the same subjects to eat different types of cake (chocolate, caramel and lemon) and rate each one for taste, rather than having different people taste each different cake.
+  </p>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Repeated measures ANOVA</h3>
+  <div class="row">
+    <div class="col-50">
+      <p>
+      <span class="em muted u">Note:</span>
+      The repeated measures ANOVA will usually gives you more statistical power since the within-group variation, which is a source of measurement errors, will be identified and excluded from the analysis.
+    </p>
+    </div>
+    <div class="col-50">
+      <img src="content/img/anova-repeated-measures.svg">
+    </div>
+  </div>
+  <p>
+    <i class="fas fa-arrow-circle-right danger"></i>
+    Performing a repeated measures ANOVA allows to account for <span class="danger">individual differences in baselines</span> of the participants of the study.
+  </p>
+  <p class="smaller em">
+    Consider for example a drug trial where the participants have individual differences that might have an impact on the effect of the drug (e.g.: different blood pressure, age, gender).
+  </p>
+  <ul class="smaller">
+    <li>
+      The typical drug trial splits all participants into a control and the treatment group and measures the effect of the drug in month 1-18.
+    </li>
+    <li>
+      The repeated measures ANOVA can correct for the individual differences or baselines and analyzes the effect of the drug while excluding the influence of different baseline levels of health when the trial began.
+    </li>
+  </ul>
+</section>
+
+<section data-transition="slide-in">
+  <h3>Repeated measures ANOVA</h3>
+  <div class="row">
+    <div class="col-40">
+      <p class="em u">
+        Example:
+      </p>
+      <p>
+        We have measured the performance scores for a memorization task of a group of subjects in different conditions of noise.
+      </p>
+      <p class="fragment" data-fragment-index=1>
+        <i class="fas fa-arrow-circle-right pop"></i>
+        <span class="strong">same number of data point for every conditions</span> (all the same subjects for every condition)
+      </p>
+    </div>
+    <div class="col-60">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/anova-family-on-noise-data.svg#axes_1"></use>
+        <use class="fragment" data-fragment-index=1 xlink:href="content/img/anova-family-on-noise-data.svg#axes_3"></use>
+        <use class="fragment" xlink:href="content/img/anova-family-on-noise-data.svg#axes_4"></use>
+        <use xlink:href="content/img/anova-family-on-noise-data.svg#axes_2"></use>
+      </svg>
+    </div>
+  </div>
+  <p class="fragment">
+    Applying a repeated measure ANOVA to analyze the data will allow us to account for individual inner ability for memorization, and isolate the effect of the different levels of the factor.
+  </p>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Repeated measures ANOVA</h3>
+  <p class="em u">
+    Data structure:
+  </p>
+  <p>
+    When the data you have to deal with includes a lot of different factors/conditions, the way your store/format your data will heavily influence how easy you'll be able to analyze them. For a repeated measure ANOVA, the <span class="strong">wide form data</span> structure is advised (and is required by all the softwares allowing you to do RM ANOVA).
+  </p>
+  <div class="row">
+    <div class="col-50">
+      <p class='em u'>
+        "Wide form data"
+      </p>
+      <p>
+        - All the data collected on a particular subject in one row (ensure same number of data point per factor levels)
+      </p>
+      <p>
+        - Each column is one level of the factor
+      </p>
+      <p>
+        - The dataset has $N/k$ rows
+      </p>
+    </div>
+    <table class="col-50 center smaller">
+      <tr>
+        <td rowspan=2 class="border-right">Subjects</td>
+        <td colspan=4 class="border-nobottom">Noise</td>
+      </tr>
+      <tr>
+        <td>None</td>
+        <td>Low</td>
+        <td>Medium</td>
+        <td>High</td>
+      </tr>
+      <tr>
+        <td class="border-right">ID1</td>
+        <td>46</td>
+        <td>55</td>
+        <td>68</td>
+        <td>44</td>
+      </tr>
+      <tr>
+        <td class="border-right">ID2</td>
+        <td>44</td>
+        <td>61</td>
+        <td>72</td>
+        <td>51</td>
+      </tr>
+      <tr>
+        <td class="border-right">...</td>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+      </tr>
+      <tr>
+        <td class="border-right">ID18</td>
+        <td>40</td>
+        <td>50</td>
+        <td>70</td>
+        <td>47</td>
+      </tr>
+      <tr>
+        <td class="border-right">ID19</td>
+        <td>46</td>
+        <td>52</td>
+        <td>66</td>
+        <td>41</td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<section data-transition="slide-in">
+  <h3>Taking account for individuals variability</h3>
+  <div class="row">
+    <div class="col-40">
+      <p class="em u">
+        One way ANOVA:
+      </p>
+      <p>
+        $SS_{Total}=\sum_{i=1}^{n}(x_{i}-\hat{x})^2$
+      </p>
+      <p class="smaller">
+        $SS_{Groups}=\sum_{g=1}^{k}n_{g}(\bar{x}_{g}-\hat{x})^2$
+      </p>
+      <p class="smaller">
+        $SS_{Within}=\sum_{g=1}^{k}\sum_{i=1}^{n_g}(x_{gi}-\bar{x}_{g})^2$
+      </p>
+      <p class="em u down-8 fragment" data-fragment-index=2>
+        Repeated measures ANOVA:
+      </p>
+      <p class="smaller fragment pop" data-fragment-index=2>
+        $SS_{Subject}=k\times\sum_{i=1}^{n}(\bar{x}_{i/k}-\hat{x})^2$
+      </p>
+      <p class="smaller fragment" data-fragment-index=2>
+        $SS_{Error} = SS_{Within}-SS_{Subject}$
+      </p>
+      <p class="smaller fragment" data-fragment-index=2>
+        $k$: number of levels for the factor
+      </p>
+    </div>
+    <div class="col-60">
+      <svg width="100%" viewBox="16 5 510 311">
+        <use xlink:href="content/img/anova-variabilities.svg#independent"></use>
+        <use class="fragment" data-fragment-index=1 xlink:href="content/img/anova-variabilities.svg#dependent"></use>
+        <use class="fragment" data-fragment-index=1 xlink:href="content/img/anova-variabilities.svg#labels"></use>
+        <use class="fragment" data-fragment-index=3 xlink:href="content/img/anova-variabilities.svg#cross"></use>
+      </svg>
+    </div>
+  </div>
+  <p class="fragment" data-fragment-index=3>
+    <i class="fas fa-arrow-circle-right pop"></i>
+    Now, we're not interested in how the scores differ between subjects. We therefore remove this variance from the total variance and ignore it.
+  </p>
+</section>
+
+<section data-transition="none">
+  <h3>Taking account for individuals variability</h3>
+  <img src="content/img/anova-family-on-noise-ss-subjects.svg">
+  <div class="col-40 small right-55 up-16 absolute fragment" data-fragment-index=1>
+      $F=\frac{\textrm{Mean SS}_{Group}}{\textrm{Mean SS}_{Within} - \texclass{pop}{\textrm{Mean SS}_{Subjects}}}$
+  </div>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Taking account for individuals variability</h3>
+  <img src="content/img/anova-family-on-noise-ss-subjects.svg">
+  <div class="col-40 small right-55 up-18 absolute">
+      $F=\frac{\textrm{Mean SS}_{Group}}{\textrm{Mean SS}_{Error}}=\frac{\frac{\textrm{SS}_{Group}}{(k-1)}}{\frac{\textrm{SS}_{Error}}{\texclass{danger}{(n-1)(k-1)}}}$
+  </div>
+  <p class="smaller fragment">
+    <i class="fas fa-arrow-circle-right danger"></i>
+    Whether this leads to a more powerful test will depend on whether the reduction in $SS_{error}$ more than compensates for the <span class="danger">reduction in degrees of freedom for the error term</span>, as degrees of freedom go from $(n - k)$ to $(n - 1)(k - 1)$ ... (remember, there are more subjects in the independent ANOVA design).
+  </p>
+</section>
+
+<section>
+  <h3>Repeated measures ANOVA</h3>
+  <div class="row">
+    <div class="col-50">
+      <p class="em u center">
+        One way ANOVA
+      </p>
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/anova-family-on-noise-data-one-way.svg#axes_1"></use>
+        <use xlink:href="content/img/anova-family-on-noise-data-one-way.svg#axes_2"></use>
+        <use xlink:href="content/img/anova-family-on-noise-data-one-way.svg#axes_3"></use>
+      </svg>
+    </div>
+    <div class="col-50">
+      <p class="em u center">
+        Repeated measures ANOVA
+      </p>
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/anova-family-on-noise-data-one-way-RM.svg#axes_1"></use>
+        <use xlink:href="content/img/anova-family-on-noise-data-one-way-RM.svg#axes_2"></use>
+        <use xlink:href="content/img/anova-family-on-noise-data-one-way-RM.svg#axes_3"></use>
+      </svg>
+    </div>
+  </div>
+  <p class="smaller">
+    In our experiment, the repeated measure design doesn't change much our results (almost similar sampling distribution, and $F=39.49$ vs $F=39.09$)
+  </p>
+  <p>
+    What would the follow-up be?
+  </p>
+  <p>
+    <i class="fas fa-arrow-circle-right"></i>
+    We would then test each level of our factor against the other.
+  </p>
+</section>
+

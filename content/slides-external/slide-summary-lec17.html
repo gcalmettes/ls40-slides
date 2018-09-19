@@ -1,0 +1,22 @@
+<section>
+  <h3>Summary: comparing multiple means</h3>
+  <p>
+    Using the $MAD$, the idea behing comparing multiple ($>2$) means is the same than when you compared only two means <br>
+    <i class="fas fa-arrow-right"></i> <span class="em">How far appart are the group means from each other?</span>
+  </p>
+  <p>
+    <span class="muted u em">Note:</span> While the $MAD$ is very flexible and can be adapted to characteristics of your dataset (Skewed? use the medians), a MAD analysis can only be performed using a resampling approach (its sampling distribution cannot be theoretized).
+  </p>
+  <p class="down-3">
+    A more general approach to compare multiple means is to <span class="strong">analyze the different aspects of the variance</span> in a dataset (ANOVA).
+  </p>
+  <div class="row down-1">
+    <p class="col-60">
+      The $F$-statistic compares the variability between groups (sample means) to the variability within groups (variance withing the groups). The bigger the difference between groups compared to the variability within groups, the bigger the $F$-statistic (mean $SS_{error}$ is the denominator).
+  </p>
+  <svg class="col-40"  viewBox="16 6 340 190">
+    <use xlink:href="content/img/anova-variabilities.svg#independent"></use>
+    <!-- <use xlink:href="content/img/anova-variabilities.svg#axes_2"></use> -->
+  </svg>
+  </div>
+</section>

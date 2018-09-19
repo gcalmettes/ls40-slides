@@ -1,0 +1,146 @@
+<section data-transition="slide-in fade-out">
+  <h3>How does linear regression work?</h3>
+  <div class="row">
+    <div class="col-50">
+      <svg width="100%" viewBox="0 0 360 360">
+        <use xlink:href="content/img/regression-least-square.svg#axes_1"></use>
+        <use class="fragment" data-fragment-index=1 xlink:href="content/img/regression-least-square.svg#axes_3"></use>
+      </svg>
+    </div>
+    <div class="col-50">
+      <p class="fragment" data-fragment-index=1>
+        The vertical distance from a data point to the regression
+        line is called a <span class="danger">residual</span>.
+      </p>
+      <p class="fragment" data-fragment-index=1>
+        $\mathrm{Residual} = \mathrm{Observed} − \mathrm{Predicted}$
+        $\mathrm{Residual} = y − \hat{y}$
+      </p>
+    </div>
+  </div>
+</section>
+
+<section data-transition="fade">
+  <h3>How does linear regression work?</h3>
+  <div class="row">
+    <div class="col-50">
+      <svg width="100%" viewBox="0 0 360 330">
+        <use xlink:href="content/img/regression-least-square.svg#axes_1"></use>
+        <use xlink:href="content/img/regression-least-square.svg#axes_3"></use>
+      </svg>
+    </div>
+    <div class="col-50">
+      <svg width="100%" viewBox="0 0 432 180">
+        <use xlink:href="content/img/regression-residuals.svg#axes_1"></use>
+      </svg>
+      <ul class="smallest">
+        <li>Points above the regression line <br>
+          <bspan class="right-4"><i class="fas fa-arrow-right"></i> <span class="orange">positive</span> residuals</bspan>
+        </li>
+        <li>Points below the regression line <br>
+            <bspan class="right-4"><i class="fas fa-arrow-right"></i> <span class="orange">negative</span> residuals</bspan>
+        </li>
+        <li> If the predicted values closely match the observed data values, the residuals will be <span class="orange">small</span>.</li>
+      </ul>
+    </div>
+  </div>
+  <p class="smaller">
+    <i class="fas fa-arrow-circle-right pink"></i> The line that fits the data best is the one where the residuals are close to zero.
+    </p>
+</section>
+
+<section data-transition="fade">
+  <h3>How does linear regression work?</h3>
+  <div class="row">
+    <div class="col-50">
+      <svg width="100%" viewBox="0 0 360 360">
+        <use xlink:href="content/img/regression-least-square.svg#axes_1"></use>
+        <use xlink:href="content/img/regression-least-square.svg#axes_3"></use>
+        <use class="fragment" data-fragment-index=1 xlink:href="content/img/regression-least-square.svg#axes_2"></use>
+      </svg>
+    </div>
+    <div class="col-50">
+      <svg width="100%" viewBox="0 0 432 180">
+        <use xlink:href="content/img/regression-residuals.svg#axes_1"></use>
+      </svg>
+      <p class="smaller">
+        <i class="fas fa-arrow-circle-right pink"></i>
+        Instead of working directly with the residuals, we usually try to <span class="pink">minimize the sum of the square of the residuals</span>:
+      </p>
+      <p class="down-2">
+        $SS_{residuals}=\sum_{i=1}^{n}(y_i-\hat{y_i})^2$
+      </p>
+    </div>
+  </div>
+</section>
+
+<section data-external-replace="slide-animation-linear-regression.html"></section>
+
+<section data-transition="slide-in fade-out">
+  <h3>Notes on minimizing the $SS_{residuals}$</h3>
+  <div class="row flex">
+    <div class="col-70 small">
+      <i class="fas fa-arrow-circle-right info"></i>
+    The errors (residuals) are squared to prevent the positive and negative errors to cancel out each
+    others, which could give you a value of zero.
+    </div>
+    <div class="col-30 smallest flex-center">
+        $SS_{residuals}=\sum_{i=1}^{n}(y_i-\hat{y_i})^2$
+    </div>
+  </div>  
+  <p class="fragment">
+    <i class="fas fa-arrow-circle-right danger"></i>
+    Most statistical software packages use a procedure called
+    <span class="danger">Ordinary Least Squares (OLS)</span> to find
+    the line of best fit. This procedure finds a line that minimizes
+    the sum of the squared errors.
+  </p>
+  <div class="row fragment flex">
+    <div class="col-62 flex-center">
+      <p class="small">
+        <i class="fas fa-arrow-circle-right pop"></i>
+        While OLS is pretty much the standard, different penalty functions can be use as well. For example, the <span class="pop">Median Absolute Deviation (MAD)</span> uses the absolute error, and so will be more <span class="u-orange">robust to outliers</span> since it assigns less weight to outliers than OLS.
+      </p>
+    </div>
+    <div class="col-38 flex-center">
+      <svg width="100%" viewBox="0 0 360 360">
+        <use xlink:href="content/img/regression-least-square-vs-mad.svg#axes_1"></use>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section data-transition="fade-in slide-out">
+  <h3>Notes on minimizing the $SS_{residuals}$</h3>
+  <div class="row flex">
+    <div class="col-70 small">
+      <i class="fas fa-arrow-circle-right info"></i>
+    The errors (residuals) are squared to prevent the positive and negative errors to cancel out each
+    others, which could give you a value of zero.
+    </div>
+    <div class="col-30 smallest flex-center">
+        $SS_{residuals}=\sum_{i=1}^{n}(y_i-\hat{y_i})^2$
+    </div>
+  </div>  
+  <p>
+    <i class="fas fa-arrow-circle-right danger"></i>
+    Most statistical software packages use a procedure called
+    <span class="danger">Ordinary Least Squares (OLS)</span> to find
+    the line of best fit. This procedure finds a line that minimizes
+    the sum of the squared errors.
+  </p>
+  <div class="row flex">
+    <div class="col-62 flex-center">
+      <p class="small">
+        <i class="fas fa-arrow-circle-right pop"></i>
+        While OLS is pretty much the standard, different penalty functions can be use as well. For example, the <span class="pop">Median Absolute Deviation (MAD)</span> uses the absolute error, and so will be more <span class="u-orange">robust to outliers</span> since it assigns less weight to outliers than OLS.
+      </p>
+    </div>
+    <div class="col-38 flex-center">
+      <svg width="100%" viewBox="0 0 360 360">
+        <use xlink:href="content/img/regression-least-square-vs-mad-fit.svg#axes_1"></use>
+        <use xlink:href="content/img/regression-least-square-vs-mad-fit.svg#axes_2"></use>
+      </svg>
+    </div>
+  </div>
+</section>

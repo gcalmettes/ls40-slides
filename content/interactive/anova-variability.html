@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>ANOVA</title>
+    <script src="js/d3.min.js"></script>
+    <script src="js/jstat.min.js"></script>
+    <script src="js/chroma.min.js"></script>
+</head>
+
+<body>
+
+<style type="text/css">
+
+  #params {
+    position: absolute;
+    left: 40px;
+    top: 10px;
+  }
+
+</style>
+
+<div id="params" style="width: 600px">
+  <div>
+    <label>Between group variability:</label>
+    <input type="range" id="varB" min="1" max="5" step="0.1" value=2.5>
+    <label id="varB-value">2.5</label>
+  </div>
+  <div>
+    <label>Within group variability:</label>
+    <input type="range" id="varW" min="0.1" max="2" step="0.1" value=0.7>
+    <label id="varW-value">0.7</label>
+  </div>
+</div>
+
+<script>
+  const marginChart = {top: 50, right: 400, bottom: 50, left: 50},
+        marginSun = {top: 50, right: 20, bottom: 50, left: 480}
+
+  const widthSVG = 750,
+        heightSVG = 350,
+        widthChart = widthSVG - marginChart.left - marginChart.right,
+        heightChart = heightSVG - marginChart.top - marginChart.bottom,
+        widthSun = widthSVG - marginSun.left - marginSun.right,
+        heightSun = heightSVG - marginSun.top - marginSun.bottom
+
+  const radiusSun = 100,
+        t = 100
+
+  const colors = {
+          info: '#00BFFF',
+          danger: '#fb4c52',
+          warning: '#FBC15E',
+          success: '#9fc857',
+          orange: '#FF8B22',
+          muted: '#B4B4B4',
+          pop: '#ce4ad0'
+        },
+        radius = 7
+
+  const initialMeans = [4, 4, 4]
+  let meanValues = [3, 5.5, 3.3],
+      std = 0.7
+
+  const xScale = d3.scaleLinear()
+    .range([0, widthChart])
+    
+  const yScale = d3.scaleLinear()
+    .range([heightChart, 0])
+    .domain([0, 9])
+
+  const svg = d3.select("body").append("svg")
+      .attr("width", widthSVG)
+      .attr("height", heightSVG)
+  
+
+  //////////////////
+  // CHART
+  const chart = svg.append("g")
+      .attr("transform", `translate(${marginChart.left}, ${marginChart.top})`);
+
+  const grandMeanText1 = chart.append('text')
+      .attr('x', xScale.range()[1]+5)
+      .style("text-anchor", "start")
+      .style("font-size","1.3em")
+      .style("font-family", "Raleway")
+      .style("fill", colors.pop)
+      .text('Grand')
+  const grandMeanText2 = chart.append('text')
+      .attr('x', xScale.range()[1]+5)
+      .style("text-anchor", "start")
+      .style("font-size","1.3em")
+      .style("font-family", "Raleway")
+      .style("fill", colors.pop)
+      .text('mean')
+
+  // get data and draw chart
+  let [data, groupMeans, grandMean] = [...getData(meanValues, std)]
+  updateChart([data, groupMeans, grandMean], chart)
+
+  function getData(means, std) {
+    const data = means.map((d,i) => [...new Array(8)]
+      .map(k => {return {group: i, value: jStat.normal.sample(d, std)}}))
+      .reduce((a, b) => [...a, ...b])
+    
+    const groupMeans = [...new Set(data.map(d => d.group))]
+      .map(d => ({group: d, value: d3.mean(data.filter(m => m.group==d), k => k.value)}))
+
+    const grandMean = d3.mean(data, d => d.value)
+
+    return [data, groupMeans, grandMean]
+  }
+
+  function updateChart(dataObject, container){
+    let [data, groupMeans, grandMean] = [...dataObject]
+
+    // update scales
+    xScale
+      .domain([-0.5, new Set(data.map(d => d.group)).size-0.5])
+
+    const gxScale = container.selectAll(".xAxis").data([null])
+    gxScale.exit().remove()
+    gxScale.enter().append("g")
+        .attr("class", "xAxis")
+        .attr("transform", `translate(${0}, ${heightChart})`)
+        .call(d3.axisBottom()
+          .scale(xScale)
+          .tickValues([...new Set(data.map(d => d.group))].map((d,i) => i))
+          .tickFormat(d => `Group ${d+1}`)
+        )
+      .merge(gxScale)
+        .call(d3.axisBottom()
+          .scale(xScale)
+          .tickValues([...new Set(data.map(d => d.group))].map((d,i) => i))
+          .tickFormat(d => `Group ${d+1}`)
+        )
+
+    const gyScale = container.selectAll(".yAxis").data([null])
+    gyScale.exit().remove()
+    gyScale.enter().append("g")
+        .attr("class", "yAxis")
+        .attr("transform", `translate(${0}, ${0})`)
+        .call(d3.axisLeft().scale(yScale))
+      .merge(gyScale)
+        .call(d3.axisLeft().scale(yScale))
+
+    const grandMeanLine = container.selectAll(".grandMeanLine").data([grandMean])
+    grandMeanLine.exit().remove()
+    grandMeanLine.enter().append("line")
+        .attr("class", "grandMeanLine")
+        .attr("x1", xScale.range()[0])
+        .attr("x2", xScale.range()[1])
+        .attr("y1", d => yScale(d))
+        .attr("y2", d => yScale(d))
+        .attr("stroke", colors.pop)
+        .attr("stroke-width", 2)
+        .attr("stroke-dasharray", "6, 8")
+      .merge(grandMeanLine)
+        .transition().duration(t)
+        .attr("x1", xScale.range()[0])
+        .attr("x2", xScale.range()[1])
+        .attr("y1", d => yScale(d))
+        .attr("y2", d => yScale(d))
+    
+    grandMeanText1
+      .transition().duration(t)
+      .attr('y', yScale(grandMean)-10)
+    grandMeanText2
+      .transition().duration(t)
+      .attr('y', yScale(grandMean)+10)
+
+    const gCircles = container.selectAll('.gCircle').data([null])
+      .append("g")
+        .attr("transform", `translate(${0}, ${0})`)
+
+    const circles = container.selectAll(".circle").data(data)
+    circles.exit().remove()
+    circles.enter().append("circle")
+        .attr("class", "circle")
+        .attr("cx", d => xScale(d.group + (Math.random()-0.5)/5))
+        .attr("cy", d => yScale(d.value))
+        .attr("fill", "none")
+        .attr("stroke-width", 2)
+        .attr("stroke", colors.muted)
+        .attr("r", radius)
+        .on("mouseover", drawToGrandMean)
+        .on("mouseout", clear)
+      .merge(circles)
+        .transition().duration(t)
+          .attr("cx", d => xScale(d.group + (Math.random()-0.5)/5))
+          .attr("cy", d => yScale(d.value))
+
+    const groupMeanLines = container.selectAll(".groupMean")
+      .data(groupMeans)
+    groupMeanLines.exit().remove()
+    groupMeanLines.enter().append("line")
+        .attr("class", "groupMean")
+        .attr("x1", (d, i) => xScale(i-0.2))
+        .attr("x2", (d, i) => xScale(i+0.2))
+        .attr("y1", d => yScale(d.value))
+        .attr("y2", d => yScale(d.value))
+        .attr("stroke", "black")
+        .attr("stroke-width", 3)
+      .merge(groupMeanLines)
+        .transition().duration(t)
+        .attr("x1", (d, i) => xScale(i-0.2))
+        .attr("x2", (d, i) => xScale(i+0.2))
+        .attr("y1", d => yScale(d.value))
+        .attr("y2", d => yScale(d.value))
+
+  }
+
+  function drawToGrandMean() {
+    // console.log(this.getAttribute("cx"))
+    const residualLine = chart.selectAll(".residuals").data([this])
+    residualLine.enter()
+      .append("line")
+        .attr("class", "residuals")
+        .attr("x1", d => d.getAttribute("cx"))
+        .attr("x2", d => d.getAttribute("cx"))
+        .attr("y1", d => d.getAttribute("cy"))
+        .attr("y2", yScale(grandMean))
+        .attr("stroke", colors.danger)
+        .attr("stroke-width", 2)
+      .merge(residualLine)
+        .attr("x1", d => d.getAttribute("cx"))
+        .attr("x2", d => d.getAttribute("cx"))
+        .attr("y1", d => d.getAttribute("cy"))
+        .attr("y2", yScale(grandMean))
+  }
+  function clear() {
+    chart.selectAll(".residuals").remove()
+  }
+
+
+  /////////////
+  // SunBurst CHART
+
+  const colorSSE = d3.scaleOrdinal(chroma.scale('Blues').padding([0.2, 0.1]).colors(5))
+  const colorSSG = d3.scaleOrdinal(chroma.scale('Reds').padding([0.2, 0.1]).colors(5))
+
+  const partition = d3.partition();
+
+  let vData = getVariabilityData(data),
+      vRoot,
+      vArc
+
+  const xSun = d3.scaleLinear().range([0, 2 * Math.PI])
+        ySun = d3.scaleSqrt().range([0, radius])
+
+  const sun = svg.append("g")
+    .attr("transform", `translate(${marginSun.left+radiusSun}, ${marginSun.top+radiusSun})`)
+
+  const node = d3.hierarchy(vData)
+      .sum(d => d.data.value)
+
+  drawSun(vData, sun)
+
+  // Create partition data for Sunburst
+  function groupBy(items, key) {
+    return items
+      .reduce((result, item) => ({
+        ...result, [item[key]]: [...(result[item[key]] || []), item,],
+        }), {},);
+  } 
+
+  function getVariabilityData(data) {
+    const sse = Object.keys(groupBy(data, "group")).map((d,i) => ({id: `sse_g${i}` , parentId: `sse` , name: `G${i+1}`}))
+    const ssg = Object.keys(groupBy(data, "group")).map((d,i) => ({id: `ssg_g${i}` , parentId: `ssg` , name: `G${i+1}`}))
+    const sse_p = data.map((d,i) => {
+      const grp = data.filter(g => g.group == d.group)
+      return {id: `sse_g${d.group}p${i%grp.length}`, parentId: `sse_g${d.group}`,
+            value: Math.pow(d.value-d3.mean(grp, k => k.value), 2), name: `G${d.group+1}`}
+    })
+    const ssg_p = data.map((d,i) => {
+      const grp = data.filter(g => g.group == d.group)
+      return {id: `ssg_g${d.group}p${i%grp.length}`, parentId: `ssg_g${d.group}` , value: Math.pow(grandMean - d3.mean(grp, k => k.value), 2), name: `G${d.group+1}`}})
+    
+    const variabilityHierarchy = [
+      {id: 'sst'},
+      {id: 'sse', parentId: 'sst', name: "SSE"},
+      {id: 'ssg', parentId: 'sst', name: "SSG"}, 
+      ...sse, ...ssg, ...sse_p, ...ssg_p
+    ]
+    return d3.stratify()
+      .id(d => d.id)
+      .parentId(d => d.parentId)
+      (variabilityHierarchy)
+  }
+
+  function drawSun(vData, container) {
+    // Create our sunburst data structure and size it.
+    const partition = d3.partition()
+        .size([2 * Math.PI, radiusSun])
+
+    // Find the root node of our data, and begin sizing process.
+    const root = d3.hierarchy(vData)
+        .sum(d => d.data.value)
+        // .sort((a, b) => b.value - a.value);
+
+    // Calculate the sizes of each arc that we'll draw later.
+    partition(root);
+    const arc = d3.arc()
+      .startAngle(d => { d.x0s = d.x0; return d.x0; })
+      .endAngle(d => { d.x1s = d.x1; return d.x1; })
+      .innerRadius(d => { return d.y0; })
+      .outerRadius(d => { return d.y1; });
+
+    // Add a <g> element for each node in thd data, then append <path> elements and draw lines based on the arc
+    // variable calculations. Last, color the lines and the slices.
+    const sunNodes = container.selectAll('.node')
+        .data(root.descendants())
+    sunNodes.exit().remove()
+
+    const sunNodesEnter = sunNodes.enter().append('g')
+        .attr("class", "node")
+      
+    const sunPaths = sunNodesEnter.append('path')
+        .attr("display", function (d) { return d.depth ? null : "none"; })
+        .attr("d", arc)
+        .style('stroke', '#fff')
+        .style("fill", d => d.data.id.slice(0, 3) == "sse" ? colorSSE((d.children ? d : d.parent).data.id) 
+          : d.data.id.slice(0, 3) == "ssg" ? colorSSG((d.children ? d : d.parent).data.id) 
+          : "black")
+
+    sunPaths.on("click", highlight)
+
+    const sunText = sunNodesEnter.append("text")
+          .attr("transform", d => `translate(${arc.centroid(d)}) rotate(${computeTextRotation(d)})`)
+          .attr("dx", "-10") // radius margin
+          .attr("dy", ".5em") // rotation align
+          .text(d => d.depth > 2 ? "" : d.parent ?  d.data.data.name : "");
+    
+    const sunNodesMerged = sunNodesEnter.merge(sunNodes)
+    sunNodesMerged.select("path")
+      .transition().duration(t)
+      .attrTween("d", arcTweenPath)
+    sunNodesMerged.select("text")
+      .attr("transform", d => `translate(${arc.centroid(d)}) rotate(${computeTextRotation(d)})`)
+
+
+       // When switching data: interpolate the arcs in data space.
+      function arcTweenPath(a, i) {
+
+        const oi = d3.interpolate({ x0: a.x0s, x1: a.x1s }, a);  // <-- 1
+        function tween(t) {  // <-- 2
+            const b = oi(t);  // <-- 3
+            a.x0s = b.x0;  // <-- 4
+            a.x1s = b.x1;  // <-- 4
+            return arc(b);  // <-- 5
+        }
+
+        return tween;  // <-- 6
+    }
+
+
+  }
+
+  function highlight(d) {
+    console.log(d)
+  }
+
+  function computeTextRotation(d) {
+        const angle = (d.x0 + d.x1) / Math.PI * 90;
+        // Avoid upside-down labels
+        return (angle < 120 || angle > 270) ? angle : angle + 180;  // labels as rims
+        //return (angle < 180) ? angle - 90 : angle + 90;  // labels as spokes
+    }
+
+  const varBValue = d3.select("#varB-value")
+  const varBRange = d3.select("#varB")
+  varBRange.on("input", function() {
+    const val = +this["value"]
+    varBValue.text(val.toFixed(1))
+    meanValues = initialMeans.map((d,i) => i==0 ? d+(val-1)/2 : i==1 ? d+(1-val)/3 : d+(val-1)/1.5)
+    dataObject = getData(meanValues, std)
+    updateChart(dataObject, chart)
+    vData = getVariabilityData(dataObject[0])
+    drawSun(vData, sun)
+
+    data = dataObject[0]
+    groupMeans = dataObject[1]
+    grandMean = dataObject[2]
+  })
+
+  const varWValue = d3.select("#varW-value")
+  const varWRange = d3.select("#varW")
+  varWRange.on("input", function() {
+    const val = +this["value"]
+    std = val
+    varWValue.text(val.toFixed(1))
+    dataObject = getData(meanValues, std)
+    updateChart(dataObject, chart)
+    
+    vData = getVariabilityData(dataObject[0])
+    drawSun(vData, sun)
+  })
+
+</script>
+</body>
+
+</html>

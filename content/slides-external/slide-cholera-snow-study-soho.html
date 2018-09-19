@@ -1,0 +1,305 @@
+<section data-transition="slide-in">
+  <h3>The River Thames, a (polluted) source for water companies</h3>
+  <img class="framed" src="content/img/cholera-london-thames.jpg" width=90%>
+  <aside class="notes">
+    Thames was very polluted <br>
+    By the arrival of the 19th century, the River Thames had become the most contaminated river in the world.
+    <br>
+    Toilets were widely introduced in London between 1830 and 1850: main sewers were introduced in the 1840s.
+    <br>
+    The sewers, elongated cesspools with overflows at the end emptied into the River Thames, which was also a dumping ground for animal and industrial wastes.
+    <br>
+    <br>
+    When ship were coming to harbor, crew started to develop cholera symptom only when they were going in contact with people of the city.
+  </aside>
+</section>
+
+<section data-transition="none">
+  <h3> Soho cholera epidemics (Sept. 1854)</h3>
+  <div class="row">
+  <div class="col-33">
+    <p class="quoted">The most terrible outbreak of cholera which ever occurred in this kingdom.</p>
+    <p class="right smallest">- John Snow -</p>
+    <p class="sided border-danger down-5">
+      <span class="danger"><i>The first 10 days:</i></span><br>
+      <span>> 500 fatalities</span></p>
+  </div>
+  <div class="col-66">
+    <img src="content/img/cholera-court_for_king_cholera.jpg">
+  </div>
+  </div>
+  <aside class="notes">
+    <p>
+      By the middle of the 19th century, Soho had become an insanitary place of cow-sheds, animal droppings, slaughterhouses, grease-boiling dens and primitive, decaying sewers. And underneath the floorboards of the overcrowded cellars lurked something even worse -- a fetid sea of cesspits as old as the houses, and many of which had never been drained. It was only a matter of time before this hidden festering time-bomb exploded.
+      <br>
+      Soho was the neighborhood of John Snow.
+      <br>
+      First hand case study for him.
+      <br>
+      In Snow’s days, the science of public health and statistics, epidemiology, was not established.
+      <br>
+      He collected epidemiological evidence in a bid to convince other practitioners of his theory of cholera.
+    </p>
+  </aside>
+</section>
+
+<section data-transition="slide-out">
+  <h3>John Snow's dataset</h3>
+  <p >Snow tracked the numbers of cholera fatal attacks in the neighborhood.</p>
+
+  <div class="col-62 center em orange small right-21 fragment" data-fragment-index=1 style="border-bottom-style: solid; border-bottom-width: 2px;">
+    Variables
+  </div>
+
+  <div class="col-27 center small em orange rotation-270 down-17 fragment" style="border-bottom-style: solid; border-bottom-width: 2px;" data-fragment-index=1>
+    Observational<br>Units
+  </div>
+
+  <div class="col-80 smaller right-12 up-22">
+  <table class="center">
+    <thead>
+      <tr class="bg-muted">
+        <th>House</th>
+        <th>Address</th>
+        <th>Population</th>
+        <th>Fatalities</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>House #1</td>
+        <td>45 Lexington St</td>
+        <td>8</td>
+        <td>5</td>
+      </tr>
+      <tr>
+        <td>House #2</td>
+        <td>15 Broadwick St</td>
+        <td>21</td>
+        <td>7</td>
+      </tr>
+      <tr>
+        <td>House #3</td>
+        <td>61 Poland St</td>
+        <td>4</td>
+        <td>1</td>
+      </tr>
+      <tr>
+        <td>House #4</td>
+        <td>37 Broad St</td>
+        <td>27</td>
+        <td>16</td>
+      </tr>
+      <tr>
+        <td>House #5</td>
+        <td>48 Carnaby St</td>
+        <td>11</td>
+        <td>3</td>
+      </tr>
+      <tr>
+        <td>House #6</td>
+        <td>46 Beak St</td>
+        <td>8</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <td>House #7</td>
+        <td>43 Broad St</td>
+        <td>44</td>
+        <td>9</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <!-- </div> -->
+  <aside class="notes">
+    <p>
+      When you want to study something, you need data.
+      <br>
+      Kind of data Snow was collecting going door to door.
+      <br>
+      Usually data is stored and presented in a dataset,
+      comprised of variables measured on observational units (or cases).
+      <br>
+      In any dataset, it is important to understand exactly what each variable is mea- suring and how the values are coded. First column is usually used to provide an identier for each of the individuals in the study (House number).
+      <br>
+      We see that there are different types of variables. Categories and numbers.
+    </p>
+  </aside>
+</section>
+
+<section data-external-replace="slide-definition-observational-units.html"></section>
+
+<section data-transition="slide">
+  <h3>John Snow's dataset</h3>
+  <p >Snow tracked the numbers of cholera fatal attacks in the neighborhood.</p>
+  
+  <div style="position:relative" >
+    <p class="fragment current-visible info strong" style="position:absolute; margin-left: auto; margin-right: auto; left: 0; right: 0;" data-fragment-index="1">
+    Categorical
+    </p>
+    <p class="fragment current-visible info strong" style="position:absolute; margin-left: auto; margin-right: auto; left: 0; right: 0;" data-fragment-index="2">
+      Quantitative
+    </p>
+  </div>
+
+  <div class="col-62 center em orange small right-21" style="border-bottom-style: solid; border-bottom-width: 2px;">
+    Variables
+  </div>
+
+  <div class="col-27 center small em orange rotation-270 down-17" style="border-bottom-style: solid; border-bottom-width: 2px;">
+    Observational<br>Units
+  </div>
+
+  <div class="col-80 smaller right-12 up-22">
+  <table class="center">
+    <thead>
+      <tr class="bg-muted" >
+        <th>House</th>
+        <th>Address</th>
+        <th>Population</th>
+        <th>Fatalities</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fragment highlight-current-bg-info" data-fragment-index=1>House #1</td>
+        <td>45 Lexington St</td>
+        <td class="fragment highlight-current-bg-info" data-fragment-index=2>8</td>
+        <td>5</td>
+      </tr>
+      <tr>
+        <td class="fragment highlight-current-bg-info" data-fragment-index=1>House #2</td>
+        <td>15 Broadwick St</td>
+        <td class="fragment highlight-current-bg-info" data-fragment-index=2>21</td>
+        <td>7</td>
+      </tr>
+      <tr>
+        <td class="fragment highlight-current-bg-info" data-fragment-index=1>House #3</td>
+        <td>61 Poland St</td>
+        <td class="fragment highlight-current-bg-info" data-fragment-index=2>4</td>
+        <td>1</td>
+      </tr>
+      <tr>
+        <td class="fragment highlight-current-bg-info" data-fragment-index=1>House #4</td>
+        <td>37 Broad St</td>
+        <td class="fragment highlight-current-bg-info" data-fragment-index=2>27</td>
+        <td>16</td>
+      </tr>
+      <tr>
+        <td class="fragment highlight-current-bg-info" data-fragment-index=1>House #5</td>
+        <td>48 Carnaby St</td>
+        <td class="fragment highlight-current-bg-info" data-fragment-index=2>11</td>
+        <td>3</td>
+      </tr>
+      <tr>
+        <td class="fragment highlight-current-bg-info" data-fragment-index=1>House #6</td>
+        <td>46 Beak St</td>
+        <td class="fragment highlight-current-bg-info" data-fragment-index=2>8</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <td class="fragment highlight-current-bg-info" data-fragment-index=1>House #7</td>
+        <td>43 Broad St</td>
+        <td class="fragment highlight-current-bg-info" data-fragment-index=2>44</td>
+        <td>9</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <!-- </div> -->
+  <aside class="notes">
+    <p>
+      When you want to study something, you need data.
+      <br>
+      Kind of data Snow was collecting going door to door.
+      <br>
+      Usually data is stored and presented in a dataset,
+      comprised of variables measured on observational units (or cases).
+      <br>
+      In any dataset, it is important to understand exactly what each variable is mea- suring and how the values are coded. First column is usually used to provide an identier for each of the individuals in the study (House number).
+      <br>
+      We see that there are different types of variables. Categories and numbers.
+    </p>
+  </aside>
+</section>
+
+<section data-external-replace="slide-definition-categorical-quantitative.html"></section>
+
+<section data-external-replace="slide-animation-cholera-soho-spatial.html"></section>
+
+<section data-external-replace="slide-definition-outliers.html"></section>
+
+<section> 
+  <h3>Outliers in Snow's Soho investigation</h3>
+  <p style="margin-top: 0;">
+    The <span class="danger">information given by the outliers was important</span>: it helped Snow rule out other possible sources of the epidemic besides pump water.
+  </p>
+  <p class="sided border-warning">A workhouse had 535 inmates but almost no cases of cholera.<br>
+   <i class="fas fa-arrow-right"></i> Snow discovered the workhouse had its own well
+  </p>
+  <p class=" fragment sided border-warning">
+    The 70 workers of the brewery on Broad Street also escaped cholera.<br>
+    <i class="fas fa-arrow-right"></i> Mr. Huggins (owner) told Snow that the men drank the liquor they made or water 
+    from the brewery’s own well.
+  </p>
+  <p class="fragment sided border-info">
+    An elderly widow in West Hampstead (an area some distance away, which was free of cholera)
+    and her niece died from cholera. <br>
+    <i class="fas fa-arrow-right"></i> She liked the taste of Broad Street water, and she had a bottle brought to them every day from the pump
+  </p>
+</section>
+
+<section>
+  <h3>The Broad street pump area</h3>
+  <div class="row">
+    <div class="col-20">
+      <p>
+        Data visualization is a powerful tool!
+      </p>
+      <p class="fragment success" data-fragment-index=1 style="font-size: 0.6em;">Area for which the Broad Street pump is the fastest trip to water <br>(on foot).</p>
+    </div>
+    <div class="col-80">
+      <svg width=100% viewbox="550 300 1300 1000">
+        <use xlink:href="content/interactive/data/cholera-soho-spatial.svg#Layer1"></use>
+        <use class="fragment" data-fragment-index=1 xlink:href="content/interactive/data/cholera-soho-spatial.svg#nearest"></use>
+      </svg>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>
+      Snow employed network analysis to calculate which water pump was closest to each house.
+      <br>
+      The stroke of genius: he based it on walking distance, not as-the-crow-flies distance.
+      <br>
+      He then used polygons to demarcate areas based on those findings. Because he added foot traffic to the equation, the output yielded a shape that clearly illustrated the relationship between human movement and disease.
+      <br>
+      It was impossible to deny the high concentration of fatalities in the population that was drinking Broad Street water. This map helped convince the local authorities that cholera was waterborne.
+    </p>
+  </aside>
+</section>
+
+<section>
+  <h3>From data to administrative action</h3>
+  <p class="sided border-warning">On Sep 7, 1854, Snow took his research to the town officials and convinced them to take the handle off the pump.</p>
+  <div class="row down-3">
+  <div class="col-70">
+    <img width=100% src="content/img/cholera-deathdays.svg">
+  </div>
+  <div class="col-30 fragment" data-fragment-index=1>
+    <p class="framed border-danger">Still, the scientific community was reluctant to
+    believe his theory</p>
+    <p class="em smaller">What would be alternative explanations
+    for the decrease in cholera fatal attacks?</p>
+  </div>
+  </div>
+  <aside class="notes">
+    <p>
+      Despite the success of Snow’s theory in stemming the cholera epidemic in Soho, public officials still thought his hypothesis was nonsense.
+      <br>
+      They refused todo anything to clean up the cesspools and sewers.
+      <br>
+      The Board of Health issued a report that said, “we see no reason to adopt this belief” and shrugged off Snow’s evidence as mere “suggestions.”
+    </p>
+  </aside>
+</section>

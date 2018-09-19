@@ -1,0 +1,59 @@
+<section>
+  <h3>Estimating the true value of the population parameter</h3>
+  <div class="row down-3">
+    <div class="col-45 small">
+      Statistics is all about <span class="warning">gaining knowledge</span> about a
+      <span class="info">population data</span> by only using
+      a <span class="u-danger">a <span class="danger">sample</span> from this population</span>. <br>
+      <span class="tt">Significance / Estimation</span> <br>
+      <span class="tt">Generalization / Causation</span>
+    </div>
+    <div class="col-55">
+      <img src="content/img/inferences.svg" width="100%">
+    </div>
+  </div>
+  <p class="fragment">
+    <i class="fas fa-arrow-circle-right"></i> By using <span class="pop">significance testing</span>, we get an idea of the <span class="pop">compatibility of our sample with a specific population</span> (we test a specific population parameter). This is different than getting an estimate of the true value of our population parameter.
+  </p>
+  <p class="fragment quoted down-2">
+    How good of an estimate of the true population parameter is my sample statistic?
+    How close to the true population parameter the statistic we calculated from the sample is? 
+  </p>
+</section>
+
+<section>
+  <h3>Sampling from a population</h3>
+    <svg width="100%" viewBox="100 100 1200 405">
+      <use xlink:href="content/img/population-random-sampling.svg#axes_1"></use>
+      <use xlink:href="content/img/population-random-sampling.svg#axes_2"></use>
+      <use xlink:href="content/img/population-random-sampling.svg#axes_3"></use>
+      <use xlink:href="content/img/population-random-sampling.svg#axes_4"></use>
+      <use xlink:href="content/img/population-random-sampling.svg#axes_5"></use>
+    </svg>
+  <div class="smaller sided">
+    We usually think of a <span class="info">parameter</span> (e.g.: $\mu$) as a <span class="info">fixed value</span> while the corresponding <span class="danger">sample statistic</span> (e.g.: $\bar{x}$) <span class="danger">varies from sample to sample</span>, depending on which observational units are selected to be in the sample.
+  </div>
+  <div class="smaller">
+    <i class="fas fa-arrow-circle-right info"></i> We are interested in the value of the population parameter, but this <span class="info">usually cannot be computed directly</span> because it is often very difficult or impossible to collect data from every member of the population. <br>
+    <i class="fas fa-arrow-circle-right danger"></i> The sample statistic might vary depending on the sample, but at least <span class="danger">we can compute its value</span>.
+  </div>
+</section>
+
+<section data-transition="slide-in">
+  <h3>Sampling distribution</h3>
+  <div class="small quoted">
+    A sampling distribution is the <span class="danger">distribution of sample statistics</span> computed for <span class="u-danger">different random samples of the same size</span> from the same population.
+  </div>
+  <div class="row down-1">
+    <div class="col-30 smaller">
+      A sampling distribution shows us how the sample statistic varies from sample to sample.
+      Sampling distributions <span class="danger">apply to every statistic</span> that we've covered so far, and lots more! 
+    </div>
+    <div class="col-70">
+      <img width="100%" src="content/img/population-sampling-distribution-parameters.svg">
+    </div>
+  </div>
+  <!-- <div class="smaller framed">
+    <span class="muted em u">Note:</span> For most of the parameters we consider, if samples are randomly selected and the sample size is large enough, the sampling distribution will be generally symmetric and bell-shaped and centered at the value of the population parameter.
+  </div> -->
+</section>

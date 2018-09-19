@@ -1,0 +1,364 @@
+<html>
+
+<style type="text/css">
+  
+  body{
+    font-family: Raleway;
+    margin:0px;
+  }
+
+  .h,.v{
+    stroke:black;
+    stroke-dasharray:4 4;
+    stroke-width:1;
+    stroke-opacity:.5;
+  }
+
+  .axis path, .axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+  }
+
+  .axis text {
+      font-family: sans-serif;
+      font-size: 11px;
+  }
+
+  #resid_button {
+    position: absolute;
+    top: 55px;
+    left: 600px;
+    font-size: 1.5em;
+    font-family: Raleway;
+    background-color: white;
+    border-radius: 12px;
+    color: black;
+    border: 2px solid black;
+  }
+
+  #reset_button {
+    position: absolute;
+    top: 105px;
+    left: 600px;
+    font-size: 1.5em;
+    font-family: Raleway;
+    background-color: white;
+    border-radius: 12px;
+    color: black;
+    border: 2px solid black;
+  }
+
+</style>
+
+<body>
+  <button id="resid_button" class="btn btn-danger">Residual View</button>
+  <button id="reset_button" class="btn btn-primary">Reset</button>
+
+</body>
+</html>
+
+<script src="js/d3.min.js"></script>
+<script type="text/javascript">
+//Global Variables
+let data = [],
+    residuals = [],
+    radius = 10
+
+const colors = {
+  info: '#00BFFF',
+  danger: '#fb4c52',
+  warning: '#FBC15E',
+  success: '#9fc857',
+  orange: '#FF8B22',
+  muted: '#B4B4B4',
+  pop: '#ce4ad0'
+}
+
+//D3 Set up
+const width = 600,
+      height = 450, 
+      margin = 50;
+
+
+//makes scales
+const svg=d3.select("body").append("svg").attr("width",width).attr("height",height);
+const x=d3.scaleLinear().domain([0,10]).range([margin,width-margin]);
+const y=d3.scaleLinear().domain([0,10]).range([height-margin,margin]);
+
+//create axis
+const xAxis = d3.axisBottom()
+  .scale(x)
+
+var yAxis = d3.axisLeft()
+  .scale(y)
+
+//draw axis
+svg.append("g")
+  .attr("class", "axis")
+  .attr("transform", `translate(0, ${height - margin})`)
+  .call(xAxis);
+svg.append('text')
+  .attr('class', 'axisLabel')
+  .attr('x', width/2)
+  .attr('y', height)
+  .style("text-anchor", "middle")
+  .style("font-size","2.2em")
+  .style("font-family", "Raleway")
+  .text('x');
+
+svg.append("g")
+  .attr("class", "axis")
+   .attr("transform", `translate(${margin}, 0)`)
+  .call(yAxis);
+svg.append('text')
+  .attr('class', 'axisLabel')
+  .attr('transform', `translate(15, ${height/2}) rotate(-90)`)
+  .style("text-anchor", "middle")
+  .style("font-size","2.2em")
+  .style("font-family", "Raleway")
+  .text('y');
+
+//draw dashed lines
+svg.selectAll(".h").data(d3.range(0,10,2)).enter()
+  .append("line").classed("h",1)
+  .attr("x1",margin).attr("x2", width-margin)
+  .attr("y1",y).attr("y2",y)
+  
+svg.selectAll(".v").data(d3.range(0,10,2)).enter()
+  .append("line").classed("v",1)
+  .attr("y1",margin).attr("y2", height-margin)
+  .attr("x1",x).attr("x2",x)
+
+
+let residualsView = false;
+
+d3.select('#resid_button').on('click', function() {
+  if ( residualsView ) {
+    svg.selectAll('path.resline').remove();
+    svg.selectAll('path.halfcirc').remove();
+    svg.selectAll("circle").style("opacity", 1)
+    residualsView = false;
+    d3.select(this).text("Residual View")
+  } else {
+    svg.selectAll("circle").style("opacity", 0)
+    residualsView = true;
+    drawresiduals(data); 
+    d3.select(this).text("Data points View") 
+  }        
+});
+
+d3.select('#reset_button').on('click', function() {
+  svg.selectAll('path.resline').remove();
+  svg.selectAll('path.halfcirc').remove();
+  svg.selectAll('circle').remove();
+  svg.selectAll('path').remove();
+  residualsView = false;
+  data = []
+  residuals = []      
+});  
+
+
+
+//click event: draw new circle
+svg.on('click', function(){
+ if(d3.mouse(this)[0] > x.range()[0] &&
+    d3.mouse(this)[0] < x.range()[1] &&
+    d3.mouse(this)[1] > y.range()[1] &&
+    d3.mouse(this)[1] < y.range()[0]){
+
+    //push new data point to data array
+    data.push({ x: d3.mouse(this)[0],
+                y: d3.mouse(this)[1],
+                radius: 10,
+              });
+
+    //select each circle and append the data
+    const selection = svg.selectAll("circle").data(data)
+
+    //update selection and draw new circle
+    selection.enter()
+      .append("circle")
+      .attr("cx", d => d.x)
+      .attr("cy", d => d.y)
+      .attr("r", d => d.radius)
+      .style("fill", d => colors.info)
+      .style("opacity", d => residualsView ? 0 : 1)
+
+    //exit selection
+    selection.exit().remove()
+
+    if(data.length >= 2){
+      drawline(data);
+    }
+    if(residualsView){
+      residuals = drawresiduals(data);
+    }
+  }
+})
+
+
+function LeastSquares(values_x, values_y) {
+  let sum_x = 0,
+      sum_y = 0,
+      sum_xy = 0,
+      sum_xx = 0,
+      count = 0
+
+  // We'll use those variables for faster read/write access.
+  let x = 0,
+      y = 0,
+      values_length = values_x.length;
+
+  if (values_length != values_y.length) {
+      throw new Error('The parameters values_x and values_y need to have same size!');
+  }
+
+  // Nothing to do.
+  if (values_length === 0) {
+      return [ [], [] ];
+  }
+
+  //Calculate the sum for each of the parts necessary.
+  for (let v = 0; v < values_length; v++) {
+      x = values_x[v];
+      y = values_y[v];
+      sum_x += x;
+      sum_y += y;
+      sum_xx += x*x;
+      sum_xy += x*y;
+      count++;
+  }
+
+  //Calculate m and b for the formula:
+  // y = x * m + b
+  const m = (count*sum_xy - sum_x*sum_y) / (count*sum_xx - sum_x*sum_x);
+  const b = (sum_y/count) - (m*sum_x)/count;
+
+  return {'b': b, 'm': m};
+}
+
+
+function drawline(data) {
+  const xValues = data.map(d => d.x);
+  const yValues = data.map(d =>  d.y);
+  const lsCoef = [LeastSquares(xValues, yValues)];
+
+  const lineFunction = d3.line()
+    .x(d => d.x)
+    .y(d => d.y);
+
+  const endPoints = [ 
+    {"x": margin, "y": lsCoef[0].m * margin + lsCoef[0].b},
+    {"x": width-margin, "y": lsCoef[0].m * (width-margin) + lsCoef[0].b}
+  ]
+
+  let line = svg.selectAll("#regline")
+    .data([endPoints])
+
+  line.enter()
+    .append('path')
+      .attr("stroke-width", 2)
+      .attr("stroke", "black")
+      .attr('id', 'regline')
+    .merge(line)
+      .transition()
+      .attr("d", d => lineFunction(d))
+}
+
+function drawresiduals(data){
+  //get least squares coeffs, draw red paths
+  const xValues = data.map(d => d.x);
+  const yValues = data.map(d => d.y);
+  const lsCoef = [LeastSquares(xValues, yValues)];
+
+  const lineFunction = d3.line()
+    .y(d => d.y)
+    .x(d => d.x);
+
+  let residuals = data.map(d => {
+    return {"x0": d.x, 
+            "y0": d.y, 
+            "x1": d.x , 
+            "y1": lsCoef[0].m * d.x + lsCoef[0].b}
+  })
+
+
+  svg.selectAll('path.resline').remove();
+  svg.selectAll('path.halfcirc').remove();
+  const selection = svg.selectAll('.resline')
+      .data(residuals)
+    
+  selection.enter()
+    .append('path')
+    .transition()
+    .attr("d", function(d){
+      if(d.y0-d.y1 < -radius) {
+        return lineFunction([
+          {"x": d.x0, "y": d.y0 + radius},
+          {"x": d.x1, "y": d.y1}]); 
+      } else if (d.y0 - d.y1 > radius){
+        return lineFunction([
+          {"x": d.x0, "y": d.y0 - radius},
+          {"x": d.x1, "y": d.y1}]);
+      } 
+    })
+    .attr("stroke-width", 3)
+    .attr("stroke", colors.danger)
+    .attr('class', 'resline')
+
+  selection.exit().remove()
+
+  selection.enter()
+    .each(function(d){
+      halfcircles(d);
+    })
+
+  return residuals;
+}
+
+
+var halfcircles = function(d){
+  // Draw half circles for residuals view
+  const padding = 10,
+        radians = Math.PI;
+
+  const dimension = (2 * radius) + (2 * padding),
+        points = 50;
+
+  const angle = d3.scaleLinear()
+    .domain([0, points-1])
+    .range([ 0, radians]);
+
+  const fullangle = d3.scaleLinear()
+    .domain([0, points-1])
+    .range([ 0, 2*radians]);
+
+  const line = d3.radialLine()
+    .curve(d3.curveBasis)
+    .radius(radius)
+    .angle((e, i) => { 
+      if(d.y0-d.y1 < -radius) {
+        return angle(i) + Math.PI/2; 
+      } else if (d.y0 - d.y1 > radius){
+        return angle(i) + Math.PI*(3/2);
+      } else {
+        return fullangle(i);
+      }
+    })
+
+  svg.append("path")
+    .datum(d3.range(points))
+      .attr("class", "line")
+      .attr("d", line)
+      .attr("fill", 'none')
+      .attr("transform", "translate(" + (d.x0) + ", " + (d.y0) + ")")
+      .style("stroke-dasharray", ("2, 2"))
+      .style("stroke", e => (d.y0-d.y1 > -radius && d.y0 - d.y1 < radius) ? colors.info : colors.danger)
+      .style("stroke-width", 4)
+      .attr("class", "halfcirc");
+  }
+
+
+</script>
+

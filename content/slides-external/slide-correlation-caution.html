@@ -1,0 +1,87 @@
+<section>
+  <h3>Correlation caution #1</h3>
+  <div class="row flex">
+    <div class="col-20 flex-center">
+      <i class="fas fa-exclamation-triangle fa-2x danger"></i>
+    </div>
+    <div class="col-80 flex-center">
+      <p>
+        A strong positive or negative correlation does not (necessarily) imply a <span class="danger">cause and effect relationship</span> between the two variables.
+      </p>
+    </div>
+  </div>
+  <div class="row center">
+    <img src="content/img/correlation-caution1.svg" width=60%>
+  </div>
+</section>
+
+<section>
+  <h3>Correlation caution #2</h3>
+  <div class="row flex">
+    <div class="col-20 flex-center">
+      <i class="fas fa-exclamation-triangle fa-2x danger"></i>
+    </div>
+    <div class="col-80 flex-center">
+      <p>
+        A correlation near zero does not (necessarily) mean that the two variables are not associated, since the correlation measures only the strength of a linear relationship.
+      </p>
+    </div>
+  </div>
+  <div class="row center">
+    <img src="content/img/correlation-caution2.svg" width=50%>
+  </div>
+</section>
+
+<section>
+  <h3>Correlation caution #3</h3>
+  <div class="row flex">
+    <div class="col-20 flex-center">
+      <i class="fas fa-exclamation-triangle fa-2x danger"></i>
+    </div>
+    <div class="col-80 flex-center">
+      <p>
+        Correlation can be heavily influenced by outliers. Always plot your data!
+      </p>
+    </div>
+  </div>
+  <div class="row center">
+    <img src="content/img/correlation-caution3.svg" width=90%>
+  </div>
+</section>
+
+<section>
+  <h3>Correlation caution #4</h3>
+  <div class="row flex">
+    <div class="col-20 flex-center">
+      <i class="fas fa-exclamation-triangle fa-2x danger"></i>
+    </div>
+    <div class="col-80 flex-center">
+      <p>
+        Pearson correlation doesn't give reliable results if the variables are not normally distributed.
+      </p>
+    </div>
+  </div>
+  <p class="smaller">
+    We can use the ranks of each of the variables to transform the data into an appropriate-looking space and then use Pearson's correlation on those ranks (<span class="danger">Spearman's Correlation</span>)
+  </p>
+  <div class="row center flex">
+    <div class="col-45 flex-center small">
+      <div>
+        <div class="center">Pearson's correlation</div>
+        <img src="content/img/correlation-pearson-vs-spearman-1.svg">
+      </div>
+    </div>
+    <div class="col-10 small flex-center">
+      <div class="center">
+        Rank <br>
+        <i class="fas fa-arrow-right"></i>
+      </div>
+    </div>
+    <div class="col-45 flex-center small">
+      <div>
+        <div class="center">Spearman's correlation</div>
+        <img src="content/img/correlation-pearson-vs-spearman-2.svg">
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,86 @@
+<section>
+  <h3>Water supply and cholera occurence</h3>
+
+  <div class="row">
+    <div class="col-80">
+      <div class="framed">
+      <table class="center smaller">
+        <thead>
+          <tr class="smaller">
+            <th> </th>
+            <th><span class="fragment" data-fragment-index=2>Number of houses</span></th>
+            <th>Deaths from cholera</th>
+            <th><span class="fragment" data-fragment-index=2>Deaths in each 10,000 houses</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="strong small">Southwark & Vauxhall</td>
+            <td ><span class="fragment" data-fragment-index=2>40,046</span></td>
+            <td>1,263</td>
+            <td>
+              <div class="fragment" data-fragment-index=2>
+                  <div class="fragment highlight-bg-danger center" data-fragment-index=4>
+                    315
+                  </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="strong small">Lambeth Waterworks</td>
+            <td><span class="fragment" data-fragment-index=2>26,107</span></td>
+            <td>98</td>
+            <td><span class="fragment" data-fragment-index=2>38</span></td>
+          </tr>
+          <tr>
+            <td class="strong small">Rest of London</td>
+            <td><span class="fragment" data-fragment-index=2>256,423</span></td>
+            <td>1,422</td>
+            <td><span  class="fragment" data-fragment-index=2>55</span></td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+    <div class="col-20">
+      <p class="fragment danger smaller" data-fragment-index=4>
+        8 times more likely to die
+      </p>
+    </div>
+  </div>
+
+  <div class="row down-5">
+    <div class="col-40">
+      <p>
+        On the basis of these figures, <span class="em strong">which company is more likely to be transmitting "morbid matter" causing cholera?</span>
+      </p>
+      <p class="fragment danger framed border-danger" data-fragment-index=1>
+        Cannot tell! <br>
+        <i class="fas fa-arrow-circle-right danger"></i> we need to <span class="u">normalize</span> the data
+      </p>
+    </div>
+    <div class="col-60">
+      <div class="fig-container"  data-file="interactive/cholera-death-analysis.html"></div>
+    </div>
+  </div>
+
+  <span class="fragment" data-fragment-index=3></span>
+  
+  <aside class="notes">
+    <p>
+      On the basis of these figures, which company is more likely to be transmitting "morbid matter" causing cholera? 
+      <br>
+      Cannot tell: Correct. Although there were more deaths in houses supplied by the Southwark and Vauxhall Company, this could just be because this company supplied water to a greater number of people. In order to know whether one company is more likely to transmit contaminated water, we need to know, for each company, the number of deaths as a proportion of the number of people supplied with water.
+      => Need to normalize to be able to directly compare data.
+      <br>
+      In order to estimate the denominator, Snow obtained information on the number of houses in London whose water was supplied by each of the two water companies.
+      <br>
+      Are there are problems with using a general total of houses supplied by each
+      company as a denominator?
+      <br> 
+      - Ideally, the denominator should be all people supplied by water from each company, not houses. Different houses may contain different numbers of people. If, for example, the Lambeth company supplied an area where there were consistently more people per house than the area supplied by the Southwark and Vauxhall company, then we might be misled by using the number of houses as a denominator. 
+      <br>
+      - Ideally, the denominator should be houses in the areas of mixed supply only, not all households supplied by the companies, because the patrons could differ substantially over the larger area.
+    </p>
+  </aside>
+</section>

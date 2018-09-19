@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.4, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="425.197px" height="212.598px" viewBox="1.051 15.576 425.197 212.598"
+	 enable-background="new 1.051 15.576 425.197 212.598" xml:space="preserve">
+<g>
+	<g>
+		<path fill="#FB4C52" stroke="#000000" stroke-miterlimit="10" d="M134.182,36.672c0,8.284-6.716,15-15,15H74.278
+			c-8.284,0-15-6.716-15-15l0,0c0-8.284,6.716-15,15-15h44.903C127.466,21.672,134.182,28.388,134.182,36.672L134.182,36.672z"/>
+		<g>
+			<g>
+				
+					<line fill="none" stroke="#000000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" x1="140.118" y1="36.672" x2="240.281" y2="36.672"/>
+				<g>
+					<polygon points="250.872,36.672 235.948,42.77 239.489,36.672 235.948,30.575 					"/>
+				</g>
+			</g>
+		</g>
+		<text transform="matrix(1 0 0 1 64.9224 41.3662)" fill="#FFFFFF" font-family="'MyriadPro-Semibold'" font-size="16">Sample 1</text>
+	</g>
+	<g>
+		<path fill="#FB4C52" stroke="#000000" stroke-miterlimit="10" d="M134.182,203.672c0,8.283-6.716,15-15,15H74.278
+			c-8.284,0-15-6.717-15-15l0,0c0-8.285,6.716-15,15-15h44.903C127.466,188.672,134.182,195.387,134.182,203.672L134.182,203.672z"
+			/>
+		<g>
+			<g>
+				
+					<line fill="none" stroke="#000000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" x1="140.118" y1="203.672" x2="240.281" y2="203.672"/>
+				<g>
+					<polygon points="250.872,203.672 235.948,209.77 239.489,203.672 235.948,197.575 					"/>
+				</g>
+			</g>
+		</g>
+		<text transform="matrix(1 0 0 1 64.9224 208.3662)" fill="#FFFFFF" font-family="'MyriadPro-Semibold'" font-size="16">Sample 2</text>
+	</g>
+</g>
+<g>
+	<g>
+		<path fill="#00BFFF" stroke="#000000" stroke-miterlimit="10" d="M96.591,120.172c0,9.942-8.059,18.001-18,18.001H21.192
+			c-9.941,0-18-8.059-18-18.001l0,0c0-9.94,8.059-18,18-18h57.399C88.532,102.172,96.591,110.231,96.591,120.172L96.591,120.172z"/>
+		<text transform="matrix(1 0 0 1 11.6128 124.8682)" font-family="'MyriadPro-Semibold'" font-size="16">Population</text>
+	</g>
+	<g>
+		<g>
+			<g>
+				<g>
+					<path fill="none" stroke="#000000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M131.532,57.741
+						c14.56,49.095,79.625,36.196,110.133,13.909"/>
+					<g>
+						<polygon points="249.689,64.741 242.205,79.02 240.984,72.075 234.348,69.693 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<rect x="137.573" y="77.893" fill="#FBC15E" stroke="#000000" stroke-miterlimit="10" width="86.911" height="26"/>
+				<text transform="matrix(1 0 0 1 142.0205 95.5889)" font-family="'MyriadPro-Regular'" font-size="16">Condition 1</text>
+			</g>
+		</g>
+		<g>
+			<g>
+				<g>
+					<path fill="none" stroke="#000000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M131.532,182.604
+						c14.559-49.095,79.625-36.196,110.133-13.909"/>
+					<g>
+						<polygon points="249.689,175.604 234.347,170.652 240.984,168.271 242.204,161.326 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<rect x="137.573" y="136.741" fill="#FBC15E" stroke="#000000" stroke-miterlimit="10" width="86.91" height="26"/>
+				<text transform="matrix(1 0 0 1 142.0205 154.4365)" font-family="'MyriadPro-Regular'" font-size="16">Condition 2</text>
+			</g>
+		</g>
+		<text transform="matrix(1 0 0 1 111.3232 124.9404)" fill="#FBC15E" font-family="'MyriadPro-Semibold'" font-size="16">Explanatory variable</text>
+	</g>
+</g>
+<g>
+	<text transform="matrix(1 0 0 1 277.9424 115.2676)"><tspan x="0" y="0" fill="#9FC857" font-family="'MyriadPro-Semibold'" font-size="16">Response</tspan><tspan x="5.297" y="19.2" fill="#9FC857" font-family="'MyriadPro-Semibold'" font-size="16">variable</tspan></text>
+	<g>
+		<rect x="270.104" y="35.495" fill="#9FC857" stroke="#000000" stroke-miterlimit="10" width="82.173" height="33"/>
+		<text transform="matrix(1 0 0 1 281.2158 56.6904)" font-family="'MyriadPro-Regular'" font-size="16">Output 1</text>
+	</g>
+	<g>
+		<rect x="270.104" y="171.85" fill="#9FC857" stroke="#000000" stroke-miterlimit="10" width="82.173" height="33"/>
+		<text transform="matrix(1 0 0 1 281.2158 193.0449)" font-family="'MyriadPro-Regular'" font-size="16">Output 2</text>
+	</g>
+</g>
+<g>
+	<g>
+		<path fill="none" stroke="#B4B4B4" stroke-width="3" stroke-miterlimit="10" d="M373.542,59.562
+			c34.012,38.906,33.145,79.753-3.96,121.259"/>
+		<g>
+			<polygon fill="#B4B4B4" points="366.3,51.833 371.979,66.921 374.041,60.178 380.919,58.628 			"/>
+		</g>
+		<g>
+			<polygon fill="#B4B4B4" points="362.3,188.511 368.073,173.458 370.094,180.215 376.962,181.809 			"/>
+		</g>
+	</g>
+</g>
+<text transform="matrix(1 0 0 1 403.5996 134.8477)" fill="#B4B4B4" font-family="'MyriadPro-Semibold'" font-size="50">?</text>
+<g>
+	<g>
+		<g>
+			<path fill="none" stroke="#000000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M21.188,95.688
+				c0-0.842-0.001-1.676-0.003-2.5"/>
+			
+				<path fill="none" stroke="#000000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5.2791,6.335" d="
+				M21.162,86.851C21.051,59.912,21.198,43.607,36.568,37.9"/>
+			<path fill="none" stroke="#000000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M39.592,36.965
+				c0.781-0.199,1.594-0.375,2.442-0.531"/>
+			<g>
+				<polygon points="52.596,35.595 38.304,43.054 41.263,36.653 37.17,30.912 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			<path fill="none" stroke="#000000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M21.188,144.655
+				c0,0.842-0.001,1.676-0.003,2.5"/>
+			
+				<path fill="none" stroke="#000000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5.2791,6.335" d="
+				M21.162,153.493c-0.111,26.939,0.036,43.243,15.406,48.95"/>
+			<path fill="none" stroke="#000000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M39.591,203.379
+				c0.781,0.198,1.594,0.375,2.442,0.531"/>
+			<g>
+				<polygon points="52.596,204.749 37.169,209.433 41.263,203.69 38.304,197.291 				"/>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>

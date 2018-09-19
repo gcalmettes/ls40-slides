@@ -1,0 +1,71 @@
+<section>
+  <h3>The regression line</h3>
+  <p class="smaller">
+    Usually, rather than estimating predictions using a graph, we
+    directly use the <span class="info">equation of the regression line</span>.
+  </p>
+  <div class="row">
+    <div class="col-45">
+      <svg width="100%" viewBox="0 0 360 360">
+        <use xlink:href="content/img/regression-line.svg#axes_1"></use>
+        <use class="fragment" data-fragment-index=1 xlink:href="content/img/regression-line.svg#axes_2"></use>
+        <use class="fragment" data-fragment-index=2 xlink:href="content/img/regression-line.svg#axes_3"></use>
+      </svg>
+    </div>
+    <div class="col-55">
+      <p>
+        <span class="u em">Equation for a line:</span> <br>
+        $y= \beta_0 + \beta_1x$
+      </p>
+      <div class="small">
+        <bspan class="right-5 fragment" data-fragment-index=1>
+          <span class="warning">$\beta_0$</span>: y-intercept at $x=0$
+        </bspan>
+        <bspan class="right-5 fragment" data-fragment-index=2>
+          <span class="success">$\beta_1$</span>: slope of the line (often called <span class="success">$m$</span>)
+        </bspan>
+      </div>
+      <div class="row fragment">
+        <p>
+          <i class="fas fa-arrow-circle-right danger"></i>
+          Predicting the response variable from the explanatory
+          variable:
+        </p>
+        <p>
+          <span class="danger">$\mathrm{Response}= \beta_0 + \beta_1 \times \mathrm{Explanatory}$</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h3>Notes on the regression line</h3>
+  <p class="down-3">
+    <i class="fas fa-arrow-circle-right danger"></i>
+    When used to make prediction, the equation of the regression line is written:
+  </p>
+  <div class="row flex">
+    <div class="col-30 flex-center">
+       $\hat{y}=\beta_0+\beta_1x$
+    </div>
+    <div class="col-70 small flex-center">
+      <div>
+        <bspan class="right-5">
+          <span class="danger">$x$</span>: value of the explanatory variable
+        </bspan>
+        <bspan class="right-5">
+          <span class="danger">$\hat{y}$</span>: predicted value of the response variable
+        </bspan>
+      </div>
+    </div>
+  </div>
+  <p class="fragment down-3">
+    <i class="fas fa-arrow-circle-right info"></i>
+    For a given data set, the sign (positive, negative, or zero) for the correlation coefficient and the slope of the regression line must be the same.
+  </p>
+  <p class="fragment down-3">
+    <i class="fas fa-arrow-circle-right orange"></i>
+      The slope of the regression line can be interpreted as the <span class="u-orange">predicted change in the <span class="orange strong">average response variable</span> for a one-unit change in the explanatory variable</span>.
+    </p>
+</section>

@@ -1,0 +1,65 @@
+<section data-transition="slide-in">
+  <h3>$\chi^2$ test for goodness of fit</h3>
+  <p class="down-2">
+    A $\chi^2$ test for goodness-of-fit tests <span class="danger">whether the distribution of a categorical variable is the same as some null hypothesized distribution</span>.
+  </p>
+  <p class="framed framed border-pop bg-pop-light black down-2">
+    Note that the <span class="strong">null hypothesized proportions</span> for each category <span class="strong">do not have to be the same</span>!
+  </p>
+  <hr class="down-3">
+  <div class="row down-3">
+    <div class="col-50">
+      <div class="row">
+        <div class="col-60">
+          <p class="no-margin-top small">
+            <span class="u em">Ex:</span> Are the six colors (green, orange, blue, red, yellow, brown) of M&Ms equally likely in a pack?
+          </p>
+        </div>
+        <div class="col-40">
+          <img src="content/img/m&ms-pic.png" width=100%>
+        </div>
+      </div>
+    </div>
+    <div class="col-50">
+      <div class="row">
+        <div class="col-60">
+          <p class="no-margin-top small">
+            Does the grade distribution of the class
+            follow the usual pattern?
+          </p>
+        </div>
+        <div class="col-40">
+          <img src="content/img/multiple-proportions-grades.svg" width=100%>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide-out">
+  <h3>$\chi^2$ test for goodness of fit</h3>
+  <p class="down-2">
+    A $\chi^2$ test for goodness-of-fit tests <span class="danger">whether the distribution of a categorical variable is the same as some null hypothesized distribution</span>.
+  </p>
+  <p class="u em down-4">
+    Exactly the same approach than for other statistics of interest:
+  </p>
+  <ol class="small push-left">
+    <li>
+      State the <span class="pop">null hypothesized proportions for each category</span>, $\pi_i$.  The alternative hypothesis is that at least one of the proportions is different from specified in the null.
+    </li>
+    <li>
+      Calculate the expected counts for each cell as <span class="pop">$n_\mathrm{total}\times\pi_i$</span>.
+    </li>
+    <li>
+      Calculate the $\chi^2$ statistic. $\chi^2=\sum_{i=1}^n\frac{(\mathrm{Observed}_i-\mathrm{Expected}_i)^2}{\mathrm{Expected}_i}$ 
+    </li>
+    <li>
+      Simulate the null hypothesis and 
+      compute the p-value
+    </li>
+    <li>
+      Interpret the p-value in context
+    </li>
+  </ol>
+</section>

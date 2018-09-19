@@ -1,0 +1,177 @@
+<section data-transition="slide-in">
+  <h3>Toward more general analytic situations</h3>
+  <p>
+    So far, we have explored tests of significance, confidence intervals, generalization, and causation for situations limited to the <span class="danger">analysis of a single variable</span> (categorical or quantitative), or to the <span class="danger">comparison of two groups</span>.
+  </p>
+  <p class="down-2">
+    With linear regression, we've started to study <span class="pop">more complex situations</span>: the explanatory variable could actually get more than only two values, and we could make inference about an association of two quantitative variables.
+  </p>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Toward more general analytic situations</h3>
+  <div class="row">
+    <div class="col-4">
+      <svg width="35px" height="520px" viewBox="-3 0 35 520">
+        <defs>
+          <marker id="arrow" markerWidth="15" markerHeight="15" refX="0" refY="3" orient="auto" markerUnits="strokeWidth" viewBox="0 0 20 20">
+            <path d="M0,0 L0,6 L9,3 z" fill="#000" />
+          </marker>
+        </defs>
+        <line x1="20" y1="30" x2="20" y2="420" stroke="#000" stroke-width="3" marker-end="url(#arrow)"/>
+        <text transform="translate(12, 210), rotate(-90)" style="text-anchor: middle; font-size: 0.5em;">More general situations</text>
+      </svg>
+    </div>
+    <div class="col-96">
+      <div class="row flex">    
+        <div class="col-49 flex-center framed border-danger bg-danger-light">
+          <p class="center">
+            Significance testing
+          </p>
+        </div>
+        <div class="col-49 right-2 flex-center framed border-info bg-info-light">
+          <p class="center">
+            Effect size (confidence intervals)
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-50">
+          <p class="smaller">
+            One proportion (probabilistic model)
+          </p>
+          <p class="smaller">
+            One quantitative variable (z-test)
+          </p>
+          <p class="smaller">
+            Difference between two groups (proportions, Student/Welch t-test)
+          </p>
+          <p class="smaller">
+            Difference betwen before/after treatment (paired)
+          </p>
+          <p class="smaller">
+            Bivariate data, quantitative relationship (Pearson/Spearman correlation)
+          </p>
+          <p class="smaller">
+            Model of assocation (linear regression)
+          </p>
+        </div>
+        <div class="col-50">
+          <p class="smaller">
+            Estimate of true proportion/mean
+          </p>
+          <p class="smaller">
+            Estimate of effect size (difference between two groups, categorical or quantitative)
+          </p>
+          <p class="smaller">
+            Estimate of effect size when paired structure
+          </p>
+          <p class="smaller">
+            Estimate of true correlation
+          </p>
+          <p class="smaller">
+            Estimate of true parameters for association model
+          </p>
+        </div>
+      </div>
+      <p class="fragment">
+        <i class="fa fa-arrow-circle-right pop"></i>
+        Today, we will continue to study more <span class="pop">general situations</span>, 
+        and see how we can deal with situations in which we have to analyze <span class="pop">more than 
+        two proportions</span> (multiple explanatory and response variable, all categorical).
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h3>Categorical variable(s)</h3>
+  <p>
+    We've came across the analysis of categorical variable(s), and we've seen that they can be presented/organized into <span class="pop">contingency tables</span>.
+  </p>
+  <div class="row">
+    <div class="col-45">
+      <p class="smaller u em">
+        Single categorical variable
+      </p>
+      <table class="center small push-left">
+        <tbody>
+          <tr>
+            <td class="bg-info-light border-right" rowspan=2>Response <br>variable</td>
+          </tr>
+           <tr>
+             <td class="bg-danger-light">Cat. #1</td>
+           </tr>
+           <tr>
+             <td class="bg-info-light border-nobottom border-right">Yes</td>
+             <td class="border-nobottom">50</td>
+           </tr>
+           <tr>
+             <td class="bg-info-light border-nobottom border-right">No</td>
+             <td class="border-nobottom">30</td>
+           </tr>
+           <tr class="fragment" data-fragment-index=1>
+            <td class="bg-info-light border-nobottom border-right">Maybe</td>
+            <td class="border-nobottom">20</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row fragment" data-fragment-index=2>
+        <div class="col-60">
+          <p class="smaller">
+            <span class="u em">Ex:</span> Are the six colors of M&Ms equally likely in a pack?
+          </p>
+        </div>
+        <div class="col-40">
+          <img src="content/img/m&ms-pic.png" width=100%>
+        </div>
+      </div>
+    </div>
+    <div class="col-55">
+      <p class="smaller u em">
+        Two (or more) categorical variables
+      </p>
+      <table class="small center push-left">
+        <tbody>
+          <tr>
+            <td class="bg-info-light border-right" rowspan=2>Response<br>variable</td>
+            <td class="bg-danger-light border-nobottom border-right" colspan=3>Explanatory variable</td>
+          </tr>
+           <tr>
+             <td class="bg-danger-light">Cat. #1</td>
+             <td class="bg-danger-light">Cat. #2</td>
+             <td class="bg-danger-light border-right fragment" data-fragment-index=3>Cat. #3</td>
+           </tr>
+           <tr>
+             <td class="bg-info-light border-nobottom border-right">Yes</td>
+             <td class="border-nobottom">50</td>
+             <td class="border-nobottom">65</td>
+             <td class="fragment border-nobottom border-right" data-fragment-index=3>35</td>
+           </tr>
+           <tr>
+             <td class="bg-info-light border-nobottom border-right">No</td>
+             <td class="border-nobottom">30</td>
+             <td class="border-nobottom">45</td>
+             <td class="fragment border-right border-nobottom" data-fragment-index=3>15</td>
+           </tr>
+           <tr class="fragment" data-fragment-index=5>
+            <td class="bg-info-light border-nobottom border-right">Maybe</td>
+             <td class="border-nobottom">20</td>
+             <td class="border-nobottom">10</td>
+             <td class="border-nobottom border-right">10</td>
+          </tr>
+        </tbody>
+      </table> 
+      <div class="row fragment" data-fragment-index=4 style="margin-top: 0.5em;">
+        <div class="col-65">
+          <p class="smaller">
+            <span class="u em">Ex:</span> Which treatment increases the survival rate of the patients?
+          </p>
+        </div>
+        <div class="col-30">
+          <img src="content/img/heart-ekg.svg" width=100%>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

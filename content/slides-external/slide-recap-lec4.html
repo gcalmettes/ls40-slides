@@ -1,0 +1,121 @@
+<section data-transition="slide-in">
+  <h3>Last time</h3>
+  <div class="sided border-danger smaller">
+    <span class="danger u">P-value</span> <br>
+    A p-value measures a sample's compatibility (statistics of interest/estimator) with a hypothesis
+    (usually, the <span class="danger">null hypothesis</span>). <br>
+    <span class="em">What would be the probability of observing this result if the null hypothesis was true?</span>
+  </div>
+  <div class="row flex">
+    <div class="col-10 flex-center">
+      <i class="fas fa-exclamation-triangle danger"></i>
+    </div>
+    <div class="col-90 smaller">
+      A p-value does not give any indication about the truth of the hypothesis,
+      this is not a measure of the probability of the hypothesis being true!
+    </div>
+  </div>
+  <div class="down-4 u small">
+    Main factors influencing a p-value:
+  </div>
+  <div class="row smallest flex down-2">
+    <div class="col-19 flex-center bg-info-light">
+      <span>$(\hat{p}-\pi_0)$</span>
+    </div>
+    <div class="col-80 right-1 border-left">
+      The <span class="danger">further away</span> the observed statistic (descriptor/estimator) is from the center of the null distribution,
+      the <span class="danger">more evidence</span> there is against the null
+      hypothesis.
+    </div>
+  </div>
+  <div class="row smallest flex down-2">
+    <div class="col-19 flex-center bg-warning-light">
+      <span>Sample size</span>
+    </div>
+    <div class="col-80 right-1 border-left">
+      As the <span class="danger">sample size increases</span>
+      (and the value of the observed statistic stays the same),
+      the <span class="danger">strength of evidence against the null
+      hypothesis increases.</span>
+    </div>
+  </div>
+  <div class="row smallest flex down-2">
+    <div class="col-19 flex-center center bg-success-light">
+      <span>One- or two-sided test</span>
+    </div>
+    <div class="col-80 right-1 border-left">
+      Two-sided tests <span class="danger">provide less evidence against
+      the null hypothesis</span> (simulation results <span class="u em">"at least as extreme as"</span> the initial observation considered on both sides).
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Note on one- and two-sided tests</h3>
+  <div class="row">
+    <div class="col-60">
+      <p class="smaller u">
+        <span class="circled-bg-info">1</span> They answer different questions
+      </p>
+      <p class="smallest">
+        Using a 1-sided test (<span class="em">$H_a: \pi_\textrm{win}>0.5$ for UCLA)</span>
+        we could conclude that UCLA was most likely better than USC.
+      </p>
+      <p class="smallest">
+        However, if we consider a 2-sided alternative hypothesis (<span class="em">$H_a: \pi_\textrm{win}\neq0.5$ for UCLA)</span>, the resulting computed p-value doesn't provide strong evidence against the hypothesis that UCLA and USC have the same probability of winning a game.
+      </p>
+      <p class="smallest framed border-danger">
+        <i class="fas fa-arrow-circle-right"></i> you're investigating two different questions, so you may get two different results. 
+      </p>
+    </div>
+    <div class="col-40">
+      <svg width="100%" viewBox="34 0 385 285">
+        <use xlink:href="content/img/ucla-usc-simulation-two-tailed.svg#axes_1"></use>
+        <use xlink:href="content/img/ucla-usc-simulation-two-tailed.svg#axes_2"></use>
+        <use xlink:href="content/img/ucla-usc-simulation-two-tailed.svg#axes_3"></use>
+        <use xlink:href="content/img/ucla-usc-simulation-two-tailed.svg#axes_4"></use>
+        <use xlink:href="content/img/ucla-usc-simulation-two-tailed.svg#axes_5"></use>
+      </svg>
+    </div>
+  </div>
+
+  <div class="row fragment">
+    <div class="col-40">
+      <svg width="100%" viewBox="34 0 385 295">
+        <use xlink:href="content/img/ucla-usc-simulation-ratio-two-tailed.svg#axes_1"></use>
+        <use xlink:href="content/img/ucla-usc-simulation-ratio-two-tailed.svg#axes_2"></use>
+        <use xlink:href="content/img/ucla-usc-simulation-ratio-two-tailed.svg#axes_3"></use>
+        <use xlink:href="content/img/ucla-usc-simulation-ratio-two-tailed.svg#axes_4"></use>
+        <use xlink:href="content/img/ucla-usc-simulation-ratio-two-tailed.svg#axes_5"></use>
+      </svg>
+    </div>
+    <div class="col-60">
+      <p class="smaller u">
+        <span class="circled-bg-warning">2</span> Critical limits in a 2-sided test
+      </p>
+      <p class="smallest">
+        The nature of the chosen descriptor/estimator characterizing the initial result will dictate how you will calculate the critical limits to compute a two-sided p-value.
+      </p>
+      <p class="smallest">
+        <span class="u em">Proportion:</span> $\hat{p}\in[0, 1]$. Use $\pi_0\pm\mid\hat{p}_0-\pi_0\mid$<br>
+        <span class="u em">Ratio (fold change):</span> $r\in[0, \infty]$. Use $\frac{1}{r_0}$ and $r_0$ ($1\div\frac{1}{r_0}$) <br>
+        e.g.: if UCLA had won 3 times as many games as USC, the opposite would be a third as many games as USC.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- <section>
+  <h3>Pick your number Pauline!</h3>
+  <div class="fig-container"  style="height: 600;" data-file="https://embed.polleverywhere.com/multiple_choice_polls/1MEAnNgUmaaLt93?controls=none&short_poll=true"></div>
+  <div class="fig-container" style="height: 500px;" data-file="https://embed.polleverywhere.com/multiple_choice_polls/1MEAnNgUmaaLt93?controls=none&short_poll=true"
+  data-style="margin-top: -50px; height: 800px;"></div>
+</section>
+
+<section>
+  <div  class="fig-container" style="height: 500px;" 
+            data-file="https://embed.polleverywhere.com/multiple_choice_polls/1MEAnNgUmaaLt93?controls=none&short_poll=true" 
+            data-style="margin-top: -100px; height: 800px;">
+        </div>
+</section> -->

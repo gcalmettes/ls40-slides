@@ -1,0 +1,115 @@
+<section data-transition="slide-in">
+  <h3>Scatterplot</h3>
+  <div class="row">
+    <div class="col-40">
+      <p>
+        A scatterplot is the graph of the <span class="danger">
+        relationship between two quantitative variables</span>.
+      </p>
+      <p class="fragment" data-fragment-index=1>
+        <span class="em u">If there are explanatory and response variables:</span>
+        <br>
+        <i class="fas fa-arrow-circle-right danger"></i>
+        Explanatory variable on the x axis
+        <br>
+        <i class="fas fa-arrow-circle-right danger"></i>
+        Response variable on the y axis
+      </p>
+      <p class="fragment" data-fragment-index=2>
+        The <span class="info">paired data</span> for each case 
+        are plotted as a <span class="info">single point</span> on
+        the scatterplot.
+      </p>
+    </div>
+    <div class="col-60">
+      <div class="smallest">
+        Houses for sale in Santa Monica. <br>
+        Zillow search (05/11/2017)
+      </div>
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/scatter-scatterplot.svg#axes_1"></use>
+        <use class="fragment" data-fragment-index=2 xlink:href="content/img/scatter-scatterplot.svg#axes_2"></use>
+      </svg>
+    </div>
+  </div>
+  <p class="fragment">
+    The numerical scales (and units) are independant,
+    one for each variable.
+  </p>  
+</section>
+
+<section data-transition="none">
+  <h3>Scatterplot</h3>
+  <div class="row">
+    <div class="col-35">
+      <p>
+        <span class="u em">Note:</span> <br>
+        A scatterplot can have <span class="pop">more than 2 dimensions</span>,
+        it allows you to build complex visualizations:
+        <br>
+        <i class="fas fa-arrow-circle-right pop"></i>
+        Size encoding
+        <br>
+        <i class="fas fa-arrow-circle-right pop"></i>
+        Color encoding
+        <br>
+        <i class="fas fa-arrow-circle-right pop"></i>
+        Symbol encoding
+      </p>
+      <p class="small">
+        <span class="u em">Ex:</span> <br>
+        - Point size: Population
+        <br>
+        - Color: Number of larcenies
+      </p>
+    </div>
+    <div class="col-65">
+      <div class="smallest">
+        (US data, 2005)
+      </div>
+      <svg width="100%" viewBox="0 0 468 288">
+        <use xlink:href="content/img/scatter-bubble-chart.svg#axes_1"></use>
+        <use xlink:href="content/img/scatter-bubble-chart.svg#axes_2"></use>
+        <use xlink:href="content/img/scatter-bubble-chart.svg#axes_3"></use>
+      </svg>
+    </div>
+  </div>
+  <p class="small">
+    <i class="fa fa-arrow-circle-right"></i>
+    In this case, multiple relationships between the
+    different variables can be visually appreciated at the same time.
+  </p>
+</section>
+
+<section data-transition="none-in slide-out">
+  <h3>Scatterplot</h3>
+  <div class="row">
+    <div class="col-35">
+      <p>
+        <span class="u em">Note:</span> <br>
+        <span class="warning">Multiple datasets</span> can be displayed
+        on the same scatterplot.
+        <br>
+        <i class="fa fa-arrow-circle-right warning"></i>
+        The different datasets can be differentiated by 
+        color/symbol encoding
+        <br>
+        <i class="fa fa-arrow-circle-right warning"></i>
+        All the datasets must have the same variables 
+        (displayed on the same scales)
+      </p>
+      <p class="small">
+        Visual comparisons can be made.
+      </p>
+    </div>
+    <div class="col-65">
+      <div class="smallest">
+        (Teacher salary sample, $n$=100)
+      </div>
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/scatter-multiple-datasets.svg#axes_1"></use>
+        <use class="fragment" xlink:href="content/img/scatter-multiple-datasets.svg#axes_2"></use>
+      </svg>
+    </div>
+  </div>
+</section>

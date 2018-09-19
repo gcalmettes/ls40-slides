@@ -1,0 +1,29 @@
+<section data-transition="none-in slide-out">
+  <h3>Two approaches for solving a statistical problem</h3>
+    <div class="down-5">
+      <span class="circled-bg-info">2</span>
+      <span class="u-info">Simulation</span>
+      <div class="row">
+        <div class="col-35 small">
+          What about we just simulate the experiment?
+          <pre class="python"><code data-trim>
+            # set up a counter variable
+            M=0 
+
+            for i in range(10000):
+              # draw 28 numbers between 0 and 1
+              trial = np.random.rand(28)<0.5
+              # count how many heads we got
+              nHeads = np.sum(trial)
+              # if more than 19 heads, update M
+              if nHeads >= 19:
+                M += 1
+
+            p = M/10000
+          </code></pre>
+        </div>
+        <div class="col-65 up-10">
+          <div class="fig-container" width="100%" data-file="interactive/binomial-exploration-and-normal.html"></div>
+        </div>
+      </div>
+</section>

@@ -1,0 +1,160 @@
+<section data-transition="slide-in">
+  <h3>Comparing 2 proportions</h3>
+  <div class="row">
+    <div class="col-50">
+      <table class="small center">
+        <tbody>
+          <tr>
+            <td class="border-right" rowspan=2>Game <br>outcome?</td>
+            <td class="border-nobottom" colspan=2 >Sold-out crowd?</td>
+          </tr>
+          <tr>
+            <td class="border-right">Yes</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <td class="border-right border-nobottom">Win</td>
+            <td class="border-nobottom border-right">0.167</td>
+            <td class="border-nobottom">0.522</td>
+          </tr>
+          <tr>
+            <td class="border-right">Loss</td>
+            <td class="border-right">0.833</td>
+            <td>0.478</td>
+          </tr>
+          <tr>
+            <td class="border-right">Total</td>
+            <td class="border-right">1</td>
+            <td>1</td>
+          </tr>
+        </tbody>
+      </table> 
+      <p class="fragment">
+        <span class="circled-bg-danger">1</span>
+        <span class="u-danger">Arithmetic <span class="danger">difference</span></span> in the conditional proportions of wins: <br>
+        $d=\hat{p}_{\textrm{win, sold-out}}-\hat{p}_{\textrm{win, not sold-out}}$
+      </p>
+      <p class="fragment down-2">
+        $d=0.167-0.522=-0.355$
+      </p>
+    </div>
+    <div class="col-50">
+      <p class="u em center">
+        Conditional proportions
+      </p>
+      <svg width="100%" viewBox="350 0 380 280">
+        <use xlink:href="content/img/nba-okc-thunder-games-pattern.svg#axes_2"></use>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section data-transition="none">
+  <h3>Comparing 2 proportions</h3>
+  <div class="row">
+    <div class="col-50">
+      <table class="small center">
+        <tbody>
+          <tr>
+            <td class="border-right" rowspan=2>Game <br>outcome?</td>
+            <td class="border-nobottom" colspan=2 >Sold-out crowd?</td>
+          </tr>
+          <tr>
+            <td class="border-right">Yes</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <td class="border-right border-nobottom">Win</td>
+            <td class="border-nobottom border-right">0.167</td>
+            <td class="border-nobottom">0.522</td>
+          </tr>
+          <tr>
+            <td class="border-right">Loss</td>
+            <td class="border-right">0.833</td>
+            <td>0.478</td>
+          </tr>
+          <tr>
+            <td class="border-right">Total</td>
+            <td class="border-right">1</td>
+            <td>1</td>
+          </tr>
+        </tbody>
+      </table> 
+      <p>
+        <span class="circled-bg-info">2</span>
+        <span class="u-info"><span class="info">Ratio</span></span> of the conditional proportions of wins (<span class="info">Relative Risk</span>): <br>
+        $RR=\frac{\hat{p}_{\textrm{win, not sold-out}}}{\hat{p}_{\textrm{win, sold-out}}}\fragment{1}{=\frac{0.522}{0.167}=3.31}$
+      </p>
+    </div>
+    <div class="col-50">
+      <p class="u em center">
+        Conditional proportions
+      </p>
+      <svg width="100%" viewBox="350 0 380 280">
+        <use xlink:href="content/img/nba-okc-thunder-games-pattern.svg#axes_2"></use>
+      </svg>
+    </div>
+  </div>
+  <p class="quoted">
+    The relative risk is the <span class="danger">ratio of
+    two conditional proportions</span>. It indicates
+    <span class="u-danger">how many times
+    greater the risk of an outcome is</span> for one group compared
+    to another.
+  </p>
+  <p class="smaller">
+    <span class="em muted u">Note:</span> usually choosing the numerator/denomitor so that $RR>1$ is more meaningful
+  </p>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Comparing 2 proportions</h3>
+  <div class="row">
+    <div class="col-50">
+      <table class="small center">
+        <tbody>
+          <tr>
+            <td class="border-right" rowspan=2>Game <br>outcome?</td>
+            <td class="border-nobottom" colspan=2 >Sold-out crowd?</td>
+          </tr>
+          <tr>
+            <td class="border-right">Yes</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <td class="border-right border-nobottom">Win</td>
+            <td class="border-nobottom border-right">0.167</td>
+            <td class="border-nobottom">0.522</td>
+          </tr>
+          <tr>
+            <td class="border-right">Loss</td>
+            <td class="border-right">0.833</td>
+            <td>0.478</td>
+          </tr>
+          <tr>
+            <td class="border-right">Total</td>
+            <td class="border-right">1</td>
+            <td>1</td>
+          </tr>
+        </tbody>
+      </table> 
+      <p>
+        <span class="circled-bg-info">2</span>
+        <span class="u-info"><span class="info">Ratio</span></span> of the conditional proportions of wins (<span class="info">Relative Risk</span>): <br>
+        $RR=\frac{\hat{p}_{\textrm{win, not sold-out}}}{\hat{p}_{\textrm{win, sold-out}}}=\frac{0.522}{0.167}=3.31$
+      </p>
+    </div>
+    <div class="col-50">
+      <p class="u em center">
+        Conditional proportions
+      </p>
+      <svg width="100%" viewBox="350 0 380 280">
+        <use xlink:href="content/img/nba-okc-thunder-games-pattern.svg#axes_2"></use>
+      </svg>
+    </div>
+  </div>
+  <p class="sided border-danger">
+    <span class="u em">What does it mean?</span><br>
+    <span class="fragment">It is $\approx 3$ times more likely to observe a win if the team doesn't play in front of a sold-out crowd.</span>
+  </p>
+</section>

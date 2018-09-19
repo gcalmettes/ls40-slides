@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<canvas></canvas>
+
+<script src="https://use.fontawesome.com/2821d4ba2b.js"></script>
+<script src="js/d3.min.js"></script>
+<script src="js/topojson.min.js"></script>
+
+
+<script>
+
+var width = 600,
+    height = 600;
+
+var points = [
+  { type: "Point",
+    coordinates: [-118.410042, 33.942791],
+    location: "Los Angeles",
+    icon: "\uF236"
+  },
+  { type: "Point",
+    coordinates: [-74.2582011, 40.7058316],
+    location: "New York City",
+    icon: "\uF015"
+  }, 
+  { type: "Point",
+    coordinates: [-0.118092, 51.509865],
+    location: "London",
+    icon: "\uF236"
+  },
+  { type: "Point",
+    coordinates: [34.8887969, 32.4406351],
+    location: "Caribe Royale Orlando",
+    icon: "\uF236"
+  }
+  ];
+
+var canvas = d3.select("canvas")//.append("canvas")
+    .attr("width", width)
+    .attr("height", height);
+
+var c = canvas.node().getContext("2d");
+
+var point = d3.geoCentroid(points[0]);
+
+var projection = d3.geoOrthographic()
+    .translate([width / 2, height / 2])
+    .scale(width / 2)
+    .clipAngle(90)
+    .precision(0.6)
+    .rotate([-point[0], -point[1]]);
+
+var loftedProjection = d3.geoOrthographic()
+    .scale((width / 2) * 1.2)
+    .translate([width / 2, height / 2])
+    .precision(0.1);
+
+var path = d3.geoPath()
+    .projection(projection)
+    .context(c);
+
+var swoosh = d3.line()
+    .curve(d3.curveNatural)
+    .context(c);
+
+var colorLand = "#4d4f51",
+    colorGlobe = "#2e3133",
+    textColors = "#fff";
+
+var flyingArcLength;
+
+d3.json("data/world-110m.json").then(function (world, error) {
+    if (error) throw error;
+
+    var sphere = { type: "Sphere" },
+        land = topojson.feature(world, world.objects.land),
+        // borders = topojson.mesh(world, world.objects.land, function(a, b) { return a == b; });
+        i = 0;
+
+    var _transition;
+
+    (function transition() {
+        d3.transition()
+            .duration(3000)
+            .on("start", function () {
+                points[i++];
+            })
+            .tween("rotate", tween)
+            .on("end", i < points.length - 2 ? transition : restartTransition);
+        _transition = transition;
+    })();
+
+    function tween() {
+        var p = d3.geoCentroid(points[i]),
+            r = d3.geoInterpolate(projection.rotate(), [-p[0], -p[1]]),
+            // oldPoint = i == 0 ? points[points.length-1] : i < 1 ? points[0] : points[i-1]
+            oldPoint = i == 0 ? points[points.length-1] : points[i-1]
+          console.log(i, oldPoint)
+            var coords = points[i].coordinates,
+            flightPath = {
+                type: 'Feature',
+                geometry: {
+                    type: "LineString",
+                    coordinates: [oldPoint.coordinates, coords]
+                }
+            },
+            startEndScale = width * 2,
+            middleScale = width / 2,
+            sM = d3.interpolate(startEndScale, middleScale),
+            mE = d3.interpolate(middleScale, startEndScale),
+            zoomingIn = false;
+            
+            var s = d3.interpolate(0.0000001, Math.PI);
+
+        flyingArcLength = lineLength(flyingArc(flightPath));
+
+        return function (t) {
+            focusGlobeOnPoint(r(t), (1-Math.abs(Math.sin(s(t))))*startEndScale + Math.abs(Math.sin(s(t)))*middleScale);
+            convertedLongLats = [projection(points[0].coordinates), projection(points[1].coordinates)]
+            c.clearRect(0, 0, width, height);
+            c.fillStyle = colorGlobe, c.beginPath(), path(sphere), c.fill();
+            c.fillStyle = colorLand, c.beginPath(), path(land), c.fill();
+            c.beginPath(), swoosh(flyingArc(flightPath)), c.setLineDash([t * flyingArcLength * 1.7, 1e6]), c.lineWidth = 2, c.strokeStyle = "#EF5350", c.stroke();
+            c.beginPath(), path(flightPath), c.setLineDash([t * flyingArcLength * 1.6, 1e6]), c.globalAlpha = 0.5, c.shadowColor = "#fff", c.shadowBlur = 5, c.lineWidth = 0.5, c.strokeStyle = "#fff", c.stroke(), c.shadowBlur = 0, c.globalAlpha = 1;
+            for (var j = 0; j < points.length; j++) {
+                var textCoords = projection(points[j].coordinates);
+                textCoords[1] += 5;
+                c.fillStyle = textColors, c.textAlign = "center", c.font = "18px FontAwesome", c.fillText(points[j].icon, textCoords[0], textCoords[1]);
+                textCoords[0] += 15;
+                c.textAlign = "left", c.font = " 12px Roboto", c.fillText(points[j].location, textCoords[0], textCoords[1]);
+            }
+
+
+            // console.log(projection.scale());
+            if (projection.scale() < middleScale + 50 && projection.scale() > middleScale - 50) {
+                zoomingIn = true;
+            }
+        };
+    }
+
+    function restartTransition() {
+        i = -1; //reset i
+        // _transition();
+    }
+});
+
+function changeColors() {
+    colorGlobe = "#0288D1";
+    colorLand = "#9CCC65";
+    textColors = "#000";
+}
+
+function flyingArc(path) {
+    var source = path.geometry.coordinates[0],
+        target = path.geometry.coordinates[1];
+        middle = locationAlongArc(source, target, 0.5);
+    return [
+        projection(source),
+        loftedProjection(middle),
+        projection(target)
+    ];
+}
+
+function locationAlongArc(start, end, theta) {
+    return d3.geoInterpolate(start, end)(theta);
+}
+
+function focusGlobeOnPoint(point, scale) {
+    var editablePoint = [point[0], point[1]];
+    projection
+        .rotate(point)
+        .scale(scale);
+    editablePoint[1] += 10;
+    loftedProjection
+        .rotate(point)
+        .scale(scale);
+}
+
+function lineLength(points) {
+    var d = 0;
+    for (var i = 0; i < points.length - 1; i++) {
+        var x0 = points[0][0],
+            y0 = points[0][1],
+            x1 = points[1][0],
+            y1 = points[1][1],
+            dx = x1 - x0,
+            dy = y1 - y0;
+        d += Math.sqrt(dx * dx + dy * dy);
+    }
+    return d;
+}
+
+
+
+
+</script>
+
+
+
+
+<!-- <!DOCTYPE html>
+<canvas width="960" height="500"></canvas>
+<script src="js/d3.min.js"></script>
+<script src="https://unpkg.com/topojson-client@2"></script>
+<script src="https://unpkg.com/topojson-simplify@2"></script>
+<script>
+
+var canvas = d3.select("canvas"),
+    context = canvas.node().getContext("2d"),
+    width = canvas.property("width"),
+    height = canvas.property("height"),
+    margin = 5;
+
+var land,
+    borders;
+
+var minZ, // minimum area threshold for simplification
+    transform = d3.geoIdentity()
+      .clipExtent([[margin, margin], [width-margin, height-margin]]),
+    // transform = d3.geoIdentity().clipExtent([[margin, margin], [width - margin, height - margin]], {type: "Sphere"}),
+    simplify = d3.geoTransform({point: function(x, y, z) {
+      if (z >= minZ) this.stream.point(x, y); 
+    }});
+
+var zoom = d3.zoom()
+    // .scaleExtent([1 / (1 << 5), 1 << 2])
+    .scaleExtent([1, 100])
+    .on("zoom", zoomed);
+
+context.fillStyle = "#bbb";
+context.strokeStyle = "#222";
+context.lineJoin = "round";
+context.lineCap = "round";
+
+var projection = d3.geoOrthographic()
+    .translate([width / 2, height / 2])
+    .scale(248)
+    .clipAngle(90);
+
+// var path = d3.geoPath()
+//     .projection({stream: function(s) { return simplify.stream(transform.stream(s)); }})
+//     .context(context);
+var path = d3.geoPath()
+    .projection(projection)
+    .context(context);
+
+
+let coordinates = [-0.118092, 51.509865]
+// let coordinates = [-75.959, 38.250]
+
+d3.json("data/world-50m.json").then(function(json, error) {
+// d3.json("us-states.json", function(error, us) {
+  if (error) throw error;
+
+  topojson.presimplify(json);
+  land = topojson.feature(json, json.objects.countries);
+  borders = topojson.mesh(json, json.objects.countries, function(a, b) { return a == b; });
+  console.log(borders)
+  // console.log(borders, land)
+
+  // An arbitrary scale and center point to set the initial view.
+  // This projection is baked into the TopoJSON file,
+  // but is used here to compute the desired zoom translate.
+  var scale = 2, 
+      // point = d3.geoOrthographic()
+      //   .translate([margin, margin])
+      //   .scale(248)
+      //   (coordinates);
+      point = [0, 0]
+      console.log(point)
+
+  canvas
+      .call(zoom)
+      .call(zoom.transform, d3.zoomIdentity
+          .translate(width / 2, height / 2)
+          .scale(scale)
+          .translate(-point[0], -point[1])
+          // .translate(point[0], point[1])
+      );
+});
+
+// d3.json("data/us-states.json").then(function(us, error) {
+//   if (error) throw error;
+
+//   topojson.presimplify(us);
+//   land = topojson.feature(us, us.objects.states);
+//   borders = topojson.mesh(us, us.objects.states);
+
+//   console.log(borders)
+
+//   // An arbitrary scale and center point to set the initial view.
+//   // This projection is baked into the TopoJSON file,
+//   // but is used here to compute the desired zoom translate.
+//   var scale = 0.05, point = d3.geoMercator()
+//       .translate([0, 0])
+//       .scale(4000)
+//       ([-75.959, 38.250]);
+
+//   canvas
+//       .call(zoom)
+//       .call(zoom.transform, d3.zoomIdentity
+//           .translate(width / 2, height / 2)
+//           .scale(scale)
+//           .translate(-point[0], -point[1]));
+// });
+
+function zoomed(d) {
+  var t = d3.event.transform;
+  minZ = 1 / (t.k * t.k);
+  transform.translate([t.x, t.y]).scale(t.k);
+  context.clearRect(margin, margin, width-margin, height-margin);
+  context.beginPath();
+  path(land);
+  context.fill();
+  context.beginPath();
+  path(borders);
+  context.stroke();
+}
+
+</script> -->

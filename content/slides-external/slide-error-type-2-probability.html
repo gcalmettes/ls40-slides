@@ -1,0 +1,130 @@
+<section>
+  <h3>Probability of Type II error</h3>
+  <p class="em bg-warning-light black center">
+    How can we reduce the probability of making a Type II Error? <br>
+    ($=$ How could we increase the probability of rejecting the null when there is really a difference?)
+  </p>
+  <div class="row">
+    <div class="col-50">
+      <p class="u-info fragment" data-fragment-index=1>
+        <span class="circled-bg-info">1</span>
+        Increase the sample size
+      </p>
+    </div>
+  </div>
+  <div class="fragment" data-fragment-index=1>
+    <p class="">
+      Larger sample sizes make it more likely to reject the null if there is a difference
+      (<span class="strong">decrease the variability of the sampling distribution</span>).
+    </p>
+    <ul>
+      <li>
+        With <span class="pop">small sample sizes</span>, even <span class="u-pop">large differences or effects may not be statistically significant</span>, and Type II errors are common.
+      </li>
+      <li>
+        But with <span class="pop">large sample sizes</span>, even a <span class="u-pop">very small difference or effect can be statistically significant</span>
+      </li>
+    </ul>
+    <p>
+      <i class="fas fa-arrow-circle-right"></i>
+      increase $n$ to decrease chance of Type II error (<span class="danger">increase <span class="strong u">power</span></span> of the statistical test)
+    </p>
+  </div>
+</section>
+
+<section>
+  <h3>Larger sample sizes makes it more likely to reject the null</h3>
+  <div class="row">
+    <div class="col-15">
+      <p>
+        <span class="u em">Set 1:</span><br>
+        Mean: 16 <br>
+        SD: 5 <br>
+      </p>
+      <p class="down-3">
+        <span class="u em">Set 2:</span><br>
+        Mean: 20 <br>
+        SD: 5 <br>
+      </p>
+      <p class="down-3">
+        <span class="u em">Statistic:</span><br>
+        <span class="success">$\bar{x}_2-\bar{x}_1=4$</span>
+      </p>
+    </div>
+    <div class="col-35">
+      <svg width="100%" viewBox="0 0 288 288" style="margin-top: 0;">
+        <use xlink:href="content/img/pvalue-sample-size-increase.svg#axes_1"></use>
+        <use class="fragment" data-fragment-index=1 xlink:href="content/img/pvalue-sample-size-increase.svg#axes_3"></use>
+        <use class="fragment" data-fragment-index=2 xlink:href="content/img/pvalue-sample-size-increase.svg#axes_4"></use>
+      </svg>
+    </div>
+    <div class="col-50">
+      <svg width="100%" viewBox="0 0 380 288" style="margin-top: 0;">
+        <use xlink:href="content/img/pvalue-sample-size-increase-sampling-dist.svg#axes_1"></use>
+        <use class="fragment" data-fragment-index=1 xlink:href="content/img/pvalue-sample-size-increase-sampling-dist.svg#axes_2"></use>
+        <use class="fragment" data-fragment-index=2 xlink:href="content/img/pvalue-sample-size-increase-sampling-dist.svg#axes_3"></use>
+        <use xlink:href="content/img/pvalue-sample-size-increase-sampling-dist.svg#axes_4"></use>
+      </svg>
+    </div>
+  </div>
+  <div class="row flex">
+    <div class="right-25 col-20 flex-center bg-info-light black">
+      <p class="center">
+        (n=9)<br>$p=0.1109$
+      </p>
+    </div>
+    <div class="right-1 col-20 flex-center bg-warning-light black fragment" data-fragment-index=1>
+      <p class="center">
+        (n=15)<br>$p=0.0376$
+      </p>
+    </div>
+    <div class="right-1 col-20 flex-center bg-danger-light black fragment" data-fragment-index=2>
+      <p class="center">
+        (n=21)<br>$p=0.0132$
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<section>
+  <h3>Probability of Type II error</h3>
+  <p class="em bg-warning-light black center">
+    How can we reduce the probability of making a Type II Error? <br>
+    ($=$ How could we increase the probability of rejecting the null when there is really a difference?)
+  </p>
+  <div class="row">
+    <div class="col-50">
+      <p class="u-info">
+        <span class="circled-bg-info">1</span>
+        Increase the sample size
+      </p>
+    </div>
+    <div class="col-50">
+      <p class="fragment u-pink" data-fragment-index=1>
+        <span class="circled-bg-pink">2</span>
+        Increase the significance level
+      </p>
+    </div>
+  </div>
+  <div class="row fragment flex" data-fragment-index=1>
+    <div class="col-70 flex-center">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/error-type1-type2-power-trade-off.svg#axes_1"></use>
+        <use class="fragment" data-fragment-index=2 xlink:href="content/img/error-type1-type2-power-trade-off.svg#axes_2"></use>
+        <use xlink:href="content/img/error-type1-type2-power-trade-off.svg#axes_3"></use>
+        <use class="fragment" data-fragment-index=4 xlink:href="content/img/error-type1-type2-power-trade-off.svg#axes_4"></use>
+      </svg>
+    </div>
+    <div class="col-30 flex-center">
+      <div class="fragment" data-fragment-index=3>
+        <p class="smaller info">
+          Increase $\alpha$ to reduce the chance of Type II error.
+        </p>
+        <p class="smaller danger down-3">
+          Decrease $\alpha$ to reduce the chance of Type I error.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

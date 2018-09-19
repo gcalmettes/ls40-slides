@@ -1,0 +1,133 @@
+<section>
+  <h3>Resampling vs Theory</h3>
+  <div class="row">
+    <div class="col-50 fragment orange small center" data-fragment-index=1>
+      Not limited to theoretical estimators (Freedom of measure)
+    </div>
+    <div class="col-50 fragment danger small center" data-fragment-index=1>
+    Lots of assumptions & required validity conditions!
+  </div>
+  </div>
+  <table class="smaller center">
+    <thead>
+      <tr>
+        <th class="bg-muted border-right">
+          Resampling simulation
+        </th>
+        <th class="bg-muted">
+          Normal approximation (z- & t-tests)
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td colspan="2">
+          Collect your sample and calculate your statistic of interest <br>
+          (<span class="pop">$\hat{p}$, $\bar{x}$, ($\bar{x}_1-\bar{x}_2$)</span>)
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          State your null (<span class="info">H$_0$</span>) and
+          alternative (<span class="danger">H$_a$</span>) hypotheses
+        </td>
+      </tr>
+      <tr>
+        <td class="border-right">
+          <span class="info">Directly simulate</span> the null hypothesis sampling distribution of the statistic (will be <span class="info">centered at the stated H$_0$ parameter</span>)
+        </td>
+        <td>
+          <div class="fragment highlight-bg-danger" data-fragment-index=1>
+            Consider the normal distribution <span class="info">centered at the long-run
+            H$_0$ parameter</span>, with a standard deviation <span class="info">$SE$</span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="border-right">
+          Calculate the proportion of resampling samples that resulted in cases at least as extreme as your initial observed statistic. <br> This is your p-value
+        </td>
+        <td>
+          Determine the proportion of area under the curve that is at least as extreme as your initial observed statistic (see table). <br> This is your p-value.
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          Conclude about whether your have evidence <span class="pop">in favor</span>
+          or <span class="pop">against</span> the null hypothesis
+        </td>
+      </tr>
+    </tbody>
+    </table>
+</section>
+
+<section data-transition="slide-in">
+  <h3>Resampling for comparing 2 groups</h3>
+  <div class="row">
+    <div class="col-50">
+      <p class="framed border-danger center">
+        NHST
+      </p>
+      <ol class="push-left smallest">
+        <li>Pool the data into a <span class="danger">single population</span></li>
+        <li><span class="danger">Shuffle</span> the population and <span class="danger">separate it into 2 groups</span> with <span class="u">same sizes than 
+          the original 2 samples</span></li>
+        <li>Calculate the statistic of interest ($\bar{x}_1-\bar{x}_2$, $m_1-m_2$, ...)
+          and store this statistic</li>
+        <li>Repeat (#2-#3) 10000 times, you obtain 10000 statistics of interest defining a 
+         <span class="danger">distribution centered around your null hypothesis</span>
+          ($0$ if null is "no difference")</li>
+        <li>Count how many simulations resulted in a statistic of interest as
+          <span class="danger">at least as extreme as</span> (in one or both directions) the original observed statistic</li>
+        <li>Divide this count by the number of simulations (10000), this is 
+            your (one-sided or two-sided) p-value</li>
+        <li><span class="danger">Is this p-value below your $\alpha$ threshold?</span></li>
+      </ol>
+    </div>
+    <div class="col-50">
+      <p class="framed border-info center">
+        $\alpha$ confidence intervals
+      </p>
+      <ol class="push-left smallest">
+        <li>Keep the samples <span class="info">separated</span>, these are the 
+          <span class="info">2 populations</span> you're going to draw bootstrap samples from</li>
+        <li>Draw a <span class="info">bootstrap sample</span> (with replacement) 
+          from <span class="u">each</span> population</li>
+        <li>Calculate the statistic of interest ($\bar{x}_1-\bar{x}_2$, $m_1-m_2$, ...)
+          and store this statistic</li>
+        <li>Repeat (#2-#3) 10000 times, you obtain 10000 statistics of interest defining a 
+          <span class="info">distribution centered around your initial observed statistic</span></li>
+        <li>Determine the values of the $\frac{\alpha}{2}$ and $\frac{1-\alpha}{2}$
+          percentiles in the array of the 10000 statistics of interest you obtained</li>
+        <li>These values are the lower and upper limits of your $(1-\alpha)$
+            confidence intervals</li>
+        <li><span class="info">Is your null hypothesis value inside this interval?</span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Resampling for comparing 2 groups</h3>
+  <div class="row">
+    <div class="col-50 center">
+      <p class="framed border-danger center">
+        NHST
+      </p>
+      <div class="center smallest">(random reassignment of explanatory variable)</div>
+      <svg width="74%" viewBox="0 85 400 615">
+        <use xlink:href="content/img/two-groups-NHST.svg#layer1"></use>
+        <use xlink:href="content/img/two-groups-NHST.svg#layer3"></use>
+      </svg>
+    </div>
+    <div class="col-50 center">
+      <p class="framed border-info center">
+        $\alpha$ confidence intervals
+      </p>
+      <div class="center smallest">(mimic uncertainty of statistic of interest)</div>
+      <svg width="72%" viewBox="0 3 400 629">
+        <use xlink:href="content/img/two-groups-CI.svg#layer1"></use>
+      </svg>
+    </div>
+  </div>
+</section>

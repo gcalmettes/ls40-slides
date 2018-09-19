@@ -1,0 +1,139 @@
+<section data-transition="slide-in">
+  <h3>Last time</h3>
+  <div class="row">
+    <div class="col-50">
+      <p>
+        Comparing multiples quantitative groups (multiple means)
+      </p>
+      <p>
+        <i class="fas fa-arrow-circle-right danger"></i>
+        <span class="u-danger">One-way ANOVA</span>
+      </p>
+      <ul class="smaller down-5">
+        <li>
+          ANOVA is short for <span class="strong">AN</span>alysis <span class="strong">O</span>f <span class="strong">VA</span>riance.
+        </li>
+        <li>
+          The "One" refers to the number of independant variables
+        </li>
+      </ul>
+    </div>
+    <div class="col-50">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/anova-family-on-noise-data.svg#axes_1"></use>
+        <use xlink:href="content/img/anova-family-on-noise-data.svg#axes_2"></use>
+        <use xlink:href="content/img/anova-family-on-noise-data.svg#axes_6"></use>
+      </svg>
+    </div>
+  </div>
+  <div class="framed border-info">
+    <p class="em muted u">
+      ANOVA terminology:
+    </p>
+    <ul class="small">
+      <li>
+        the independant variables are called <span class="strong">factors</span> (e.g.: Noise)
+      </li>
+      <li>
+        the different categories inside a factor are called <span class="strong">levels</span> (e.g.: None, Low, High, etc ...).
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section data-transition="none">
+  <h3>Last time</h3>
+  <div class="row">
+    <div class="col-50">
+      <p>
+        ANOVA relies on the study of the <span class="strong">different aspects of variability in a dataset</span> to compare two or more quantitative groups with each other.
+      </p>
+      <p class="center down-4">
+        $F=\frac{\textrm{Mean SS}_{Group}}{\textrm{Mean SS}_{Error}}=\frac{\frac{\textrm{SS}_{Group}}{(k-1)}}{\frac{\textrm{SS}_{Error}}{(n-k)}}$
+      </p>
+    </div>
+    <div class="col-50">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/anova-family-on-noise-data.svg#axes_1"></use>
+        <use xlink:href="content/img/anova-family-on-noise-data.svg#axes_2"></use>
+        <use xlink:href="content/img/anova-family-on-noise-data.svg#axes_6"></use>
+      </svg>
+    </div>
+  </div>
+  <div>
+    <ul class="smaller">
+      <li>
+        Between group variability, <span class="strong">$SS_{Groups}$</span> : variability due to the difference in means <br> (<span class="em">How far each mean is from the <span class="orange">Grand mean</span>?</span>). 
+      </li>
+      <li>
+        Within group variability, <span class="strong">$SS_{Error}$</span> : variability due to the difference in values within each group. (<span class="em">How far each data point is from its respective <span class="pop">group mean</span>?</span>)
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Last time</h3>
+  <div class="row">
+    <div class="col-50">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/anova-family-on-noise-data-one-way.svg#axes_1"></use>
+        <use xlink:href="content/img/anova-family-on-noise-data-one-way.svg#axes_2"></use>
+        <use xlink:href="content/img/anova-family-on-noise-data-one-way.svg#axes_3"></use>
+      </svg>
+    </div>
+    <div class="col-50">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/anova-family-on-noise-data.svg#axes_1"></use>
+        <use xlink:href="content/img/anova-family-on-noise-data.svg#axes_2"></use>
+        <use xlink:href="content/img/anova-family-on-noise-data.svg#axes_6"></use>
+      </svg>
+    </div>
+  </div>
+  <p>
+    The $F$-statistic is just like any other statistic of interest, you can apply resampling statistics to compute a p-value or confidence intervals.
+  </p>
+  <p>
+    <i class="fas fa-arrow-circle-right"></i>
+    Need to follow up with a post hoc test
+  </p>
+  <p class="smaller">
+    (if you have a lot of comparisons to make, you may want to adjust the significance level for the fact that multiple comparisons are being made ... e.g.: the <span class="em">Bonferroni correction</span> controls the overall error rate by setting the error rate ($\alpha$) for each test to the experimentwise error rate divided by the total number of tests)
+  </p>
+</section>
+
+<section>
+  <h3>Analyzing complex situations</h3>
+  <p class="em u">Notes:</p>
+  <p>
+    As you may have noticed, the more complex the statistic of interest we were studying (linear regression coefficients, $\chi^2$, $F\textrm{-statistic}$), the more we were relying on technology to calculate the statistic of interest for us.
+  </p>
+  <div class="row flex down-2">
+    <div class="col-12 flex-center">
+      <div>
+        <i class="fas fa-exclamation-triangle danger fa-2x"></i>
+      </div>
+    </div>
+    <div class="col-88 flex-center">
+      <p>
+        If you develop some code to calculate the statistic of interest yourself, be sure to compare the result of your code to the result of functions already integrated into official packages (e.g.: Scipy stats, statsmodels, scikit-learn)
+      </p>
+    </div>
+  </div>
+  <div class="row flex framed border-muted down-3">
+    <div class="col-10 flex-center">
+      <div class="center muted">
+        <p class="smaller u center">
+          Key idea
+        </p>
+        <!-- <span class="smaller u">Key idea</span> -->
+        <i class="fas fa-lightbulb"></i>
+      </div>
+    </div>
+    <div class="col-90 flex-center">
+      <p>
+        For complex situations, it becomes more important to be able to <span class="strong">identify which analysis to use to answer the question</span> than knowing by heart how to calulate the statistics of interest themselves (dont' get me wrong, still, it is important to understand what those statistics of interest represent, but usually people rely on technology to do the hard work for them).
+      </p>
+    </div>
+  </div>
+</section>

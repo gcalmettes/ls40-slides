@@ -1,0 +1,108 @@
+<section>
+  <h3>Last time</h3>
+  <div class="small sided border-pop">Confidence intervals</div>
+  <div class="row">
+    <div class="col-40">
+    	<div class="smaller">
+    		Imagine we're interested in the parameter of a population.
+    	</div>
+      <div class="fig-container" data-file="interactive/confidence-intervals-sampling-distribution.html"></div>
+    </div>
+    <div class="col-60">
+      <div class="small">
+      	<span class="u info">The perfect world:</span>
+      	<ul>
+      		<li class="fragment strike-black" data-fragment-index="0">
+      			We have access to the full population dataset and we can calculate our parameter.
+      		</li>
+      		<li class="fragment" data-fragment-index="1">
+      			<span class="fragment strike-black" data-fragment-index="5">We can collect a large number of samples from the population and we compute the <span class="info strong">true sampling distribution of the corresponding statistic</span> (from the CLT, we could estimate our parameter by calculating the mean of our sampling distribution)</span>.
+      		</li>
+      	</ul>
+      </div>
+      <div class="small fragment" data-fragment-index=6>
+      	<span class="u danger">The real world:</span> <br>
+      	We could only collect <span class="danger strong">one sample</span>.
+      	<ul>
+      		<li>
+      			We can calculate the <span class="danger strong">corresponding statistic</span>, but we don't know how good of an estimate of the true parameter it is.
+      		</li>
+      		<li class="fragment" data-fragment-index="7">
+      			Using the <span class="danger strong">Bootstrap</span> method, we can compute a <span class="danger">bootstrap sampling distribution</span> from our sample to get an estimate of the <span class="info">variability of the true sampling distribution</span>. <br>
+      			<i class="fas fa-arrow-circle-right pop"></i> We can define an <span class="pop">interval</span> within which we are confident the <span class="info">true parameter</span> will lie for (1-$\alpha$)% of the samples we could have collected and constructed this interval from.
+      		</li>
+      	</ul>
+      	<span class="small fragment" data-fragment-index="7">
+      		This interval is the <span class="pop strong">confidence interval of our parameter</span>.
+      	</span>
+      </div>
+    </div>
+  </div>
+  <span class="fragment" data-fragment-index=2></span>
+  <span class="fragment" data-fragment-index=3></span>
+  <span class="fragment" data-fragment-index=4></span>
+</section>
+
+<section>
+	<h3>Last time</h3>
+	<div class="small sided border-pop">Confidence intervals</div>
+	<div class="smaller quoted down-2">
+		Why will the true parameter be in the 95% confidence interval for 95% of the samples we computed the interval from?
+	</div>
+	<div class="row">
+		<div class="col-50">
+			<ul class="smallest">
+				<li>
+					From the normal distribution characteristics, we now that 95% of the samples statistics will lie within $\pm 1.96\times SE$ of the mean of the sampling distribution.
+				</li>
+				<li>
+					So the mean of the sampling distribution will lie within that same distance of 95% of the samples statistics we could compute.
+				</li>
+				<li>
+					If we collect a sample and calculate a statistic, if we can get an estimate of this interval, we know that 95% of the time, the true parameter will lie in this interval.
+				</li>
+				<li>
+					By computing the bootstrap sampling distribution from our sample, we can estimate what would be the variability of the true sampling distribution, and so we can estimate this confidence interval.
+				</li>
+			</ul>
+		</div>
+		<div class="col-50">
+			<img src="content/img/normal-distribution-standardized-distances.svg">
+		</div>
+	</div>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Last time</h3>
+  <p>
+    NHST and 95% CI : two ways at looking at the same thing.
+  </p>
+  <div class="row">
+    <div class="col-85">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/nhst-vs-ci.svg#axes_4"
+          class="fragment current-visible" data-fragment-index=2></use>
+        <use xlink:href="content/img/nhst-vs-ci.svg#axes_3"
+          class="fragment" data-fragment-index=3></use>
+        <use xlink:href="content/img/nhst-vs-ci.svg#axes_2"
+          class="fragment current-visible" data-fragment-index=1></use>
+        <use xlink:href="content/img/nhst-vs-ci.svg#axes_5"
+          class="fragment" data-fragment-index=4></use>
+        <use xlink:href="content/img/nhst-vs-ci.svg#axes_6"
+          class="fragment" data-fragment-index=5></use>
+        <use xlink:href="content/img/nhst-vs-ci.svg#axes_1"></use>
+      </svg>
+    </div>
+    <div class="col-15">
+      <p>
+      <span class="info">NHST</span><br>
+      <span class="warning">95% CIs</span>
+      </p>
+    </div>
+  </div>
+  <aside class="notes">
+    But it means that if we are going to use the sample
+    to infer about the population, we need to be sure 
+    our sample is representative.
+  </aside>
+</section>

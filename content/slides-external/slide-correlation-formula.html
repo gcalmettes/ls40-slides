@@ -1,0 +1,48 @@
+<section>
+  <h3>Formula for correlation (Pearson)</h3>
+  <div class="row">
+    <div class="col-45">
+      <p class="no-margin-top small">
+        The formula for the <span class="danger">Pearson correlation coefficient</span> is 
+    </p>
+    </div>
+    <div class="col-55 smaller">
+      $r=\frac{\sum_{n=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum_{n=1}^{n}(x_i-\bar{x})^2}\sqrt{\sum_{n=1}^{n}(y_i-\bar{y})^2}}$
+    </div>
+  </div>
+  <div class="row flex">
+    <div class="col-50 flex-center">
+      <div>
+        <div class="framed border-danger">
+          <p class="u em">
+            This correlation formula can be expressed under the form:
+          </p>
+          <p class="small">
+            $r=\frac{1}{n-1}\sum_{n=1}^{n} (\fragapply{warning 1}{\frac{x_i-\bar{x}}{s_x}})(\fragapply{success 2}{\frac{y_i-\bar{y}}{s_y}})$
+          </p>
+        </div>
+        <p>
+          with
+          <span class="smaller">$s_x=\sqrt{\frac{\sum_{n=1}^{n}(x_i-\bar{x})^2}{n-1}}$</span>
+          (and similar for $y$)
+        </p>
+      </div>
+    </div>
+    <div class="col-50 flex-center">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use class="fragment" data-fragment-index=0 xlink:href="content/img/correlation-intuition.svg#axes_2"></use>
+        <use class="fragment" data-fragment-index=1 xlink:href="content/img/correlation-intuition.svg#axes_3"></use>
+        <use class="fragment" data-fragment-index=2 xlink:href="content/img/correlation-intuition.svg#axes_4"></use>
+        <use xlink:href="content/img/correlation-intuition.svg#axes_1"></use>
+      </svg>
+    </div>
+  </div>
+
+  <p>
+    <i class="fas fa-arrow-circle-right danger"></i>
+    Essentially the correlation calculation involves converting all values for both variables to z-scores,
+    and can be considered as the mean of the products of the standard scores (local variation of the data in both directions).
+  </p>
+</section>
+
+<section data-external-replace="slide-animation-correlation-shared-variance.html"></section>

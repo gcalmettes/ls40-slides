@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<body>
+
+
+<script src="js/d3.min.js"></script>
+<script>
+
+  const width = 550,
+        totalHeight = 600,
+        colors = {
+          info: '#00BFFF',
+          danger: '#fb4c52',
+          warning: '#FBC15E',
+          success: '#9fc857',
+          orange: '#FF8B22',
+          muted: '#B4B4B4',
+          pop: '#ce4ad0'
+        }
+
+  const inBetweenGraph = 20,
+        margin = {left: 50, top: 10, right: 50, bottom: 50},
+        height = (totalHeight-2*margin.top-2*margin.bottom-inBetweenGraph)/2
+
+  const svg = d3.select("body")
+    .append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", totalHeight)
+
+  // common scale
+  const xScale = d3.scaleLog()
+      .range([0, width])
+
+  // pvalue graph
+  const gPVAL = svg.append("g")
+      .attr("width", width)
+      .attr("height", height)
+      .attr("transform", `translate(${margin.left}, ${margin.top})`)
+
+  const yScalePVAL = d3.scaleLog()
+      .range([height, 0])
+
+  const yAxisPVAL = gPVAL.append('g')
+    .attr("class", "y axis")
+    .attr("transform", `translate(0, 0)`)
+
+  gPVAL.append('text')
+      .attr('class', 'axisLabel')
+      .attr('transform', `translate(${-margin.left/1.4}, ${height/2}) rotate(-90)`)
+      .style("text-anchor", "middle")
+      .style("font-size","1.2em")
+      .style("font-family", "Raleway")
+      .text('P-value');
+  // add text for statistical threshold. Will update its position when data are loaded
+  const thresholdPVALtext = gPVAL.append('text')
+      .style("text-anchor", "start")
+      .style("dominant-baseline", "middle")
+      .style("font-size","1.2em")
+      .style("font-family", "Raleway")
+      .text('0.05');
+    
+  // effect size graph
+  const gES = svg.append("g")
+      .attr("width", width)
+      .attr("height", height)
+      .attr("transform", `translate(${margin.left}, ${+gPVAL.attr("height")+2*margin.top+margin.bottom})`)
+
+  const yScaleES = d3.scaleLinear()
+    .range([height, 0])
+
+  const yAxisES = gES.append('g')
+    .attr("class", "y axis")
+    .attr("transform", `translate(0, 0)`)
+
+  const xAxisES = gES.append('g')
+    .attr("class", "y axis")
+    .attr("transform", `translate(0, ${height})`)
+
+  gES.append('text')
+      .attr('class', 'axisLabel')
+      .attr('x', width/2)
+      .attr('y', height+margin.bottom/1.3)
+      .style("text-anchor", "middle")
+      .style("font-size","1.2em")
+      .style("font-family", "Raleway")
+      .text('Sample Size');
+  gES.append('text')
+      .attr('class', 'axisLabel')
+      .attr('transform', `translate(${-margin.left/1.4}, ${height/2}) rotate(-90)`)
+      .style("text-anchor", "middle")
+      .style("font-size","1.2em")
+      .style("font-family", "Raleway")
+      .text('Difference in means');
+
+  // masks for data
+  // const defs = svg.append('defs')
+  const maskPVAL = gPVAL.append('defs')
+    .append('mask')
+      .attr("id", "maskPVAL")
+    .append('rect')
+      .attr("x", 0)
+      .attr("y", 0)
+      .attr("width", 0)
+      .attr("height", height)
+      .attr("fill", '#fff')
+  const maskES = gES.append('defs')
+    .append('mask')
+      .attr("id", "maskES")
+    .append('rect')
+      .attr("x", 0)
+      .attr("y", 0)
+      .attr("width", 0)
+      .attr("height", height)
+      .attr("fill", '#fff')
+
+
+  // load the data and display them
+  d3.csv("data/hentschke-pval-es.csv").then(data => {
+    const keys = Object.keys(data[0])
+    data.forEach(d => keys.forEach(k => d[k] = +d[k]))
+    
+    // update scales domain and axes
+    xScale.domain(d3.extent(data, d => d.sampleSize))
+    yScalePVAL.domain([d3.min(data, d => d.pval), 1])
+    yScaleES.domain(d3.extent(data, d => d.es))
+
+    yAxisPVAL.call(d3.axisLeft(yScalePVAL).ticks(5))
+    yAxisES.call(d3.axisLeft(yScaleES).ticks(5))
+    xAxisES.call(d3.axisBottom(xScale).ticks(5)) //.tickFormat(d3.format(",d"))
+
+    // pvale graph
+    thresholdPVALtext
+      .attr('transform', `translate(${width}, ${yScalePVAL(0.05)})`)
+    gPVAL.append("line")
+      .attr("x1", 0)
+      .attr("x2", xScale(xScale.domain()[1]))
+      .attr("y1", yScalePVAL(0.05))
+      .attr("y2", yScalePVAL(0.05))
+      .attr("stroke-dasharray", "5, 5")
+      .attr("stroke", "black")
+    scatterWithLine({
+      data: data.map(d => {return {
+        x: d.sampleSize, 
+        y: d.pval, 
+        line: d.pval_runAvg
+      }}),
+      xScale: xScale,
+      yScale: yScalePVAL,
+      radius: 3,
+      lineColor: colors.orange,
+      container: gPVAL,
+      mask: 'url(#maskPVAL)'
+    })
+
+    // effect size graph
+    gES.append("line")
+      .attr("x1", 0)
+      .attr("x2", xScale(xScale.domain()[1]))
+      .attr("y1", yScaleES(0))
+      .attr("y2", yScaleES(0))
+      .attr("stroke-dasharray", "5, 5")
+      .attr("stroke", "black")
+    scatterWithLine({
+      data: data.map(d => {return {
+        x: d.sampleSize, 
+        y: d.es, line: 
+        d.es_runAvg}
+      }),
+      xScale: xScale,
+      yScale: yScaleES,
+      radius: 3,
+      lineColor: colors.info,
+      container: gES,
+      mask: 'url(#maskES)',
+      dataArea: data.map(d => {return {
+        x: d.sampleSize, 
+        y0: d.es_ci_low, 
+        y1: d.es_ci_high,
+        color: colors.info
+      }})
+    })
+
+  })
+
+  
+  function scatterWithLine(props){
+    const {data, xScale, yScale, radius, lineColor, container, mask, dataArea} = {...props}
+
+    // put all the graphic elements in a container so they 
+    // can be masked all together
+    const gData = container.selectAll(".gData")
+      .data([null]).enter()
+      .append("g")
+        .attr("class", "gData")
+
+    // add confidence bands if provided
+    if (dataArea) {
+      const area = d3.area()
+        .x(d => xScale(d.x))
+        .y0(d => yScale(d.y0))
+        .y1(d => yScale(d.y1))
+        .curve(d3.curveBasis)
+
+      const gArea = gData.selectAll(".area")
+        .data([dataArea])
+      gArea.exit().remove()
+      gArea.enter()
+        .append("path")
+          .attr("class", "area")
+          .attr("mask", mask)
+        .merge(gArea)
+          .attr("d", d => area(d))
+          .attr("stroke", dataArea[0].color)
+          .attr("fill", dataArea[0].color)
+          .attr("opacity", 0.3)
+    }
+
+
+    // put dots into their own container
+    const gCircles = gData.selectAll(".gCircles")
+      .data([null]).enter()
+      .append("g")
+        .attr("class", "gCircles")
+    const circles= gCircles.selectAll(".circle")
+      .data(data)
+    circles.exit().remove()
+    circles.enter()
+      .append("circle")
+        .attr("class", "circle")
+        .attr("r", radius)
+        // .attr("mask", mask)
+      .merge(circles)
+        .attr("cx", d => xScale(d.x))
+        .attr("cy", d => yScale(d.y))
+        .attr("fill", colors.muted)
+
+    // running average line
+    const line = d3.line()
+      .x(d => xScale(d.x))
+      .y(d => yScale(d.line))
+      .curve(d3.curveBasis)
+
+    const gLine = gData.selectAll(".line")
+      .data([data]) //data.filter(d => d.line>0)// need to filter this for log scale
+    gLine.exit().remove()
+    gLine.enter()
+      .append("path")
+        .attr("class", "line")
+        .attr("mask", mask)
+      .merge(gLine)
+        .attr("d", d => line(d))
+        .attr("stroke", lineColor)
+        .attr("stroke-width", 3)
+        .attr("fill", "none")
+  }
+
+
+  function showDataUpTo(x, maskRects, xScale, time=1000){
+    maskRects.forEach(d => d.transition().duration(time).ease(d3.easeLinear)
+      .attr("width", xScale(x))
+    )
+  }
+
+  var _transitions = [
+    {
+      transitionForward: () => showDataUpTo(1000, [maskPVAL, maskES], xScale, 5000),
+      transitionBackward: () => showDataUpTo(0, [maskPVAL, maskES], xScale, 0), 
+      index: 0
+    },
+    {
+      transitionForward: () => showDataUpTo(5000, [maskPVAL, maskES], xScale, 3000), 
+      transitionBackward: () => showDataUpTo(1000, [maskPVAL, maskES], xScale, 0),
+      index: 2
+    }
+  ]
+
+</script>
+
+</body>

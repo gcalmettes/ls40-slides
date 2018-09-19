@@ -1,0 +1,58 @@
+<section data-transition="slide-in">
+  <h3>95% confidence intervals</h3>
+  <p class="framed border-info">
+    What is the true value of how much more likely the Oklahoma City Thunder is to win when there is not a sold-out crowd compare to when they play in a packed stadium?
+  </p>
+  <div class="row fragment">
+    <div class="col-37 smaller">
+      <span class="danger">Keep the groups separated!</span> <br>
+      1- Draw a bootstrap sample from the sold-out crowd games <br>
+      2- Draw a bootstrap sample from the non sold-out crowd games <br>
+      3- Compute your statistics (relative risk of the conditional proportions) and store this value. <br>
+    </div>
+    <div class="col-63">
+      <svg width="100%" viewBox="0 0 463.5 268.5">
+        <use xlink:href="content/img/two-groups-bootstrap-ci-proportion.svg#layer1"></use>
+      </svg>
+    </div>
+  </div>
+  <div class="row fragment">
+    <div class="col-50 smaller">
+      4- Repeat this process (steps 1-3) 10000 times
+    </div>
+    <div class="col-50 smaller">
+        5- Determine the $\frac{\alpha}{2}$ and $(1-\frac{\alpha}{2})$ percentiles in your stored result array
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide-out">
+  <h3>95% confidence intervals</h3>
+  <p class="framed border-info">
+    What is the true value of how much more likely the Oklahoma City Thunder is to win when there is not a sold-out crowd compare to when they play in a packed stadium?
+  </p>
+  <div class="row">
+    <div class="col-40">
+      <p class="sided border-danger fragment">
+        <i class="fas fa-arrow-right"></i> The Oklahoma City Thunder are 1.3 to 11 times more likely to win when they do not play in front of a sell out crowd. The "no-difference value" (RR = 1) is not in this interval.
+      </p>
+      <p class="smaller fragment">
+        <span class="em u muted">Note:</span> Choosing a different statistic of interest to analyze your data won't change the result you got. Choose a statistic of interest to compare your groups that is the more meaningful to you.
+      </p>
+    </div>
+    <div class="col-60">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/nba-okc-thunder-crowd-simulation-rr-ci95.svg#axes_1"></use>
+        <use xlink:href="content/img/nba-okc-thunder-crowd-simulation-rr-ci95.svg#axes_2"></use>
+        <use xlink:href="content/img/nba-okc-thunder-crowd-simulation-rr-ci95.svg#axes_3"></use>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h3>Summary</h3>
+  <p>
+    <i class="fas fa-arrow-circle-right"></i> When you comparing two groups, only the statistic of interest you will study change, the approach (resampling p-value/confidence intervals) is the same than what we've seen when exploring the "one-group" case.
+  </p>
+</section>

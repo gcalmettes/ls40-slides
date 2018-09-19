@@ -1,0 +1,608 @@
+<section data-transition="slide-in fade-out">
+  <h3>Wetsuits and swimming speed</h3>
+  <div class="row">
+    <div class="col-45">
+      <p>
+        The 2008 Olympics were full of controversy about new swimsuits possibly providing unfair advantages to swimmers, leading to new international rules that came into effect January 1, 2010, regarding swimsuit coverage and material.
+      </p>
+      <p class="framed border-danger">
+        Can a wetsuit really make someone swim faster?  How much faster?
+      </p>
+    </div>
+    <div class="col-55">
+      <img src="content/img/wetsuit-Beijing2008.jpg" class="framed" width=100%>
+    </div>
+  </div>
+</section>
+
+
+<section data-transition="fade-in slide-out">
+  <h3>Wetsuits and swimming speed</h3>
+  <div class="row">
+    <div class="col-50">
+      <p class="small">
+        Twelve competitive swimmers and triathletes swam 1500m at maximum speed twice each, once wearing a wetsuit and once wearing a regular suit.
+      </p>
+      <p class="small">
+        The order of the trials was randomized.
+      </p>
+      <p class="small">
+        Maximum velocity (m/sec) was recorded (one of several possible outcomes).
+      </p>
+      <p class="sided border-orange">
+        $H_0: \mu_\textrm{Wetsuit}-\mu_\textrm{No Wetsuit}=0$
+      </p>
+      <p class="sided border-pop">
+        $H_a: \mu_\textrm{Wetsuit}-\mu_\textrm{No Wetsuit}>0$ <br>
+        ($H_a: \mu_\textrm{Wetsuit}-\mu_\textrm{No Wetsuit}\neq0$)
+      </p>
+    </div>
+    <div class="col-50">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/wetsuit-data.svg#axes_1"></use>
+        <use xlink:href="content/img/wetsuit-data.svg#axes_2"></use>
+      </svg>
+      <table class="smaller center">
+        <tbody>
+        <tr>
+           <td></td>
+           <td class="border-right">No Wetsuit</td>
+           <td>Wetsuit</td>
+         </tr>
+         <tr>
+           <td class="border-right">Mean</td>
+           <td class="border-right">1.43</td>
+           <td>1.51</td>
+         </tr>
+         <tr>
+           <td class="border-right">Difference</td>
+           <td colspan=2 class="danger">0.078</td>
+         </tr>
+       </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<section data-transition="slide-in fade-out">
+  <h3>Independent samples analysis</h3>
+  <div class="row">
+    <div class="col-50">
+      <p class="smaller no-margin-top">
+        NHST of means difference <br>
+        (pooling the two samples, shuffling and splitting into two groups)
+      </p>
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/wetsuit-resampling-not-paired.svg#axes_1"></use>
+        <use xlink:href="content/img/wetsuit-resampling-not-paired.svg#axes_2"></use>
+        <use class="fragment" data-fragment-index=1 xlink:href="content/img/wetsuit-resampling-not-paired.svg#axes_3"></use>
+      </svg>
+      <p class="smallest fragment sided border-danger no-margin-top" data-fragment-index=2>
+        Using this naive method, <span class="danger">we do not find any association</span> between wearing a wetsuit and swimming speeds.
+      </p>
+    </div>
+    <div class="col-50">
+      <svg width="100%" viewBox="0 0 432 288" style="margin-top: 0;">
+        <use xlink:href="content/img/wetsuit-data.svg#axes_1"></use>
+        <use xlink:href="content/img/wetsuit-data.svg#axes_2"></use>
+      </svg>
+      <table class="smaller center">
+        <tbody>
+        <tr>
+           <td></td>
+           <td class="border-right">No Wetsuit</td>
+           <td>Wetsuit</td>
+         </tr>
+         <tr>
+           <td class="border-right">Mean</td>
+           <td class="border-right">1.43</td>
+           <td>1.51</td>
+         </tr>
+         <tr>
+           <td class="border-right">Difference</td>
+           <td colspan=2 class="danger">0.078</td>
+         </tr>
+       </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section data-transition="fade-in slide-out">
+  <h3>Independent samples analysis</h3>
+  <div class="row">
+    <div class="col-50">
+      <p>
+        However, taking a closer look at the data, we see that <span class="danger">every single swimmer swam faster wearing the wetsuit!</span>
+      </p>
+      <p>
+        Surely this must provide conclusive evidence that swimmers are faster wearing a wetsuit.
+      </p>
+      <p>
+        <span class="em">What went wrong in our analysis?</span>
+      </p>
+      <p class="fragment border-pop framed down-2" data-fragment-index=1>
+        <i class="fa fa-arrow-circle-right pop"></i>
+        We failed to take into account the
+        <span class="pop">paired structure</span> of the data.
+      </p>
+    </div>
+    <div class="col-50">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/wetsuit-data.svg#axes_1"></use>
+        <use xlink:href="content/img/wetsuit-data.svg#axes_3"></use>
+        <use xlink:href="content/img/wetsuit-data.svg#axes_2"></use>
+      </svg>
+      <table class="smaller center">
+        <tbody>
+        <tr>
+           <td></td>
+           <td class="border-right">No Wetsuit</td>
+           <td>Wetsuit</td>
+         </tr>
+         <tr>
+           <td class="border-right">Mean</td>
+           <td class="border-right">1.43</td>
+           <td>1.51</td>
+         </tr>
+         <tr>
+           <td class="border-right">Difference</td>
+           <td colspan=2 class="danger">0.078</td>
+         </tr>
+       </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h3>Wetsuits and swimming speed study</h3>
+  <div class="row">
+    <div class="col-50">
+      <p class="em u">
+        Wetsuit study:
+      </p>
+      <div class="row">
+        <div class="col-15">
+          <i class="fas fa-venus pink down-1 fa-2x"></i>
+        </div>
+        <div class="col-44 small center">
+            Swimmers <br>
+            Triathletes
+        </div>
+        <div class="col-15">
+          <i class="fas fa-mars info down-1 fa-2x"></i>
+        </div>
+      </div>
+      <p class="down-3 smaller">
+        <i class="fa fa-arrow-circle-right pop"></i>
+        Not surprisingly, there is a great deal of <span class="pop">variability</span> in the maximum velocities of the swimmers (individual variability among the observational units).
+      </p>
+      <div class="row flex framed border-muted fragment">
+        <div class="col-12 flex-center center small">
+          <span>Key idea
+          <i class="fas fa-lightbulb"></i>
+          </span>
+        </div>
+        <div class="col-84 right-4 smaller flex-center">
+          <span>Because of all this variability, it is difficult to tell whether the difference in mean swim speed observed in the sample represents a real difference or is just due to random chance.</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-50">
+      <svg width="100%" viewBox="0 0 432 288" style="margin-top: 0;">
+        <use xlink:href="content/img/wetsuit-data.svg#axes_1"></use>
+        <use xlink:href="content/img/wetsuit-data.svg#axes_3"></use>
+        <use xlink:href="content/img/wetsuit-data.svg#axes_2"></use>
+      </svg>
+      <table class="smaller center">
+        <tbody>
+        <tr>
+           <td></td>
+           <td class="border-right">No Wetsuit</td>
+           <td>Wetsuit</td>
+         </tr>
+         <tr>
+           <td class="border-right">Mean</td>
+           <td class="border-right">1.43</td>
+           <td>1.51</td>
+         </tr>
+         <tr>
+           <td class="border-right">Difference</td>
+           <td colspan=2 class="danger">0.078</td>
+         </tr>
+       </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide-in fade-out">
+  <h3>Paired samples analysis</h3>
+  <p>
+    The key to analyzing paired data is to work with the <span class="danger">difference within each pair of data values</span> rather than between the two original samples. <br>
+    <i class="fa fa-arrow-circle-right pop"></i>
+    This helps us to <span class="pop">eliminate the variability across different units</span> (different swimmers) and instead focus on what we really care about: the difference between the values with and without a wetsuit.
+    (By looking at this difference, the variability in general swimming ability is taken away).
+  </p>
+  <table class="fragment smallest down-2" data-fragment-index=1>
+    <tbody>
+      <tr>
+        <td class="border-right">Swimmer</td>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+        <td>7</td>
+        <td>8</td>
+        <td>9</td>
+        <td>10</td>
+        <td>11</td>
+        <td class="border-right">12</td>
+        <td>$\bar{x}$</td>
+      </tr>
+      <tr>
+        <td class="border-right">Wetsuit</td>
+        <td>1.57</td>
+        <td>1.47</td>
+        <td>1.42</td>
+        <td>1.35</td>
+        <td>1.22</td>
+        <td>1.75</td>
+        <td>1.64</td>
+        <td>1.57</td>
+        <td>1.56</td>
+        <td>1.53</td>
+        <td>1.49</td>
+        <td class="border-right">1.51</td>
+        <td>1.507</td>
+      </tr>
+      <tr>
+        <td class="border-right">No Wetsuit</td>
+        <td>1.49</td>
+        <td>1.37</td>
+        <td>1.35</td>
+        <td>1.27</td>
+        <td>1.12</td>
+        <td>1.64</td>
+        <td>1.59</td>
+        <td>1.52</td>
+        <td>1.50</td>
+        <td>1.45</td>
+        <td>1.44</td>
+        <td class="border-right">1.41</td>
+        <td>1.429</td>
+      </tr>
+      <tr class="bg-info">
+        <td class="border-right">Difference</td>
+        <td>0.08</td>
+        <td>0.10</td>
+        <td>0.07</td>
+        <td>0.08</td>
+        <td>0.10</td>
+        <td>0.11</td>
+        <td>0.05</td>
+        <td>0.05</td>
+        <td>0.06</td>
+        <td>0.08</td>
+        <td>0.05</td>
+        <td class="border-right">0.10</td>
+        <td>0.078</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="fragment down-2"  data-fragment-index=1>
+    <span class="u em">Note:</span> the mean of the sample of differences is equal to the difference of the sample means: $\bar{x}_\textrm{Difference} = \bar{x}_\textrm{Wetsuit}-\bar{x}_\textrm{No Wetsuit}$
+  </p>
+</section>
+
+<section data-transition="fade-in slide-out">
+  <h3>Paired samples analysis</h3>
+  <p>
+    <span class="u em">Null hypothesis:</span> If wearing a wetsuit had no effect on swimming speed, then the speeds recorded for each swimmer could have been equally likely observed under either condition (with or without a wetsuit).
+    <br>
+    <span class="fragment danger" data-fragment-index=1>
+      <i class="fa fa-arrow-circle-right"></i>
+      the sign (positive/negative) of each observed difference in speed between the two conditions
+      could have equally likely been the opposite.
+    </span>
+  </p>
+  <table class="smallest">
+    <tbody>
+      <tr>
+        <td class="border-right">Swimmer</td>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+        <td>7</td>
+        <td>8</td>
+        <td>9</td>
+        <td>10</td>
+        <td>11</td>
+        <td>12</td>
+      </tr>
+      <tr>
+        <td class="bg-info-light border-right">Wetsuit</td>
+        <td class="bg-info-light">1.57</td>
+        <td class="bg-info-light">1.47</td>
+        <td class="bg-info-light">1.42</td>
+        <td class="bg-info-light">1.35</td>
+        <td class="bg-info-light">1.22</td>
+        <td class="bg-info-light">1.75</td>
+        <td class="bg-info-light">1.64</td>
+        <td class="bg-info-light">1.57</td>
+        <td class="bg-info-light">1.56</td>
+        <td class="bg-info-light">1.53</td>
+        <td class="bg-info-light">1.49</td>
+        <td class="bg-info-light">1.51</td>
+      </tr>
+      <tr>
+        <td class="bg-warning-light border-right">No Wetsuit</td>
+        <td class="bg-warning-light">1.49</td>
+        <td class="bg-warning-light">1.37</td>
+        <td class="bg-warning-light">1.35</td>
+        <td class="bg-warning-light">1.27</td>
+        <td class="bg-warning-light">1.12</td>
+        <td class="bg-warning-light">1.64</td>
+        <td class="bg-warning-light">1.59</td>
+        <td class="bg-warning-light">1.52</td>
+        <td class="bg-warning-light">1.50</td>
+        <td class="bg-warning-light">1.45</td>
+        <td class="bg-warning-light">1.44</td>
+        <td class="bg-warning-light">1.41</td>
+      </tr>
+      <tr>
+        <td rowspan="2" class="border-right border-nobottom" style="vertical-align: middle">Difference</td>
+        <td class="bg-danger-light">0.08</td>
+        <td class="bg-danger-light">0.10</td>
+        <td class="bg-danger-light">0.07</td>
+        <td class="bg-danger-light">0.08</td>
+        <td class="bg-danger-light">0.10</td>
+        <td class="bg-danger-light">0.11</td>
+        <td class="bg-danger-light">0.05</td>
+        <td class="bg-danger-light">0.05</td>
+        <td class="bg-danger-light">0.06</td>
+        <td class="bg-danger-light">0.08</td>
+        <td class="bg-danger-light">0.05</td>
+        <td class="bg-danger-light">0.10</td>
+      </tr>
+      <tr class="fragment" data-fragment-index=1>
+        <td>-0.08</td>
+        <td>-0.10</td>
+        <td>-0.07</td>
+        <td>-0.08</td>
+        <td>-0.10</td>
+        <td>-0.11</td>
+        <td>-0.05</td>
+        <td>-0.05</td>
+        <td>-0.06</td>
+        <td>-0.08</td>
+        <td>-0.05</td>
+        <td>-0.10</td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- table 2 -->
+  <table class="fragment smallest down-3">
+    <tbody>
+      <tr>
+        <td class="border-right">Swimmer</td>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+        <td>7</td>
+        <td>8</td>
+        <td>9</td>
+        <td>10</td>
+        <td>11</td>
+        <td>12</td>
+      </tr>
+      <tr>
+        <td class="bg-info-light">Wetsuit</td>
+        <td class="bg-info-light">1.57</td>
+        <td class="bg-info-light">1.47</td>
+        <td class="bg-warning-light">1.42</td>
+        <td class="bg-info-light">1.35</td>
+        <td class="bg-warning-light">1.22</td>
+        <td class="bg-info-light">1.75</td>
+        <td class="bg-info-light">1.64</td>
+        <td class="bg-warning-light">1.57</td>
+        <td class="bg-warning-light">1.56</td>
+        <td class="bg-warning-light">1.53</td>
+        <td class="bg-info-light">1.49</td>
+        <td class="bg-warning-light">1.51</td>
+      </tr>
+      <tr>
+        <td class="bg-warning-light border-right">No Wetsuit</td>
+        <td class="bg-warning-light">1.49</td>
+        <td class="bg-warning-light">1.37</td>
+        <td class="bg-info-light">1.35</td>
+        <td class="bg-warning-light">1.27</td>
+        <td class="bg-info-light">1.12</td>
+        <td class="bg-warning-light">1.64</td>
+        <td class="bg-warning-light">1.59</td>
+        <td class="bg-info-light">1.52</td>
+        <td class="bg-info-light">1.50</td>
+        <td class="bg-info-light">1.45</td>
+        <td class="bg-warning-light">1.44</td>
+        <td class="bg-info-light">1.41</td>
+      </tr>
+      <tr>
+        <td rowspan="2" class="border-right border-nobottom" style="vertical-align: middle;">Difference</td>
+        <td class="bg-danger-light">0.08</td>
+        <td class="bg-danger-light">0.10</td>
+        <td>0.07</td>
+        <td class="bg-danger-light">0.08</td>
+        <td>0.10</td>
+        <td class="bg-danger-light">0.11</td>
+        <td class="bg-danger-light">0.05</td>
+        <td>0.05</td>
+        <td>0.06</td>
+        <td>0.08</td>
+        <td class="bg-danger-light">0.05</td>
+        <td>0.10</td>
+      </tr>
+      <tr>
+        <td>-0.08</td>
+        <td>-0.10</td>
+        <td class="bg-danger-light">-0.07</td>
+        <td>-0.08</td>
+        <td class="bg-danger-light">-0.10</td>
+        <td>-0.11</td>
+        <td>-0.05</td>
+        <td class="bg-danger-light">-0.05</td>
+        <td class="bg-danger-light">-0.06</td>
+        <td class="bg-danger-light">-0.08</td>
+        <td>-0.05</td>
+        <td class="bg-danger-light">-0.10</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h3>Resampling for paired data NHST</h3>
+  <div class="row">
+    <div class="col-35">
+      <p>
+        To obtain the sampling distribution of the paired differences (or ratio):
+      </p>
+      <ol class="smaller">
+      <li>
+        Calculate the effect size (difference or ratio) of the explanatory variable on each pair
+      </li>
+      <li>
+        Randomly assign the sign (or ratio order [1, r$^{-1}$]) for the effect sizes
+      </li>
+      <li>
+        Calculate the mean (or median) with that new arrangement of signs (or ratio order)
+      </li>
+    </ol>
+    </div>
+    <div class="col-65">
+      <img src="content/img/two-groups-paired-resampling.svg" width=100%>
+    </div>
+  </div>
+  <ol class="smaller" start=4>
+    <li>
+      Repeat steps #2-3 10000 times (we obtain 10000 effect sizes that we could have observed if the explanatory variable didn't have any effect)
+    </li>
+  </ol>
+</section>
+
+
+<section data-transition="slide-in">
+  <h3>Paired samples analysis</h3>
+  <div class="row">
+    <div class="col-45">
+      <p>
+        Keeping the structure of the data intact (pairs) allows
+        to filter out the variability accross pairs.
+      </p>
+      <p class="fragment down-3">
+        <i class="fas fa-arrow-circle-right pop"></i>
+        These data provide very convincing evidence that swimmers are faster on average when wearing wetsuits.
+        <br>
+        <span class="u-pop">Because this was a randomized experiment</span>, we have strong evidence that
+        <span class="pop">wetsuits cause swimmers to swim faster</span>.
+      </p>
+    </div>
+    <div class="col-55">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/wetsuit-resampling-paired.svg#axes_1"></use>
+        <use xlink:href="content/img/wetsuit-resampling-paired.svg#axes_3"></use>
+        <use xlink:href="content/img/wetsuit-resampling-paired.svg#axes_2"></use>
+      </svg>
+       <table class="smaller center">
+        <tbody>
+        <tr>
+           <td></td>
+           <td class="border-right">No Wetsuit</td>
+           <td>Wetsuit</td>
+         </tr>
+         <tr>
+           <td class="border-right">Mean</td>
+           <td class="border-right">1.43</td>
+           <td>1.51</td>
+         </tr>
+         <tr>
+           <td class="border-right">Difference</td>
+           <td colspan=2 class="danger">0.078</td>
+         </tr>
+       </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section data-transition="fade-in slide-out">
+  <h3>Wetsuits and swimming speed</h3>
+  <div class="row">
+    <div class="col-45">
+      <p class="quoted">
+        The same data were analyzed in each case, but the
+        conclusions reached were drastically different.
+        <span class="danger">It is very important to think about how the data were
+        collected before proceeding with the analysis!</span>
+      </p>
+      <p class="small fragment">
+        <i class="fa fa-arrow-circle-right pop"></i>
+        Studies leading to paired data are often more efficient (<span class="pop">better able to detect differences between conditions</span>) because you have <span class="u-pop">controlled for a source of variation</span> (individual variability among the observational units).
+      </p>
+    </div>
+    <div class="col-55">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/wetsuit-resampling-paired-vs-non-paired.svg#axes_1"></use>
+        <use xlink:href="content/img/wetsuit-resampling-paired-vs-non-paired.svg#axes_3"></use>
+        <use xlink:href="content/img/wetsuit-resampling-paired-vs-non-paired.svg#axes_2"></use>
+      </svg>
+      <table class="smaller center">
+        <tbody>
+        <tr>
+           <td></td>
+           <td class="border-right">No Wetsuit</td>
+           <td>Wetsuit</td>
+         </tr>
+         <tr>
+           <td class="border-right">Mean</td>
+           <td class="border-right">1.43</td>
+           <td>1.51</td>
+         </tr>
+         <tr>
+           <td class="border-right">Difference</td>
+           <td colspan=2 class="danger">0.078</td>
+         </tr>
+       </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h3>Wetsuits and swimming speed</h3>
+  <p class="em u">Conclusions of the study</p>
+  <ul class="small">
+    <li>
+      With a $pvalue<0.0001$, we have very
+      <span class="danger">strong evidence against the null hypothesis</span> and can conclude that wearing a wetwuit increases, on average, your
+      maximum speed.
+    </li>
+    <li class="fragment">
+      We can draw a <span class="pop">cause-and-effect conclusion</span> since the researcher used random assignment for the order
+      the two time trials (with/without wetsuit) took place for each swimmer <span class="em">(if all the swimmers had all started with their "wetsuit trial", then we could have argued that the slower speeds recorded on the second attempt, without wetsuit, was due to fatigue)</span>.
+    </li>
+    <li class="fragment">
+      The selected 12 swimmers were males/females, triathletes/swimmers, we can <span class="orange">generalize to this
+      specific population</span>.
+    </li>
+  </ul>
+</section>

@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.4, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="396.85px" height="694.488px" viewBox="0 0 396.85 694.488" enable-background="new 0 0 396.85 694.488"
+	 xml:space="preserve">
+<g id="layer1">
+	<g>
+		<g>
+			<path fill="#FB7FC0" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M135.953,136.923c0,15.655-12.69,28.347-28.346,28.347H46.3c-15.656,0-28.347-12.691-28.347-28.347v-9.413
+				c0-15.655,12.691-28.347,28.347-28.347h61.307c15.656,0,28.346,12.691,28.346,28.347V136.923z"/>
+			<text transform="matrix(1 0 0 1 45.6152 126.6992)" fill="#FFFFFF" font-family="'MyriadPro-Semibold'" font-size="18">Original</text>
+			<text transform="matrix(1 0 0 1 42.0869 148.2988)" fill="#FFFFFF" font-family="'MyriadPro-Semibold'" font-size="18">sample 1</text>
+		</g>
+		<g>
+			<path fill="#FB7FC0" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M268.7,136.923
+				c0,15.655-12.691,28.347-28.346,28.347h-61.312c-15.657,0-28.348-12.691-28.348-28.347v-9.413
+				c0-15.655,12.691-28.347,28.348-28.347h61.312c15.648,0,28.346,12.691,28.346,28.347V136.923L268.7,136.923z"/>
+			<text transform="matrix(1 0 0 1 178.3633 126.6992)" fill="#FFFFFF" font-family="'MyriadPro-Semibold'" font-size="18">Original</text>
+			<text transform="matrix(1 0 0 1 174.8354 148.2988)" fill="#FFFFFF" font-family="'MyriadPro-Semibold'" font-size="18">sample 2</text>
+		</g>
+	</g>
+	<g>
+		<g>
+			<path fill="#FB7FC0" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M135.953,281.989c0,15.655-12.69,28.347-28.346,28.347H46.3c-15.656,0-28.347-12.691-28.347-28.347v-9.413
+				c0-15.655,12.691-28.347,28.347-28.347h61.307c15.656,0,28.346,12.691,28.346,28.347V281.989z"/>
+			<text transform="matrix(1 0 0 1 33.7803 271.7646)" fill="#FFFFFF" font-family="'MyriadPro-Semibold'" font-size="18">Resampled</text>
+			<text transform="matrix(1 0 0 1 42.0869 293.3643)" fill="#FFFFFF" font-family="'MyriadPro-Semibold'" font-size="18">sample 1</text>
+		</g>
+		<g>
+			<path fill="#FB7FC0" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M268.7,281.989
+				c0,15.655-12.691,28.347-28.346,28.347h-61.312c-15.657,0-28.348-12.691-28.348-28.347v-9.413
+				c0-15.655,12.691-28.347,28.348-28.347h61.312c15.648,0,28.346,12.691,28.346,28.347V281.989L268.7,281.989z"/>
+			<text transform="matrix(1 0 0 1 166.5283 271.7646)" fill="#FFFFFF" font-family="'MyriadPro-Semibold'" font-size="18">Resampled</text>
+			<text transform="matrix(1 0 0 1 174.8354 293.3643)" fill="#FFFFFF" font-family="'MyriadPro-Semibold'" font-size="18">sample 2</text>
+		</g>
+	</g>
+	
+		<rect x="8.078" y="89.762" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" width="270.499" height="84.91"/>
+	<text transform="matrix(1 0 0 1 58.2617 196.2686)" font-family="'MyriadPro-It'" font-size="16">Resample</text>
+	<text transform="matrix(1 0 0 1 173.6069 196.2686)" font-family="'MyriadPro-It'" font-size="16">Resample</text>
+	<text transform="matrix(1 0 0 1 308.8652 229.9629)" fill="#B4B4B4" font-family="'MyriadPro-It'" font-size="18">Repeat</text>
+	<text transform="matrix(1 0 0 1 318.0537 251.5625)" fill="#B4B4B4" font-family="'MyriadPro-It'" font-size="18">a lot</text>
+	<g>
+		<g>
+			<g>
+				<path d="M141.994,179.561c0,0-2.998,3.166-7.494,7.914c-2.256,2.367-4.889,5.127-7.708,8.085
+					c-2.835,2.943-5.859,6.083-8.883,9.223c-3.015,3.148-6.03,6.297-8.856,9.248c-1.397,1.492-2.775,2.906-4.084,4.246
+					c-1.301,1.347-2.573,2.578-3.755,3.707c-1.174,1.137-2.287,2.143-3.257,3.05c-0.969,0.908-1.832,1.682-2.543,2.319
+					c-1.415,1.281-2.239,1.996-2.239,1.996c-0.456,0.396-1.146,0.347-1.542-0.109c-0.363-0.418-0.352-1.034,0.005-1.438
+					c0,0,0.722-0.819,2.013-2.225c0.642-0.706,1.422-1.563,2.338-2.525c0.914-0.964,1.928-2.069,3.074-3.234
+					c1.137-1.174,2.378-2.438,3.734-3.729c1.349-1.299,2.773-2.667,4.276-4.053c2.972-2.805,6.143-5.797,9.313-8.788
+					c3.161-3.001,6.323-6.001,9.287-8.814c2.979-2.799,5.759-5.41,8.142-7.649c4.781-4.461,7.969-7.436,7.969-7.436
+					c0.061-0.057,0.155-0.053,0.212,0.007C142.049,179.413,142.048,179.504,141.994,179.561z"/>
+				<g>
+					<polygon points="84.889,236.036 91.184,221.195 92.967,228.018 99.775,229.85 					"/>
+				</g>
+			</g>
+		</g>
+		<g>
+			<g>
+				<path d="M144.87,179.348c0,0,3.188,2.975,7.969,7.436c2.383,2.239,5.163,4.85,8.142,7.649c2.964,2.813,6.125,5.813,9.287,8.814
+					c3.171,2.991,6.341,5.983,9.313,8.788c1.503,1.386,2.927,2.754,4.276,4.053c1.356,1.291,2.597,2.555,3.734,3.729
+					c1.146,1.165,2.16,2.271,3.074,3.234c0.916,0.962,1.696,1.819,2.338,2.525c1.291,1.405,2.013,2.225,2.013,2.225
+					c0.399,0.453,0.355,1.144-0.098,1.543c-0.416,0.366-1.032,0.358-1.439,0.005c0.001,0-0.824-0.715-2.239-1.996
+					c-0.711-0.638-1.574-1.411-2.543-2.319c-0.97-0.907-2.083-1.913-3.257-3.05c-1.182-1.129-2.455-2.36-3.755-3.707
+					c-1.309-1.34-2.688-2.754-4.084-4.246c-2.827-2.951-5.841-6.1-8.856-9.248c-3.024-3.14-6.048-6.279-8.883-9.223
+					c-2.82-2.958-5.452-5.718-7.708-8.085c-4.497-4.749-7.494-7.914-7.494-7.914c-0.057-0.06-0.055-0.155,0.005-0.212
+					C144.723,179.294,144.813,179.295,144.87,179.348z"/>
+				<g>
+					<polygon points="201.765,236.036 186.877,229.851 193.687,228.018 195.468,221.196 					"/>
+				</g>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			<g>
+				<path fill="none" stroke="#000000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M78.277,313.752
+					c0,14.971,3.891,15.805,15.841,15.805c5.177,0,18.414,0,26.387,0c11.006,0,14.317,2.255,15.237,12.574"/>
+				<g>
+					<polygon points="136.068,352.723 129.403,338.043 135.632,341.349 141.589,337.576 					"/>
+				</g>
+			</g>
+		</g>
+		<g>
+			<g>
+				<path fill="none" stroke="#000000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M208.377,313.752
+					c0,14.971-3.892,15.805-15.84,15.805c-5.178,0-18.414,0-26.387,0c-11.005,0-14.317,2.255-15.237,12.574"/>
+				<g>
+					<polygon points="150.587,352.723 145.065,337.576 151.023,341.349 157.251,338.043 					"/>
+				</g>
+			</g>
+		</g>
+	</g>
+	<g>
+		
+			<rect x="64.327" y="357.635" fill="#00BFFF" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" width="158" height="67.17"/>
+		<text transform="matrix(1 0 0 1 73.3691 380.3691)" font-family="'MyriadPro-Semibold'" font-size="18">Calculate statistic </text>
+		<text transform="matrix(1 0 0 1 103.5005 401.9688)" font-family="'MyriadPro-Semibold'" font-size="18">of interest</text>
+		<text transform="matrix(1 0 0 1 79.7178 418.7695)" font-family="'MyriadPro-Semibold'" font-size="14">(difference in means)</text>
+	</g>
+	<g>
+		
+			<rect x="50.828" y="595.334" fill="#9FC857" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" width="184.999" height="95.672"/>
+		<text transform="matrix(1 0 0 1 64.8574 618.0684)" font-family="'MyriadPro-Semibold'" font-size="18">Calculate % of these</text>
+		<text transform="matrix(1 0 0 1 56.2715 639.668)" font-family="'MyriadPro-Semibold'" font-size="18">values that are at least</text>
+		<text transform="matrix(1 0 0 1 58.6387 661.2676)" font-family="'MyriadPro-Semibold'" font-size="18">as extreme as original</text>
+		<text transform="matrix(1 0 0 1 71.4365 682.8672)" font-family="'MyriadPro-Semibold'" font-size="18">statistic of interest</text>
+	</g>
+	<g>
+		<g>
+			<path d="M143.477,427.074c0,0,0.121,2.197,0.301,5.49c0.178,3.295,0.385,7.688,0.541,12.075c0.089,2.195,0.178,4.396,0.261,6.451
+				c0.101,2.062,0.195,3.98,0.275,5.629c0.051,1.646,0.036,3.021-0.006,3.979c-0.023,0.961-0.072,1.512-0.072,1.512
+				c-0.071,0.801-0.778,1.396-1.579,1.32c-0.714-0.062-1.261-0.633-1.322-1.32c0,0-0.048-0.551-0.072-1.512
+				c-0.042-0.961-0.057-2.334-0.006-3.979c0.081-1.646,0.175-3.565,0.275-5.629c0.083-2.061,0.172-4.256,0.261-6.451
+				c0.156-4.393,0.363-8.78,0.541-12.075c0.18-3.293,0.301-5.49,0.301-5.49c0.004-0.082,0.075-0.146,0.158-0.146
+				C143.412,426.938,143.472,426.998,143.477,427.074z"/>
+			<g>
+				<polygon points="143.327,472.805 137.229,457.881 143.327,461.422 149.423,457.881 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			<path d="M239.591,643.02c0,0,2.196-0.114,5.49-0.301c3.295-0.178,7.688-0.385,12.08-0.539c2.195-0.09,4.393-0.178,6.451-0.262
+				c2.059-0.102,3.979-0.195,5.628-0.275c1.646-0.051,3.02-0.03,3.979,0.006c0.962,0.023,1.511,0.072,1.511,0.072
+				c0.806,0.07,1.396,0.777,1.32,1.578c-0.062,0.713-0.632,1.262-1.32,1.322c0,0-0.549,0.049-1.511,0.07
+				c-0.961,0.041-2.334,0.059-3.979,0.006c-1.647-0.08-3.569-0.174-5.628-0.273c-2.062-0.084-4.256-0.174-6.451-0.262
+				c-4.393-0.156-8.785-0.363-12.08-0.541c-3.294-0.187-5.49-0.301-5.49-0.301c-0.083-0.011-0.146-0.076-0.142-0.158
+				C239.453,643.086,239.517,643.025,239.591,643.02z"/>
+			<g>
+				<polygon points="285.321,643.17 270.397,649.268 273.938,643.17 270.397,637.074 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			<path d="M143.477,545.574c0,0,0.121,2.197,0.301,5.49c0.178,3.295,0.385,7.688,0.541,12.075c0.089,2.195,0.178,4.396,0.261,6.451
+				c0.101,2.062,0.195,3.98,0.275,5.629c0.051,1.646,0.036,3.021-0.006,3.98c-0.023,0.961-0.072,1.51-0.072,1.51
+				c-0.071,0.801-0.778,1.396-1.579,1.32c-0.714-0.062-1.261-0.634-1.322-1.32c0,0-0.048-0.549-0.072-1.51
+				c-0.042-0.963-0.057-2.336-0.006-3.98c0.081-1.646,0.175-3.565,0.275-5.629c0.083-2.061,0.172-4.256,0.261-6.451
+				c0.156-4.393,0.363-8.78,0.541-12.075c0.18-3.298,0.301-5.49,0.301-5.49c0.004-0.082,0.075-0.146,0.158-0.146
+				C143.412,545.438,143.472,545.5,143.477,545.574z"/>
+			<g>
+				<polygon points="143.327,591.305 137.229,576.381 143.327,579.922 149.423,576.381 				"/>
+			</g>
+		</g>
+	</g>
+	<path fill="#FBC15E" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M222.327,515.523
+		c0,15.649-12.691,28.348-28.346,28.348H92.673c-15.656,0-28.347-12.691-28.347-28.348V504.85c0-15.651,12.691-28.348,28.347-28.348
+		h101.308c15.654,0,28.346,12.691,28.346,28.348V515.523z"/>
+	<text transform="matrix(1 0 0 1 69.5645 504.6699)" fill="#FFFFFF" font-family="'MyriadPro-Semibold'" font-size="18">Null distribution of</text>
+	<text transform="matrix(1 0 0 1 71.2021 526.2695)" fill="#FFFFFF" font-family="'MyriadPro-Semibold'" font-size="18">statistic of interest</text>
+	<g>
+		<g>
+			
+				<polyline fill="none" stroke="#B4B4B4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5,6" points="
+				333.966,202.64 333.966,132.217 308.557,132.217 			"/>
+			<g>
+				<polygon fill="#B4B4B4" points="297.966,132.217 312.89,126.118 309.349,132.217 312.89,138.313 				"/>
+			</g>
+		</g>
+	</g>
+	
+		<polyline fill="none" stroke="#B4B4B4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="5,6" points="
+		235.966,391.221 333.966,391.221 333.966,262.64 	"/>
+	<g>
+		<path fill="#FB4C52" stroke="#000000" stroke-miterlimit="10" d="M391.815,643.17c0,12.428-10.072,22.5-22.5,22.5h-57.725
+			c-12.426,0-22.494-10.072-22.494-22.5l0,0c0-12.428,10.068-22.5,22.494-22.5h57.725
+			C381.743,620.67,391.815,630.742,391.815,643.17L391.815,643.17z"/>
+		<text transform="matrix(1 0 0 1 308.1377 649.041)" fill="#FFFFFF" font-family="'MyriadPro-Semibold'" font-size="20">P-value</text>
+	</g>
+	<text transform="matrix(1 0 0 1 229.7764 499.3867)" fill="#B4B4B4" font-family="'MyriadPro-It'" font-size="18">Centered at null value</text>
+	<text transform="matrix(1 0 0 1 233.8984 520.9863)" fill="#B4B4B4" font-family="'MyriadPro-It'" font-size="18">of statistic of interest</text>
+</g>
+<g id="layer2">
+	<g>
+		<g>
+			<g>
+				<path fill="#FB7FC0" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+					M135.953,136.76c0,15.655-12.69,28.347-28.346,28.347H46.3c-15.656,0-28.348-12.691-28.348-28.347v-9.413
+					C17.952,111.692,30.643,99,46.3,99h61.307c15.655,0,28.346,12.691,28.346,28.347V136.76z"/>
+				<text transform="matrix(1 0 0 1 34.293 126.5371)" fill="#FFFFFF" font-family="'MyriadPro-Semibold'" font-size="18">Recentered</text>
+				<text transform="matrix(1 0 0 1 42.0869 148.1357)" fill="#FFFFFF" font-family="'MyriadPro-Semibold'" font-size="18">sample 1</text>
+			</g>
+			<g>
+				<path fill="#FB7FC0" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M268.7,136.76
+					c0,15.655-12.691,28.347-28.346,28.347h-61.312c-15.656,0-28.348-12.691-28.348-28.347v-9.413
+					C150.7,111.692,163.391,99,179.048,99h61.307c15.653,0,28.351,12.691,28.351,28.347L268.7,136.76L268.7,136.76z"/>
+				<text transform="matrix(1 0 0 1 167.041 126.5371)" fill="#FFFFFF" font-family="'MyriadPro-Semibold'" font-size="18">Recentered</text>
+				<text transform="matrix(1 0 0 1 174.835 148.1357)" fill="#FFFFFF" font-family="'MyriadPro-Semibold'" font-size="18">sample 2</text>
+			</g>
+		</g>
+		<g>
+			<g>
+				<path fill="#FB7FC0" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+					M135.953,39.76c0,15.655-12.69,28.347-28.346,28.347H46.3c-15.656,0-28.348-12.691-28.348-28.347v-9.413
+					C17.952,14.692,30.643,2,46.3,2h61.307c15.655,0,28.346,12.691,28.346,28.347V39.76z"/>
+				<text transform="matrix(1 0 0 1 45.6152 29.5371)" fill="#FFFFFF" font-family="'MyriadPro-Semibold'" font-size="18">Original</text>
+				<text transform="matrix(1 0 0 1 42.0869 51.1367)" fill="#FFFFFF" font-family="'MyriadPro-Semibold'" font-size="18">sample 1</text>
+			</g>
+			<g>
+				<path fill="#FB7FC0" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M268.7,39.76
+					c0,15.655-12.691,28.347-28.346,28.347h-61.312c-15.656,0-28.348-12.691-28.348-28.347v-9.413C150.7,14.692,163.391,2,179.048,2
+					h61.307C256.008,2,268.7,14.691,268.7,30.347V39.76z"/>
+				<text transform="matrix(1 0 0 1 178.3633 29.5371)" fill="#FFFFFF" font-family="'MyriadPro-Semibold'" font-size="18">Original</text>
+				<text transform="matrix(1 0 0 1 174.8354 51.1367)" fill="#FFFFFF" font-family="'MyriadPro-Semibold'" font-size="18">sample 2</text>
+			</g>
+		</g>
+		<g>
+			<g>
+				<g>
+					<path d="M76.892,71.351c0,0,0.113,1.696,0.283,4.241c0.078,1.272,0.168,2.756,0.265,4.347c0.08,1.59,0.165,3.286,0.249,4.982
+						c0.164,3.393,0.309,6.785,0.492,9.329c0.093,1.272,0.121,2.333,0.122,3.075c-0.004,0.742-0.015,1.166-0.015,1.166
+						c-0.021,0.854-0.731,1.529-1.585,1.507c-0.827-0.021-1.485-0.69-1.507-1.507c0,0-0.011-0.424-0.015-1.166
+						c0.001-0.742,0.029-1.802,0.122-3.075c0.183-2.544,0.329-5.937,0.492-9.329c0.084-1.696,0.169-3.393,0.249-4.982
+						c0.097-1.59,0.188-3.075,0.265-4.347c0.17-2.544,0.283-4.241,0.283-4.241c0.005-0.083,0.077-0.146,0.16-0.14
+						C76.828,71.217,76.887,71.277,76.892,71.351z"/>
+					<g>
+						<polygon points="76.742,109.082 70.644,94.158 76.742,97.7 82.838,94.158 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<g>
+					<path d="M208.55,71.351c0,0,0.113,1.696,0.283,4.241c0.077,1.272,0.168,2.756,0.266,4.347c0.08,1.59,0.164,3.286,0.248,4.982
+						c0.163,3.393,0.312,6.785,0.492,9.329c0.094,1.272,0.12,2.333,0.122,3.075c-0.004,0.742-0.015,1.166-0.015,1.166
+						c-0.021,0.854-0.731,1.529-1.586,1.507c-0.826-0.021-1.485-0.69-1.508-1.507c0,0-0.017-0.424-0.021-1.166
+						c0.002-0.742,0.026-1.802,0.122-3.075c0.188-2.544,0.329-5.937,0.492-9.329c0.085-1.696,0.169-3.393,0.246-4.982
+						c0.1-1.59,0.188-3.075,0.268-4.347c0.17-2.544,0.283-4.241,0.283-4.241c0.006-0.083,0.074-0.146,0.158-0.14
+						S208.545,71.277,208.55,71.351z"/>
+					<g>
+						<polygon points="208.399,109.082 202.302,94.158 208.399,97.7 214.496,94.158 						"/>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+</g>
+<g id="layer3">
+	<text transform="matrix(1 0 0 1 4.0781 229.7686)" fill="#FB4C52" font-family="'MyriadPro-It'" font-size="16">or bootstrap)</text>
+	<text transform="matrix(1 0 0 1 203.877 229.7686)" fill="#FB4C52" font-family="'MyriadPro-It'" font-size="16">or bootstrap)</text>
+	<text transform="matrix(1 0 0 1 16.0781 214.2686)" fill="#FB4C52" font-family="'MyriadPro-It'" font-size="16">(permutation</text>
+	<text transform="matrix(1 0 0 1 186.0781 214.2686)" fill="#FB4C52" font-family="'MyriadPro-It'" font-size="16">(permutation</text>
+</g>
+</svg>

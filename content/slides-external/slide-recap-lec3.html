@@ -1,0 +1,162 @@
+<section data-transition="slide-in">
+  <h3>Last time</h3>
+  <div class="sided border-danger small">
+    <span class="danger u">Significance</span> <br>
+    Did my result happen by <span class="u-danger">random chance</span>? Would it be surprising if it did? How surprising?
+  </div>
+  <div class="sided border-pop small down-3">
+    <span class="u-pop">Testing and Simulating the <span class="pop">Null Hypothesis</span></span> <br>
+      How likely was the observed statistics (i.e. propportion), to happen under 
+      the null hypothesis? (p-value)
+  </div>
+</section>
+
+<section data-transition="none">
+  <h3>Last time</h3>
+
+  <div class="sided border-orange small">
+    <span class="orange">Computing a p-value</span> (by simulating the <span class="u-orange">chance model</span>)
+  </div>
+
+  <div class="row down-3">
+    <div class="col-50 smallest">
+      <div class="center framed border-muted">Experiment (Buzz/Doris)</div>
+      <div class="right-2 down-3">
+        <span class="u em">Observational unit:</span> <br>
+          one button choice by Buzz <br>
+        <span class="u em">Variable:</span> <br>
+        correct/wrong button (categorical) <br>
+        <span class="fragment danger" data-fragment-index=2># of correct choices (quantitative)</span>
+      </div>
+      <div class="right-1 down-3">
+        <i class="fas fa-arrow-circle-right"></i> 16 data points
+      </div>
+      <svg class="col-50 right-15 down-5" viewBox="0 0 216 216">
+        <use class="fragment" data-fragment-index=2 xlink:href="content/img/buzz-doris-distribution-experimental.svg#axes_1"></use>
+        <use xlink:href="content/img/buzz-doris-distribution-experimental.svg#axes_2"></use>
+        <use class="fragment" data-fragment-index=1 xlink:href="content/img/buzz-doris-distribution-experimental.svg#axes_3"></use>
+      </svg>
+    </div>
+    <div class="col-50 smallest fragment" data-fragment-index=3>
+      <div class="center framed border-muted">Simulation</div>
+      <div class="right2 down-3">
+        <span class="u em">Observational unit:</span> <br>
+        a set of 16 button choices (= <span class="orange">1 experiment</span>) <br>
+        <span class="u em">Variable:</span> <br>
+        number of correct choices (quantitative) <br>
+        <span class="fragment pop" data-fragment-index=4>proportion or correct choices ($\hat{p}$)</span>
+      </div>
+      <div class="right-1 down-3">
+        <i class="fas fa-arrow-circle-right"></i> 1 data points
+      </div>
+        <svg class="down-12" width="100%" viewBox="0 0 576 216">
+          <use class="fragment fade-out" data-fragment-index="4" xlink:href="content/img/buzz-doris-distribution-simulation.svg#axes_1"></use>
+          <use class="fragment" data-fragment-index=4 xlink:href="content/img/buzz-doris-distribution-simulation.svg#axes_3"></use>
+          <use xlink:href="content/img/buzz-doris-distribution-simulation.svg#axes_2"></use>
+          
+          <rect class="fragment" data-fragment-index=5 x="50" y="10" width="476" height="90" style="fill: none; stroke: #FF8B22"></rect>
+          <text class="fragment" data-fragment-index=5 x="288" y="30" font-family="Raleway" font-size="20" style="text-anchor: middle; fill: #FF8B22">
+            This is the distribution we are interested in
+          </text>
+          <text class="fragment" data-fragment-index=5 x="288" y="60" font-family="Raleway" font-size="20" style="text-anchor: middle; fill: #FF8B22">
+            to calculate a p-value!
+          </text>
+          <text class="fragment" data-fragment-index=5 x="288" y="90" font-family="Raleway" font-size="20" style="text-anchor: middle; fill: #FF8B22">
+            (we can populate it by doing simulations)
+          </text>
+        
+        </svg>
+    </div>
+  </div>  
+</section>
+
+<section data-transition="none">
+  <h3>Last time</h3>
+  <p>
+    By simulating our experiment over and over, we can compute the <span class="em danger">long-run probability</span> of observing a result at least as extreme as the one we observed in the first place (15/16 correct choices).
+  </p>
+  <div class="row">
+    <div class="col-30">
+      <p class="sided fragment border-danger" data-fragment-index=3>
+        How many of the simulations produced <span class="danger">15 or more</span> correct choices by Buzz? <br>
+      </p>
+      <p class="sided fragment border-pop" data-fragment-index=5>
+        What is the corresponding <span class="pop">proportion of simulations</span> that produced such an extreme result? <br>
+      </p>
+    </div>
+    <div class="col-70">
+      <div class="fig-container" data-file="interactive/coin-flip-long-run-16.html"></div>
+    </div>
+  </div>
+  <!-- blank fragments for inline viz -->
+  <span class="fragment" data-fragment-index=0></span>
+  <span class="fragment" data-fragment-index=1></span>
+  <span class="fragment" data-fragment-index=2></span>
+  <span class="fragment" data-fragment-index=4></span>
+  <aside class="notes">
+    1000 is a number large enough to give us a fairly accurate sense
+    of the long-run behavior for the number of heads in 16 tosses.
+  </aside>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Last time</h3>
+  <div class="row down-3 framed">
+    <div class="col-15 smaller right down-4">
+      A p-value
+    </div>
+    <div class="col-13 smaller right-2">
+        <span class="success">$\leq{0.10}$</span> <br>
+        <span class="info">$\leq{0.05}$</span> <br>
+        <span class="warning">$\leq{0.01}$</span> <br>
+        <span class="danger">$\leq{0.001}$</span>
+    </div>
+    <div class="col-17 smaller down-1">
+      is generally considered <br>to be
+    </div>
+    <div class="col-22 smaller">
+        <span class="success">some</span> <br>
+        <span class="info">fairly strong</span> <br>
+        <span class="warning">very strong</span> <br>
+        <span class="danger">extremely strong</span>
+    </div>
+    <div class="col-20 smaller down-2">
+        <span class="u">evidence</span> against the null
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-49 center">
+      <span class="small info">Null Hypothesis</span>
+      <div class="framed border-info smallest">
+        <div>
+          Buzz is <span class="info">just guessing</span> (his probability of choosing the correct button is 0.50) and he
+          <span class="info">got really lucky</span> in these 16 attempts.
+        </div>
+        <div class="info center">
+          $\pi=0.5$
+        </div>
+      </div>
+    </div>
+    <div class="col-49 center">
+      <span class="small danger">Alternative hypothesis</span>
+      <div class="right-2 framed border-danger smallest">
+        <div>
+          Buzz is <span class="danger">doing something other than just guessing</span> (his probability of choosing the correct button is more than 0.50).
+        </div>
+        <div class="danger center">
+          $\pi>0.5$
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="down-5 smaller">
+    <i class="fas fa-arrow-circle-right orange"></i> The probability of getting 15/16 correct choices just by guessing is extremely small. We have strong evidence against the null hypothesis and we can conclude that it is very likely that 
+     <span class="orange">something other than
+    "random chance" was at play</span> in the experiment.
+  </p>
+  
+</section>
+
+

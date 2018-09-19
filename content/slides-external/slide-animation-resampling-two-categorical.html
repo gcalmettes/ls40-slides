@@ -1,0 +1,26 @@
+<section data-transition="none-in slide-out">
+  <h3>Simulating the null</h3>
+    <div class="row">  
+      <div class="col-38">
+        <ol class="smaller">
+          <li>Pool all the 41 wins/losses together</li>
+          <li>Shuffle all 41 games and randomly redistribute into
+           two stacks
+            <ul>
+              <li>One with 18 games (representing the sell out crowd games)</li>
+              <li>Another 23 games (representing the games without sell
+              out crowd)
+              </li>
+            </ul>
+           </li>
+           <li>Calculate the difference in $\hat{p}$ (or relative risk) 
+           for the simulation</li>
+           <li>Repeat 10000 times (we obtain 10000 d or RR that we could have observed if the presence or not of a sold-out crowd did not 
+           matter)</li>
+        </ol>
+      </div>
+      <div class="col-62">
+        <div class="fig-container" width="100%" data-file="interactive/resampling-two-groups-categorical.html"></div>
+      </div>
+    </div>
+</section>

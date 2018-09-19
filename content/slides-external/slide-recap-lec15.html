@@ -1,0 +1,120 @@
+<section data-transition="slide-in">
+	<h3>Last time</h3>
+	<div class="row">
+		<div class="col-50">
+			<p>
+				Sample with one categorical variable, $\geq2$ possible responses
+			</p>
+			<p class="smaller em down-5 fragment" data-fragment-index=1>
+				How likely it is to observed such a <span class="danger">distribution of frequencies</span> of the counts for each category if the probability of observing each sign was the same <br>$H_0: \pi_\mathrm{rock}=\pi_\mathrm{paper}=\pi_\mathrm{scissors}=\frac{1}{3}$
+			</p>
+			<p class="smaller fragment muted" data-fragment-index=1>
+				<span class="u em">Note:</span> the probabilities for each possible response outcome don't have to be the same
+			</p>
+		</div>
+		<div class="col-50">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/rock-paper-scissors-bars.svg#axes_1"></use>
+        <use xlink:href="content/img/rock-paper-scissors-bars.svg#axes_2"></use>
+        <use xlink:href="content/img/rock-paper-scissors-bars.svg#axes_3"></use>
+      </svg>
+    </div>
+  </div>
+  <p class="fragment">
+  	<i class="fas fa-arrow-circle-right pop"></i>
+  	Need a statistic of interest that characterizes the <span class="strong">overall difference in distribution pattern</span> of the frequencies (expected vs observed)
+  </p>
+  <ul class="small push-left fragment">
+  	<li>Mean Absolute Difference (MAD) of the proportions</li>
+  	<li>$\chi^2$ (standardized statistic)</li>
+  </ul>
+</section>
+
+<section data-transition="slide-out">
+	<h3>Last time</h3>
+	<p class="strong framed center border-danger">
+		$\chi^2$ for goodness of fit
+	</p>
+	<div class="small">
+		<i class="fas fa-arrow-circle-right danger"></i>
+		Characterize the discrepancy between the <span class="u">overall distribution pattern</span> of observed and theoretical <span class="danger strong u">counts</span>.
+	</div>
+	
+	<div class="row down-2">
+		<div class="col-40">
+			<p class="smallest rounded bg-pink-light black">
+				$\chi^2=\sum_{i=1}^n\frac{(\mathrm{Observed}_i-\mathrm{Expected}_i)^2}{\mathrm{Expected}_i}$ 
+			</p>
+			<p class="em u" style="margin-top: 30px;">
+				Mendel's pea experiment
+			</p>
+			<ul class="smaller">
+				<li>Obsv. units: each pea</li>
+				<li>Variable: pea type<br>(4 possible outcomes)</li>
+			</ul>
+			<p class="smaller center pop">
+				$\mathrm{Expected}_i = n_\mathrm{total}\times\pi_i$
+			</p>
+		</div>
+		<div class="col-60">
+			<table class="tiny center">
+        <col width=44%>
+        <col width=28%>
+        <col width=28%>
+        <tr class="bg-warning-light black">
+          <td>Phenotype</td>
+          <td>Observed count</td>
+          <td class="fragment danger" data-fragment-index=2>Observed proportion</td>
+          <td>Theoretical proportion</td>
+          <td class="fragment" data-fragment-index=1>Theoretical count</td>
+        </tr>
+        <tr>
+          <td>Round, Yellow</td>
+          <td>$315$</td>
+          <td class="fragment danger" data-fragment-index=2>$315/556$</td>
+          <td>$9/16$</td>
+          <td class="fragment" data-fragment-index=1>$315\times9/16=\texclass{pop}{312.75}$</td>
+        </tr>
+        <tr>
+          <td>Round, Green</td>
+          <td>$108$</td>
+          <td class="fragment danger" data-fragment-index=2>$108/556$</td>
+          <td>$3/16$</td>
+          <td class="fragment" data-fragment-index=1>$108\times3/16=\texclass{pop}{104.25}$</td>
+        </tr>
+        <tr>
+          <td>Wrinkled, Yellow</td>
+          <td>$101$</td>
+          <td class="fragment danger" data-fragment-index=2>$101/556$</td>
+          <td>$3/16$</td>
+          <td class="fragment" data-fragment-index=1>$101\times3/16=\texclass{pop}{104.25}$</td>
+        </tr>
+        <tr>
+          <td>Wrinkled, Green</td>
+          <td>$32$</td>
+          <td class="fragment danger" data-fragment-index=2>$32/556$</td>
+          <td>$1/16$</td>
+          <td class="fragment" data-fragment-index=1>$32\times1/16=\texclass{pop}{34.75}$</td>
+        </tr>
+        <tr class="bg-muted-light black">
+          <td>Total</td>
+          <td>$556$</td>
+          <td class="fragment danger" data-fragment-index=2>$556/556$</td>
+          <td>$1$</td>
+          <td class="fragment" data-fragment-index=1>$556\times1=\texclass{pop}{556}$</td>
+        </tr>
+	    </table>
+		</div>
+	</div>
+	<div class="row flex fragment down-3" data-fragment-index=2>
+		<div class="col-5 flex-center">
+			<i class="fas fa-exclamation-triangle danger"></i>
+		</div>
+		<div class="col-95 flex-center">
+			<p class="smaller">
+				<span class="danger">Use the counts, not the proportions</span> to calculate the $\chi^2$! <br>
+				The <span class="u">sample size information is included in the counts</span>, not in the proportions ... a distribution of proportions $[1.0 / 0.0 / 0.0 / 0.0]$ means very different things if it is from a sample of size 1 as opposed to  a sample of size 100)
+			</p>
+		</div>
+	</div>	
+</section>

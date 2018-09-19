@@ -1,0 +1,31 @@
+<section>
+  <h3>Calculating correlation coefficients</h3>
+    <div>
+      <div class="small u em">
+        Pearson's correlation coefficient
+      </div>
+      <pre class="python">
+        <code data-trim>
+          # import Scipy
+          from scipy import stats
+
+          stats.pearsonr(x, y)
+          #(0.7113662380943626, 0.00043665572481862763)
+        </code>
+      </pre>
+    </div>
+    <div>
+      <div class="small u em">
+        Spearman's correlation coefficient
+      </div>
+      <pre class="python">
+        <code data-trim>
+          # import Scipy
+          from scipy import stats
+
+          stats.spearmanr(x, y)
+          # SpearmanrResult(correlation=0.7596374052071106, pvalue=0.00010221194576957504)
+        </code>
+      </pre>
+    </div>
+</section>

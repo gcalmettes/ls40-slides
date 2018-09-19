@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<body>
+
+
+<script src="js/d3.min.js"></script>
+<script>
+
+  const margin = {left: 20, top: 20, right: 20, bottom: 20, bottom2: 50, between: 30}
+
+  const width = 900 - margin.left - margin.right - margin.between,
+        height = 420 - margin.top - margin.bottom,
+        height2 = 420 - margin.top - margin.bottom2,
+        colors = {info: '#00BFFF',
+                  danger: '#fb4c52',
+                  warning: '#FBC15E',
+                  orange: '#FF8B22',
+                  muted: '#B4B4B4'}
+
+  const wFactor1 = 0.4,
+        wFactor2 = 0.6
+
+  const populationSize = 100,
+        sampleSize = 100,
+        pointRadius = 10
+
+
+  const xScale = d3.scaleLinear()
+    .domain([0,10])
+    .range([0, width*wFactor1]);
+  const yScale = d3.scaleLinear()
+    .domain([0,10])
+    .range([0, height]);
+
+  // graph x scale and axis
+  const xScale2 = d3.scaleLinear()
+    .range([0, width*wFactor2]);
+  const yScale2 = d3.scaleLinear()
+    .range([height2, 0]);
+  const xAxis = d3.axisBottom(xScale2)
+
+  let svg, g, g2, circles, dataset, gAxisX
+  let bootData = []
+
+  d3.csv("data/salaries-ucla-sample.csv").then((data, error) => {
+    [svg, g, g2, circles] = initialize(populationSize, pointRadius, margin)
+    data.forEach(d => d.salary = +d.salary)
+    dataset = data
+
+    const [low, high] = d3.extent(dataset, d => d.salary)
+    xScale2.domain([50000, 160000])
+
+    gAxisX = g2.append('g')
+        .attr('class', 'axis xAxis')
+        .attr('transform', `translate(0, ${height2})`)
+      .call(xAxis)
+    g2.append('text')
+        .attr('class', 'axisLabel')
+        .attr('x', width/4)
+        .attr('y', height2+margin.bottom2/1.5)
+        .style('text-anchor', 'middle')
+        .style("font-family", "Raleway")
+        .style("font-size", "1em")
+        .text('Salary ($)');
+
+  })
+
+  function runBootstrap(sample, n, col) {
+    const boot = bootstrapSample(sample, n, col)
+    bootData = [...bootData, ...boot]
+    updateHistogram(bootData, xScale2, g2)
+    select_sample_multi_color()
+  }
+
+  function bootstrapSample (sample, n, col){
+    const boot = new Array(n)
+    for (let i=0; i<n; i++){
+      let bootSample = getRandom(sample, sample.length, replace=true)
+      boot[i] = d3.mean(bootSample, d => d[col])
+    }
+    return boot
+  }
+
+  function updateHistogram(data, xScale, selection){
+    // set the parameters for the histogram
+    const histogram = d3.histogram()
+      .value(d => d)
+      .domain(xScale2.domain())
+      .thresholds(100)
+
+    // console.log(data)
+
+      // group the data for the bars
+    const bins = histogram(data);
+    // Scale the range of the data in the y domain
+    yScale2.domain([0, d3.max(bins, d => d.length)]);
+
+    const bars = selection.selectAll(`.bar`)
+        .data(bins)
+
+    bars.exit().remove()
+    // append the bar rectangles to the svg element
+    
+    bars.enter()
+      .append("rect")
+        .attr("class", `bar`)
+        .attr("x", 1)
+        .attr("transform", d => `translate(${xScale2(d.x0)}, ${yScale2(0)})`)
+        .attr("width", d => xScale2(d.x1) - xScale2(d.x0) -1)
+        .attr("height", 0)
+        .style("fill", colors.info)
+      .merge(bars)
+        .transition().duration(100)
+        .attr("transform", d => `translate(${xScale2(d.x0)}, ${yScale2(d.length)})`)
+        .attr("width", d => xScale2(d.x1) - xScale2(d.x0) -1)
+        .attr("height", d => height2 - yScale2(d.length))
+  }
+  
+  function initialize(populationSize, pointRadius, margin){
+    const svg = d3.select("body").append("svg")
+        .attr("width", width + margin.left + margin.right + margin.between)
+        .attr("height", height + margin.top + margin.bottom)
+
+    const g = svg.append("g")
+        .attr("width", width*wFactor1)
+        .attr("height", height)
+        .attr("transform", `translate(${margin.left}, ${margin.top})`)
+
+    const g2 = svg.append("g")
+        .attr("width", width*wFactor2)
+        .attr("height", height2)
+        .attr("transform", `translate(${margin.left + width*wFactor1 + margin.between}, ${margin.top})`)
+
+    const circles = g.selectAll("circle")
+        .data(d3.range(populationSize).map((d,i) => {return {x: i%10, y: Math.floor(i/10)}}))
+        .enter()
+        .append("circle")
+          .attr("cx", d => xScale(d.x))
+          .attr("cy", d => yScale(d.y))
+          .attr("r", pointRadius)
+          .style("fill", "lightgray")
+          .style("stroke", "black")
+          .style("stroke-width", "1px");
+
+    return [svg, g, g2, circles]
+  }
+
+  function select_sample_single_color(){
+
+    g.selectAll(".selected_point_fill").remove();
+    g.selectAll(".selected_point_stroke").remove();
+
+    let chosen_circles = []
+
+    for (let i = 0; i < sampleSize; i++){
+      index_in_circles = Math.floor(Math.random()*circles._groups[0].length);
+      selected_point = d3.select(circles._groups[0][index_in_circles])
+  
+        chosen_circles.push(index_in_circles);
+  
+        g.append("circle")
+          .attr("class", "selected_point_fill")
+          .attr("cx", selected_point.attr("cx"))
+          .attr("cy", selected_point.attr("cy"))
+          .attr("r", pointRadius)
+          .style("fill", "#d9534f");
+  
+        g.append("circle")
+          .attr("class", "selected_point_stroke")
+          .attr("cx", selected_point.attr("cx"))
+          .attr("cy", selected_point.attr("cy"))
+          .attr("r", pointRadius + (1/3)*pointRadius)
+          .style("fill-opacity", 0)
+          .style("stroke-width",1)
+          .style("stroke","#d9534f");
+    }
+  };
+
+  function select_sample_multi_color(){
+    //attribute colors based on number of time point has been 
+    //selected
+    g.selectAll(".selected_point_fill").remove();
+    g.selectAll(".selected_point_stroke").remove();
+
+    let chosen_circles = []
+
+    for (let i = 0; i < sampleSize; i++){
+      index_in_circles = Math.floor(Math.random()*circles._groups[0].length);
+      selected_point = d3.select(circles._groups[0][index_in_circles])
+
+      chosen_circles.push(index_in_circles);
+    };
+
+    const selected_idx = count_frequency(chosen_circles);
+    for (let i = 0; i < selected_idx.length; i++){
+
+      selected_point = d3.select(circles._groups[0][selected_idx[i].idx])
+
+      let color
+      if (selected_idx[i].freq == 1){
+        color = colors["danger"]
+      }
+      else if (selected_idx[i].freq == 2) {
+        color = colors["info"]
+      }
+      else {
+        color = colors["warning"]
+      };
+      
+      g.append("circle")
+        .attr("class", "selected_point_fill")
+        .attr("cx", selected_point.attr("cx"))
+        .attr("cy", selected_point.attr("cy"))
+        .attr("r", pointRadius)
+        .style("fill", color);
+
+      g.append("circle")
+        .attr("class", "selected_point_stroke")
+        .attr("cx", selected_point.attr("cx"))
+        .attr("cy", selected_point.attr("cy"))
+        .attr("r", pointRadius + (1/3)*pointRadius)
+        .style("fill-opacity", 0)
+        .style("stroke-width",1)
+        .style("stroke", color);
+    }
+  };
+
+  function reset_color(){
+    //attribute colors based on number of time point has been 
+    //selected
+    g.selectAll(".selected_point_fill").remove();
+    g.selectAll(".selected_point_stroke").remove();
+
+  };
+
+  function count_frequency(arr) {
+      let a = [], b = [], prev;
+      arr.sort();
+      for ( let i = 0; i < arr.length; i++ ) {
+        if ( arr[i] !== prev ) {
+              a.push(arr[i]);
+              b.push(1);
+        } else {
+          b[b.length-1]++;
+        }
+        prev = arr[i];
+      }
+
+      let data_idx = []
+      for ( let i = 0; i < a.length; i++ ) {
+        data_idx.push({idx: a[i], freq: b[i]})
+      }
+    return data_idx;
+  }     
+
+  function getRandom(arr, n, replace=false) {
+    let result = new Array(n),
+        len = arr.length,
+        taken = new Array(len);
+    if (n > len)
+        throw new RangeError("getRandom: more elements taken than available");
+    if (!replace) {
+      while (n--) {
+        let x = Math.floor(Math.random() * len);
+        result[n] = arr[x in taken ? taken[x] : x];
+        taken[x] = --len in taken ? taken[len] : len;
+      }
+    } else {
+      while (n--) {
+        let x = Math.floor(Math.random() * len);
+        result[n] = arr[x];
+      }
+    }
+    return result;
+  }
+
+
+  var _transitions = [
+    {
+      transitionForward: () => runBootstrap(dataset, 1, "salary"),
+      transitionBackward: () => {
+        reset_color()
+        d3.selectAll(".bar").remove()
+      }, 
+      index: 0
+    },
+    {
+      transitionForward: () => runBootstrap(dataset, 1, "salary"),
+      index: 1
+    },
+    {
+      transitionForward: () => runBootstrap(dataset, 10, "salary"),
+      index: 2
+    },
+    {
+      transitionForward: () => runBootstrap(dataset, 1000, "salary"),
+      index: 3
+    },
+    {
+      transitionForward: () => runBootstrap(dataset, 10000, "salary"),
+      index: 4
+    }
+  ]
+
+</script>

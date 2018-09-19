@@ -1,0 +1,167 @@
+<!-- Source: modified from https://bl.ocks.org/mbostock/3231298 -->
+
+<!DOCTYPE html>
+<body>
+<style>
+
+
+</style>
+
+<script src="js/d3.min.js"></script>
+<script>
+
+  // Set the dimensions of the canvas / graph
+  const margin = { top: 10, right: 10, bottom: 60, left: 90 },
+        width = 550 - margin.left - margin.right,
+        height = 350 - margin.top - margin.bottom;
+
+  const colors = {info: '#00BFFF', danger: '#fb4c52', warning: '#FBC15E', orange: '#FF8B22'}
+
+  const data = [
+    {name: 'Southwark<br>& Vauxhaull', deaths_raw: 1263,   deaths_norm: 315},
+    {name: 'Lambeth<br>Waterworks', deaths_raw: 98,   deaths_norm: 38},
+    {name: 'Rest of<br>London', deaths_raw: 1422,   deaths_norm: 55},
+  ];
+  
+  const subject = 'deaths_raw';
+
+  const t = 500
+  
+  // Set the ranges
+  const x = d3.scaleLinear()
+    .rangeRound([0, width])
+    .domain([1, 15]);
+
+  const y = d3.scaleLinear()
+    .range([height, 0]);
+
+  const xScale = d3.scaleBand()
+    .domain(data.map(d => d.name))
+    .range([0, width])
+    .padding(0.2);
+
+  const yScale = d3.scaleLinear()
+    .domain([0, d3.max(data, function(d) { return d[subject]; })])
+    .range([height, 0]);
+  
+  const xAxis = d3.axisBottom(xScale);
+  const yAxis = d3.axisLeft(yScale);
+  
+  const svg = d3.select('body')
+    .append('svg')
+      .attr('width', width + margin.left + margin.right)
+      .attr('height', height + margin.top + margin.bottom)
+    .append('g')
+      .attr("transform", `translate(${margin.left}, ${margin.top})`);
+  
+  //xAxis
+  svg.append("g")
+    .attr("class", "xAxis")
+    .attr("transform", `translate(0, ${height})`)
+    .call(xAxis)
+      .selectAll("text")
+      .style("text-anchor", "middle")
+      .style("font-size","2.2em")
+      .style("font-family", "Raleway")
+      .each(insertLinebreaks);
+  //yaxis
+  svg.append("g")
+    .attr("class", "yaxis")
+    .call(yAxis)
+      .selectAll("text")
+      .style("font-size","1.5em")
+      .style("font-family", "Raleway")
+  
+  // // x and y axis white
+  // gc.bardeaths.svg.selectAll(".domain")
+  //   .styles({ fill:"none", stroke:"white",  "stroke-width":"2" });
+  // gc.bardeaths.svg.selectAll("g.tick line")
+  //   .styles({ fill:"none", stroke:"white",  "stroke-width":"2" });
+  
+  //initialize yaxis label in 2 lines
+  svg.append("text")
+    .attr("class", "ylabel")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0 - margin.left)
+      .attr("x",0 - (height / 2))
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .style("font-size","1.5em")
+      .style("font-family", "Raleway")
+      .text("Deaths");
+  svg.append("text")
+    .attr("class", "ylabel2")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0 - margin.left)
+      .attr("x", 0 - (height / 2))
+      .attr("dy", "2em")
+      .style("text-anchor", "middle")
+      .style("font-size","1.5em")
+      .style("font-family", "Raleway")
+      .style("fill", colors['danger'])
+      .text(ylabel(subject));
+
+  function ylabel(subject) {
+    return subject=="deaths_raw" ? " " : "(per 10,000 houses)"
+  };
+
+  // Function to insert line for x axis label when <br> is inserted
+  function insertLinebreaks (d) {
+    const el = d3.select(this);
+    const words = d.split('<br>');
+    el.text('');
+    for (let i = 0; i < words.length; i++) {
+      let tspan = el.append('tspan').text(words[i]);
+      if (i > 0)
+          tspan.attr('x', 0).attr('dy', '20');
+    }
+  };
+
+  function draw_bar (subject) {
+    yScale
+      .domain([0, d3.max(data, function(d) { return d[subject]; })])
+    const bars = svg.selectAll('rect')
+      .data(data); // add all the data even if zero. Needed for transition
+    bars.exit()
+      .remove();
+    bars.transition() // NEW
+      .ease(d3.easeLinear)
+      .duration(t) // Also NEW
+      .attr('y', d => yScale(d[subject]))
+      .attr('height', d => height - yScale(d[subject]));
+    bars.enter()
+      .append('rect')
+      .style('fill', colors['info'])
+      .attr('x', d => xScale(d.name))
+      .attr('width', d => xScale.bandwidth())
+      .attr('y', d => yScale(d[subject]))
+      .attr('height', d => height - yScale(d[subject]));
+    //update yaxis
+    svg.select(".yaxis")
+      .transition()
+      .duration(t)
+      .call(yAxis);
+    //update yticks label font size
+    svg.select(".yaxis")
+      .selectAll("text")
+      .style("font-size","1.5em")
+      .style("font-family", "Raleway")
+    //update yaxis label
+    svg.select(".ylabel2")
+      .text(ylabel(subject));
+  };
+
+  draw_bar("deaths_raw")
+
+  var _transitions = [
+    {
+      transitionForward: () => draw_bar("deaths_norm"),
+      transitionBackward: () => draw_bar("deaths_raw"), 
+      index: 2
+    },
+    // {
+    //   transitionForward: () => playSimulation (nThrow, probability, 1, data, t),
+    //   index: 1
+    // }
+  ]
+</script>

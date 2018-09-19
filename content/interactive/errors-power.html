@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Error types, Power</title>
+    <script src="js/d3.min.js"></script>
+    <script src="js/jstat.min.js"></script>
+</head>
+
+<body>
+
+<style type="text/css">
+
+  #params {
+    position: absolute;
+    left: 40px;
+    top: 10px;
+  }
+
+</style>
+
+<!-- <svg></svg> -->
+<div id="params" style="width: 600px">
+  <div>
+    <label>Alpha level:</label>
+    <input type="range" id="alpha" min="0.001" max="0.4" step="0.001" value=0.050>
+    <label id="alpha-value">0.050</label>
+  </div>
+  <div>
+    <label>Effect size:</label>
+    <input type="range" id="effectSize" min="-15" max="15" step="0.1" value=4>
+    <label id="effectSize-value">4.0</label>
+  </div>
+  <div>
+    <label>Sample size:</label>
+    <input type="range" min="2" max="100" id="sampleSize" value=8>
+    <label id="sampleSize-value">8</label>
+  </div>
+  <div>
+    <label>Two tails:</label>
+    <input type="checkbox" id="twoTailBox" name="twoTail" checked>
+  </div>
+</div>
+
+<script>
+  const margin = {
+    top: 70,
+    right: 20,
+    bottom: 50,
+    left: 50
+  };
+
+  const width = 600 - margin.left - margin.right,
+        height = 350 - margin.top - margin.bottom;
+  const colors = {
+          info: '#00BFFF',
+          danger: '#fb4c52',
+          warning: '#FBC15E',
+          success: '#9fc857',
+          orange: '#FF8B22',
+          muted: '#B4B4B4',
+          pop: '#ce4ad0'
+        }
+
+  const svg = d3.select("body").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+      .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+  const rangeMin = -20,
+        rangeMax = 20,
+        n = 500
+
+  let alpha = 0.05,
+      twoTailed = true
+
+  let paramsNull = {mean: 0, std: 2},
+      paramsAlt = {mean: 4, std: 2}
+
+  let {nullData, altData, type1Data, type2Data, threshold} = {... getSceneData(paramsNull, paramsAlt)}
+
+  const xScale = d3.scaleLinear()
+    .range([0, width])
+    .domain([rangeMin, rangeMax])
+
+  const yScale = d3.scaleLinear()
+    .range([height, 0])
+    .domain([0, d3.max(nullData, d => d.y)])
+    
+
+  svg.append("g")
+    .attr("transform", `translate(${0}, ${height})`)
+    .call(d3.axisBottom().scale(xScale))
+
+  // generators
+  const distribution = d3.line()
+    .x(d => xScale(d.x))
+    .y(d => yScale(d.y))
+    .curve(d3.curveCardinal)
+
+  const errorArea = d3.area()
+    .x(d => xScale(d.x))
+    .y1(d => yScale(d.y))
+    .y0(yScale(0))
+    .curve(d3.curveCardinal)
+
+  drawScene(nullData, altData, type1Data, type2Data, threshold)
+
+  function updateScene(){
+    let {nullData, altData, type1Data, type2Data, threshold} = {... getSceneData(paramsNull, paramsAlt)}
+    yScale.domain([0, d3.max(nullData, d => d.y)])
+    drawScene(nullData, altData, type1Data, type2Data, threshold)
+  }
+
+  function drawScene(nullData, altData, type1Data, type2Data, threshold){
+
+    const type1Area = svg.selectAll(".area-type1").data(type1Data)
+    type1Area.exit().remove()
+    type1Area.enter().append("path")
+        .attr("class", "area-type1")
+        .attr("stroke", "none")
+        .attr("opacity", 0.8)
+        .attr("fill", colors.danger)
+      .merge(type1Area)
+        .attr("d", d => errorArea(d))
+        .attr("fill", colors.danger)
+        .attr("opacity", 0.8)
+
+    const nullDist = svg.selectAll(".distribution-null").data([nullData])
+    nullDist.exit().remove()
+    nullDist.enter().append("path")
+        .attr("class", "distribution-null")
+        .attr("stroke", colors.info)
+        .attr("stroke-width", 2)
+        .attr("fill", "none")
+      .merge(nullDist)
+        .attr("d", d => distribution(d))
+
+    const type2Area = svg.selectAll(".area-type2").data([type2Data])
+    type2Area.exit().remove()
+    type2Area.enter().append("path")
+        .attr("class", "area-type1")
+        .attr("stroke", "none")
+        .attr("opacity", 0.8)
+        .attr("fill", colors.warning)
+      .merge(type2Area)
+        .attr("d", d => errorArea(d))
+        .attr("opacity", 0.8)
+        .attr("fill", colors.warning)
+
+    const altDist = svg.selectAll(".distribution-alt").data([altData])
+    altDist.exit().remove()
+    altDist.enter().append("path")
+        .attr("class", "distribution-alt")
+        .attr("stroke", colors.orange)
+        .attr("stroke-width", 2)
+        .attr("fill", "none")
+      .merge(altDist)
+        .attr("d", d => distribution(d))
+
+    const type1text = svg.selectAll(".type1-text").data([threshold])
+    type1text.exit().remove()
+    type1text.enter().append("text")
+        .attr("class", "type1-text")
+        .attr("x", d => (d>=0) ? xScale(d+0.5) : xScale(d-0.5))
+        .attr("y", height + margin.bottom/1.5)
+        .attr("fill", colors.danger)
+        .attr("text-anchor", d => (d>=0) ? "start" : "end")
+        .style("font-family", "Raleway")
+        .text("Type 1")
+      .merge(type1text)
+        .attr("x", d => (d>=0) ? xScale(d+0.5) : xScale(d-0.5))
+        .attr("text-anchor", d => (d>=0) ? "start" : "end")
+
+      const type2text = svg.selectAll(".type2-text").data([threshold])
+      type2text.exit().remove()
+      type2text.enter().append("text")
+          .attr("class", "type2-text")
+          .attr("x", d => (d>=0) ? xScale(d-0.5) : xScale(d+0.5))
+          .attr("y", height + margin.bottom/1.5)
+          .attr("fill", colors.warning)
+          .attr("text-anchor", d => (d>=0) ? "end" : "start")
+          .style("font-family", "Raleway")
+          .text("Type 2")
+        .merge(type2text)
+          .attr("x", d => (d>=0) ? xScale(d-0.5) : xScale(d+0.5))
+          .attr("text-anchor", d => (d>=0) ? "end" : "start")
+
+  }
+
+  function getSceneData(paramsNull, paramsAlt) {
+    const nullData = createDataset(paramsNull, rangeMin, rangeMax),
+          altData = createDataset(paramsAlt, rangeMin, rangeMax),
+          type1Data = getErrorData(alpha, paramsNull, rangeMin, rangeMax, twoTail=twoTailed, right=true, n, paramsAlt),
+          [type2Data,threshold] = [...getErrorDataInvert(alpha, paramsNull, paramsAlt, rangeMin, rangeMax, twoTail=twoTailed, n)]
+    return {nullData: nullData, altData: altData, type1Data: type1Data, type2Data: type2Data, threshold: threshold}
+  }
+
+  function createDataset(paramsDist, lowerLim, upperLim, n=100){
+    const {mean, std} = {...paramsDist}
+    const x = [...new Array(n)].map((d,i) => i*((upperLim-lowerLim)/n)+lowerLim)
+    return x.map(xVal => {
+      return {x: xVal, y:jStat.normal.pdf(xVal, mean, std)}
+    })
+  }
+
+  function getAlphaLim(alpha, paramsDist, twoTail=true, right=true) {
+    const {mean, std} = {...paramsDist}
+    const crit = twoTail ? alpha/2 : right ? alpha : 1-alpha
+    const lims = twoTail ? [jStat.normal.inv(crit, mean, std), jStat.normal.inv(1-crit, mean, std)] : [jStat.normal.inv(1-crit, mean, std)]
+    return lims
+  }
+
+  function getErrorRanges(alpha, paramsDist, rangeMin, rangeMax, twoTail=true, right=true, n=100, otherDist=undefined){
+    const side = !otherDist ? right : (otherDist.mean > paramsDist.mean) ? true : false
+    const alphaLims = getAlphaLim(alpha, paramsDist, twoTail, side)
+    const x = [...new Array(n)].map((d,i) => i*((rangeMax-rangeMin)/n)+rangeMin)
+    const xRanges = alphaLims.length == 2 ? [x.filter(d => d <= alphaLims[0]), x.filter(d => d >= alphaLims[1])]
+            : right ? [x.filter(d => d >= alphaLims[0])] : [x.filter(d => d <= alphaLims[0])]
+    return xRanges
+  }
+
+  function getErrorData(alpha, paramsDist, rangeMin, rangeMax, twoTail=true, right=true, n=100, otherDist=undefined){
+    const side = !otherDist ? right : (otherDist.mean > paramsDist.mean) ? true : false
+    const xRanges = getErrorRanges(alpha, paramsDist, rangeMin, rangeMax, twoTail, side, n, otherDist)
+    return xRanges.map(range => range.map(xVal => {
+      return {x: xVal, y: jStat.normal.pdf(xVal, paramsDist.mean, paramsDist.std)}
+    }))
+  }
+
+  function getErrorDataInvert(alpha, paramsDist, paramsOtherDist, rangeMin, rangeMax, twoTail=true, n=100){
+    const right = (paramsOtherDist.mean > paramsDist.mean) ? true : false
+    const x = [...new Array(n)].map((d,i) => i*((rangeMax-rangeMin)/n)+rangeMin)
+    const xRangeOpposite = getErrorRanges(alpha, paramsDist, rangeMin, rangeMax, twoTail, right, n, paramsOtherDist)
+    // get the same x then where the paramsDist distribution ended
+    const limRange = !twoTail ? xRangeOpposite[0] : (paramsOtherDist.mean > paramsDist.mean) ? xRangeOpposite[1] : xRangeOpposite[0]
+    const lim = (paramsOtherDist.mean>paramsDist.mean) ? limRange[0] : limRange.slice(-1)[0]
+    const xRange = (paramsOtherDist.mean>paramsDist.mean) ? x.filter(d => d <= lim) : x.filter(d => d >= lim) 
+    return [xRange.map(xVal => {
+      return {x: xVal, y: jStat.normal.pdf(xVal, paramsOtherDist.mean, paramsOtherDist.std)}
+    }), lim]
+  }
+
+
+  const esValue = d3.select("#effectSize-value")
+  const esRange = d3.select("#effectSize")
+  esRange.on("input", function() {
+    const val = +this["value"]
+    esValue.text(val.toFixed(1))
+    paramsAlt.mean = val
+    updateScene()
+    
+  })
+
+  const alphaValue = d3.select("#alpha-value")
+  const alphaRange = d3.select("#alpha")
+  alphaRange.on("input", function() {
+    const val = +this["value"]
+    alphaValue.text(val.toFixed(3))
+    alpha = val
+    updateScene()
+    
+  })
+
+  const sampleSizeValue = d3.select("#sampleSize-value")
+  const sampleSizeRange = d3.select("#sampleSize")
+  sampleSizeRange.on("input", function() {
+    const val = +this["value"]
+    sampleSizeValue.text(val)
+    paramsNull.std = 6.324555320336759/Math.sqrt(val)
+    paramsAlt.std = 6.324555320336759/Math.sqrt(val)
+    updateScene()
+    
+  })
+
+  const twoTailBox = d3.select("#twoTailBox")
+  twoTailBox.on("input", function(){
+    twoTailed = this.checked
+    updateScene()
+  })
+
+</script>
+</body>
+
+</html>

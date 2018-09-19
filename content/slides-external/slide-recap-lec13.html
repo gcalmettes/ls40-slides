@@ -1,0 +1,120 @@
+<section>
+  <h3>NHST and CIs</h3>
+    <div class="row flex down-3">
+    <div class="col-49 flex-center framed border-danger bg-danger-light">
+      <p class="center">
+        Hypothesis testing ($\alpha$ level)
+      </p>
+    </div>
+    <div class="col-49 right-2 flex-center framed border-info bg-info-light">
+      <p class="center">
+        $\alpha$ confidence intervals
+      </p>
+    </div>
+
+  </div>
+  <div class="row flex">
+    <div class="col-50 flex-center">
+      <p>
+        <i class="fas fa-arrow-circle-right danger"></i>
+        Hypothesis tests and p-values are most useful when you want to <span class="danger">test hypotheses about population parameters</span>.
+      </p>
+    </div>
+    <div class="col-50 flex-center">
+      <p>
+        <i class="fas fa-arrow-circle-right info"></i>
+        Confidence intervals are most useful when you want to <span class="info">estimate population parameters</span>.
+      </p>
+    </div>
+  </div>
+  <div class="row slide-unequal-variance-fulmars-ex.html">
+    <div class="col-50 flex-center">
+      <p>
+        <i class="fas fa-arrow-circle-right danger"></i>
+        p-values quantify the <span class="danger">strength of evidence against the null hypothesis</span>.
+      </p>
+    </div>
+    <div class="col-50 flex-center">
+      <p>
+        <i class="fas fa-arrow-circle-right info"></i>
+        Confidence intervals give you a <span class="info">range of plausible values</span> for your parameter.
+      </p>
+    </div>
+  </div>
+  <div class="small down-3 center">
+    <span class="muted u">Note:</span> Usually $\alpha$=0.05  
+  </div>
+</section>
+
+<section>
+  <h3>Interval, test, or neither?</h3>
+  <div class="row flex">
+    <div class="col-45 flex-center">
+      <p class="right">
+        Are the following questions best assessed using:
+      </p>
+    </div>
+    <div class="col-55 flex-center">
+      <div>
+        <p class="danger smaller">
+          <i class="fas fa-arrow-circle-right"></i>
+          a hypothesis test?
+        </p>
+        <p class="info smaller">
+          <i class="fas fa-arrow-circle-right"></i>
+          a confidence interval?
+        </p>
+        <p class="pop smaller">
+          <i class="fas fa-arrow-circle-right"></i>
+          or is not relevant for statistical inference?
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="row flex">
+    <div class="col-85 flex-center">
+      <p class="quoted">
+        How much do college students sleep, on average?
+      </p>
+    </div>
+    <div class="col-15 flex-center">
+      <i class="fragment info far fa-check-square" data-fragment-index=1></i>
+    </div>
+  </div> 
+  <div class="row flex">
+    <div class="col-85 flex-center">
+      <p class="quoted">
+        Do college students sleep more than the recommended 8 hours a night, on average?
+      </p>
+    </div>
+    <div class="col-15 flex-center">
+      <div>
+        <i class="fragment danger far fa-check-square" data-fragment-index=2></i>
+        <i class="fragment info far fa-check-square" data-fragment-index=2></i>
+      </div>
+    </div>
+  </div>  
+  <div class="row flex">
+    <div class="col-85 flex-center">
+      <p class="quoted">
+        What proportion of college students in the sleep study sample slept at least 8 hours?
+      </p>
+    </div>
+    <div class="col-15 flex-center">
+      <i class="fragment pop far fa-check-square" data-fragment-index=3></i>
+    </div>
+  </div>  
+</section>
+
+<section>
+  <h3>Pitfalls associated with formal hypothesis testing</h3>
+  <p class="sided border-danger">
+    Hypothesis testing is very powerful, as it helps shed light on <span class="danger">whether an observed effect could be real</span> or just due to random chance.
+  </p>
+  <p class="sided border-pop">
+    However, statistical significance <span class="u-pop">is not foolproof</span>, and <span class="pop">it is possible to make the wrong decision</span>, rejecting a true null hypothesis or not rejecting a false null hypothesis.
+  </p>
+  <p>
+     We will discuss common pitfalls associated with formal hypothesis testing, along with factors that influence the chances of these errors occurring.
+  </p>
+</section>

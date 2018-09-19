@@ -1,0 +1,165 @@
+<section data-transition="slide-in">
+  <h3>Theory: Two-sample Student's $t$-test</h3>
+  <p>
+    Comparing two groups:
+    <ul>
+      <li>H$_0$ ∶ $\mu_1=\mu_2$ (<span class="em">Null parameter</span> = $0$)</li>
+      <li>Sample statistic used: $\bar{x}_1 − \bar{x}_2$</li>
+    </ul>
+  </p>
+  <div class="row flex">
+    <div class="col-50 small flex-center">
+      <span>
+        <i class="fas fa-lightbulb muted"></i> <span class="em u muted">Key idea:</span> Like for the resampling method the strategy to assess significance with a theoretical approach is to <span class="danger">study the sampling distribution of the statistic of interest</span>.
+      </span>
+    </div>
+    <div class="col-50 flex-center">
+      <img width=100% src="content/img/normal-distribution-standardized-distances.svg">
+    </div>
+  </div>
+  <div class="small">
+    Once again, this relies heavily on the <span class="u-danger">Central Limit Theorem</span>. <br>
+    The statistic we will obtain (the <span class="strong em">t statistic</span>) will characterize how far away from the center of the sampling distribution is our initial observed statistic in term of standard deviation (<span class="em">SE</span>, since it's a sampling distribution).
+  </div>
+</section>
+
+<section data-transition="none">
+  <h3>Theory: Two-sample Student's $t$-test</h3>
+  <p class="framed border-danger">
+    If two samples are coming from the same underlying <span class="danger">normal population</span>, we can estimate the standard deviation of this pooled population with $\sigma_\mathrm{pooled} = \frac{s_1^2(n_1-1)+s_2^2(n_2-1)}{n_1+n_2-2}$ and the standard error (standard deviation of the sampling distribution) of the difference between means of two samples from this distribution with $SE = \sqrt{\frac{\sigma_\mathrm{pooled}}{n_1}+\frac{\sigma_\mathrm{pooled}}{n_2}}$, where $s_1$ and $s_2$ are the standard deviations in the two samples and $n_1$ and $n_2$ are the sizes of the two samples.
+  </p>
+  <div class="row flex">
+    <div class="col-50 small flex-center">
+      <span>
+        <span class="u em">Note:</span> When we use the samples standard deviations in estimating SE (we don't know the standard deviation $\sigma$ of the underlying populations), we need to switch to a <span class="em strong">t-distribution</span> rather than the standard normal when computing a p-value.
+      </span>
+    </div>
+    <div class="col-50 flex-center">
+      <img width=100% src="content/img/distribution-t-vs-z.svg">
+    </div>
+  </div>
+</section>
+
+<section data-transition="fade">
+  <h3>Theory: Two-sample Student's $t$-test</h3>
+  <p class="sided border-danger">
+    For a two-sample $t$-test, you are making the <span class="danger">(strong) assumption</span>
+    that your samples are coming from a pooled population <span class="danger">normally distributed</span>. 
+    You can then compute the ($t$) distribution of the difference in means
+    from 2 samples from this underlying population.
+  </p>
+  <div class="row">
+    <div class="col-100">
+      <img src="content/img/bike-commute-ttest-student-model.svg" width=100%>
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Theory: Two-sample Student's $t$-test</h3>
+  <p>
+    Calculating the <span class="danger">two-sample $t$-statistic</span>:
+  </p>
+  <div class="row">
+    <div class="col-50">
+      <p>
+        $t=\frac{\textrm{Statistic}-\textrm{Null value}}{SE}$
+      </p>
+      <p class="down-3 smaller">
+          $t=\frac{(\bar{x}_1-\bar{x}_2)-0}{\sqrt{\frac{\sigma_\mathrm{pooled}}{n_1} + \frac{\sigma_\mathrm{pooled}}{n_2}}}$
+      </p>
+      <p class="smaller">
+        with $\sigma_\mathrm{pooled} = \frac{s_1^2(n_1-1)+s_2^2(n_2-1)}{n_1+n_2-2}$
+      </p>
+      <p class="smaller down-4">
+        $\sigma_\mathrm{pooled}=\frac{6.25^2\times(26-1)+4.89^2\times(30-1)}{26+30-2}=30.9$ 
+      </p>
+      <p class="smaller down-3">
+        $t=\frac{(108.34-107.81)-0}{\sqrt{\frac{30.9}{26}+\frac{30.9}{30}}}=0.36$
+      </p>
+    </div>
+    <div class="col-50">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/bike-commute-simulation-diff-mean-all.svg#axes_1"></use>
+        <use xlink:href="content/img/bike-commute-simulation-diff-mean-all.svg#axes_2"></use>
+        <use xlink:href="content/img/bike-commute-simulation-diff-mean-all.svg#axes_4"></use>
+        <use class="fragment" data-fragment-index=1
+         xlink:href="content/img/bike-commute-simulation-diff-mean-all.svg#axes_5"></use>
+      </svg>
+    </div>
+  </div>
+  <p  class="fragment sided" data-fragment-index=1>
+    The initial observation is $0.36$ SE away from the center of the (null) distribution. <br>
+    <i class="fas fa-arrow-circle-right"></i> Using this $t$-statistic & the degrees of freedom of the $t$-distribution, we can obtain a p-value by referring to a $t$-statistic table.
+  </p>
+</section>
+
+<section data-transition="slide-in">
+  <h3>Theory: confidence intervals</h3>
+  <p class="framed border-danger">
+    <span class="danger">Under assumption of normality</span>, the confidence intervals of the parameter of interest can be estimated directly from the standard error of the sampling distribution of the statistic of interest, as described previously: $SE = \sqrt{\frac{\sigma_\mathrm{pooled}}{n_1}+\frac{\sigma_\mathrm{pooled}}{n_2}}$
+  </p>
+  <p>
+    If the distribution for a statistic follows the shape of a $t$ distribution with standard error SE, we  find a confidence interval for the
+    parameter using:
+  </p>
+  <p class="info center">
+    $\textrm{Sample Statistic} \pm t^*\times SE$
+  </p>
+  <p>
+    where $t^*$ is chosen so that the proportion between −$t^*$ and +$t^*$ in the $t$-distribution is the desired level of confidence.
+  </p>
+  <p>
+    If the sample size in each group is large:
+  </p>
+  <ul class="push-left">
+    <li>$t^*\simeq2$ ($1.96$) for the $95\%$ confidence intervals</li>
+    <li>$t^*\simeq1.645$ for the $90\%$ confidence intervals</li>
+    <li>$t^*\simeq2.576$ for the $99\%$ confidence intervals</li>
+  </ul>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Theory: confidence intervals</h3>
+ <p class="framed border-danger">
+    <span class="danger">Under assumption of normality</span>, the confidence intervals of the parameter of interest can be estimated directly from the standard error of the sampling distribution of the statistic of interest, as described previously: $SE = \sqrt{\frac{\sigma_\mathrm{pooled}}{n_1}+\frac{\sigma_\mathrm{pooled}}{n_2}}$
+  </p>
+  <p>
+    If the distribution for a statistic follows the shape of a $t$ distribution with standard error SE, we  find a confidence interval for the
+    parameter using:
+  </p>
+  <p class="info">
+    $\textrm{Sample Statistic} \pm t^*\times SE$
+  </p>
+  <p>
+    $SE=\sqrt{\frac{30.9}{26}+\frac{30.9}{30}}=1.49$ <br>
+  </p>
+  <p>
+    Mean & $95\%$ confidence intervals: <br>
+    $0.53\pm2\times1.49$ <br>
+    $0.53\pm2.98$
+  </p>
+</section>
+
+<section>
+  <h3>Theory: What about the median?</h3>
+  <p class="sided border-danger">
+    Remember, the median is a <span class="danger">procedure</span>,
+    not the result of a formula, so there is no theorem or formula 
+    that can predict what the sampling distribution of the 
+    difference in median would look like.
+  </p>
+  <p>
+    <i class="fas fa-arrow-circle-right danger"></i> There is no two-sample t-test for the median
+  </p>
+  <p class="down-5">
+    <i class="fas fa-lightbulb muted"></i> <span class="em u muted">Key idea:</span>
+    Using resampling statistic, you are not limited to the the study of the mean for which 
+    formula and theorems  are available.
+    <br>
+    Using resampling statistic, you can study <span class="pop">any statistic that is relevant to your study</span>, even if if is a very exotic statistic, since each time you can do a simulation of what the sampling distribution for this particular exotic statistic would look like.
+  </p>
+  <p>
+    <i class="fas fa-arrow-circle-right pop"></i> <span class="strong">Freedom of measure</span>
+  </p>
+</section>

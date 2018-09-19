@@ -1,0 +1,363 @@
+<section>
+  <h3>Describing a dataset</h3>
+  <div class="small">
+    When describing a dataset, we generally consider the following three questions: <br>
+      <ul class="normal down-2">
+        <li>What is the general <span class="danger">shape</span> of the data?</li>
+        <li>Where are the data values <span class="danger">centered</span>?</li>
+        <li>How do the data <span class="danger">vary</span>?</li>
+      </ul>
+  </div>
+  <br>
+  <div class="row">
+    <p class=" sided border-orange col-40">These are all aspects of what we call the <span class="orange">distribution</span> of the data.</p>
+    <div class="col-60">
+      <svg width="100%" viewBox="0 50 576 200">
+        <use xlink:href="content/img/dotplot-distribution.svg#axes_1"></use>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="title-slide fullwidth" data-transition="slide-in">
+  <h1 class="center">-- 1 --<br> Shape</h1>
+  <div class="center">
+    <svg width="75%" viewBox="0 42 576 216"">
+      <use xlink:href="content/img/dotplot-distribution.svg#axes_1"></use>
+      <use  class="fragment" xlink:href="content/img/dotplot-distribution.svg#axes_2"></use>
+    </svg>
+  </div>
+</section>
+
+<section data-transition="none">
+  <h3>General shape of a distribution</h3>
+  <div>
+    <ul>
+      <li>
+        A <span class="warning strong">symmetric</span> distribution is one in which the left and right hand sides of the distribution are roughly equally balanced.
+      </li>
+      <li class="fragment" data-fragment-index=1>
+        A <span class="info strong">skewed</span> (non-symmetric) distribution is a distribution in which there is no such equal balance. <span class="u-info info">Right-skewness</span> refers to a longer right tail, while <span class="u-danger danger">left-skewness</span> correspond to a longer left tail.
+      </li>
+      <li class="fragment" data-fragment-index=3>
+        A <span class="success strong">uniform</span> distribution is a specific symmetric distribution in which all outcomes are equally likely.
+      </li>
+    </ul>
+  </div>
+  <div class="center">
+    <svg width="85%" viewBox="0 0 720 216" style="margin-top: 0;">
+      <use xlink:href="content/img/distribution-shape.svg#axes_1"></use>
+      <use class="fragment" data-fragment-index=1 xlink:href="content/img/distribution-shape.svg#axes_2"></use>
+      <use class="fragment" data-fragment-index=2 xlink:href="content/img/distribution-shape.svg#axes_3"></use>
+      <use class="fragment" data-fragment-index=3 xlink:href="content/img/distribution-shape.svg#axes_4"></use>
+      <use class="fragment" data-fragment-index=4 xlink:href="content/img/distribution-shape.svg#axes_5"></use>
+    </svg>
+  </div>
+</section>
+
+<section data-transition="none">
+  <h3>Data distribution examples</h3>
+  <div class="row">
+    <div class="col-50">
+      <p>Internet access in the world</p>
+    </div>
+    <div class="col-50">
+      <p>
+        Time between eruptions of the Old Faithful geyser (1978-1979) <br>
+        - Yellowstone National Park -
+     </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-50">
+      <img src="content/img/distribution-internet-coverage.svg" width=100%>
+    </div>
+    <div class="col-50">
+      <img src="content/img/distribution-old-faithful.svg" width=100%>
+    </div>
+  </div>
+</section>
+
+<section data-transition="none">
+  <h3>Proportions for categorical variables</h3>
+  <p>Proportions are also called <span class="danger">relative frequencies</span> and we can display them in a relative frequency table</span>.</p>
+
+  <div class="row">
+    <div class="col-1">
+      <p></p>
+    </div>
+    <div class="col-40">
+      <p><span class="quoted">Is there one true love <br>for each person?</span> <br> (Phone survey, 2010)</p>
+    </div>
+    <div class="col-55">
+      <table class="small center">
+        <thead class="vert-align" style="font-size: 0.7em;">
+          <tr>
+            <th class="bg-muted">Response</th>
+            <th class="bg-muted">Frequency</th>
+            <th class="bg-muted fragment" data-fragment-index=1>Relative Frequency</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="no-bottom">
+            <td>Agree</td>
+            <td>735</td>
+            <td class="fragment" data-fragment-index=1>0.28</td>
+          </tr>
+          <tr class="no-bottom">
+            <td>Disagree</td>
+            <td>1812</td>
+            <td class="fragment" data-fragment-index=1>0.69</td>
+          </tr>
+          <tr>
+            <td>Don't know</td>
+            <td>78</td>
+            <td class="fragment" data-fragment-index=1>0.03</td>
+          </tr>
+          <tr>
+            <td>Total</td>
+            <td>2625</td>
+            <td class="fragment" data-fragment-index=1>
+              <span class="fragment highlight-bg-warning" data-fragment-index=2>1.00</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <p class="sided border-danger fragment">
+    <span class="u em">Notation for a proportion:</span><br>
+    The proportion for a population is denoted <span class="danger">$\pi$</span>
+    <br>
+    The proportion for a sample is denoted <span class="danger">$\hat{p}$</span> (read “p-hat”)
+  </p>
+  <aside class="notes">
+    <p>
+      Relative frequencies allow us to make comparisons without referring to the sample size.
+      <br>
+      The proportions in a relative frequency table will add to 1 (or approximately 1 if there is some round-off error).
+      <br>
+      A nationwide US telephone survey conducted by the Pew Foundation1 in October 2010 asked 2625 adults ages 18 and older, “Some people say there is only one true love for each person. Do you agree or disagree?”
+    </p>
+  </aside>
+</section>
+
+<section data-transition="none">
+  <h3>Distribution of proportion data</h3>
+  <svg width="65%" viewBox="0 0 551.2 395.2" style="margin-top: 0;">
+    <use xlink:href="content/img/pie-chart-bar.svg#pie"></use>
+    <use class="fragment" data-fragment-index=1 xlink:href="content/img/pie-chart-bar.svg#bar"></use>
+  </svg>
+  <p class="sided fragment col-80" data-fragment-index=1 style="margin-top: 0;">
+    <span class="u">Note:</span><br>
+    Lengths are easier to visually compare than area
+  </p>
+  <aside class="notes">
+    <p>Pie chart are common in the popular media, but very misleading.
+    <br>
+    Steve job example.</p>
+  </aside>
+</section>
+
+<section data-transition="none">
+  <h3>Distribution of proportion data</h3>
+  <div class="row">
+    <div class="col-80">
+      <svg width="100%" viewBox="0 2 259.35 56" style="margin-top: 0;">
+        <use xlink:href="content/img/bar-categorical-data.svg#stacked"></use>
+      </svg>
+    </div>
+    <div class="col-20">
+      <p style="font-size: 0.5em;">
+        <span class="u">Stacked bars</span> (overall quantity)
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-80">
+      <svg width="100%" viewBox="0 58 259.35 56" style="margin-top: 0;">
+        <use xlink:href="content/img/bar-categorical-data.svg#layered"></use>
+      </svg>
+    </div>
+    <div class="col-20">
+      <p style="font-size: 0.5em;">
+        <span class="u">Layered bars</span> (distribution of values in the categories)
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-80">
+      <svg width="100%" viewBox="0 114 259.35 56" style="margin-top: 0;">
+        <use xlink:href="content/img/bar-categorical-data.svg#grouped"></use>
+      </svg>
+    </div>
+    <div class="col-20">
+      <p style="font-size: 0.5em;">
+        <span class="u">Grouped bars</span> (comparison of categories + items)
+      </p>
+    </div>
+  </div>
+</section>
+
+<section data-transition="none">
+  <h3>Distribution of proportion data</h3>
+  <div class="row">
+    <div class="col-55">
+      <img class="framed" src="content/img/bob-ross-fivethirtyeight.png">
+    </div>
+    <div class="col-45">
+      <img src="content/img/bob-ross-cabin.jpg">
+    </div>
+  </div>  
+</section>
+
+<section data-transition="slide-out">
+  <h3>Distribution of proportion data</h3>
+  <div class="row">
+    <div class="col-55">
+      <div class="row">
+        <div class="col-80">
+          <img src="content/img/bob-ross-bars.png">
+        </div>
+      </div>
+    </div>
+    <div class="col-45">
+      <img src="content/img/bob-ross-cabin.jpg">
+    </div>
+  </div>  
+</section>
+
+<section data-transition="slide-in">
+  <h3>Distribution of quantitative variables</h3>
+  <p>
+    A <span class="info">dotplot</span> is a common way to visualize the shape of a <span class="u-info">moderately sized</span> dataset.
+  </p>
+  <table class="tinier down-3">
+    <thead>
+      <tr>
+        <th class="bg-muted">Species</th>
+        <th class="bg-muted">Longevity</th>
+        <th class="bg-muted">Species</th>
+        <th class="bg-muted">Longevity</th>
+        <th class="bg-muted">Species</th>
+        <th class="bg-muted">Longevity</th>
+        <th class="bg-muted">Species</th>
+        <th class="bg-muted">Longevity</th>
+        <th class="bg-muted">Species</th>
+        <th class="bg-muted">Longevity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Baboon</td>
+        <td>20</td>
+        <td>Chimpanzee</td>
+        <td>20</td>
+        <td>Fox</td>
+        <td>7</td>
+        <td>Leopard</td>
+        <td>12</td>
+        <td>Rabbit</td>
+        <td>5</td>
+      </tr>
+      <tr>
+        <td>Black bear</td>
+        <td>18</td>
+        <td>Chipmunk</td>
+        <td>6</td>
+        <td>Giraffe</td>
+        <td>10</td>
+        <td>Lion</td>
+        <td>15</td>
+        <td>Rhinoceros</td>
+        <td>15</td>
+      </tr>
+      <tr>
+        <td>Grizzly bear</td>
+        <td>25</td>
+        <td>Cow</td>
+        <td>15</td>
+        <td>Goat</td>
+        <td>8</td>
+        <td>Monkey</td>
+        <td>15</td>
+        <td>Sea lion</td>
+        <td>12</td>
+      </tr>
+      <tr>
+        <td>Polar bear</td>
+        <td>20</td>
+        <td>Deer</td>
+        <td>8</td>
+        <td>Gorilla</td>
+        <td>20</td>
+        <td>Moose</td>
+        <td>12</td>
+        <td>Sheep</td>
+        <td>12</td>
+      </tr>
+      <tr>
+        <td>Beaver</td>
+        <td>5</td>
+        <td>Dog</td>
+        <td>12</td>
+        <td>Guinea Pig</td>
+        <td>4</td>
+        <td>Mouse</td>
+        <td>3</td>
+        <td>Squirrel</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>Buffalo</td>
+        <td>15</td>
+        <td>Donkey</td>
+        <td>12</td>
+        <td>Hippopotamus</td>
+        <td>25</td>
+        <td>Opossum</td>
+        <td>1</td>
+        <td>Tiger</td>
+        <td>16</td>
+      </tr>
+      <tr>
+        <td>Camel</td>
+        <td>12</td>
+        <td>Elephant</td>
+        <td>40</td>
+        <td>Horse</td>
+        <td>20</td>
+        <td>Pig</td>
+        <td>10</td>
+        <td>Wolf</td>
+        <td>5</td>
+      </tr>
+      <tr>
+        <td>Cat</td>
+        <td>12</td>
+        <td>Elk</td>
+        <td>15</td>
+        <td>Kangaroo</td>
+        <td>7</td>
+        <td>Puma</td>
+        <td>12</td>
+        <td>Zebra</td>
+        <td>15</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="row">
+    <div class="col-65">
+      <svg class="fragment" data-fragment-index=1 width="100%" viewBox="0 65 360 216">
+        <use xlink:href="content/img/mammals-longevity-dotplot.svg#axes_1"></use>
+      </svg>
+    </div>
+    <div class="col-25">
+      <p class="fragment framed down-10 smaller" data-fragment-index=1>
+        <span class="u">Note:</span><br> 
+        For this particular dataset, values are integers and can be easily stacked.
+      </p>
+    </div>
+  </div>
+</section>
+

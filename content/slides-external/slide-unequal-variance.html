@@ -1,0 +1,91 @@
+<section data-transition="slide-in">
+  <h3>Comparing two groups</h3>
+  <div class="small">
+    Up to now, when comparing two groups, we considered a null hypothesis relying on the two groups coming from the same population. The question we were answering was:
+  </div>
+  <div class="small quoted">
+    If two samples are drawn from the same population, what is the <span class="pop">chance</span> of finding a <span class="pop">difference this large and larger</span>?
+  </div>
+  <div class="small right">
+    <i class="fas fa-arrow-circle-right pop"></i> The chance here is quantified by a <span class="pop">p-value</span>
+  </div>  
+  <div class="down-1 muted u small">
+    Null Hypothesis
+  </div>
+  <div class="smaller">
+    The Null Hypothesis we want to test is that the means, or medians (or any central descriptor of your choosing) are equal, <span class="danger">assuming that the two groups A & B were sampled from the same underlying population <span class="em strong">p</em></span></span> (can have any shape).
+  </div>
+  <div class="smaller down-1">
+    We could write that: $p(x) = p_A(x) = p_B(x)$
+  </div>
+  <div class="smaller down-1">
+    <i class="fas fa-arrow-circle-right muted"></i> this implies that all the true statistics are assumed equal ($\bar{x}_A = \bar{x}_B$, $\mathrm{m}_A=\mathrm{m}_B$, etc..)
+  </div>
+  <div class="smaller down-2">
+    Formally, we write the Null hypothesis as <span class="em strong">Name: Hypothesis|Assumption</span>, so:
+  </div>
+  <div class="smaller down-1">
+    $\mathrm{H}_0: \bar{x}_A = \bar{x}_B | p_A(x) = p_B(x)$
+  </div>
+</section>
+
+<section data-transition="none">
+  <h3>Comparing two groups</h3>
+  <div class="small em u">Student's T-Test</div>
+  <div class="row">
+    <div class="col-65 smaller">
+      <div>
+        What we've learned so far is the resampling method equivalent to the <span class="danger u">Student's T-Test</span> which tests the difference between the means of two groups, evaluating the null hypothesis that both samples were from the same underlying distribution (theory also assume a normal shaped population, <span class="em">N</span>):
+      </div>
+      <div class="center down-1">
+        $\mathrm{H}_0: \bar{x}_A = \bar{x}_B | N(\mu_A, \sigma_A) = N(\mu_B, \sigma_B)$
+      </div>
+      <div class="down-1">
+        <i class="fas fa-arrow-circle-right"></i> it assumes A and B have the same "true variance". Thus it is called the <span class="em strong">equal variance t-test</em>
+      </div>
+      <div class="down-3">
+        Similar to our $d$ statistic (difference), the T-Test use a t statistic, which has a "standardized" form (normalized in term of SE).
+        <br>
+        <bspan class="right-30">$t=\frac{\bar{x}_A-\bar{x}_B}{\sqrt{\frac{\sigma_\mathrm{AB}}{n_1} + \frac{\sigma_\mathrm{AB}}{n_2}}}$</bspan>
+        <br>
+        Where $\sigma_{AB}$ is the "pooled" standard deviation by combining two Normal distributions.
+      </div>
+    </div>
+    <div class="col-35 center">
+      <svg width="100%" viewBox="0 85 400 615">
+        <use xlink:href="content/img/two-groups-NHST.svg#layer1"></use>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Comparing two groups</h3>
+  <div class="row flex bordered down-2">
+    <div class="col-5 flex-center center small">
+      <span>
+      <i class="fas fa-question fa-2x muted"></i>
+      </span>
+    </div>
+    <div class="col-93 right-2 small flex-center">
+      <span>What if we just wanted to compare the centers of two distributions knowing full well that they <span class="info">come from different populations</span>?</span>
+    </div>
+  </div>
+  <div class="smaller down-1">
+    (When we say different populations, we usually mean that <span class="u-info">characteristics such as the variance or the skew are different</span>).
+  </div>
+  <div class="small row">
+    <div class="col-55 down-3">
+      <div>
+        <i class="fas fa-arrow-circle-right"></i> if the two groups have very different variances, for example, it would not be reasonable to say they were sampled from the same population as <span class="orange">they exist on two different scales</span>.
+      </div>
+      <div class="down-2 fragment">
+        The formulation of this Null Hypothesis would be:
+        <bspan class="down-1">$\mathrm{H}_0: \bar{x}_A = \bar{x}_B | \fragapply{highlight-danger}{p_A(x) \neq p_B(x)}$</bspan>
+      </div>
+    </div>
+    <div class="col-45">
+      <img src="content/img/ex-populations-unequal-variance-shape.svg">
+    </div>
+  </div>
+</section>

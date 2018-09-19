@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script src="js/d3.min.js"></script>
+<script src="js/jstat.min.js"></script>
+
+
+<body>
+<style type="text/css">
+  .bar {
+    fill: #9fc857;
+    stroke: white;
+  }
+
+  .label {
+    font-family: helvetica;
+    font-size: 1.5em;
+    text-anchor: middle
+  }
+
+  .textChart {
+    font-family: helvetica;
+    font-size: 1em;
+    text-anchor: beginning
+  }
+
+  .textChartDif {
+    font-family: helvetica;
+    font-size: 1.5em;
+    text-anchor: beginning;
+  }
+
+  .textNum {
+    font-family: helvetica;
+    font-size: 1.5em;
+    text-anchor: beginning;
+    fill: #B4B4B4;
+  }
+
+  .textF {
+    font-family: helvetica;
+    font-weight: bold;
+    font-size: 1.5em;
+    text-anchor: beginning;
+    fill: #9fc857;
+  }
+
+  .axisLabel {
+    font-weight: bold;
+  }
+
+</style>
+
+<script>
+
+const ants = [{"filling":"vegemite","ants":18},{"filling":"vegemite","ants":29},{"filling":"vegemite","ants":42},{"filling":"vegemite","ants":42},{"filling":"vegemite","ants":31},{"filling":"vegemite","ants":21},{"filling":"vegemite","ants":38},{"filling":"vegemite","ants":25},{"filling":"peanutButter","ants":43},{"filling":"peanutButter","ants":59},{"filling":"peanutButter","ants":22},{"filling":"peanutButter","ants":25},{"filling":"peanutButter","ants":36},{"filling":"peanutButter","ants":47},{"filling":"peanutButter","ants":19},{"filling":"peanutButter","ants":21},{"filling":"hamPickles","ants":44},{"filling":"hamPickles","ants":34},{"filling":"hamPickles","ants":36},{"filling":"hamPickles","ants":49},{"filling":"hamPickles","ants":54},{"filling":"hamPickles","ants":65},{"filling":"hamPickles","ants":59},{"filling":"hamPickles","ants":53}]
+
+
+const colors = {
+  info: '#00BFFF',
+  danger: '#fb4c52',
+  warning: '#FBC15E',
+  orange: '#FF8B22',
+  muted: '#B4B4B4',
+  pop: '#ce4ad0'}
+
+
+const totalWidth = 900,
+      totalHeight = 500
+// scatterPlot
+const margin = {left: 50, top: 70, right: 450, bottom: 50}
+const width = totalWidth - margin.left - margin.right,
+      height = totalHeight - margin.top - margin.bottom
+
+// Histogram
+const marginHist = {top: 100, right: 10, bottom: 50, left: 450},
+      widthHist = totalWidth - marginHist.left - marginHist.right,
+      heightHist = totalHeight - marginHist.top - marginHist.bottom;
+
+const radius = 10
+
+const colorScale = d3.scaleOrdinal()
+  .range([colors.warning, colors.info, colors.danger])
+  .domain(["vegemite", "peanutButter", "hamPickles"])
+
+const groupScale = d3.scaleOrdinal()
+  .range([0, 1, 2])
+  .domain(["vegemite", "peanutButter", "hamPickles"])
+
+const yScale = d3.scaleLinear()
+  .range([height, 0])
+  .domain([0, 70])
+
+const forceXScaleLabel = d3.scaleOrdinal()
+  .range(d3.range(4).map(d => d*width/4))
+  .domain(["", "vegemite", "peanutButter", "hamPickles"])
+
+const forceXScaleGroup = d3.scaleOrdinal()
+  .range(d3.range(4).map(d => d*width/4))
+  .domain(d3.range(4).map(d => d-1))
+
+const data = ants.map((d,i) => {
+  return {
+    type: d["filling"],
+    group: groupScale(d["filling"]),
+    value: d["ants"],
+    x: margin.left+width/2, //this should work for starting positions, but doesn't ...
+    fy: yScale(d["ants"])
+  }
+})
+
+let groupMeans = calculateMeans(data, 3)
+let meanPos = ["vegemite", "peanutButter", "hamPickles"].map(d => forceXScaleLabel(d))
+
+
+
+const svg = d3.select("body").selectAll(".svgCanvas").data([null])
+  .enter().append("svg")
+      .attr("width", totalWidth)
+      .attr("height", totalHeight)
+
+
+const scatter = svg.append("g")
+      .attr("transform", `translate(${margin.left}, ${margin.top})`)
+      .attr("width", width)
+      .attr("height", height)
+
+updateMeanText(groupMeans)
+
+const labels = {
+  vegemite: {label: "Vegemite", color: colors.warning},
+  peanutButter: {label: "Peanut<tspan dx=-70 dy=25>Butter</tspan>", color: colors.info},
+  hamPickles: {label: `Ham &<tspan dx=-70 dy=25>Pickles</tspan>`, color: colors.danger}
+}
+
+scatter.selectAll(".axisLabelText")
+  .data(Object.keys(labels))
+  .enter().append('text')
+    .attr('class', 'axisLabel axisLabelText')
+    .attr('x', d => forceXScaleLabel(d))
+    .attr('y', height+20)
+    .style("text-anchor", "middle")
+    .style("font-size","1.3em")
+    .style("font-family", "Raleway")
+    .style("fill", d => labels[d].color)
+    .html(d => labels[d].label);
+
+const yAxis = scatter.append('g')
+    .attr('class', 'axis yAxis')
+    .call(d3.axisLeft(yScale))
+scatter.append('text')
+    .attr('transform', `translate(${-30}, ${height/2}) rotate(-90)`)
+    .style("text-anchor", "middle")
+    .style("font-size","1.5em")
+    .style("font-family", "Raleway")
+    .text('Ants number');
+
+const textF = scatter.append('text')
+    .attr('class', 'textF')
+    .attr('transform', `translate(${width/2-50}, ${-margin.top/1.5})`)
+    .style("text-anchor", "start")
+    .style("font-size","1.5em")
+    .style("font-family", "Raleway")
+    .text(`F=${calculateF(data).toFixed(2)}`);
+
+
+const nodes = scatter.append("g")
+    .attr("class", "nodes")
+  .selectAll("circle")
+  .data(data)
+  .enter().append("circle")
+    .attr("r", radius)
+    .attr("fill", d => colorScale(d.group))
+    .attr("cy", d => d.fy)
+
+const simulation = d3.forceSimulation(data)
+    // .nodes(data)
+    .force("xGroup", d3.forceX().x(d => forceXScaleGroup(d.group)))
+    .force("charge", d3.forceManyBody().strength(-1.5*radius))
+    .on("tick", ticked);
+
+updateMeanLines(scatter)
+////////////////
+// Histogram
+
+
+//x scales
+const x = d3.scaleLinear()
+    .rangeRound([0, widthHist])
+    .domain([0, 20]);
+
+const y = d3.scaleLinear()
+    .range([heightHist, 0]);
+
+let nbins = 20,
+    dataHist = []
+
+let chart = svg.append("g")
+  .attr("transform", `translate(${marginHist.left}, ${marginHist.top})`);
+
+// add container for histogram so other layers on top of it
+const chartHist = chart.append("g")
+
+// add x axis
+chart.append("g")
+  .attr("class", "axis axis--x")
+  .attr("transform", `translate(0, ${heightHist})`)
+  .call(d3.axisBottom(x));
+
+chart.append("text")
+  .text("F statistic")
+  .attr('class', 'label')
+  .attr('dx', widthHist/2)
+  .attr('dy', heightHist + 40)
+
+let initialF = calculateF(data)
+
+
+chart.append("line")
+    .attr("class", "limit")
+    .attr('x1', x(initialF))
+    .attr('x2', x(initialF))
+    .attr('y1', marginHist.top-30)
+    .attr('y2', heightHist)
+    .attr('stroke', 'black')
+    // .attr('stroke-dasharray', (d,i) => i < 1 ? "0, 0" : "10, 5")
+    .attr('stroke-width', 4)
+
+chart.append("text")
+  .html("Observed<tspan dx=-70 dy=25>F statistic</tspan>")
+  .attr('class', 'textChart')
+  .attr('dx', x(initialF) + 10)
+  .attr('dy', marginHist.top-50)
+chart.append("text")
+  .text(initialF.toFixed(2))
+  .attr('class', 'textChartDif')
+  .attr('dx', x(initialF) + 85)
+  .attr('dy', marginHist.top-40)
+  
+let count = chart.append("text")
+  .text(`Simulations: n = ${0}`)
+  .attr('class', 'textNum')
+  .attr('dx', widthHist/3)
+  .attr('dy', -30)
+let above = chart.append("text")
+  .text(` `)
+  .attr('class', 'textNum')
+  .attr('dx', 0)
+  .attr('dy', 30)
+let pval = chart.append("text")
+  .text(` `)
+  .attr('class', 'textNum')
+  .attr('dx', 0)
+  .attr('dy', 60)
+
+
+function updateMeanLines(container){
+  const meanLines = container.selectAll(".meanLine")
+    .data(groupMeans)
+  meanLines.exit().remove()
+  meanLines.enter()
+    .append("line")
+      .attr("class", "meanLine")
+      .attr("x1", (d,i) => meanPos[i]-30)
+      .attr("x2", (d,i) => meanPos[i]+30)
+      .attr("y1", d => yScale(d))
+      .attr("y2", d => yScale(d))
+      .attr("stroke", "black")
+      .attr("stroke-width", 4)
+    .merge(meanLines)
+      .transition().duration(300)
+        .attr("y1", d => yScale(d))
+        .attr("y2", d => yScale(d))
+}
+
+
+function drawHistogram(){
+
+    //histogram binning
+    const histogram = d3.histogram()
+      .domain(x.domain())
+      .thresholds(x.ticks(nbins))
+      // .value(function(d) { return d.value;} )
+
+    var bins = histogram(dataHist)//.filter(d => d.length>0);
+
+    y.domain([0, d3.max(bins, d => d.length)]);
+
+    var bar = chartHist.selectAll(".bar")
+        .data(bins);
+
+    bar.exit().remove();
+
+    // new data:
+    bar.enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", d => x(d.x0))
+      .attr("width", d => x(d.x1) - x(d.x0))
+      .attr("y", d => y(d.length))
+      .attr("height", d => heightHist - y(d.length))
+    .merge(bar)
+      
+    bar.transition().duration(300)
+      .attr("y", d => y(d.length))
+      .attr("height", d => heightHist - y(d.length))
+
+};
+
+
+function ticked() {
+  nodes
+    .attr("cx", d => d.x)
+    // .attr("cy", d => d.y)
+}
+
+const randomizeGroups = (n) => {
+
+  d3.range(n).forEach(k => {
+    const labels = data.map(d => d.group)
+    d3.shuffle(labels)
+    labels.forEach((d, i) => data[i].group = d)
+    groupMeans = calculateMeans(data, 3)
+    dataHist.push(calculateF(data))
+  })
+
+  simulation.nodes(data);
+  simulation.alpha(1).restart()
+  updateMeanLines(scatter)
+  updateMeanText(groupMeans)
+  textF.text(`F=${calculateF(data).toFixed(2)}`)
+  drawHistogram()
+  count.text(`Simulations: n = ${dataHist.length}`)
+
+}
+
+function calculateMeans(data, nGroups){
+  return d3.range(nGroups).map(d => d3.mean(data.filter(k => k.group == d), f => f.value))
+}
+
+function calculateF(data){
+  let groupData = [0, 1, 2].map(d => data.filter(g => g.group==d).map(k => k.value))
+  return jStat.anovafscore(groupData)
+}
+
+function updateMeanText(data){
+  const meanText = scatter.selectAll(".meanText")
+    .data(data)
+  meanText.exit().remove()
+  meanText.enter()
+    .append('text')
+      .attr('class', 'meanText')
+      .attr('x', (d, i) => meanPos[i])
+      .attr('y', 0)
+      .style("text-anchor", "middle")
+      .style("font-size","1.5em")
+      .style("font-family", "Raleway")
+      .text(d => d)
+    .merge(meanText)
+      .text(d => d.toFixed(2))
+}
+
+
+
+var _transitions = [
+      {
+        transitionForward: () => randomizeGroups(1),
+        transitionBackward: () => {
+          data.forEach(d => {
+            d['group'] = groupScale(d.type)
+          })
+          simulation.nodes(data);
+          simulation.alpha(1).restart()
+          dataHist = []
+          groupMeans = calculateMeans(data, 3)
+          updateMeanLines(scatter)
+          updateMeanText(groupMeans)
+          textF.text(`F=${calculateF(data).toFixed(2)}`)
+          drawHistogram()
+          count.text(`Simulations: n = ${dataHist.length}`)
+        },
+        index: 0
+      },
+      {
+        transitionForward: () => randomizeGroups(1),
+        index: 1
+      },
+      {
+        transitionForward: () => randomizeGroups(1),
+        index: 2
+      },
+      {
+        transitionForward: () => randomizeGroups(1),
+        index: 3
+      },
+      {
+        transitionForward: () => randomizeGroups(100),
+        index: 4
+      },
+      {
+        transitionForward: () => randomizeGroups(1000),
+        index: 5
+      },
+      {
+        transitionForward: () => randomizeGroups(1000),
+        index: 6
+      },
+      {
+        transitionForward: () => randomizeGroups(7896),
+        index: 7
+      },
+    ]
+</script>
+</body>

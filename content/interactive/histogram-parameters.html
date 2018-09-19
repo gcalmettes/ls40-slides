@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<body>
+<style>
+
+label {
+  font-family: Raleway;
+  font-size: 20;
+}
+
+input[type=range]{
+    -webkit-appearance: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+    /*width: 10em;*/
+    height: 5px;
+    background: #ddd;
+    border: none;
+    border-radius: 3px;
+}
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: #FBC15E;
+    margin-top: -4px;
+}
+input[type=range]:focus {
+    outline: none;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #ccc;
+}
+input[type="range"] {
+  width: 10em;
+}
+
+/*INPUT CHECKBOX*/
+input[type="checkbox"]{
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  background: #fb4c52;
+  border-radius: 0.6em;
+  box-sizing: border-box;
+  position: relative;
+  vertical-align: middle;
+  box-sizing: content-box ;
+  width: 1.5em;
+  height: 1.5em;
+  border-width: 0;
+  transition: all .1s linear;
+}
+input[type="checkbox"]:checked{
+  background-color: #9fc857;
+}
+input[type="checkbox"]:focus{
+  outline: 0 none;
+  box-shadow: none;
+}
+
+#params {
+  position: absolute;
+  left: 40px;
+  top: 10px;
+}
+
+</style>
+
+<svg></svg>
+<div id="params" style="width: 600px">
+  <div>
+    <label>Bin width:</label>
+    <input type="range" min="1" max="50" id="wbin" value=15>
+    <label id="wbin-value">15</label>
+  </div>
+  <div>
+    <label>Bin offset:</label>
+    <input type="range" min="-4" max="4" id="offset" value=0>
+    <label id="offset-value">0</label>
+  </div>
+</div>
+
+<script src="js/d3.min.js"></script>
+<script>
+
+  const radius = 4,
+        padding = 1,
+        colors = {info: '#00BFFF',
+                  danger: '#fb4c52',
+                  warning: '#FBC15E',
+                  orange: '#FF8B22'}
+
+  const margin = { left: 50, right: 30, 
+                   topSwarm: 60, bottomSwarm: 20,
+                   topHist: 10, bottomHist: 20
+                  },
+        fullWidth = 720,
+        fullHeight = 500,
+        width = fullWidth - margin.left - margin.right,
+        swarmHeight = fullHeight * 0.5 - margin.topSwarm - margin.bottomSwarm,
+        histHeight = fullHeight - swarmHeight - margin.topSwarm - margin.bottomSwarm - margin.topHist - margin.bottomHist
+
+  // full SVG
+  const svg = d3.select('svg')
+      .attr('width', fullWidth)
+      .attr('height', fullHeight)
+
+  // Beeswarm plot
+  const xScale = d3.scaleLinear()
+    .range([margin.left, width - margin.right])
+
+  const gSwarm = svg.append('g')
+    .attr('width', width)
+    .attr('height', swarmHeight)
+    .attr('transform', `translate(${margin.left}, ${margin.topSwarm})`)
+
+  const xAxisSwarm = g => g
+    .attr("transform", `translate(0, ${swarmHeight})`)
+    .call(d3.axisBottom(xScale).tickSizeOuter(0))
+
+  // Histogram
+  const yScaleHist =  d3.scaleLinear()
+    .range([histHeight, 0])
+
+  const yAxisHist = g => g
+    .call(d3.axisLeft(yScaleHist).tickSizeOuter(0))
+
+  const xAxisHist = tickValues => g => {
+    if (tickValues == undefined) {
+      return g.call(d3.axisBottom(xScale).tickSizeOuter(0))
+    } else {
+      return g.call(d3.axisBottom(xScale)
+        .tickSizeOuter(0).tickValues(tickValues))
+    }
+  }
+
+  const gHist = svg.append('g')
+    .attr('width', width)
+    .attr('height', histHeight)
+    .attr('transform', `translate(${margin.left}, ${swarmHeight + margin.topSwarm + margin.bottomSwarm + margin.topHist})`)
+
+  // declare container in which histogram bars will be 
+  // so I can put axis layer above it
+  const barContainer = gHist.append("g")
+    .attr("class", "barContainer")
+
+  const gYaxisHist = gHist.append("g")
+      .attr("class", "axis yaxis")
+      .attr("transform", `translate(0, 0)`)
+
+  gYaxisHist.append("text")
+      .attr("class", "ylabel")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0 - margin.left)
+      .attr("x", 0 - (histHeight / 2))
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .style("font-size","1.5em")
+      .style("font-family", "Raleway")
+      .style('fill', "black")
+      .text("Count");
+
+  const gXaxisHist = gHist.append("g")
+      .attr("class", "axis xaxis")
+      .attr("transform", `translate(0, ${histHeight})`)
+
+  // Inital state
+  const toShow = 'waiting'
+
+  let data, wBins
+  let nBins = 12 // starting number of bins
+  let offsetBins = 0
+
+  d3.csv("data/geyser.csv").then(dataSet => {
+    // parse to numbers
+    data = dataSet.map(d => +d[toShow])
+
+    xScale
+      .domain(d3.extent(data))
+      .nice(nBins)
+
+    // initial bin width
+    const [t1, t2] = [...xScale.ticks()]
+    wBins = t2-t1
+    d3.select("#wbin-value").text(wBins);
+
+    // initialize beeswarm
+    drawBeeswarm(data)
+    // initialize histogram
+    drawHistogram(data, xScale.ticks())
+  })
+
+
+  function drawBeeswarm(data) {
+    // in case graph was already drawn
+    gSwarm.selectAll(".xaxis")
+      .remove()
+    gSwarm.selectAll(".ballContainer")
+      .remove()
+
+    gSwarm.append("g")
+      .attr("class", "axis xaxis")
+      .call(xAxisSwarm);
+  
+    balls = gSwarm.append("g")
+      .attr("class", "ballContainer")
+      .selectAll(".ball")
+        .data(beeswarm(data, radius, padding, xScale))
+      .enter().append("circle")
+        .attr("class", "ball")
+        .attr("cx", d => d.x)
+        .attr("cy", d => swarmHeight - radius - padding - d.y)
+        .attr("r", radius)
+  }
+
+  function drawHistogram(data, thresholds) {
+    const dataMin = d3.min(data)
+    let [start, stop] = [...d3.extent(thresholds)]
+
+    // prevent unused first bin if no data in it
+    if (start>dataMin) start = start-wBins
+    if (thresholds[1]<dataMin) {
+      thresholds = thresholds.slice(1, thresholds.length)
+      start = thresholds[0]
+    }
+    // prevent bars to extend before the y axis
+    if (start < xScale.invert(0)) start = xScale.invert(0)
+
+    const histogram = d3.histogram()
+      .domain(xScale.domain())
+      .value(d => d)
+      
+    if (thresholds!==undefined) {
+      histogram
+        .thresholds(thresholds)
+    } else {
+      histogram
+        .thresholds(x.ticks(nBins))
+    }   
+
+    const bins = histogram(data);
+
+    // hack so bars can go beyond x axis limits
+    bins[0].x0 = d3.min([start, d3.min(data)])
+    bins[bins.length-1].x1 = d3.max([stop, bins[bins.length-1].x1])
+
+    yScaleHist.domain([0, d3.max(bins, d => d.length)])
+
+    let histBins = barContainer.selectAll("rect.bins")
+      .data(bins)
+
+    histBins.exit().remove()
+    histBins.enter()
+      .append('rect')
+        .attr('class', 'bins')
+        .attr('fill', colors.info)
+        .attr('stroke', "white")
+        .attr('x', d => xScale(d.x0))
+        .attr('y', d => yScaleHist(d.length))
+        .attr('width', d => xScale(d.x1) - xScale(d.x0))
+        .attr('height', d => histHeight - yScaleHist(d.length))
+      .merge(histBins)
+        .attr('x', d => xScale(d.x0))
+        .attr('y', d => yScaleHist(d.length))
+        .attr('width', d => xScale(d.x1) - xScale(d.x0))
+        .attr('height', d => histHeight - yScaleHist(d.length))
+
+    // draw bin limits on the dotplot
+    const lineBreaks = gSwarm.selectAll("line.binbreak")
+      .data(bins);
+    lineBreaks.exit().remove();
+    lineBreaks.enter().append("line")
+        .attr("class", "binbreak")
+        .attr("stroke-dasharray", "2 6")
+        .attr("y1", 0)
+        .attr("y2", swarmHeight)
+        .style("stroke-width", 2)
+        .style("stroke", "grey")
+      .merge(lineBreaks)
+        .attr("x1", d => xScale(d.x0))
+        .attr("x2", d => xScale(d.x0))
+
+    gYaxisHist.call(yAxisHist)
+    gXaxisHist.call(xAxisHist(bins.map(d => d.x0)))
+
+  }
+
+  function getHistThresholds(wBins, offsetBins) {
+    const [min,max] = [...d3.extent(xScale.domain())]
+    return d3.range(min+offsetBins, max+wBins+offsetBins, wBins)
+  }
+
+
+  function beeswarm(data, radius, padding, xscale){
+    // code from https://beta.observablehq.com/@mbostock/d3-beeswarm
+    const circles = data.map(d => ({x: xscale(d), data: d}))
+      .sort((a, b) => a.x - b.x);
+    const epsilon = 1e-3;
+    let head = null, tail = null;
+    // Returns true if circle ⟨x,y⟩ intersects with any circle in the queue.
+    function intersects(x, y) {
+      let a = head;
+      while (a) {
+        if ((radius * 2 + padding - epsilon) ** 2 > (a.x - x) ** 2 + (a.y - y) ** 2) {
+          return true;
+        }
+        a = a.next;
+      }
+      return false;
+    }
+    // Place each circle sequentially.
+    for (const b of circles) {
+      // Remove circles from the queue that can’t intersect the new circle b.
+      while (head && head.x < b.x - (radius * 2 + padding)) head = head.next;
+      // Choose the minimum non-intersecting tangent.
+      if (intersects(b.x, b.y = 0)) {
+        let a = head;
+        b.y = Infinity;
+        do {
+          let y = a.y + Math.sqrt((radius * 2 + padding) ** 2 - (a.x - b.x) ** 2);
+          if (y < b.y && !intersects(b.x, y)) b.y = y;
+          a = a.next;
+        } while (a);
+      }
+      // Add b to the queue.
+      b.next = null;
+      if (head === null) head = tail = b;
+      else tail = tail.next = b;
+    }
+    return circles;
+  }
+
+  // number of bins
+  d3.select("#wbin")
+    .on("input", function () {
+      wBins = +this.value;
+      d3.select("#wbin-value").text(+this.value);
+      //update offset parameters
+      d3.select("#offset")
+        .attr("min", -wBins+1)
+        .attr("max", wBins-1)
+        .attr("value", d => {
+          let newVal = offsetBins
+          if (Math.abs(newVal)>=wBins) {
+            if (offset < 0) {
+              newVal = -wBins+1
+              offsetBins = newVal
+              d3.select("#offset-value").text(newVal)
+            } else {
+              newVal = wBins-1
+              offsetBins = newVal
+              d3.select("#offset-value").text(newVal)
+            }
+          }
+          return newVal
+        }) 
+      drawHistogram(data, getHistThresholds(wBins, offsetBins))
+  });
+
+    // number of bins
+  d3.select("#offset")
+    .on("input", function () {
+      offsetBins = +this.value;
+      d3.select("#offset-value").text(+this.value);
+      drawHistogram(data, getHistThresholds(wBins, offsetBins))
+  });
+
+</script>

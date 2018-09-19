@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<body>
+
+
+<script src="js/d3.min.js"></script>
+<script>
+
+  const width = 700,
+        height = 400,
+        xRatioLine = 0.65,
+        colors = {info: '#00BFFF',
+                  danger: '#fb4c52',
+                  warning: '#FBC15E',
+                  orange: '#FF8B22',
+                  muted: '#B4B4B4'}
+
+  const margin = {topLine: 50, bottomLine: 50,
+                  topBar: 50, bottomBar: 50,
+                  leftLine: 50, rightLine: 30,
+                  leftBar: 50, rightBar: 20}
+
+  const widthLine = width * xRatioLine - margin.leftLine - margin.rightLine,
+        heightLine = height - margin.topLine - margin.bottomLine,
+        widthBar = width * (1-xRatioLine) - margin.leftBar - margin.rightBar,
+        heightBar = height - margin.topBar - margin.bottomBar
+
+  let xlimMax = 300
+
+  const xScaleLine = d3.scaleLinear()
+    .range([0, widthLine])
+    .domain([0, xlimMax])
+
+  const yScaleLine = d3.scaleLinear()
+    .range([heightLine, 0])
+    .domain([0, 1])
+
+  const xAxisLine = d3.axisBottom(xScaleLine)
+    .ticks(4)
+
+  const yAxisLine = d3.axisLeft(yScaleLine)
+    .ticks(3)
+
+  const xScaleBar = d3.scaleLinear()
+    .range([0, widthBar])
+    .domain([-0.25, 2])
+
+  const yScaleBar = d3.scaleLinear()
+    .range([heightBar, 0])
+    // .domain([0, 1])
+
+  const yAxisBar = d3.axisLeft(yScaleBar)
+    .ticks(5)
+
+  const line = d3.line()
+    .x(d => xScaleLine(d[0]))
+    .y(d => yScaleLine(d[1]))
+
+    //Constants
+  const data = {prob: [{p:1/2}, {p:1/2}],
+                count: [0, 0],
+                dataFlip: []
+              }
+  const cumProb = cumsumProb(data.prob)
+
+
+  const svg = d3.select("body")
+    .append("svg")
+      .attr("width", width)
+      .attr("height", height)
+
+  const lineChart = svg.append("g")
+      .attr("id", "lineChart")
+      .attr("width", widthLine)
+      .attr("height", heightLine)
+      .attr("transform", `translate(${margin.leftLine}, ${margin.topLine})`)
+      // .on("mouseover", mousemove)
+      // .on("mouseout", mousemove)
+      // .on("mousemove", mousemove);
+
+  // clip defs to be used so axis transitions are hidden
+  lineChart.append("defs").append("clipPath")
+    .attr("id", "clip")
+  // lineChart
+    .append("rect")
+      .attr("width", widthLine + margin.leftLine + margin.rightLine/2)
+      .attr("height", heightLine + margin.bottomLine)
+      .attr("transform", `translate(${-margin.leftLine}, 0)`)
+      // .attr("stroke", "black")
+      // .attr("fill", "none")
+
+  const gxAxis = lineChart.append('g')
+    .attr("clip-path", "url(#clip)")
+    .attr("class", "x axis")
+    .attr("transform", `translate(0, ${heightLine})`)
+    .call(xAxisLine)
+
+  lineChart.append('g')
+    .attr("class", "y axis")
+    .attr("transform", `translate(0, 0)`)
+    .call(yAxisLine)
+  lineChart.append("text")
+    .attr('transform', `translate(${-margin.leftLine/1.5}, ${heightLine/2}) rotate(-90)`)
+    .style('text-anchor', 'middle')
+    .style("font-family", "Raleway")
+    .style("font-size", "1em")
+    .text('Relative frequency of heads');
+  const simulationText = lineChart.append("text")
+    .attr('transform', `translate(${widthLine - 10}, ${0})`)
+    .style('text-anchor', 'end')
+    .style("font-family", "Raleway")
+    .style("font-size", "1em")
+    .text("0 simulations");
+  lineChart.append("text")
+    .attr('transform', `translate(${widthLine/2}, ${heightLine + margin.bottomLine/1.5})`)
+    .style('text-anchor', 'middle')
+    .style("font-family", "Raleway")
+    .style("font-size", "1em")
+    .text("# of simulations")
+
+  const barChart = svg.append("g")
+      .attr("id", "barChart")
+      .attr("width", widthBar)
+      .attr("height", heightBar)
+      .attr("transform", `translate(${width * xRatioLine + margin.leftBar}, ${margin.topBar})`)
+
+  const gyAxisBar = barChart.append('g')
+    .attr("class", "y axis")
+    .attr("transform", `translate(0, 0)`)
+    .call(yAxisBar)
+  barChart.append("text")
+    .attr('transform', `translate(${-margin.leftBar/1.5}, ${heightBar/2}) rotate(-90)`)
+    .style('text-anchor', 'middle')
+    .style("font-family", "Raleway")
+    .style("font-size", "1em")
+    .text('Count');
+
+  barChart.selectAll('.xTicksLabel')
+    .data([0, 1])
+    .enter()
+    .append("text")
+    .attr('transform', d => `translate(${xScaleBar(d+0.75/2)}, ${heightBar + margin.bottomBar/3})`)
+    .style('text-anchor', 'middle')
+    .style("font-family", "Raleway")
+    .text(d => d)
+  barChart.append("text")
+    .attr('transform', `translate(${widthBar/2}, ${heightBar + margin.bottomBar/1.5})`)
+    .style('text-anchor', 'middle')
+    .style("font-family", "Raleway")
+    .style("font-size", "1em")
+    .text("# of heads")
+  barChart.append("text")
+    .attr('transform', `translate(${widthBar/2}, ${-margin.topBar/1.8})`)
+    .style('text-anchor', 'middle')
+    .style("font-family", "Raleway")
+    .style("font-size", "1em")
+    .text("Distribution of # of heads")
+  barChart.append("text")
+    .attr('transform', `translate(${widthBar/2}, ${-margin.topBar/4})`)
+    .style('text-anchor', 'middle')
+    .style("font-family", "Raleway")
+    .style("font-size", "1em")
+    .text("in all the simulations")
+
+  // add DOM elements representing data, they'll be updated
+  const pathExpected = lineChart.append("path")
+    .attr("id", "expected");
+  const pathActual = lineChart.append("path")
+    .attr("id", "actual");
+
+
+  //Tool tip on lineChart...
+  // const tipFocus = d3.tip().attr('id', 'tipDieFocus').attr('class', 'd3-tip').offset([0, 10]).direction('e');
+
+  const focus = lineChart.append("g").style("display", "none");
+
+  focus.append("rect").attr("y", 0).style('fill','white').style('opacity','0.75');
+
+  focus.append("line").attr('id','focusLine').style("stroke-dasharray", ("2, 2"));
+
+  focus.append("circle")
+    .attr("r", 5)
+    .attr("fill", colors.orange)
+    .attr('class','expectedCircle')
+    .attr('id','expectedCircle');
+
+  focus.append("circle").attr("r", 5).attr('class','actualCircle');
+    
+
+  // function mousemove() {
+  //   console.log("on it")
+  //   const x = Math.round(xScaleLine.invert(d3.mouse(this)[0]), 0);
+  //   let y = yScaleLine.invert(d3.mouse(this)[1]);
+  //   if (x>0 && x<data.dataFlip.length+1 && y>=1 && y<=6) {
+  //     focus.style("display", null)
+  //       y = data.dataFlip[x-1][1];
+  //       focus.select('.expectedCircle').attr("cx", xScaleLine(x)).attr('cy', yScaleLine(cumProb));
+  //       focus.select('.actualCircle').attr("cx", xScaleLine(x)).attr('cy',yScaleLine(y));
+  //       focus.select('rect').attr("x", xScaleLine(x)).attr("height",yScaleLine(1)-1).attr("width", xScaleLine(xlimMax - x));
+  //       focus.select('line').attr("x1", xScaleLine(x)).attr("y1", yScaleLine(6)).attr("x2", xScaleLine(x)).attr("y2", yScaleLine(1));
+  //       // xaxisDie.call(xAxisExpected.tickValues([x]));
+  //     // tipDieFocus.html(function(d) { return 'Average: <span id="avgFocus">'+round(y,2)+'</span><br>'+
+  //                         // 'Expectation: <span id="expFocus">'+round(expectationCalc(probDie),2)+'</span>';});
+  //       // tipDieFocus.show(document.getElementById("expectedCircle"));
+  //   } else {
+  //     focus.style("display", "none");
+  //     // tipDieFocus.hide();
+  //     // xaxisDie.call(xAxisExpected.tickValues(null));
+  //   }
+  // }
+
+
+
+  //Returns total samples and average at that point
+  function average(data) {
+    const total = data.reduce((a, b) => a + b, 0)
+    const sum = data.reduce((a, b, i) => a + b * i, 0)
+    return [total, sum/total]; 
+  }
+
+  //Cumulative sum function for array
+  function cumsumProb(array){
+    let resultArray = []
+    array.reduce((a, b, i) => resultArray[i] = a + b.p, 0);
+    return resultArray;
+  }
+
+
+  function updateLineChart(data, prob){
+    if(data.length>xlimMax*0.9){
+      // if almost to end of chart, expand chart
+      xlimMax *= 1.5
+    }
+    // xlimMax = data.length + 10
+    // upadte axis and line
+    xScaleLine.domain([0, xlimMax])
+    gxAxis
+      .transition()
+      .duration(60)
+      .call(xAxisLine);
+
+    pathExpected
+      .datum([[1, prob], [xlimMax, prob]])
+      .style("stroke-dasharray", ("5, 5"))
+      .attr("d", line)
+      .attr("stroke", colors.muted)
+    pathActual
+      .datum(data)
+      .attr("stroke", colors.orange)
+      .attr("fill", "none")
+      // .transition()
+      .attr("d", line)
+
+    simulationText.text(`${data.length} simulations`)
+  }
+
+  function updateBarChart(data) {
+    yScaleBar.domain([0, d3.sum(data)])
+    gyAxisBar
+      .transition()
+      .duration(10)
+      .call(yAxisBar);
+
+    const bars = barChart.selectAll(".bars")
+      .data(data)
+
+    bars.exit().remove()
+    bars.enter()
+      .append("rect")
+        .attr("class", "bars")
+        .attr("x", (d, i) => xScaleBar(i))
+        .attr("y", d => yScaleBar(d))
+        .attr("width", xScaleBar(0.75)-xScaleBar(0))
+        .attr("height", d => heightBar - yScaleBar(d))
+        .attr("fill", colors.info)
+      .merge(bars)
+        // .transition()
+        .attr("y", d => yScaleBar(d))
+        .attr("height", d => heightBar - yScaleBar(d))
+
+      const textBars = barChart.selectAll(".textBars")
+        .data(data)
+
+      textBars.exit().remove()
+      textBars.enter()
+      .append("text")
+        .attr("class", "textBars")
+        .attr("x", (d, i) => xScaleBar(i+0.75/2))
+        .attr("y", d => yScaleBar(d)-10)
+        .attr("fill", colors.info)
+        .style("text-anchor", "middle")
+        .style("font-family", "Raleway")
+        .style("font-size", "1em")
+      .merge(textBars)
+        // .transition()
+        .attr("y", d => yScaleBar(d)-10)
+        .text(d => d)
+
+  }
+
+  function flip(cumProb){
+    const num = Math.random();
+    if (num<cumProb[0]) {
+      data.count[0] += 1;
+    } else {
+      data.count[1] += 1;
+    }
+    data.dataFlip.push(average(data.count));
+  }
+
+
+  function simulate(n){
+    let i = 0
+    const t = d3.timer(function(){
+      if (i++ >= n-1) t.stop();
+      flip(cumProb)
+      updateLineChart(data.dataFlip, 0.5);
+      // updateBarChart(data.count.map(d => d/d3.sum(data.count))) //for relative frequencies
+      updateBarChart(data.count)
+    }, 15)
+  }
+
+  updateLineChart(data.dataFlip, 0.5)
+
+
+  var _transitions = [
+    {
+      transitionForward: () => simulate(100),
+      transitionBackward: () => {
+        // reset data to zero
+        data.dataFlip = []
+        data.count = [0, 0]
+        updateLineChart(data.dataFlip, 0.5)
+        updateBarChart(data.count)
+      }, 
+      index: 0
+    },
+    {
+      transitionForward: () => simulate(400),
+      index: 1
+    },
+    {
+      transitionForward: () => simulate(1500),
+      index: 2
+    }
+  ]
+
+</script>

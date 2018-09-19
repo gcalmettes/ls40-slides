@@ -1,0 +1,293 @@
+<section data-transition="slide-in">
+  <h3>Simulating the null (One-way ANOVA)</h3>
+  <p>
+    The $F$-statistic is <span class="u danger">just another statistic</span>, like the MAD, this doesn't change the approach to compare different groups.
+  </p>
+  <div class="row framed border-info down-3">
+  <p class="em u">
+    Null hypothesis testing:
+  </p>
+  <ol class="normal">
+    <li>
+      State hypotheses
+    </li>
+    <li>
+      Calculate a statistic, based on your sample data
+    </li>
+    <li>
+      Create a distribution of this statistic, as it would be observed if the null hypothesis were true
+    </li>
+    <li>
+      Measure how extreme your test statistic from (2) is, as compared to the distribution generated in (3)
+    </li>
+  </ol>
+  </div>
+</section>
+
+<section data-transition="none">
+  <h3>Simulating the null (One-way ANOVA)</h3>
+  <p class="no-margin-top smaller">
+    To simulate the null hypothesis, we have to randomize the groups (shuffle all the pooled numbers of ants observed per filling), redistribute these shuffled numbers into 3 groups (same sample size than original groups) and calculate the resulting $F$-statistic each time.
+  </p>
+  <div class="row flex">
+    <div class="col-50 flex-center">
+      <p>
+        $F_\mathrm{original}=5.63$
+      </p>
+    </div>
+    <table class="col-49 center tiny">
+      <tr>
+        <td class="border-nobottom"></td>
+        <td class="bg-muted-light black border-nobottom border-right border-left border-top" colspan="8">Number of ants visiting sandwiches</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td class="bg-muted-light black border-left">#1</td>
+        <td class="bg-muted-light black">#2</td>
+        <td class="bg-muted-light black">#3</td>
+        <td class="bg-muted-light black">#4</td>
+        <td class="bg-muted-light black">#5</td>
+        <td class="bg-muted-light black">#6</td>
+        <td class="bg-muted-light black">#7</td>
+        <td class="bg-muted-light black border-right">#8</td>
+        <td>$\bar{x}$</td>
+      </tr>
+      <tr class="border-bottom">
+        <td class="bg-warning-light border-left border-right">Vegemite</td>
+        <td class="bg-warning-light black">18</td>
+        <td class="bg-warning-light black">29</td>
+        <td class="bg-warning-light black">42</td>
+        <td class="bg-warning-light black">42</td>
+        <td class="bg-warning-light black">31</td>
+        <td class="bg-warning-light black">21</td>
+        <td class="bg-warning-light black">38</td>
+        <td class="bg-warning-light black border-right">25</td>
+        <td class="warning-dark border-nobottom">30.8</td>
+      </tr>
+      <tr class="border-bottom">
+        <td class="bg-info-light border-left border-right">Peanut Butter</td>
+        <td class="bg-info-light black">43</td>
+        <td class="bg-info-light black">59</td>
+        <td class="bg-info-light black">22</td>
+        <td class="bg-info-light black">25</td>
+        <td class="bg-info-light black">36</td>
+        <td class="bg-info-light black">47</td>
+        <td class="bg-info-light black">19</td>
+        <td class="bg-info-light black border-right">21</td>
+        <td class="info border-nobottom">34.0</td>
+      </tr>
+      <tr>
+        <td class="bg-danger-light border-left border-right">Ham & Pickles</td>
+        <td class="bg-danger-light black">44</td>
+        <td class="bg-danger-light black">34</td>
+        <td class="bg-danger-light black">36</td>
+        <td class="bg-danger-light black">49</td>
+        <td class="bg-danger-light black">54</td>
+        <td class="bg-danger-light black">65</td>
+        <td class="bg-danger-light black">59</td>
+        <td class="bg-danger-light black border-right">53</td>
+        <td class="danger">49.3</td>
+      </tr>
+    </table>
+  </div>
+<!-- The resampling tables -->
+  <div class="row down-3">
+    <div class="col-50 fragment">
+      <table class="center tiny">
+        <tr>
+          <td class="border-nobottom"></td>
+          <td class="bg-muted-light black border-nobottom border-right border-left border-top" colspan="8">Number of ants visiting sandwiches</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td class="bg-muted-light black border-left">#1</td>
+          <td class="bg-muted-light black">#2</td>
+          <td class="bg-muted-light black">#3</td>
+          <td class="bg-muted-light black">#4</td>
+          <td class="bg-muted-light black">#5</td>
+          <td class="bg-muted-light black">#6</td>
+          <td class="bg-muted-light black">#7</td>
+          <td class="bg-muted-light black border-right">#8</td>
+          <td>$\bar{x}$</td>
+        </tr>
+        <tr class="border-bottom">
+          <td class="bg-warning-light border-left border-right">Vegemite</td>
+          <td class="bg-info-light black">47</td>
+          <td class="bg-danger-light black">49</td>
+          <td class="bg-info-light black">22</td>
+          <td class="bg-warning-light black">42</td>
+          <td class="bg-warning-light black">31</td>
+          <td class="bg-danger-light black">65</td>
+          <td class="bg-warning-light black">38</td>
+          <td class="bg-info-light black border-right">25</td>
+          <td class="success border-nobottom">39.9</td>
+        </tr>
+        <tr class="border-bottom">
+          <td class="bg-info-light border-left border-right">Peanut Butter</td>
+          <td class="bg-danger-light black">53</td>
+          <td class="bg-danger-light black">34</td>
+          <td class="bg-info-light black">43</td>
+          <td class="bg-warning-light black">21</td>
+          <td class="bg-info-light black">21</td>
+          <td class="bg-info-light black">59</td>
+          <td class="bg-danger-light black">54</td>
+          <td class="bg-warning-light black border-right">25</td>
+          <td class="success border-nobottom">38.8</td>
+        </tr>
+        <tr>
+          <td class="bg-danger-light border-left border-right">Ham & Pickles</td>
+          <td class="bg-warning-light black">18</td>
+          <td class="bg-info-light black">19</td>
+          <td class="bg-danger-light black">44</td>
+          <td class="bg-danger-light black">36</td>
+          <td class="bg-warning-light black">42</td>
+          <td class="bg-warning-light black">29</td>
+          <td class="bg-info-light black">36</td>
+          <td class="bg-danger-light black border-right">59</td>
+          <td class="success">35.4</td>
+        </tr>
+      </table>
+      <p class="smaller">
+        $F_1=0.21$
+      </p>
+    </div>
+    <div class="col-50 fragment">
+      <table class="center tiny">
+        <tr>
+          <td class="border-nobottom"></td>
+          <td class="bg-muted-light black border-nobottom border-right border-left border-top" colspan="8">Number of ants visiting sandwiches</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td class="bg-muted-light black border-left">#1</td>
+          <td class="bg-muted-light black">#2</td>
+          <td class="bg-muted-light black">#3</td>
+          <td class="bg-muted-light black">#4</td>
+          <td class="bg-muted-light black">#5</td>
+          <td class="bg-muted-light black">#6</td>
+          <td class="bg-muted-light black">#7</td>
+          <td class="bg-muted-light black border-right">#8</td>
+          <td>$\bar{x}$</td>
+        </tr>
+        <tr class="border-bottom">
+          <td class="bg-warning-light border-left border-right">Vegemite</td>
+          <td class="bg-danger-light black">44</td>
+          <td class="bg-warning-light black">29</td>
+          <td class="bg-danger-light black">36</td>
+          <td class="bg-info-light black">36</td>
+          <td class="bg-info-light black">43</td>
+          <td class="bg-warning-light black">42</td>
+          <td class="bg-info-light black">19</td>
+          <td class="bg-warning-light black border-right">25</td>
+          <td class="success border-nobottom">34.3</td>
+        </tr>
+        <tr class="border-bottom">
+          <td class="bg-info-light border-left border-right">Peanut Butter</td>
+          <td class="bg-info-light black">59</td>
+          <td class="bg-info-light black">25</td>
+          <td class="bg-warning-light black">18</td>
+          <td class="bg-danger-light black">34</td>
+          <td class="bg-info-light black">47</td>
+          <td class="bg-danger-light black">53</td>
+          <td class="bg-warning-light black">31</td>
+          <td class="bg-info-light black border-right">21</td>
+          <td class="success border-nobottom">36.0</td>
+        </tr>
+        <tr>
+          <td class="bg-danger-light border-left border-right">Ham & Pickles</td>
+          <td class="bg-info-light black">22</td>
+          <td class="bg-warning-light black">21</td>
+          <td class="bg-danger-light black">49</td>
+          <td class="bg-danger-light black">65</td>
+          <td class="bg-warning-light black">42</td>
+          <td class="bg-danger-light black">59</td>
+          <td class="bg-danger-light black">54</td>
+          <td class="bg-warning-light black border-right">38</td>
+          <td class="success">43.8</td>
+        </tr>
+      </table>
+      <p class="smaller">
+        $F_2=1.06$
+      </p>
+    </div>
+  </div>
+  <p class="fragment">
+    <i class="fas fa-arrow-circle-right"></i>
+    Repeat this process 10000 times! ($F_1 ... F_{10000}$)
+  </p>
+</section>
+
+<section data-external-replace="slide-animation-ants-sandwich-resampling-anova.html"></section>
+
+<section data-transition="slide-out">
+  <h3>Simulating the null (One-way ANOVA)</h3>
+  <div class="row">
+    <div class="col-45">
+      <p class="smaller">
+        We obtain 10000 $F$-statistics that <span class="info">could have been observed if there was no association</span> between the sandwich filling and the number of ants attracted to it.
+      </p>
+      <p class="framed border-danger fragment" data-fragment-index=1>
+        Where does the initial $F$-statistic lies in this distribution? What was the probability of getting such an extreme statistic <span class="danger"> by chance?</span>
+      </p>
+    </div>
+    <div class="col-55">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/ants-sandwich-simulation-fstat.svg#axes_1"></use>
+        <use class="fragment" data-fragment-index=1 xlink:href="content/img/ants-sandwich-simulation-fstat.svg#axes_2"></use>
+        <use class="fragment" data-fragment-index=2 xlink:href="content/img/ants-sandwich-simulation-fstat.svg#axes_3"></use>
+      </svg>
+    </div>
+  </div>
+  <p class="fragment" data-fragment-index=3>
+    <i class="fas fa-arrow-circle-right danger"></i>
+    The probability of observing such a difference in the number of ants attracted by the sandwiches if the filling had no effect would be $<2\%$.
+  </p>
+  <p class="fragment" data-fragment-index=3>
+    <i class="fas fa-arrow-circle-right danger"></i>
+    There is evidence that ants do not prefer sandwich fillings equally.
+  </p>
+</section>
+
+<section>
+  <h3>Which filling is particularly attractive?</h3>
+  <p>
+    Using the $F$-statistic as our statistic of interest, we obtained <span class="pop">the same p-value</span> than when we used the $MAD$, and our conclusions will be the same, i.e. that ants do not prefer sandwich fillings equally. Which filling is particularly attractive?
+  </p>
+  <p class="fragment u em" data-fragment-index=1>
+    Several options are possible as follow-up test (like for the MAD analysis ):
+  </p>
+  <div class="row">
+    <ul class="small push-left fragment" data-fragment-index=1>
+      <li>
+        Confidence interval for a single mean
+      </li>
+      <li>
+        <span class="fragment highlight-info" data-fragment-index=1>Confidence interval for a difference in two means</span>
+      </li>
+      <li>
+        Pairwise comparison for a difference in two means (NHST)
+      </li>
+    </ul>
+  </div>
+  <div class="row">
+    <div class="col-80 fragment" data-fragment-index=2>
+      <p>
+        <span class="u em">Vegemite vs Peanut Butter:</span> <br>
+        $30.75 - 34.0 = -3.25$ with $95\%$ CIs ($-14.75, 7.50$)
+      </p>
+      <p>
+        <span class="u em">Vegemite vs Ham & Pickles:</span> <br>
+        $30.75 - 49.25 = -18.50$ with $95\%$ CIs <span class="fragment highlight-bg-info" data-fragment-index=3>($-27.50, -9.375$)</span>
+      </p>
+      <p>
+        <span class="u em">Peanut Butter vs Ham & Pickles:</span> <br>
+        $34.0 - 49.25 = -15.25$ with $95\%$ CIs <span class="fragment highlight-bg-info" data-fragment-index=3>($-26.75, -3.00$)</span>
+      </p>
+    </div>
+    <div class="col-20">
+      <p class="framed border-warning fragment center" data-fragment-index=3>
+        Ham & Pickles is a big hit at every ants birthday party!
+      </p>
+    </div>
+  </div>
+</section>

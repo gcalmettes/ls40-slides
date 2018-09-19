@@ -1,0 +1,326 @@
+<section>
+  <h3>What influences the p-value?</h3>
+  <p class="sided border-danger">
+    So far we've looked at a measure of the <span class="u-danger">strength of evidence</span> (p-value).
+    However, we've not yet formally looked at
+    <span class="danger">what factors impact the
+    strength of evidence</span>.
+  </p>
+  <p>
+    In other words, why is the strength of evidence (measured by p-value)
+    sometimes strong and sometimes weak or non-existant?
+  </p>
+</section>
+
+<section>
+  <h3>Investigating the UCLA - USC rivalry</h3>
+  <div>
+    <iframe class="framed" data-src="https://en.wikipedia.org/wiki/UCLA–USC_rivalry"
+    style="background: #FFFFFF; width: 1000px; height: 480px; border: 0px;" scrolling="Yes"></iframe>
+  </div>
+</section>
+
+<section class="title-slide">
+  <h3 class="center">
+    Are the UCLA Bruins better than the USC Trojans at basketball?
+  </h3>
+  <div class="row">
+    <div class="col-20 right-20">
+      <img src="content/img/UCLA_Bruins_logo.svg">
+    </div>
+    <div class="col-10 massive">
+      >
+    </div>
+    <div class="col-12">
+      <img src="content/img/USC_Trojans_logo.svg">
+    </div>
+    <div class="col-12 massive">
+      ?
+    </div>
+  </div>
+  <aside class="notes">
+    Everything we will do today, is exactly what you will have to do
+    for next week homework. Not the same dataset, but the exact same
+    steps and procedure.
+  </aside>
+</section>
+
+<section data-transition="slide-in">
+  <h3>Bruins vs Trojans (Basketball)</h3>
+  <div>
+    <iframe class="framed" data-src="https://en.wikipedia.org/wiki/UCLA_Bruins_men%27s_basketball#Record_vs._Pac-12_opponents"
+    style="background: #FFFFFF; width: 1000px; height: 480px; border: 0px;" scrolling="Yes"></iframe>
+  </div>
+</section>
+
+<section data-transition="none">
+  <h3>Bruins vs Trojans (Basketball)</h3>
+  <div class="row down-4">
+    <div class="col-20 right-20">
+      <img src="content/img/UCLA_Bruins_logo.svg">
+    </div>
+    <div class="col-10 down-4 center">
+      vs
+    </div>
+    <div class="col-12">
+      <img src="content/img/USC_Trojans_logo.svg">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-20 center big right-20">
+      140
+    </div>
+    <div class="col-10 bigger">
+      <span class="fragment" data-fragment-index=1>+</span>
+    </div>
+    <div class="col-12 center big">
+      109
+    </div>
+    <div class="col-30 big">
+      <span class="fragment" data-fragment-index=1>= 249 games</span>
+    </div>
+  </div>
+  <p class="fragment down-3">
+    <i class="fas fa-arrow-circle-right"></i> Based on these data, can we say that the UCLA Bruins are better
+    than the USC Trojans at Basketball?
+  </p>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Bruins vs Trojans (Basketball)</h3>
+  <div class="row flex">
+    <div class="col-49 sided border-orange small">
+        <span class="em u">
+          What are the <span class="orange">observational units</span>?
+        </span> <br>
+        <span class="fragment">Each UCLA-USC basketball game</span>
+    </div>
+    <div class="col-49 right-2 sided border-info small">
+      <span class="em u">
+        What is the <span class="info">variable</span> measured? <br>
+        Is it Categorical or Quantitative?
+      </span><br>
+        <span class="fragment">Whether or not UCLA won the game (categorical)</span>
+    </div>
+  </div>
+  <p class="sided border-danger fragment">
+  We are interested in investigating whether the UCLA Bruins are better
+  than the USC Trojans at
+  basketball, and we think they are. <br>
+  <span class="fragment">
+    <span class="danger u em">Alternative hypothesis:</span>When they are playing against
+    the Trojans, the Bruins are more likely to win a game
+    (<span class="danger">$\pi>0.5$</span>).
+  </span>
+  </p>
+  <p class="fragment sided">
+    <span class="em u">What is the null hypothesis in this investigation?</span><br>
+    <span class="fragment">
+      UCLA and USC are equally likely to win a game ($\pi=0.5$).<br>
+      The recorded proportion of victories of the Bruins over the 249 games
+      could be explained by chance alone.
+    </span>
+  </p>
+</section>
+
+<section data-transition="slide-in">
+  <h3>UCLA-USC games simulation</h3>
+  <p>
+    We know that the Bruins won <span class="danger">140 out of 249</span>
+    games against USC.
+  </p>
+  <p class="sided border-danger" data-fragment-index=1>
+    <span>What is the observed statistic?</span>: <br>
+    <span class="fragment" data-fragment-index=1>
+      Proportion of UCLA wins:
+      <span class="danger">$\hat{p}=\frac{140}{249}=0.562$</span>
+    </span>
+  </p>
+  <div class="fragment small quoted" data-fragment-index=2>
+    If UCLA and USC were equally likely to win a game,
+    would it be surprising to observe $\hat{p} \geq 0.562$
+    for UCLA over 249 games?
+  </div>
+  <p class="fragment down-3" data-fragment-index=3>
+    We can use <span class="info">simulations</span> to investigate whether this provides us with strong enough
+    evidence against the null and if the proportion of victories of
+    the Bruins over the Trojans is statistically significant.
+  </p>
+  <div class="row fragment" data-fragment-index=3>
+    <div class="col-32 sided border-info small">
+      <span class="em">Single simulation?</span><br>
+      <span class="fragment">
+        249 random drawings of <span class="em strong">0</span> or <span class="em strong">1</span>
+      </span>
+    </div>
+    <div class="col-32 sided border-info small right-1">
+      <span class="em">Statistic of interest?</span> <br>
+      <span class="fragment">
+        proportion of <span class="em strong">1</span> $(\hat{p}_\textrm{wins})$ in the sample
+      </span>
+    </div>
+    <div class="col-32 sided border-info small right-1">
+      <span class="em">Number of simulations?</span> <br>
+      <span class="fragment">
+        10000
+      </span>
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide-out">
+  <h3>UCLA-USC games simulation</h3>
+  <p>
+    We know that the Bruins won <span class="danger">140 out of 249</span>
+    games against USC.
+  </p>
+  <p class="sided border-danger" data-fragment-index=1>
+    <span>What is the observed statistic?</span>: <br>
+    <span data-fragment-index=1>
+      Proportion of UCLA wins:
+      <span class="danger">$\hat{p}=\frac{140}{249}=0.562$</span>
+    </span>
+  </p>
+  <div class="small quoted" data-fragment-index=2>
+    If UCLA and USC were equally likely to win a game,
+    would it be surprising to observe $\hat{p}\geq0.562$
+    for UCLA over 249 games?
+  </div>
+  <div class="row down-3">
+    <div class="col-40">
+      <p>10000 simulations <br> of 249 game outcomes <br> (win, $\pi=0.5$)</p>
+    </div>
+    <div class="col-55">
+      <table class="smallest center">
+        <thead>
+          <th class="bg-muted border-right">Simulation #</th>
+          <th class="bg-muted border-right" colspan="8">Random sample $(n=249)$</th>
+          <th class="bg-muted">sample $\hat{p}$</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="border-right">1</td>
+            <td>1</td>
+            <td>0</td>
+            <td>0</td>
+            <td>...</td>
+            <td>1</td>
+            <td>0</td>
+            <td>0</td>
+            <td class="border-right">1</td>
+            <td class="fragment highlight-bg-info" data-fragment-index=1>0.504</td>
+          </tr>
+          <tr>
+            <td class="border-right">2</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>...</td>
+            <td>0</td>
+            <td>1</td>
+            <td>0</td>
+            <td class="border-right">0</td>
+            <td class="fragment highlight-bg-info" data-fragment-index=1>0.531</td>
+          </tr>
+          <tr>
+            <td class="border-right">3</td>
+            <td>1</td>
+            <td>1</td>
+            <td>0</td>
+            <td>...</td>
+            <td>0</td>
+            <td>1</td>
+            <td>1</td>
+            <td class="border-right">1</td>
+            <td class="fragment highlight-bg-info" data-fragment-index=1>0.486</td>
+          </tr>
+          <tr class="vertical-align">
+            <td class="border-right">...</td>
+            <td class="border-right" colspan=8>...</td>
+            <td class="fragment highlight-bg-info" data-fragment-index=1>...</td>
+          </tr>
+          <tr>
+            <td class="border-right">9999</td>
+            <td>0</td>
+            <td>1</td>
+            <td>1</td>
+            <td>...</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td class="border-right">1</td>
+            <td class="fragment highlight-bg-info" data-fragment-index=1>0.497</td>
+          </tr>
+          <tr>
+            <td class="border-right">10000</td>
+            <td>0</td>
+            <td>1</td>
+            <td>1</td>
+            <td>...</td>
+            <td>0</td>
+            <td>1</td>
+            <td>1</td>
+            <td class="border-right">0</td>
+            <td class="fragment highlight-bg-info" data-fragment-index=1>0.519</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h3>UCLA-USC games simulation results</h3>
+  <div class="row">
+    <div class="col-35">
+      <p class="sided border-danger">
+        Where is it centered?<br>
+        <span class="fragment" data-fragment-index=1>
+         $\pi=0.5$<br>(<span class="danger">null hypothesis</span>)
+        </span>
+      </p>
+      <p class="sided border-orange">
+        What do we need to count?<br>
+        <span class="fragment" data-fragment-index=3>
+          How many simulations have $\hat{p}\geq0.562$
+        </span>
+      </p>
+    </div>
+    <div class="col-65">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/ucla-usc-simulation-hist.svg#axes_1"></use>
+        <use class="fragment" data-fragment-index=2 xlink:href="content/img/ucla-usc-simulation-hist.svg#axes_2"></use>
+        <use class="fragment" data-fragment-index=4 xlink:href="content/img/ucla-usc-simulation-hist.svg#axes_3"></use>
+      </svg>
+    </div>
+  </div>
+  <p class="fragment" data-fragment-index=4>
+    Out of the 10000 simulations, <span class="orange">288</span>
+    resulted in $\hat{p}\geq0.562$
+  <br>
+    <span class="right-2">$\textrm{p-value}=\frac{288}{10000}=0.00288$</span> <br>
+    <span class="fragment danger">
+    <i class="fas fa-arrow-circle-right danger"></i> We have strong evidence against the chance model
+    </span>
+  </p>
+</section>
+
+<section class="title-slide">
+  <div class="row">
+    <div class="col-20 right-25">
+      <img src="content/img/UCLA_Bruins_logo.svg">
+    </div>
+    <div class="col-10 massive">
+      >
+    </div>
+    <div class="col-12">
+      <img src="content/img/USC_Trojans_logo.svg">
+    </div>
+    <div class="col-12 massive">
+      ?
+    </div>
+  </div>
+  <h2 class="fragment center">
+    YES, of course!!
+  </h2>
+</section>

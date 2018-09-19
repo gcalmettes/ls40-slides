@@ -1,0 +1,30 @@
+<section>
+  <h3>Simulating the null hypothesis</h3>
+  <p class="u em">
+    Simulating the <span class="strong">no-association</span> condition:
+  </p>
+  <ol class="push-left small">
+    <li>
+      Create an array for <span class="danger">each of your explanatory variable categories</span> (<span class="em">e.g.:</span> age groups) with as many different outcomes as the response variable outcomes (<span class="em">e.g.:</span> coke=0, pepsi=1, sprite=2)
+    </li>
+    <li class="fragment">
+      <span class="pop">Pool together</span> all the different arrays into a single population (if age doesn't influence soda choice, then all the age groups have the <span class="strong">same probability</span> of choosing one soda over another).
+    </li>
+    <li class="fragment">
+      <span class="pop">Shuffle</span> this population array (simulate the <span class="strong">"no-association"</span> condition).
+    </li>
+    <li class="fragment">
+      <span class="pop">Split</span> this array into groups of <span class="strong">same group size as the original samples</span> (each explanatory variable category, <span class="em">i.e.: each age-groups</span>), and <span class="pop">calculate the new counts</span> you obtain for each of the soda in each categories.
+    </li>
+    <li class="fragment">
+      <span class="pop">Calculate the $\chi^2$-statistic</span> (compared to the expected counts. <span class="strong">Those never change!</span>).
+    </li>
+    <li class="fragment">
+      <span class="pop">Repeat this many times</span> (10000) to get a <span class="strong">randomization distribution</span> of many $\chi^2$-statistics under the assumption that the null hypothesis is true.
+    </li>
+    <li class="fragment">
+      Calculate the <span class="danger">p-value</span> (right tail only for $\chi^2$)
+    </li>
+  </ol>
+  </p>
+</section>

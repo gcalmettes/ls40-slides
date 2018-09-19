@@ -1,0 +1,54 @@
+<section>
+  <h3>Probability of Type I error</h3>
+  <div class="row flex">
+    <div class="col-66 flex-center">
+      <div>
+        <p class="em u">
+          If the null hypothesis is true:
+        </p>
+          <ul class="smaller">
+            <li>5% of statistics will be in the most extreme 5%</li>
+            <li>5% of statistics will give p-values less than 0.05</li>
+            <li>5% of statistics will lead to rejecting H$_0$ at $\alpha=0.05$</li>
+          </ul>
+        <p>
+          <i class="fas fa-arrow-circle-right danger"></i>
+          If $\alpha=0.05$, there is a 5% chance of a Type I error
+        </p>
+      </div>
+    </div>
+    <div class="col-33 flex-center">
+      <svg width="100%" viewBox="40 0 390 288">
+        <use xlink:href="content/img/error-type1-probability.svg#axes_2"></use>
+        <use xlink:href="content/img/error-type1-probability.svg#axes_1"></use>
+      </svg>
+    </div>
+  </div>
+  <div class="row flex">
+    <div class="col-66 flex-center">
+      <div>
+        <p class="em u">
+          If the null hypothesis is true:
+        </p>
+          <ul class="smaller">
+            <li>1% of statistics will be in the most extreme 1%</li>
+            <li>1% of statistics will give p-values less than 0.01</li>
+            <li>1% of statistics will lead to rejecting H$_0$ at $\alpha=0.01$</li>
+          </ul>
+        <p>
+          <i class="fas fa-arrow-circle-right pop"></i>
+          If $\alpha=0.01$, there is a 1% chance of a Type I error
+        </p>
+      </div>
+    </div>
+    <div class="col-33 flex-center">
+      <svg width="100%" viewBox="40 0 390 288">
+        <use xlink:href="content/img/error-type1-probability.svg#axes_3"></use>
+        <use xlink:href="content/img/error-type1-probability.svg#axes_1"></use>
+      </svg>
+    </div>
+  </div>
+  <p class="bg-danger-light black">
+    The probability of making a Type I error (rejecting a true null) <span class="strong">is the significance level, $\alpha$</span>.
+  </p>
+</section>

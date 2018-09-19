@@ -1,0 +1,166 @@
+<!-- <section data-transition="slide">
+  <h3>Can dolphins communicate?</h3>
+ 
+  <div class="row">
+    <div class="col-49 center">
+      <span class="small info">Null Hypothesis</span>
+      <div class="framed border-info smallest">
+        <div>
+          Buzz is <span class="info">just guessing</span> (his probability of choosing the correct button is 0.50) and he
+          <span class="info">got really lucky</span> in these 16 attempts.
+        </div>
+        <div class="info center">
+          $\pi=0.5$
+        </div>
+      </div>
+    </div>
+    <div class="col-49 center">
+      <span class="small danger">Alternative hypothesis</span>
+      <div class="right-2 framed border-danger smallest">
+        <div>
+          Buzz is <span class="danger">doing something other than just guessing</span> (his probability of choosing the correct button is more than 0.50).
+        </div>
+        <div class="danger center">
+          $\pi>0.5$
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="down-2 smaller">
+    The very small p-value we obtained when simulating random chance means our evidence is strong enough to be considered
+    <span class="orange">statistically significant</span>.
+  </p>
+  <p class="down-2 smaller">
+    <i class="fas fa-arrow-circle-right orange"></i> That is, we don't think the result of the experiment (15 out of 16 correct button choices by Buzz)
+    happened by chance alone, but rather, <span class="orange">something other than
+    "random chance" was at play</span>.
+  </p>
+</section> -->
+
+
+<section data-transition="slide-in">
+  <h3>Follow up study</h3>
+  <p class="sided border-danger">
+    One goal of statistical significance testing is to rule out random
+    chance as <span class="danger">plausible</span> (believable)
+    explanation for what we have observed. We still need to worry
+    about <span class="em bg-danger-light">how well the study was conducted</span>.
+  </p>
+  <p class="right-3 smaller down-4">
+      - Could Buzz see the light through the curtain?<br>
+      - Could Buzz have detected a pattern in the succession of light signal?<br>
+      - We haven't completely rule out random chance (but probability is very small)
+  </p>
+</section>
+
+<section data-transition="none">
+  <h3>Follow up study</h3>
+  <p class="framed">
+    One option that Dr. Bastian pursued was to redo the study except
+    now he <span class="orange">replaced the curtain with a wooden barrier</span> between the two
+    sides of the tank in order to ensure more complete separation
+    between Doris and Buzz.
+  </p>
+  <div class="row">
+    <div class="col-65">
+      <svg width="100%" viewBox="0 0 584.8 360">
+        <use xlink:href="content/img/doris-buzz.svg#dolphins"></use>
+        <use class="current-visible"
+        xlink:href="content/img/doris-buzz.svg#curtain"></use>
+        <use class="fragment"
+        xlink:href="content/img/doris-buzz.svg#wood"></use>
+      </svg>
+    </div>
+    <div class="col-35">
+    <p class="fragment small">
+      <i class="fas fa-arrow-circle-right info"></i> In this case, Buzz pushed the correct button only
+      <span class="info">16 out of 28 times</span>.
+    </p>
+    </div>
+  </div>
+</section>
+
+<section data-transition="none">
+  <h3>Follow up study</h3>
+  <p class="sided border-orange">
+    Buzz' successes: 16 out of 28 <span class="orange fragment">
+    $(\hat{p} = \frac{16}{28} = 0.57)$</span>
+  </p>
+  <p class="sided border-danger fragment">
+    <span class="u em">Simulations:</span> <br>
+    This time we need to do repetitions of
+    <span class="danger">28</span> coin flips, not just 16.
+  </p>
+  <div class="row">
+    <div class="col-66">
+      <svg class="fragment" width="100%" viewBox="0 0 440 288">
+        <use xlink:href="content/img/simulation-graph-coinflip-28.svg#axes_1"></use>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section data-transition="none">
+  <h3>Follow up study</h3>
+  <p class="sided border-orange">
+    Buzz' successes: 16 out of 28 <span class="orange">
+    $(\hat{p} = \frac{16}{28} = 0.57)$</span>
+  </p>
+  <p class="sided border-danger">
+    <span class="u em">Simulations:</span> <br>
+    This time we need to do repetitions of
+    <span class="danger">28</span> coin flips, not just 16.
+  </p>
+  <div class="row">
+    <div class="col-66">
+      <svg width="100%" viewBox="0 0 440 288">
+        <use xlink:href="content/img/simulation-graph-coinflip-28-prop.svg#axes_1"></use>
+        <use class="fragment" xlink:href="content/img/simulation-graph-coinflip-28-prop.svg#axes_2"></use>
+      </svg>
+    </div>
+    <div class="col-33 fragment">
+      <p class="down-3">
+        p-value:
+      </p>
+      <p class="down-3">
+        $\frac{2788}{10000}=0.2788$
+      </p>
+      <p class="down-8">
+        <span class="fragment">
+        <i class="fas fa-arrow-circle-right"></i>
+        Not enough evidence that the <br> "by-chance-alone" model
+        is wrong.
+        </span>
+      </p>
+    </div>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Follow up study</h3>
+  <p class="framed">
+    In fact, Dr. Bastian soon discovered that in this set of
+    attempts the <span class="bg-info-light">equipment malfunctioned</span> and the food dispenser
+    for Doris did not operate and so Doris was not receiving
+    her fish rewards during the study.
+  </p>
+  <div class="row down-1">
+    <div class="col-5 small">
+      <i class="fas fa-arrow-circle-right info"></i>
+    </div>
+    <div class="col-80 small">
+      It is not so surprising that removing the incentive
+      hindered the communication between the dolphins and we
+      cannot refute that Buzz was not guessing.
+    </div>
+  </div>
+  <p class="down-3">
+    Dr. Bastian fixed the equipment and ran the study again.
+    This time he found convincing evidence that Buzz was not
+    guessing.
+  </p>
+  <p class="danger down-2">
+    <span class="em u">Conclusion/Generalization:</span><br>
+    Dolphins can communicate abstract concepts!
+  </p>
+</section>
+

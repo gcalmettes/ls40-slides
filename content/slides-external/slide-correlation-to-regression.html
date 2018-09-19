@@ -1,0 +1,103 @@
+<section>
+  <h3>Going beyond correlation</h3>
+  <div class="row">
+    <div class="col-75">
+      <svg width="100%" viewBox="0 0 720 288">
+        <use xlink:href="content/img/correlation-simulation-graph-swap.svg#axes_1"></use>
+        <use xlink:href="content/img/correlation-simulation-graph-swap.svg#axes_2"></use>
+        <use class="fragment" xlink:href="content/img/correlation-simulation-graph-swap.svg#axes_3"></use>
+        <use class="fragment" xlink:href="content/img/correlation-simulation-graph-swap.svg#axes_4"></use>
+      </svg>
+    </div>
+  </div>
+  <p class="fragment smaller">
+    <i class="fas fa-arrow-circle-right"></i>
+    By analysing our sample, we are 95% confident that the true value of the correlation (<span class="pop">$\rho$</span>) between height and foot length is in the interval <bspan>(0.54, 0.86)</bspan>.
+  </p>
+  <div class="fragment">
+    <p class="rounded small bg-pink-light down-2 black">
+      If height and foot length are significantly correlated, couldn't
+      we use the value of one of the variables to <span class="strong u">predict</span> the value of
+      the other one?
+    </p>
+    <p>
+      <i class="fas fa-arrow-circle-right pink"></i>
+      Could we use foot length to <span class="pink">gain (unknown) information</span> about someone height?
+    </p>
+  </div>
+</section>
+
+<section>
+  <h3>Why would we want to do that?</h3>
+  <div class="row fragment" data-fragment-index=1>
+    <div class="col-20">
+      <img class="framed" src="content/img/regression-ex-forensic.jpg" width=100%>
+    </div>
+    <div class="col-80">
+      <p class="small">
+        <span class="u em danger">Forensic analysis:</span>
+        Most people are not accustomed to looking at foot length, so describing the suspect as having a foot of 10.5inches long would probably not help find the suspect. It would be <span class="info">far more useful</span> to tell people to look for a <span class="u-info">suspect who is of a certain <span class="info">height</span></span>.
+      </p>
+      <p class="fragment" data-fragment-index=3>
+        <i class="fas fa-arrow-circle-right danger"></i>
+        The accuracy of this prediction would depend on the size of the <span class="u-danger">correlation between foot length and height</span>
+      </p>
+    </div>
+  </div>
+  <div class="row fragment" data-fragment-index=2>
+    <div class="col-20">
+      <img class="framed" src="content/img/regression-ex-anthropology.jpeg" width=100%>
+    </div>
+    <div class="col-80">
+      <p class="small">
+        <span class="u em danger">Anthropology:</span>
+        Body proportions and the dimensions of various body segments,
+        including the long bones of their limbs and the bones of the
+        foot and hand have been used to <span class="info">estimate stature</span>.
+      </p>
+      <p class="fragment" data-fragment-index=3>
+        <i class="fas fa-arrow-circle-right danger"></i>
+        The accuracy of this prediction would depend on the size of the <span class="u-danger">correlation between foot length and height</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h3>Going beyond correlation</h3>
+  <p>
+    Because the correlation coefficient only gives information about
+    the
+    <span class="danger">direction</span> and
+    <span class="danger">strength</span> of an association,
+    we cannot use it
+    directly to get information of someone's height from
+    his/her footprint.
+  </p>
+  <div class="row">
+    <div class="col-45">
+      <svg width="100%" viewBox="340 0 295 288">
+        <use xlink:href="content/img/correlation-simulation-graph-swap.svg#axes_2"></use>
+        <use class="fragment" data-fragment-index=2 xlink:href="content/img/correlation-simulation-graph-swap.svg#axes_5"></use>
+        <use class="fragment" data-fragment-index=3 xlink:href="content/img/correlation-simulation-graph-swap.svg#axes_6"></use>
+      </svg>
+    </div>
+    <div class="col-55">
+      <p class="smaller fragment framed border-pop" data-fragment-index=1>
+        If we decide the association is linear <bspan>(strong $r$)</bspan>, it is useful to
+        <span class="pop">develop a mathematical model</span>
+        of that association.
+      </p>
+      <p class="fragment smaller" data-fragment-index=2>
+        <i class="fas fa-arrow-circle-right orange"></i>
+        The process of fitting a line to a set of data is called <span class="orange em">linear regression</span>, and the line
+        of best fit is called the <span class="orange em">regression line</span>, which is the line that gets as close as possible
+        to all of the data points.
+      </p>
+      <p class="fragment smaller" data-fragment-index=3>
+        <i class="fas fa-arrow-circle-right danger"></i>
+        We can use the regression line to give a <span class="danger">predicted value of the response variable</span>, based on a given value of the explanatory variable.
+      </p>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,152 @@
+<!-- Source: modified from https://bl.ocks.org/mbostock/3231298 -->
+
+<!DOCTYPE html>
+<body>
+<style>
+
+</style>
+
+<script src="js/d3.min.js"></script>
+<script>
+
+  const colors = {
+    info: '#00BFFF',
+    danger: '#fb4c52',
+    warning: '#FBC15E',
+    orange: '#FF8B22'}
+
+  const margin = {left: 60, top: 20, right: 20, bottom: 60}
+  const width = 650 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom
+
+  const svg = d3.select("body")
+    .append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+      .attr("transform", `translate(${margin.left}, ${margin.top})`)
+      .attr("width", width)
+      .attr("height", height)
+
+
+  const xScale = d3.scaleLinear()
+    .range([0, width])
+    .domain([0, 105])
+
+  const yScale = d3.scaleLinear()
+    .range([height, 0])
+    .domain([-5, 105])
+
+  const xAxis = svg.append('g')
+      .attr('class', 'axis xAxis')
+      .attr('transform', `translate(0, ${height})`)
+      .call(d3.axisBottom(xScale))
+
+  svg.append('text')
+      .attr('class', 'axisLabel')
+      .attr('x', width/2)
+      .attr('y', height+margin.bottom/1.5)
+      .style("text-anchor", "middle")
+      .style("font-size","2.2em")
+      .style("font-family", "Raleway")
+      .text('x');
+
+  const yAxis = svg.append('g')
+      .attr('class', 'axis yAxis')
+      .call(d3.axisLeft(yScale))
+  svg.append('text')
+      .attr('class', 'axisLabel')
+      .attr('transform', `translate(${-margin.left/1.5}, ${height/2}) rotate(-90)`)
+      .style("text-anchor", "middle")
+      .style("font-size","2.2em")
+      .style("font-family", "Raleway")
+      .text('y');
+
+  let allData, names, selectedData
+  d3.tsv('data/DatasaurusDozen.tsv').then(data => {
+    
+    allData = data
+
+    // all the unique dataset names
+    names = data.map(d => d.dataset)
+      .filter((v, i, a) => a.indexOf(v) === i); 
+
+    plotDataset(allData, 0)
+    
+  })
+
+  function plotDataset(data, i) {
+    let selectedData = data.filter(d=>d.dataset==names[i])
+    let circles = svg.selectAll("circle")
+      .data(selectedData)
+     circles.exit().remove()
+     circles.enter()
+      .append("circle")
+        .attr("cx", d => xScale(d.x))
+        .attr("cy", d => yScale(d.y))
+        .attr("fill", colors.danger)
+        .attr("r", 3.5)
+      .merge(circles)
+        .transition().duration(500)
+        .attr("cx", d => xScale(d.x))
+        .attr("cy", d => yScale(d.y))
+  }
+
+  var _transitions = [
+    {
+      transitionForward: () => plotDataset(allData, 1),
+      transitionBackward: () => plotDataset(allData, 0),
+      index: 1
+    },
+    {
+      transitionForward: () => plotDataset(allData, 2),
+      transitionBackward: () => plotDataset(allData, 1),
+      index: 2
+    },
+    {
+      transitionForward: () => plotDataset(allData, 3),
+      transitionBackward: () => plotDataset(allData, 2),
+      index: 3
+    },
+    {
+      transitionForward: () => plotDataset(allData, 4),
+      transitionBackward: () => plotDataset(allData, 3),
+      index: 4
+    },
+    {
+      transitionForward: () => plotDataset(allData, 5),
+      transitionBackward: () => plotDataset(allData, 4),
+      index: 5
+    },
+    {
+      transitionForward: () => plotDataset(allData, 6),
+      transitionBackward: () => plotDataset(allData, 5),
+      index: 6
+    },
+    {
+      transitionForward: () => plotDataset(allData, 7),
+      transitionBackward: () => plotDataset(allData, 6),
+      index: 7
+    },
+    {
+      transitionForward: () => plotDataset(allData, 8),
+      transitionBackward: () => plotDataset(allData, 7),
+      index: 8
+    },
+    {
+      transitionForward: () => plotDataset(allData, 9),
+      transitionBackward: () => plotDataset(allData, 8),
+      index: 9
+    },
+    {
+      transitionForward: () => plotDataset(allData, 10),
+      transitionBackward: () => plotDataset(allData, 9),
+      index: 10
+    },
+    {
+      transitionForward: () => plotDataset(allData, 11),
+      transitionBackward: () => plotDataset(allData, 10),
+      index: 11
+    }
+  ]
+</script>

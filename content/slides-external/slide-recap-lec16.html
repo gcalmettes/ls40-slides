@@ -1,0 +1,142 @@
+<section data-transition="slide-in">
+  <h3>Last time</h3>
+  <p class="u">
+    Comparing multiple proportions:
+  </p>
+  <p class="center">
+    $\chi^2=\sum_{i=1}^n\frac{(\mathrm{Observed}_i-\mathrm{Expected}_i)^2}{\mathrm{Expected}_i}$ 
+  </p>
+  <div class="row flex down-2">
+    <div class="col-50 flex-center">
+      <div>
+        <p class="center muted">
+          $\chi^2$ test for goodness of fit
+        </p>
+        <table class="center smallest">
+          <tr>
+            <td class="bg-info-light border-right" rowspan=2>Response <br>variable</td>
+          </tr>
+           <tr>
+             <td class="bg-danger-light">Cat. #1</td>
+           </tr>
+           <tr>
+             <td class="bg-info-light border-nobottom border-right">Yes</td>
+             <td class="border-nobottom">50</td>
+           </tr>
+           <tr>
+             <td class="bg-info-light border-nobottom border-right">No</td>
+             <td class="border-nobottom">30</td>
+           </tr>
+           <tr>
+            <td class="bg-info-light border-nobottom border-right">Maybe</td>
+            <td class="border-nobottom">20</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="col-50 flex-center">
+      <div>
+        <p class="center muted">
+          $\chi^2$ test for association
+        </p>
+        <table class="smallest center">
+          <tr>
+            <td class="bg-info-light border-right" rowspan=2>Response<br>variable</td>
+            <td class="bg-danger-light border-nobottom border-right" colspan=3>Explanatory variable</td>
+          </tr>
+           <tr>
+             <td class="bg-danger-light">Cat. #1</td>
+             <td class="bg-danger-light">Cat. #2</td>
+             <td class="bg-danger-light border-right">Cat. #3</td>
+           </tr>
+           <tr>
+             <td class="bg-info-light border-nobottom border-right">Yes</td>
+             <td class="border-nobottom">50</td>
+             <td class="border-nobottom">65</td>
+             <td class="border-nobottom border-right">35</td>
+           </tr>
+           <tr>
+             <td class="bg-info-light border-nobottom border-right">No</td>
+             <td class="border-nobottom">30</td>
+             <td class="border-nobottom">45</td>
+             <td class="border-right border-nobottom">15</td>
+           </tr>
+           <tr>
+            <td class="bg-info-light border-nobottom border-right">Maybe</td>
+             <td class="border-nobottom">20</td>
+             <td class="border-nobottom">10</td>
+             <td class="border-nobottom border-right">10</td>
+          </tr>
+        </table> 
+      </div>
+    </div>
+  </div>
+  <div class="row down-3">
+    <div class="col-50 smallest center">
+      $\textrm{Expected Count}_i = n_\mathrm{total}\times\pi_i$
+    </div>
+    <div class="col-50 smallest center">
+      $\textrm{Expected Count}=\frac{\textrm{Row total}\times\textrm{Column total}}{\textrm{Sample size}}$
+    </div>
+  </div>
+  <p class="down-2">
+    <i class="fas fa-arrow-circle-right danger"></i> Calcule the $\chi^2$ from the expected/observed <span class="strong">counts</span>, not from the expected/observed proportions! (this takes the sample sizes into account)
+  </p>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Last time</h3>
+  <p>
+    <span class="u">Relationship between a quantitative variable and a categorical variable:</span> <br>
+    The $MAD$ (Mean Absolute Difference in means/medians), "global" statistic to compare 3 means or more.
+  </p>
+  <div class="row">
+    <div class="col-50">
+      <p class="smaller">
+        $\mathrm{MAD}=\frac{\mid d_1\mid + \mid d_2 \mid + \mid d_3 \mid}{3}$
+      </p>
+      <p class="smaller">
+        $\mathrm{MAD}=\frac{\mid-3.25\mid+\mid-15.25\mid+\mid-18.5\mid}{3}$
+      </p>
+      <p class="smaller">
+        $\mathrm{MAD}=12.33$
+      </p>
+      <svg width="80%" viewBox="0 -20 432 164">
+        <use xlink:href="content/img/ants-sandwich-mad.svg#layer1"></use>
+        <use xlink:href="content/img/ants-sandwich-mad.svg#layer2"></use>
+        <use xlink:href="content/img/ants-sandwich-mad.svg#layer3"></use>
+        <use xlink:href="content/img/ants-sandwich-mad.svg#layer4"></use>
+      </svg>
+    </div>
+    <div class="col-50">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/ants-sandwich-dotplot.svg#axes_2"></use>
+        <use xlink:href="content/img/ants-sandwich-dotplot.svg#axes_1"></use>
+      </svg>
+    </div>
+  </div>
+  <p class="small">
+    <i class="fa fa-arrow-circle-right muted"></i>
+    The average distance between one of the means to another is 12.33.
+  </p>
+  <p class="small down-2">
+    <i class="fa fa-arrow-circle-right muted"></i>
+    If the samples were heavily skewed, we could have calculated the MAD from the medians instead (with resampling statistics we are free to adapt our statistic of interest to the characteristics of our data).
+  </p>
+</section>
+
+<section>
+  <h4>Comparing means: going beyond the MAD</h4>
+  <p>
+    The MAD statistic is a simple generalization of what we used to test for a difference between two samples (difference between two groups).
+  </p>
+  <p class="down-3"> 
+    Unfortunately, however, it is not a <span class="danger">standardized statistic</span> in that it <span class="u strong">does not convey information about the sample sizes</span> involved. In addition, without the sampling distribution of the $MAD$, we don't really know how the value of the $MAD$ itself compares.
+  </p>
+  <p>
+    <span class="muted em u">Note:</span> the sample size is taken in account when computing the MAD from a dataset, but the value of the statistic itself does not render any information about the sample size. 
+  </p>
+  <p class="down-3">
+    Also, the MAD statistic does not lead easily to a simple shortcut based on theory (which some people can find annoying).
+  </p>
+</section>

@@ -1,0 +1,276 @@
+<section>
+  <h3>The 1970 military draft lottery</h3>
+  <div class="row">
+    <div class="col-55">
+      <p>
+        In November of 1969, with the Vietnam War raging, President Nixon signed an executive order to reinstitute <span class="danger">the draft</span>. Men were drafted to fill vacancies in the United States Armed Forces that could not be filled through voluntary means.
+      </p>
+      <p class="down-3">
+        In an attempt to expose male youth <span class="pop">"fairly" to the risk of being drafted</span>, the Selective Service held a <span class="pop">lottery</span> on December 1, 1969 to allocate birthdates at random. Men were then <span class="pop">drafted in the order that their birth days were drawn</span>.
+      </p>
+    </div>
+    <div class="col-45">
+      <img src="content/img/uncle-sam-wants-you.jpg" width=100%>
+    </div>
+  </div>
+  
+</section>
+
+<section>
+  <h3>The selection process</h3>
+  <div class="row flex">
+    <div class="col-40 flex-center">
+      <p>
+        The order stipulated that the selection be a <span class="danger">random process</span> based on the birthdays of men born between January 1, 1944 and December 31, 1950.
+      </p>
+    </div>
+    <div class="col-60 flex-center">
+      <img class="framed" src="content/img/regression-draft-lottery-1969-1.jpg" width=100% >
+    </div>
+  </div>
+  <p>
+    The Selective Service placed the days of the year, including February 29, into <span class="danger">366 plastic capsules</span>. These capsules were placed in a glass <span class="danger">container, mixed, then drawn one at a time</span>.
+  </p>
+</section>
+
+<section>
+  <h3>The selection process</h3>
+  <div class="row flex">
+    <div class="col-50 flex-center">
+      <p >
+        The first capsule drawn contained the date September 14. This date was <span class="danger">assigned the rank 1</span>.
+      </p>
+    </div>
+    <div class="col-50 flex-center">
+      <img class="framed" src="content/img/regression-draft-lottery-1969-2.jpeg" width=100%>
+    </div>
+  </div>
+  <div class="row flex">
+    <div class="col-50 flex-center">
+      <img class="framed" src="content/img/regression-draft-lottery-1969-3.jpg" width=100%>
+    </div>
+    <div class="col-50 flex-center">
+      <p>
+        The second date drawn, April 24, was <span class="danger">assigned rank 2</span>, and so on ...
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h3>The selection process</h3>
+  <div class="row">
+    <div class="col-35">
+      <p>
+        Those eligible for the draft who were born on September 14 (<span class="danger">rank 1</span>) would be the <span class="danger">first selected to serve in Vietnam</span>.
+        <br>
+        Once all eligible men born on this date were inducted into the service, then the Selective Service would begin to induct men born on April 24 (rank 2), etc ...
+      </p>
+    </div>
+    <div class="col-65">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/XhLbysRh8XY" frameborder="0" allowfullscreen></iframe>
+      <p class="framed border-pop">
+        <span class="u em">Note:</span>
+        It was estimated by the Pentagon that men with draft numbers 200 to 366, would escape the draft entirely. In fact, no man with a draft number higher than 195 was called to duty.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide-in fade-out">
+  <h3>Was the lottery really random?</h3>
+  <p>
+    What should we expect if we plot the draft number (rank assigned) against the day of the year drawn?
+  </p>
+  <div class="row fragment">
+    <div class="col-75">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/regression-draft-lottery-data-scatter.svg#axes_1"></use>
+      </svg>
+    </div>
+    <div class="col-25">
+      <p class="framed border-danger">
+        Does the selection process appear random to you?
+      </p>
+    </div>
+  </div>
+</section>
+
+<section data-transition="fade">
+  <h3>Was the lottery really random?</h3>
+  <p>
+    What should we expect if we plot the draft number (rank assigned) against the day of the year drawn?
+  </p>
+  <div class="row">
+    <div class="col-75">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/regression-draft-lottery-data-boxplot.svg#axes_1"></use>
+      </svg>
+    </div>
+    <div class="col-25">
+      <p class="framed border-pop">
+        What about now?
+      </p>
+    </div>
+  </div>
+</section>
+
+<section data-transition="fade">
+  <h3>Was the lottery really random?</h3>
+  <p>
+    What should we expect if we plot the draft number (rank assigned) against the day of the year drawn?
+  </p>
+  <div class="row">
+    <div class="col-75">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/regression-draft-lottery-data-scatter.svg#axes_1"></use>
+        <use class="fragment" xlink:href="content/img/regression-draft-lottery-data-scatter.svg#axes_2"></use>
+      </svg>
+    </div>
+    <div class="col-25">
+      <p class="framed border-danger">
+        Is it really random?
+      </p>
+      <p>
+        <i class="fas fa-arrow-circle-right success"></i>
+        How could we check the randomness of the data using statistics? <br>(and linear regression <i class="far fa-smile success"></i>)
+      </p>
+    </div>
+  </div>
+</section>
+
+<section data-transition="fade-in slide-out">
+  <h3>Was the lottery really random?</h3>
+  <p class="framed border-danger">
+    How likely would it be to observe a slope of <span class="danger">$-0.23$</span> if there was no association between the day of the year selected and the rank assigned?
+  </p>
+  <div class="row">
+    <div class="col-40">
+      <p class="fragment" data-fragment-index=1>
+        <i class="fa fa-arrow-circle-right warning"></i>
+        If there was no association, the slope of the
+        underlying population shouldn't be different than
+        $0$.
+      </p>
+      <p class="fragment" data-fragment-index=1>
+        <span class="u muted">Note:</span> We could solve this again using confidence intervals, but let's do some null hypothesis testing:
+      </p>
+      <p class="sided border-warning fragment">
+        $H_0$: $\beta_1=0$ <br>
+      </p>
+      <p class="sided border-info fragment">
+        $H_a$: $\beta_1\neq0$ <br>
+      </p>
+    </div>
+    <div class="col-60">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/regression-draft-lottery-data-scatter.svg#axes_1"></use>
+        <use xlink:href="content/img/regression-draft-lottery-data-scatter.svg#axes_2"></use>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h3>Linear regression NHST</h3>
+  <img src="content/img/regression-nhst.svg" width=90%>
+</section>
+
+<section data-external-replace="slide-animation-linear-regression-nhst.html"></section>
+
+<section data-transition="slide-in fade-out">
+  <h3>Testing the randomness of the data</h3>
+  <div class="row">
+    <div class="col-60">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/regression-draft-lottery-data-scatter-nhst.svg#axes_1"></use>
+        <use xlink:href="content/img/regression-draft-lottery-data-scatter-nhst.svg#axes_2"></use>
+        <use class="fragment" data-fragment-index=1 xlink:href="content/img/regression-draft-lottery-data-scatter-nhst.svg#axes_3"></use>
+      </svg>
+    </div>
+    <div class="col-40">
+      <p class="em u fragment" data-fragment-index=2>
+        Sampling distribution of the slopes if the null hypothesis was true:
+      </p>
+      <svg width="100%" viewBox="0 0 432 288" class="fragment" data-fragment-index=2">
+        <use xlink:href="content/img/regression-draft-lottery-resampling-nhst.svg#axes_1"></use>
+        <use class="fragment" xlink:href="content/img/regression-draft-lottery-resampling-nhst.svg#axes_2"></use>
+        <use class="fragment" xlink:href="content/img/regression-draft-lottery-resampling-nhst.svg#axes_3"></use>
+      </svg>
+    </div>
+  </div>
+  <p class="fragment">
+    <i class="fas fa-arrow-circle-right pop"></i>
+    None of the slopes obtained by simulating the no-association condition (null hypothesis)
+    are as extreme as the initial slope obtained 
+    by finding the best fit on our original dataset.
+  </p>
+</section>
+
+<section data-transition="fade-in slide-out">
+  <h3>Testing the randomness of the data</h3>
+  <div class="row">
+    <div class="col-60">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/regression-draft-lottery-data-scatter-nhst.svg#axes_1"></use>
+        <use xlink:href="content/img/regression-draft-lottery-data-scatter-nhst.svg#axes_2"></use>
+        <use xlink:href="content/img/regression-draft-lottery-data-scatter-nhst.svg#axes_3"></use>
+      </svg>
+    </div>
+    <div class="col-40">
+      <p class="small em u" data-fragment-index=2>
+        Sampling distribution of the slopes if the null hypothesis was true:
+      </p>
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/regression-draft-lottery-resampling-nhst.svg#axes_1"></use>
+        <use xlink:href="content/img/regression-draft-lottery-resampling-nhst.svg#axes_2"></use>
+        <use xlink:href="content/img/regression-draft-lottery-resampling-nhst.svg#axes_3"></use>
+      </svg>
+    </div>
+  </div>
+  <p class="framed border-pop">
+    This strongly suggest that there was, in fact, a negative
+    association between the birthday drawn and the draft rank that was assigned to this birthday. <br>
+    <i class="fa fa-arrow-circle-right pop"></i> 
+    The lottery was <span class="pop">not random</span>!
+
+  </p>
+</section>
+
+<section>
+  <h3>Change of the lottery process</h3>
+  <div class="row">
+    <div class="col-70">
+      <img class="framed" src="content/img/regression-draft-lottery-1969-nytimes-article-title.png" width=100%>
+    </div>
+    <div class="col-30">
+      <p class="no-margin-top small">
+        NY Times article - January 4, 1970
+      </p>
+      <img class="framed" src="content/img/regression-draft-lottery-1969-nytimes-article-excerpt.png" width=100%>
+    </div>
+  </div>
+  <p class="small no-margin-top">
+    The lottery process was modified for the subsequent years and was shown to be really random .
+  </p>
+</section>
+
+<section>
+  <h3>Summary</h3>
+  <div class="row">
+    <div class="col-40">
+      <p>
+      Regression analysis is a powerful method with a broad
+      array of applications.
+      </p>
+      <p>
+      The same Null hypothesis and confidence intervals determinations methods as what we used previously on 
+      different statistics can be applied to the linear 
+      regresssion parameters.
+      </p>
+    </div>
+    <div class="col-60">
+      <img src="content/img/bootstrap-showcase-regression-params.svg" width=100%>
+    </div>
+  </div>
+</section>

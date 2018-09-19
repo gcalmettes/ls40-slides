@@ -1,0 +1,89 @@
+<section>
+  <h3>Computing confidence intervals</h3>
+  <div class="small">
+    The distributions of sample statistics considered so far require us to either already know the value of the population parameter or to have the resources to take thousands of different samples. In most situations, neither of these is an option. <br>
+    We usually <span class="info">only have access to the one sample we collected to make inferences about the population</span>.
+    How could we estimate the parameter we are interested in and compute the confidence intervals just from this unique sample?
+  </div>
+
+  <div class="small framed down-3 fragment">
+    <span class="u muted"><i class="fas fa-lightbulb"></i> Think about it:</span> <br>
+    <span class="danger">The sample is the only information we know to be true about the population</span> it has been drawn from. <br>
+    <i class="fas fa-arrow-right"></i> The best estimate for a population parameter (e.g.: $\pi$) is the relevant sample statistic (e.g.: $\hat{p}$). <br>
+    <i class="fas fa-arrow-right"></i> We can expand this idea and consider <span class="pop">the sample as our best estimate for the underlying population</span>.
+  </div>
+</section>
+
+<section data-external-replace="slide-definition-bootstrap.html"></section>
+
+
+<section data-transition="slide-in">
+  <h3>Drawing a bootstrap sample</h3>
+  <p class="sided">
+    Ideally, we’d like to sample repeatedly from the population to create a sampling distribution.
+  </p>
+  <p class="em">
+    How can we make the sample data look like data from the entire population?
+  </p>
+  <div class="row fragment">
+    <div class="col-45">
+      <p>We assume that the population of all the data we have is basically just many, many copies of the same data in our original sample</p>
+    </div>
+    <div class="col-55">
+      <svg width="100%" viewBox="0 5 226 125.5">
+        <use xlink:href="content/img/bootstrap-population-from-sample.svg#bootstrap"></use>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Drawing a bootstrap sample</h3>
+  <p class="sided">
+    In practice, instead of actually making many copies of the sample and
+    sampling from that, we use a sampling technique that is equivalent: <br>
+    <i class="fas fa-arrow-circle-right danger"></i> we <span class="danger"> sample with replacement</span> from the original sample.
+  </p>
+  <div class="row">
+    <div class="col-55">
+      <p>
+        Once a data value has been selected from the sample,
+        it is <span class="danger">still available to be selected again</span>. <br>
+        <i class="fas fa-arrow-right"></i> Each data value in the original sample actually represents many other data with a similar value.
+        Each sample selected in this way, with replacement from the original sample, is called a <span class="pop">bootstrap sample</span>.
+      </p>
+      <p class="fragment framed border-muted smaller" data-fragment-index=2>
+        <span class="u em muted">Note:</span> Recall that the variability of a sample statistic depends on the size of the sample. Because we are trying to uncover the variability of the sample statistic, it is important that <span class="pop">each bootstrap sample is the same size as the original sample</span>.
+      </p>
+    </div>
+    <div class="col-45">
+      <svg width="100%" viewBox="0 0 224 192.5">
+        <use xlink:href="content/img/bootstrap-sample-from-sample.svg#bootstrap"></use>
+        <use class="fragment" data-fragment-index=1 xlink:href="content/img/bootstrap-sample-from-sample.svg#squares"></use>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h3>Generating a Bootstrap distribution</h3>
+  <svg width="70%" viewBox="0 0 433 204">
+    <use xlink:href="content/img/bootstrap-distribution-generation-process.svg#bootstrap"></use>
+  </svg>
+  <ol class="small">
+    <li>
+      <span class="warning">Generate bootstrap samples</span> by sampling <span class="u">with replacement</span> <br>
+      from the original sample, using the <span class="warning">same sample size</span>
+    </li>
+    <li>
+      <span class="info">Compute the statistic of interest</span> ("bootstrap statistic") <br>
+      for each of the bootstrap samples
+    </li>
+    <li>
+      Collect the statistics for many bootstrap samples <br>
+      to create a <span class="info">bootstrap distribution</span>
+    </li>
+  </ol>
+</section>
+
+<section data-external-replace="slide-ucla-usc-bootstrap.html"></section>

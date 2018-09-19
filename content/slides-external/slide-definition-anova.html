@@ -1,0 +1,78 @@
+<section>
+  <h3>Analysis of variance</h3>
+  <p class="quoted no-margin-top">
+    An <span class="strong">AN</span>alysis <span class="strong">O</span>f <span class="strong">VA</span>riance (ANOVA) is a comparison between the <span class="em">variability between groups</span> to the <span class="em">variability within groups</span>. The statistic of interest that reflects this comparison between the two types of variability when performing an ANOVA is the <bspan class="strong u em">F-statistic</bspan>.
+  </p>
+  <div class="row flex down-3">
+    <div class="col-25 flex-center framed border-warning">
+      <p class="center">
+        Total <br> variability
+      </p>
+    </div>
+    <div class="col-7 flex-center">
+        $=$
+    </div>
+    <div class="col-30 flex-center framed border-danger">
+      <p class="center">
+        Variability <br> between groups
+      </p>
+    </div>
+    <div class="col-7 flex-center">
+        $+$
+    </div>
+    <div class="col-30 flex-center framed border-info">
+      <p class="center">
+        Variability <br> within groups
+      </p>
+    </div>
+  </div>
+  <p class="down-3">
+    The measure of each of these pieces of variability relies on the <span class="u">calculation of the sums of squares</span> (<span class="strong">SS</span>) deviations.
+  </p>
+  <div class="row flex down-1">
+    <div class="col-25 flex-center framed border-warning">
+      <p class=" center">
+        Total sum of squares (<span class="warning">$SS_{Total}$</span>)
+      </p>
+    </div>
+    <div class="col-7 flex-center">
+        $=$
+    </div>
+    <div class="col-30 flex-center framed border-danger">
+      <p class="center">
+        Sum of squares due to groups (<span class="danger">$SS_{Groups}$</span>)
+      </p>
+    </div>
+    <div class="col-7 flex-center">
+        $+$
+    </div>
+    <div class="col-30 flex-center framed border-info">
+      <p class="center">
+        "Error" sum of squares (<span class="info">$SS_{Error}$</span>)
+      </p>
+    </div>
+  </div>
+  <div class="row flex down-1">
+    <div class="col-25 flex-center framed border-warning">
+      <p class=" center">
+        $$\sum_{i=1}^{n}(x_{i}-\hat{x})^2$$
+      </p>
+    </div>
+    <div class="col-7 flex-center">
+        $=$
+    </div>
+    <div class="col-30 flex-center framed border-danger">
+      <p class="center">
+        $$\sum_{g=1}^{k}n_{g}(\bar{x}_{g}-\hat{x})^2$$
+      </p>
+    </div>
+    <div class="col-7 flex-center">
+        $+$
+    </div>
+    <div class="col-30 flex-center framed border-info">
+      <p class="center">
+        $$\sum_{g=1}^{k}\sum_{i=1}^{n_g}(x_{gi}-\bar{x}_{g})^2$$
+      </p>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,60 @@
+<section>
+  <h3>Two-way table</h3>
+  <p class="quoted">
+    A two-way table is used to <span class="danger">show the
+    relationship between two categorical variables</span>.
+    The categories for one variable are listed down the side
+    (rows) and the categories for the second variable are listed
+    across the top (columns). Each cell of the table contains the
+    count of the number of data cases that are
+    in both the row and column categories.
+  </p>
+  <div class="row">
+    <div class="col-45">
+      <p class="down-3">
+        <span class="u em muted">Note:</span> It is often helpful to also include the totals (both for rows and columns) in the margins of a two-way table.
+      </p>
+      <p class="down-5 fragment" data-fragment-index=3>
+        <span class="bg-danger-light">Explanatory</span> variable
+      </p>
+      <p class="fragment" data-fragment-index=2>
+        <span class="bg-info-light">Response</span> variable
+      </p>
+    </div>
+    <div class="col-55">
+      <table class="small center">
+        <tbody>
+          <tr>
+            <td class="border-right fragment highlight-bg-info" data-fragment-index=2 rowspan=2>Game <br>outcome?</td>
+            <td class="border-right border-nobottom fragment highlight-bg-danger" data-fragment-index=3 colspan=2 >Sold-out crowd?</td>
+            <td class="border-nobottom"></td>
+          </tr>
+         <tr>
+           <td class="fragment highlight-bg-danger" data-fragment-index=3>Yes</td>
+           <td class="fragment highlight-bg-danger border-right" data-fragment-index=3>No</td>
+           <td>Total</td>
+         </tr>
+         <tr>
+           <td class="fragment highlight-bg-info border-right border-nobottom" 
+           data-fragment-index=2>Win</td>
+           <td class="border-nobottom">3</td>
+           <td class="border-right border-nobottom">12</td>
+           <td class="border-nobottom">15</td>
+         </tr>
+         <tr>
+           <td class="fragment highlight-bg-info border-right" data-fragment-index=2>Loss</td>
+           <td>15</td>
+           <td class="border-right">11</td>
+           <td>26</td>
+         </tr>
+         <tr>
+           <td class="border-right">Total</td>
+           <td>18</td>
+           <td class="border-right">23</td>
+           <td>41</td>
+         </tr>
+       </tbody>
+      </table> 
+    </div>
+  </div>
+</section>

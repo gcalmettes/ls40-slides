@@ -1,0 +1,876 @@
+<section>
+  <h3>From sample to population</h3>
+  <p class="sided border-black">
+    One of the most important ideas in statistics is that we can learn a lot 
+    about a large group (<span class="info">population</span>) by studying
+    a small piece of it (<span class="danger">sample</span>). <br>
+    <span class="orange">Statistical inference</span> is the process of using data from a sample to gain information about the population.
+  </p> 
+  <p>
+    <i class="fas fa-arrow-circle-right danger down-2"></i>
+    If we are using the sample to infer about the population, we have to take precautions to <span class="danger">ensure our sample is representative of our population</span>.
+  </p>
+  <p class="quoted down-3">
+    How can we <span class="danger">obtain a statistic that we trust</span> to be reasonably close to the actual (but unknown to us) value of the parameter?
+  </p>
+  <p class="success fragment down-2">
+    Let's do a little experiment!
+  </p>
+</section>
+
+<section data-transition="slide-in">
+  <h3>In class activity (sampling words)</h3>
+  <p>
+    In most studies, we do not have access to the entire population and
+  can only consider a <span class="danger">sample</span> from this population.</p>
+  <div class="row">
+    <div class="col-45 sided down-2"> 
+      <p>
+        1- Select a sample of <span class="orange">10 representative words</span>
+      </p>
+      <p>
+        2- Record the <span class="orange">number of letters</span> 
+        in each of the ten words in your sample
+      </p>
+      <p>
+        3- Calculate the average (mean) number of letters in your ten words and submit your answer!
+      </p>
+    </div>
+    <div class="col-55">
+      <div class="fig-container" style="height: 400px" data-file="https://embed.polleverywhere.com/multiple_choice_polls/1MEAnNgUmaaLt93?controls=none&short_poll=true"></div>
+    </div>
+  </div>  
+</section>
+
+<section data-transition="slide-out">
+  <h3>In class activity (sampling words)</h3>
+  <p>
+    In most studies, we do not have access to the entire population and
+  can only consider a <span class="danger">sample</span> from this population.</p>
+  <div class="row">
+    <div class="col-45"> 
+      <img class="down-5" src="content/img/sampling-words-population.svg">
+    </div>
+    <div class="col-55">
+      <div class="fig-container" style="height: 400px" data-file="https://embed.polleverywhere.com/multiple_choice_polls/1MEAnNgUmaaLt93?controls=none&short_poll=true"></div>
+    </div>
+  </div>  
+</section>
+
+
+<section data-transition="slide-in">
+  <h3>Human judgment is not very good at selecting representative samples from populations</h3>
+  <div class="row">
+    <div class="col-40">
+      <p class="sided">
+        The day after the 1948 presidential election, the <span class="em">Chicago Tribune</span> ran the headline “Dewey Defeats Truman”.
+        However, Harry S Truman defeated Thomas E. Dewey to become the 33rd president of the United States. 
+      </p>
+      <!-- <p>
+        <span class="u em">1948 US Presendential Elections</span> <br>
+        A triumphant Harry S Truman holds the Chicago
+        Tribune published with the incorrect headline
+        “Dewey defeats Truman”
+      </p> -->
+      <p class="quoted">
+        What problem could have occured?
+      </p>
+    </div>
+    <div class="col-60">
+      <img src="content/img/DeweyTruman.jpg" class="framed" width=100%>
+    </div>
+  </div>
+  <aside class="notes">
+    The day after the 1948 presidential election, the Chicago Tribune ran the
+    headline “Dewey Defeats Truman.” However, Harry S Truman defeated Thomas
+    E. Dewey to become the 33rd president of the United States. The newspaper
+    went to press before all the results had come in, and the headline was
+    based partly on the results of a large telephone poll which showed Dewey
+    sweeping Truman.
+  </aside>
+</section>
+
+<section data-transition="slide-out">
+  <h3>The 1948 presidential election</h3>
+  <div class="row flex">
+    <div class="col-49 flex-center framed border-danger">
+      <p>
+        The newspaper went to press before all the results had come in, and the headline was based partly on the results of a <span class="danger">large telephone poll</span> which showed Dewey sweeping Truman.
+      </p>
+    </div>
+    <div class="col-49 right-2 flex-center framed border-success">
+      <p>
+        But when the dust settled, Truman easily defeated
+        Dewey in the Electoral College, by a 
+        <span class="success">303 to 189</span>
+        margin. Truman also won by a 
+        <span class="success">50-45</span> percent 
+        popular vote.
+      </p>
+    </div>
+  </div>
+  <p class="down-1">
+    <span class="u em">
+    What is the <span class="danger">sample</span> and what is the <span class="info">population</span>? </span><br>
+    <span class="fragment">
+      The sample is <span class="bg-danger">all the people who participated in 
+      the telephone poll</span>. The population is 
+      <span class="bg-info">all voting
+      Americans
+    </span>.
+    </span>
+  </p>
+  <p>
+    <span class="u em">
+    What did the pollsters want to infer about the population based on the sample?</span><br>
+    <span class="fragment">
+      To estimate the percentage of <span class="info strong">all</span> voting Americans who would vote for each candidate.
+    </span>
+  </p>
+  <p>
+    <span class="u em">
+    Why do you think the telephone poll yielded such inaccurate results?</span> <br>
+    <span class="fragment">
+      People with telephones in 1948 were <span class="orange">not
+      representative of all</span> American voters.
+      People with telephones tended to be wealthier and prefer Dewey while people without phones tended to prefer Truman.
+    </span>
+  </p>
+</section>
+
+<section data-external-replace="slide-definition-sampling-bias.html"></section>
+<section data-external-replace="slide-definition-random-sample.html"></section>
+
+
+<section>
+  <h3>Randomness</h3>
+  <p>
+    The key to obtaining a representative sample is using some type of
+    <span class="danger">random mechanism</span> to select the 
+    observational units from the population rather than relying on 
+    <span class="info">convenience sample</span> or any type of human
+    judgment.
+  </p>
+  <p>
+    <i class="fas fa-arrow-right"></i> We must use a formal random sampling method such as technology.
+    <br>
+    The first step is to obtain a <span class="bg-danger-light">sampling frame</span>
+    where each observational unit of the population can be assigned a number. 
+  </p>
+</section>
+
+<section data-transition="slide-in">
+  <h3>Sampling frame</h3>
+  <div class="fig-container" width="800px" data-file="interactive/sampling-frame.html"></div>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Sampling frame</h3>
+    <img src="content/img/sampling-words-samples.svg">
+</section>
+
+<section>
+  <h3>Three important points about random sampling</h3>
+  <p class="sided border-danger fragment down-2">
+    <i class="fas fa-arrow-circle-right danger"></i> One still gets the <span class="danger">occasional "unlucky" sample</span> whose results are not close to the population even with large sample sizes.
+  </p>
+  <p class="sided border-orange fragment down-2">
+    <i class="fas fa-arrow-circle-right orange"></i> The <span class="orange">sample size means little if the sampling method
+    is not random</span>. <br>
+
+    In 1936, the <span class="em">Literary Digest</span> magazine had 
+    a huge sample of 2.4 million people, yet their predictions for the
+    Presidential election did not come close to the truth about the 
+    population.
+  </p>
+  <p class="sided border-pop fragment down-2">
+    <i class="fas fa-arrow-circle-right pop"></i> Although the role of sample size is crucial in assessing how close the sample statistic will be to the true population parameter, the size of the population does not affect this. As long as the population is large relative to the sample size (at least 10 times as large),
+    <span class="pop">the precision of a sample statistic depends on the sample size but not on the population size</span>.
+  </p>
+</section>
+
+<section data-menu-title="Sampling distribution (interactive)" id="samplingdist">
+  <h3>The sampling distribution</h3>
+  <div class="fig-container" data-file="interactive/sampling-distribution.html"></div>
+</section>
+
+<section>
+  <h3>Realities of random sampling</h3>
+  <p>
+    <span class="danger">While a random sample is ideal, often it may not be achievable</span>:
+    <br>
+    <ul>
+      <li>
+        a list of the entire population may not exist
+      </li>
+      <li>
+        it may be impossible to contact some members of the population
+      </li>
+      <li>
+        or it may be too expensive or time consuming to do so
+      </li>
+    </ul>
+    </p>
+    <p>
+    Often we must <span class="u">make do with whatever sample is convenient</span>. The study can still be worth doing, but <span class="info">we have to be very careful when drawing inferences to the population</span> and should at least try to avoid obvious sampling bias as much as possible.
+  </p>
+  <p class="sided border-danger fragment down-2">
+    <i class="fas fa-arrow-circle-right danger"></i> When it is difficult to take a random sample from the population of interest, we may have to 
+    <span class="danger">redefine the population to which we 
+    generalize</span>.
+  </p>
+</section>
+
+<section data-transition="slide-in">
+  <h3>Other sources of bias</h3>
+  <p class="sided border-orange" style="margin-top: 0;">
+    <span class="orange">Bias</span> exists when the method of collecting data causes the sample data to inaccurately reflect the population.
+  </p> 
+  <div class="row flex">
+    <div class="col-10 flex-center">
+     <i class= "fa fa-2x fa-exclamation-triangle orange"></i>
+    </div>
+    <div class="col-90 flex-center">
+      <p class="smaller">
+        Bias can occur when <span class="orange">people we have selected to be in our sample choose not to
+        participate</span>.<br>
+        If the people who choose to respond would answer differently than the people who choose not to respond, results will be biased.
+      </p>
+    </div>
+  </div> 
+  <div class="row fragment" style="margin-top: 0;">
+    <div class="col-10">
+     <i class= "fa fa-2x fa-exclamation-triangle orange"></i>
+    </div>
+    <div class="col-90">
+      <p class="smaller">
+        The <span class="orange">way questions are worded</span> can also bias the results. 
+      </p>
+      <p class="smaller">
+        <span class="muted">In 1941 Daniel Rugg asked people the same question in two different ways.</span>
+      </p>
+      <p class="smaller">
+        <span class="fragment">
+        “<span class="em info">Do you think that the United States should allow public speeches against democracy?</span>“
+        <i class="fas fa-arrow-right"></i> 21% said the speeches should be allowed.
+        </span>
+      </p>
+      <p class="smaller">
+        <span class="fragment">
+        “<span class="em info">Do you think that the United States should forbid public speeches against democracy?</span>“
+        <i class="fas fa-arrow-right"></i> 39% said the speeches should not be forbidden.
+        </span>
+      </p>
+      <p class="smaller">
+        <span class="fragment">
+        <i class="fas fa-arrow-circle-right orange"></i> Merely changing the wording of the question nearly doubled the percentage of people in favor of allowing (not forbidding) public speeches against democracy.
+        </span>
+      </p>
+    </div>
+  </div>  
+</section>
+
+<section data-transition="slide-out">
+  <h3>Other sources of bias</h3>
+  <p class="sided border-orange">
+    <span class="orange">Bias</span> exists when the method of collecting data causes the sample data to inaccurately re ect the population.
+  </p> 
+  <p class="down-2">
+    <i class="fas fa-arrow-circle-right info"></i> The most important message is to <span class="info">always think critically about the way data are collected</span> and to recognize that not all methods of data collection lead to valid inferences. Recognizing sources of bias is often simply common sense.
+  </p>
+</section>
+
+<section data-transition="slide-in fade-out">
+  <h3>Studying a quantitative variable</h3>
+  <p>
+    UCLA salaries (full time employee, 2014) <br>Population data (n=32578)
+  </p>
+  <svg width="100%" viewBox="0 0 720 288">
+    <use xlink:href="content/img/salaries-ucla2014-all.svg#axes_1"></use>
+  </svg>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Studying a quantitative variable</h3>
+  <p>
+    UCLA salaries (full time employee, 2014) <br>Population data (n=32578)
+  </p>
+  <svg width="100%" viewBox="0 0 720 288">
+    <use xlink:href="content/img/salaries-ucla2014-zoom.svg#axes_1"></use>
+    <use class="fragment" xlink:href="content/img/salaries-ucla2014-zoom.svg#axes_2"></use>
+  </svg>
+</section>
+
+<section>
+  <h3>UCLA salaries (2014) - sample</h3>
+  <p class="sided">
+    We've seen that usually, we do not have the luxury of 
+    getting access to the full true
+    population, and we have to rely on a sample (from this 
+    population) to make inferences
+    about the characteristics of the full population.
+  </p>
+  <div class="row">
+    <div class="col-40">
+      <p>
+        Let's consider that we have obtained a random sample of 100 UCLA salaries.
+      </p>
+      <p class="fragment framed border-danger" data-fragment-index=2>
+        We want to know how UCLA salaries in 2014 compared to the National
+        average.
+      </p>
+    </div>
+    <div class="col-60">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/salaries-ucla2014-sample.svg#axes_1"></use>
+        <use xlink:href="content/img/salaries-ucla2014-sample.svg#axes_2"
+        class="fragment" data-fragment-index=1></use>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h3>US Census Bureau data</h3>
+  <div class="row">
+    <div class="col-50">
+      <p>
+      <span class="u em">Year:</span> 2014 <br>
+      <span class="u em">Population:</span> 15 years old and over, 
+      all races, both sexes
+      </p>
+    </div>
+    <div class="col-50">
+      <table>
+        <tbody>
+          <tr>
+            <td>Mean</td>
+            <td>$62,931</td>
+          </tr>
+          <tr>
+            <td>Median</td>
+            <td>$46,480</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>  
+  <p class="sided border-warning fragment">
+    Contrary to what we have done with categorical (proportion) data,
+    in the case of a quantitative data sample, there is not
+    really any probabilistic model we can simulate to test 
+    our data against. We just know the mean & median
+    values we want to compared our data to.
+  </p>
+  <p class="quoted fragment">
+    Would a theoretical model be good anyways?
+  </p>
+</section>
+
+<section data-transition="slide-in fade-out">
+  <h3>Bootstrap confidence intervals for a population mean</h3>
+  <div class="row">
+    <div class="col-40">
+      <p class="sided border-orange">
+        <i class="fas fa-arrow-circle-right orange"></i> Making inferences using the data sample we have
+        is the more robust approach without needing to 
+        make any assumption.
+      </p>
+    </div>
+    <div class="col-60">
+      <img src="content/img/inferences.svg" width="100%">
+    </div>
+  </div>
+  <p class="framed border-danger fragment">
+    <span class="danger">Repetitively drawing bootstrap
+    samples</span> from the data sample 
+    to compute the 
+    <span class="danger">95% confidence intervals</span> of the 
+    population mean ($\mu$)
+    provides a simple
+    and robust way to estimate the variability
+    of $\bar{x}$ and approximate
+    the sampling distribution of $\mu$ using just the
+    information in that one sample.
+  </p>
+</section>
+
+<section data-transition="fade">
+  <h3>Bootstrap confidence intervals for a population mean</h3>
+    <div class="row">
+    <div class="col-40">
+      <p class="sided border-info">
+        <span class="u">Sample statistic:</span> <br>
+        <span class="info">$\bar{x}$</span> (sample mean)
+      </p>
+      <p class="sided border-danger fragment"
+      data-fragment-index=1>
+        <span class="u">95% CI:</span> <br>
+        <span class="danger">central $95\%$</span> of the bootstrap 
+        $\bar{x}$ distribution
+      </p>
+    </div>
+    <div class="col-60">
+      <svg width="100%" viewBox="0 0 433 204">
+        <use xlink:href="content/img/bootstrap-distribution-generation-process.svg#bootstrap"></use>
+        <use xlink:href="content/img/bootstrap-distribution-generation-process.svg#ci"
+        class="fragment" data-fragment-index=1></use>
+      </svg>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-50">
+      <ol class="push-left small">
+        <li><span class="warning">Generate bootstrap samples</span>
+          by sampling <span class="u">with replacement</span> from
+          the original sample, using the
+          <span class="orange">same sample size</span></li>
+        <li><span class="info">Compute the statistic of interest</span>
+          ("bootstrap statistic") 
+          for each of the bootstrap samples</li>
+      </ol>
+    </div>
+    <div class="col-50">
+      <ol class="push-left small" start=3>
+        <li>Collect the statistics for many bootstrap samples 
+          to create a
+          <span class="info">bootstrap distribution</span></li>
+        <li class="fragment" data-fragment-index=1>
+          Rank the bootstrap distribution statistics and take
+          the values at <span class="danger">positions
+          <span class="em">alpha</span></span>
+          (lower ci limit) and <br>
+          <span class="danger"><span class="em">(1-alpha)</span></span>
+          (higher ci limit)</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section data-transition="fade">
+  <h3>Bootstrap confidence intervals for a population mean</h3>
+  <div class="row">
+    <div class="col-40">
+      <p class="smallest">
+        <span class="u em">Each bootstrap sample:</span> <br>
+        n=100, drawing WITH replacement <br>
+        from original sample <br>
+        Statistic calculated: mean ($\bar{x}$)
+      </p>
+    </div>
+    <div class="col-20">
+      <p class="smallest right-4">
+        Sample <br> UCLA Salaries <br> (n=100)
+      </p>
+    </div>
+    <div class="col-20">
+      <p class="smallest">
+        <span class="danger">$1$ selection</span><br>
+        <span class="info">$2$ selections</span><br>
+        <span class="warning">$\geq3$ selections</span>
+      </p>
+    </div>
+    <div class="col-4">
+      <svg xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="0 0 10 30" width=100%>
+        <circle cx="5" cy="5" r="4" style="fill:#fb4c52"/>
+        <circle cx="5" cy="15" r="4" style="fill:#00BFFF"/>
+        <circle cx="5" cy="25" r="4" style="fill:#FBC15E"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-40">
+      <div class="fig-container" data-file="interactive/bootstrap-sampling-table.html"></div>
+    </div>
+  </div>
+</section>
+
+<section data-transition="fade">
+  <h3>Bootstrap confidence intervals for a population mean</h3>
+  <div class="row">
+    <div class="col-40">
+      <p class="smallest">
+        <span class="u em">Each bootstrap sample:</span> <br>
+        n=100, drawing WITH replacement <br>
+        from original sample <br>
+        Statistic calculated: mean ($\bar{x}$)
+      </p>
+    </div>
+    <div class="col-20">
+      <p class="smallest right-4">
+        Sample <br> UCLA Salaries <br> (n=100)
+      </p>
+    </div>
+    <div class="col-20">
+      <p class="smallest">
+        <span class="danger">$1$ selection</span><br>
+        <span class="info">$2$ selections</span><br>
+        <span class="warning">$\geq3$ selections</span>
+      </p>
+    </div>
+    <div class="col-4">
+      <svg xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="0 0 10 30" width=100%>
+        <circle cx="5" cy="5" r="4" style="fill:#fb4c52"/>
+        <circle cx="5" cy="15" r="4" style="fill:#00BFFF"/>
+        <circle cx="5" cy="25" r="4" style="fill:#FBC15E"/>
+      </svg>
+    </div>
+  </div>
+  <div class="fig-container" data-file="interactive/bootstrap-sampling.html"></div>
+</section>
+
+<section data-transition="fade-in slide-out">
+  <h3>Bootstrap confidence intervals for a population mean</h3>
+  <div class="row">
+    <div class="col-40">
+      <p class="small">
+        <span class="u em">Bootstrap distribution:</span><br>
+         10000 bootstrap $\bar{x}$
+      </p>
+      <p class="sided fragment" data-fragment-index=2>
+        <span class="em u">95% CIs:</span><br>
+        Is the National Salary in the interval?
+      </p>
+      <p class="sided fragment border-warning" data-fragment-index=5>
+        <span class="em u">Inference:</span><br>
+        UCLA mean salary > US mean salary
+      </p>
+    </div>
+    <div class="col-60">
+      <svg width="100%" viewBox="0 -25 432 313" style="margin-top: 2%;">
+        <use xlink:href="content/img/salaries-ucla2014-resampling-ttest.svg#axes_1"></use>
+        <use xlink:href="content/img/salaries-ucla2014-resampling-ttest.svg#axes_2"
+        class="fragment" data-fragment-index=1></use>
+        <use xlink:href="content/img/salaries-ucla2014-resampling-ttest.svg#axes_3"
+        class="fragment" data-fragment-index=2></use>
+        <use xlink:href="content/img/salaries-ucla2014-resampling-ttest.svg#axes_4"
+        class="fragment" data-fragment-index=4></use>
+        <use xlink:href="content/img/salaries-ucla2014-resampling-ttest.svg#axes_8"
+        class="fragment" data-fragment-index=3></use>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide-in">
+  <h3>Theory: One sample t-test</h3>
+  <p class="sided border-pop smaller">
+    Using the theoretical characteristics of the sampling distribution, it is possible to measure a 
+    <span class="pop">standardized statistic for a
+    sample mean</span>, by
+    measuring <span class="u-pop">how far it is from the mean of 
+    a hypothesized population mean in term of 
+    <span class="pop">standard deviation of the sampling distribution of the mean</span></span>. <br>
+  </p>
+  <div class="row">
+    <div class="col-60">
+      <img class="up-5" src="content/img/central-limit-theorem-one-mean-ci95.svg" width=100%>
+      <p class="fragment" data-fragment-index=1>
+      $t=\frac{\textrm{sample mean-}\fragapply{highlight-info 1}{\textrm{hypothesized population mean}}}{\fragapply{highlight-danger 2}{\sigma\textrm{ of
+      sampling distribution of the mean}}}$
+      </p>
+    </div>
+    <div class="col-40">
+      <p class="smallest">
+        Because the theoretical sampling distribution of the
+        mean follow a $t\textrm{-distribution}$ that behaves more or
+        less like a normal distribution, we expect 
+        <span class="info">$95\%$
+        of the sample means to lie 
+        within $2$ standard errors on each side of the 
+        true mean</span> (more correct number 
+        <span class="info">$1.96$</span>).
+      </p>
+      <p class="fragment sided border-info" data-fragment-index=3>
+        Hypothesized mean: <br>
+        <span class="right-5">$\mu = \textrm{value to test}$</span>
+      </p>
+      <p class="fragment sided border-danger" data-fragment-index=5>
+        $\sigma$ of the sampling distribution of the mean (<span class="danger">Standard Error</span>)
+        <br>
+        <span class="right-5">$SE=\frac{\sigma}{\sqrt{n}}$</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- <section>
+  <h3>Theory: central limit theorem</h3>
+  <p class="sided" style="font-size: 0.65em; margin-top: 0;">
+    <span class="u em info">Central limit theorem for sample means:</span><br>
+    If the sample size $n$ is <span class="u">large</span>, the distribution 
+    of sample means (=sampling distribution) from a population
+    with mean $\mu$ and standard deviation $\sigma$ is approximately normally distributed
+    with mean <span class="warning">$\mu$</span> and standard deviation <span class="warning">$\frac{\sigma}{\sqrt{n}}$</span> (=standard error of the sample means).
+  </p>
+  <div class="row">
+    <div class="col-50">
+      <svg width="100%" viewBox="40 0 390 288" style="margin-top: 0;">
+        <use xlink:href="content/img/central-limit-theorem-one-mean.svg#axes_1"></use>
+        <use xlink:href="content/img/central-limit-theorem-one-mean.svg#axes_2"
+        class="fragment" data-fragment-index=1></use>
+    </div>
+    <div class="col-50">
+      <p style="font-size: 0.6em;" class="framed border-danger fragment" data-fragment-index=2>
+      However in practice we don't usually know the standard deviation $\sigma$
+      for the population of interest, and we usually have only the information of a 
+      sample in the population. <br>
+      We can just substitute in <span class="warning">$s$</span>, the <span class="warning">standard deviation of the sample</span>, when estimating
+      the standard error of the sample means.
+      <span class="info">$SE=\frac{s}{\sqrt{n}}$</span>
+      </p> 
+    </div>
+  </div>
+</section> -->
+
+
+<section data-transition="none">
+  <h3>Theory: Standardized statistic (t)</h3>
+  <p class="sided">
+    When we use the $SE$ based on $\frac{s}{\sqrt{n}}$ to standardize the sample mean,
+    the distribution is no longer the standard normal, but rather the 
+    <span class="info">$t$-distribution</span>. The standardized statistic 
+    is then commonly noted <span class="info">$t$</span>.
+  </p>
+  <div class="row">
+    <div class="col-50">
+      <p class="smaller">
+        The shape of a $t$-distribution looks a lot like a normal distribution but it is a bit more
+        spread out than a normal distribution (more observations in the "tails", less in the middle).
+      </p>
+      <p class="fragment smaller">
+        A key fact about the $t$-distribution is that it depends on the size of the sample ($n$).
+        The sample size is reflected in a parameter called the 
+        <span class="success">degreees of freedom ($df$)</span> for the 
+        $t$-distribution.
+        When working with $\bar{x}$ for a sample of size $n$, 
+        we use a $t$-distribution with $df=n-1$.
+      </p>
+    </div>
+    <div class="col-50">
+      <img src="content/img/distribution-t-vs-z.svg" 
+       width=100%>
+    </div>
+  </div>
+</section>
+
+<!-- <section>
+  <h3>Theory: 95% confidence intervals</h3>
+  <p>
+    Beacause the theoretical sampling distribution of the
+    mean follow a $t\textrm{-distribution}$ that behaves more or
+    less like a normal distribution, we expect 
+    <span class="info">$95\%$
+    of the sample means to lie 
+    within $2$ standard errors on each side of the 
+    true mean</span> (more correct number 
+    <span class="info">$1.96$</span>).
+  </p>
+  <div class="row">
+    <div class="col-40">
+      <p>
+      The theoretical $95\%$ confidence intervals
+      of the population mean can then be approximated using the sample mean ($\bar{x}$) and the lower and upper limits below: <br>
+      - lower limit: <span class="warning">$\bar{x}-1.96\times SE$</span>
+      <br>
+      - upper limit: <span class="warning">$\bar{x}+1.96\times SE$</span>
+      </p>
+    </div>
+    <div class="col-60">
+      <img src="content/img/central-limit-theorem-one-mean-ci95.svg" width=100%>
+    </div>
+  </div>  
+</section> -->
+
+<section data-transition="slide-out">
+  <h3>Theory: One-sample t-test</h3>
+  <div class="row">
+    <div class="col-50">
+      <p class="sided" style="font-size: 0.6em;">
+        <span class="u em muted">Salary data</span> <br>
+        US average ($\mu_0$)<br>
+          <span class="right-5">$\$62931$</span>
+        <br>
+        UCLA sample ($n=100$): <br>
+        <span class="right-5">
+         $\bar{x}=\$94,339$ / $s=\$86,832$</span>
+      </p>
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/salaries-ucla2014-ttest.svg#axes_1"></use>
+      </svg>
+    </div>
+    <div class="col-50">
+      <svg width="100%" viewBox="0 0 432 288">
+        <use xlink:href="content/img/salaries-ucla2014-ttest-hypothesized-dist.svg#axes_1"></use>
+        <use
+        xlink:href="content/img/salaries-ucla2014-ttest-hypothesized-dist.svg#axes_2"></use>
+      </svg>
+      <p>
+        $t$-statistic: <span class="orange">$t=\frac{\bar{x}-\mu_0}{\frac{s}{\sqrt{n}}}$</span>
+      </p>
+      <p>
+        $t=\frac{94339-62931}{\frac{86832}{\sqrt{100}}}$
+      </p>
+      <p>
+        $t=3.62$
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h3>Theory vs resampling</h3>
+  <div class="row">
+    <div class="col-80">
+      <svg width="100%" viewBox="0 0 720 288">
+        <use xlink:href="content/img/salaries-ucla2014-true-sampling-distribution.svg#axes_1"></use>
+        <use xlink:href="content/img/salaries-ucla2014-true-sampling-distribution.svg#axes_2"></use>
+        <use xlink:href="content/img/salaries-ucla2014-true-sampling-distribution.svg#axes_3"></use>
+      </svg>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-60">
+      <p class="sided border-danger smaller">
+        <span class="em u danger">Validity condition for a one-sample $t$-test</span>
+        The quantitative variable should have a symmetric distribution, or should have
+        at least 20 observations and the sample ditribution should not be strongly 
+        skewed. If the sample size is small and the data are heavily skewed or contain outliers
+        the $t$-distribution should not be used.
+      </p>
+    </div>
+    <div class="col-40">
+      <svg width="100%" viewBox="0 0 390 283">
+        <use xlink:href="content/img/salaries-ucla2014-resampling-ttest.svg#axes_1"></use>
+        <use xlink:href="content/img/salaries-ucla2014-resampling-ttest.svg#axes_2"></use>
+        <use xlink:href="content/img/salaries-ucla2014-resampling-ttest.svg#axes_3"></use>
+        <use xlink:href="content/img/salaries-ucla2014-resampling-ttest.svg#axes_4"></use>
+        <use xlink:href="content/img/salaries-ucla2014-resampling-ttest.svg#axes_5"></use>
+        <use xlink:href="content/img/salaries-ucla2014-resampling-ttest.svg#axes_6"></use>
+        <use xlink:href="content/img/salaries-ucla2014-resampling-ttest.svg#axes_8"></use>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide-in">
+  <h3>What about the median?</h3>
+  <p class="sided border-danger">
+    The median is a procedure, and cannot be described 
+    with an equation.
+    <br>
+    <span class="danger">WE CANNOT STUDY THE MEDIAN USING A THEORETICAL APPROACH</span>
+  </p>
+  <p class="sided border-pop">
+    We can easily calculate the median of all
+    of our bootstrap samples.
+    <br>
+    <span class="pop">A RESAMPLING APPROACH CAN BE USED TO STUDY THE MEDIAN!</span>
+  </p>
+</section>
+
+<section data-transition="slide-out">
+  <h3>What about the median?</h3>
+    <div class="row">
+    <div class="col-40">
+      <p class="sided border-info">
+        <span class="u">Sample statistic:</span> <br>
+        <span class="info">$m$</span> (sample median)
+      </p>
+      <p class="sided border-danger">
+        <span class="u">95% CI:</span> <br>
+        <span class="danger">central $95\%$</span> of the bootstrap 
+        $m$ distribution
+      </p>
+    </div>
+    <div class="col-60">
+      <svg width="100%" viewBox="0 0 433 204">
+        <use xlink:href="content/img/bootstrap-distribution-generation-process.svg#bootstrap"></use>
+        <use xlink:href="content/img/bootstrap-distribution-generation-process.svg#ci"></use>
+      </svg>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-50">
+      <ol class="push-left small">
+        <li><span class="warning">Generate bootstrap samples</span>
+          by sampling <span class="u">with replacement</span> from
+          the original sample, using the
+          <span class="warning">same sample size</span></li>
+        <li><span class="info">Compute the statistic of interest</span>
+          ("bootstrap statistic") 
+          for each of the bootstrap samples</li>
+      </ol>
+    </div>
+    <div class="col-50">
+      <ol class="push-left small" start=3>
+        <li>Collect the statistics for many bootstrap samples 
+          to create a
+          <span class="info">bootstrap distribution</span></li>
+        <li>
+          Rank the bootstrap distribution statistics and take
+          the values at <span class="danger">positions
+          <span class="em">alpha</span></span>
+          (lower ci limit) and <br>
+          <span class="danger"><span class="em">(1-alpha)</span></span>
+          (higher ci limit)</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h3>What about a fancy descriptor?</h3>
+    <div class="row" style="margin-top: -2%;">
+    <div class="col-40">
+      <p class="sided border-info" style="font-size: 0.65em;">
+        <span class="u">Sample statistic:</span> <br>
+        <span class="info">[fancy descriptor]</span>
+      </p>
+      <p class="sided border-danger"
+      data-fragment-index=1 style="font-size: 0.65em;">
+        <span class="u">95% CI:</span> <br>
+        <span class="danger">central $95\%$</span> of the bootstrap 
+        [francy descriptor] distribution
+      </p>
+    </div>
+    <div class="col-60">
+      <svg width="100%" viewBox="0 0 433 204" style="margin-top: 0; margin-bottom: 0;">
+        <use xlink:href="content/img/bootstrap-distribution-generation-process.svg#bootstrap"></use>
+        <use xlink:href="content/img/bootstrap-distribution-generation-process.svg#ci"></use>
+      </svg>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-50">
+      <ol style="font-size: 0.6em;" class="push-left">
+        <li><span class="warning">Generate bootstrap samples</span>
+          by sampling <span class="u">with replacement</span> from
+          the original sample, using the
+          <span class="warning">same sample size</span></li>
+        <li><span class="info">Compute the statistic of interest</span>
+          ("bootstrap statistic") 
+          for each of the bootstrap samples</li>
+      </ol>
+    </div>
+    <div class="col-50">
+      <ol style="font-size: 0.6em;" class="push-left" start=3>
+        <li>Collect the statistics for many bootstrap samples 
+          to create a
+          <span class="info">bootstrap distribution</span></li>
+        <li>
+          Rank the bootstrap distribution statistics and take
+          the values at <span class="danger">positions
+          <span class="em">alpha</span></span>
+          (lower ci limit) and <br>
+          <span class="danger"><span class="em">(1-alpha)</span></span>
+          (higher ci limit)</li>
+      </ol>
+    </div>
+  </div>
+</section>

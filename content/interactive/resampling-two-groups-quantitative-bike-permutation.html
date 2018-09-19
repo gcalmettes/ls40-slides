@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<svg width="960" height="600" style="position: absolute"></svg>
+<canvas width="960" height="400"></canvas>
+<script src="js/d3.min.js"></script>
+<script src="js/jstat.min.js"></script>
+<script src="js/chroma.min.js"></script>
+
+
+<style type="text/css">
+  .bar {
+    fill: #9fc857;
+    stroke: white;
+  }
+
+  .label {
+    font-family: helvetica;
+    font-size: 2em;
+    text-anchor: middle
+  }
+
+  .textChart {
+    font-family: helvetica;
+    font-size: 1em;
+    text-anchor: beginning
+  }
+
+  .textChartDif {
+    font-family: helvetica;
+    font-size: 1.5em;
+    text-anchor: beginning;
+  }
+
+  .textNum {
+    font-family: helvetica;
+    font-size: 1.5em;
+    text-anchor: beginning;
+    fill: #B4B4B4;
+  }
+
+</style>
+
+<script>
+
+const dataBike = [{"Frame":"carbon","Time":115.58333300000001},{"Frame":"carbon","Time":113.933333},{"Frame":"carbon","Time":119.2},{"Frame":"carbon","Time":123.33333300000001},{"Frame":"carbon","Time":112.5},{"Frame":"carbon","Time":117.683333},{"Frame":"carbon","Time":108.63333300000001},{"Frame":"carbon","Time":110.88333300000001},{"Frame":"carbon","Time":105.86666699999999},{"Frame":"carbon","Time":112.58333300000001},{"Frame":"carbon","Time":112.433333},{"Frame":"carbon","Time":109.58333300000001},{"Frame":"carbon","Time":102.6},{"Frame":"carbon","Time":103.81666700000001},{"Frame":"carbon","Time":102.75},{"Frame":"carbon","Time":101.85},{"Frame":"carbon","Time":107.233333},{"Frame":"carbon","Time":100.083333},{"Frame":"carbon","Time":100.68333299999999},{"Frame":"carbon","Time":101.583333},{"Frame":"carbon","Time":105.05},{"Frame":"carbon","Time":102.9},{"Frame":"carbon","Time":101.8666667},{"Frame":"carbon","Time":110.6},{"Frame":"carbon","Time":105.51666670000002},{"Frame":"carbon","Time":108.18333329999999},{"Frame":"steel","Time":115.75},{"Frame":"steel","Time":115.66666699999999},{"Frame":"steel","Time":108.733333},{"Frame":"steel","Time":117.733333},{"Frame":"steel","Time":112.61666699999999},{"Frame":"steel","Time":109.566667},{"Frame":"steel","Time":113.066667},{"Frame":"steel","Time":103.966667},{"Frame":"steel","Time":112.86666699999999},{"Frame":"steel","Time":104.75},{"Frame":"steel","Time":105.46666699999999},{"Frame":"steel","Time":111.03333300000001},{"Frame":"steel","Time":111.316667},{"Frame":"steel","Time":105.41666699999999},{"Frame":"steel","Time":110.2},{"Frame":"steel","Time":108.7},{"Frame":"steel","Time":101.716667},{"Frame":"steel","Time":97.66666670000001},{"Frame":"steel","Time":108.25},{"Frame":"steel","Time":103.25},{"Frame":"steel","Time":111.933333},{"Frame":"steel","Time":102.43333299999999},{"Frame":"steel","Time":100.6},{"Frame":"steel","Time":106.46666699999999},{"Frame":"steel","Time":101.583333},{"Frame":"steel","Time":110.483333},{"Frame":"steel","Time":105.95},{"Frame":"steel","Time":106.83333300000001},{"Frame":"steel","Time":105.6},{"Frame":"steel","Time":104.65}]
+
+
+const colors = {info: '#00BFFF',
+                danger: '#fb4c52',
+                warning: '#FBC15E',
+                orange: '#FF8B22',
+                muted: '#B4B4B4',
+                pop: '#ce4ad0'}
+////////////////////
+// CANVAS
+
+Math.nrand = function() {
+  var x1, x2, rad, y1;
+  do {
+    x1 = 2 * this.random() - 1;
+    x2 = 2 * this.random() - 1;
+    rad = x1 * x1 + x2 * x2;
+  } while(rad >= 1 || rad == 0);
+  var c = this.sqrt(-2 * Math.log(rad) / rad);
+  return x1 * c;
+};
+
+
+var n = 20;
+const radius = 10
+
+const cScale_g1 = chroma.scale('Reds').padding(0.2, 0.2).domain(d3.extent(dataBike.filter(d => d["Frame"] == "steel"), d => d["Time"]))
+const cScale_g2 = chroma.scale('Blues').padding(0.2, 0.2).domain(d3.extent(dataBike.filter(d => d["Frame"] == "carbon"), d => d["Time"]))
+
+
+var nodes = dataBike.map((d,i) => {
+  return {
+    type: d["Frame"],
+    group: d["Frame"] == "steel" ? 1 : 2,
+    color: d["Frame"] == "steel" ? cScale_g1(d["Time"]) : cScale_g2(d["Time"]),
+    value: d["Time"]
+  }
+})
+
+const canvas = document.querySelector("canvas"),
+      context = canvas.getContext("2d"),
+      width = canvas.width,
+      height = canvas.height;
+
+const forceXScaleGroup = d3.scaleOrdinal()
+  .range([0, -width/6, width/6])
+  .domain(d3.range(3))
+
+const simulation = d3.forceSimulation(nodes)
+    .force("xGroup", d3.forceX().x(d => forceXScaleGroup(d.group)))
+    .force("y", d3.forceY(-70))
+    .force("charge", d3.forceManyBody().strength(-1.5*radius))
+    .on("tick", ticked);
+
+
+function ticked() {
+  context.clearRect(0, 0, width, height);
+  context.save();
+  context.translate(width / 2, height / 2);
+  nodes.forEach(drawNode);
+  context.restore();
+}
+
+function drawNode(d) {
+  context.beginPath();
+  context.moveTo(d.x + 3, d.y);
+  context.arc(d.x, d.y, radius, 0, 2 * Math.PI);
+  context.fillStyle = d.color;
+  context.fill();
+}
+
+////////////////
+// SVG
+
+var svg = d3.select('svg')
+
+//SVG setup
+const marginHist = {top: 350, right: 30, bottom: 70, left: 30},
+      widthHist = +svg.attr("width") - marginHist.left - marginHist.right,
+      heightHist = +svg.attr("height") - marginHist.top - marginHist.bottom;
+
+//x scales
+const x = d3.scaleLinear()
+    .rangeRound([0, widthHist])
+    .domain([-6, 6]);
+
+const y = d3.scaleLinear()
+    .range([heightHist, 0]);
+
+let nbins = 20,
+    data = []
+
+let chart = svg.append("g")
+  .attr("transform", `translate(${marginHist.left}, ${marginHist.top})`);
+
+// add container for histogram so other layers on top of it
+const chartHist = chart.append("g")
+
+// add x axis
+chart.append("g")
+  .attr("class", "axis axis--x")
+  .attr("transform", `translate(0, ${heightHist})`)
+  .call(d3.axisBottom(x));
+
+chart.append("text")
+  .text("Difference in means")
+  .attr('class', 'label')
+  .attr('dx', widthHist/2)
+  .attr('dy', heightHist + 50)
+
+let grp1Mean = d3.mean(nodes.filter(d => d.group == 1).map(d => d.value))
+let grp2Mean = d3.mean(nodes.filter(d => d.group == 2).map(d => d.value))
+let initialDif = grp2Mean - grp1Mean
+
+svg.append("text")
+  .text("Steel frame")
+  .attr('class', 'textNum')
+  .attr('dx', 50)
+  .attr('dy', 70)
+let mean1 = svg.append("text")
+  .text(grp1Mean.toFixed(2))
+  .attr('class', 'textNum')
+  .attr('dx', 50)
+  .attr('dy', 100)
+
+svg.append("text")
+  .text("Carbon frame")
+  .attr('class', 'textNum')
+  .attr('dx', 910)
+  .attr('dy', 70)
+  .style("text-anchor", "end")
+let mean2 = svg.append("text")
+  .text(grp2Mean.toFixed(2))
+  .attr('class', 'textNum')
+  .attr('dx', 910)
+  .attr('dy', 100)
+  .style("text-anchor", "end")
+
+chart.selectAll(".limit")
+  .data([initialDif, -initialDif])
+  .enter().append("line")
+    .attr("class", "limit")
+    .attr('x1', d => x(d))
+    .attr('x2', d => x(d))
+    .attr('y1', -20)
+    .attr('y2', heightHist)
+    .attr('stroke', 'black')
+    .attr('stroke-dasharray', (d,i) => i < 1 ? "0, 0" : "10, 5")
+    .attr('stroke-width', 4)
+
+chart.append("text")
+  .html("Observed<tspan dx=-70 dy=25>difference</tspan>")
+  .attr('class', 'textChart')
+  .attr('dx', x(initialDif) + 10)
+  .attr('dy', -30)
+chart.append("text")
+  .text(initialDif.toFixed(2))
+  .attr('class', 'textChartDif')
+  .attr('dx', x(initialDif) + 85)
+  .attr('dy', -20)
+chart.append("text")
+  .text(-initialDif.toFixed(2))
+  .attr('class', 'textChartDif')
+  .attr('dx', x(-initialDif) - 10)
+  .attr('dy', -20)
+  .style("text-anchor", "end")
+  
+let count = chart.append("text")
+  .text(`n = ${0}`)
+  .attr('class', 'textNum')
+  .attr('dx', 0)
+  .attr('dy', 0)
+let above = chart.append("text")
+  .text(` `)
+  .attr('class', 'textNum')
+  .attr('dx', 0)
+  .attr('dy', 30)
+let pval = chart.append("text")
+  .text(` `)
+  .attr('class', 'textNum')
+  .attr('dx', 0)
+  .attr('dy', 60)
+
+
+function getNewData() {
+  d3.shuffle(d3.range(dataBike.length)).forEach((d, i) => {
+        nodes[i]['group'] = d < dataBike.length/2 ? 1 : 2
+  })
+  //simulate new data by randomizing/slicing
+  grp1Mean = d3.mean(nodes.filter(d => d.group == 1).map(d => d.value))
+  grp2Mean = d3.mean(nodes.filter(d => d.group == 2).map(d => d.value))
+  data.push(grp2Mean-grp1Mean)
+}
+
+
+function drawHistogram(){
+
+    //histogram binning
+    const histogram = d3.histogram()
+      .domain(x.domain())
+      .thresholds(x.ticks(nbins))
+      // .value(function(d) { return d.value;} )
+
+    var bins = histogram(data)//.filter(d => d.length>0);
+
+    y.domain([0, d3.max(bins, d => d.length)]);
+
+    var bar = chartHist.selectAll(".bar")
+        .data(bins);
+
+    bar.exit().remove();
+
+    // new data:
+    bar.enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", d => x(d.x0))
+      .attr("width", d => x(d.x1) - x(d.x0))
+      .attr("y", d => y(d.length))
+      .attr("height", d => heightHist - y(d.length))
+    .merge(bar)
+      
+    bar.transition().duration(300)
+      .attr("y", d => y(d.length))
+      .attr("height", d => heightHist - y(d.length))
+
+};
+
+
+/////////////////////
+// Transitions
+const gatherGroups = () => {
+  nodes.forEach(d => d.group = 0)
+  simulation.nodes(nodes);
+  simulation.alpha(1).restart()
+}
+
+const updateLabels = () => {
+  mean2.text(grp2Mean.toFixed(2))
+  mean1.text(grp1Mean.toFixed(2))
+  count.text(`n = ${data.length}`)
+  above.text(`${d3.sum(data.map(d => (d >= initialDif) | (d <= -initialDif)))}/${data.length}`)
+  pval.text(`pvalue = ${(d3.sum(data.map(d => (d >= initialDif) | (d <= -initialDif)))/data.length).toFixed(3)}`)
+
+  
+}
+
+const randomizeGroups = (n) => {
+
+  d3.range(n).forEach(k => {
+    getNewData(nodes)
+  })
+
+  simulation.nodes(nodes);
+  simulation.alpha(1).restart()
+  // getNewData()
+  drawHistogram();
+  updateLabels()
+}
+
+
+var _transitions = [
+      {
+        transitionForward: () => gatherGroups(),
+        transitionBackward: () => {
+          nodes.forEach(d => {
+            d['group'] = d.type == 'steel' ? 1 : 2
+          })
+          simulation.nodes(nodes);
+          simulation.alpha(1).restart()
+          data = []
+          drawHistogram()
+          updateLabels()
+        },
+        index: 0
+      },
+      {
+        transitionForward: () => randomizeGroups(1),
+        index: 1
+      },
+      {
+        transitionForward: () => randomizeGroups(1),
+        index: 2
+      },
+      {
+        transitionForward: () => randomizeGroups(1),
+        index: 3
+      },
+      {
+        transitionForward: () => randomizeGroups(100),
+        index: 4
+      },
+      {
+        transitionForward: () => randomizeGroups(1000),
+        index: 5
+      },
+      {
+        transitionForward: () => randomizeGroups(1000),
+        index: 6
+      },
+      {
+        transitionForward: () => randomizeGroups(7897),
+        index: 7
+      },
+    ]
+</script>

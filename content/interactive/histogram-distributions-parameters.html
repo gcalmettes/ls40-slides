@@ -1,0 +1,407 @@
+<!-- Source: modified from https://bl.ocks.org/mbostock/3231298 -->
+
+<!DOCTYPE html>
+<body>
+
+<style>
+
+label {
+  font-family: Raleway;
+  font-size: 20;
+}
+
+input[type=range]{
+    -webkit-appearance: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+    /*width: 10em;*/
+    height: 5px;
+    background: #ddd;
+    border: none;
+    border-radius: 3px;
+}
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: #FBC15E;
+    margin-top: -4px;
+}
+input[type=range]:focus {
+    outline: none;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #ccc;
+}
+input[type="range"] {
+  width: 10em;
+}
+
+/*INPUT CHECKBOX*/
+input[type="checkbox"]{
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  background: #fb4c52;
+  border-radius: 0.6em;
+  box-sizing: border-box;
+  position: relative;
+  vertical-align: middle;
+  box-sizing: content-box ;
+  width: 1.5em;
+  height: 1.5em;
+  border-width: 0;
+  transition: all .1s linear;
+}
+input[type="checkbox"]:checked{
+  background-color: #9fc857;
+}
+input[type="checkbox"]:focus{
+  outline: 0 none;
+  box-shadow: none;
+}
+
+/*.row {
+  margin: 0.1em 0em; }
+
+.row:before,
+.row:after {
+  content: "";
+  display: table;
+  clear: both; }
+
+.row *[class*='col-'] {
+  box-sizing: border-box;
+  position: relative;
+  left: 0;
+  float: left;
+  min-height: 1px;
+  padding: 0em 0.15em; }
+
+.col-50 {
+    width: 25% !important;
+}
+.col-25 {
+    width: 25% !important;
+}
+*/
+/*svg {
+  position: absolute;
+  top: 5;
+  left: 0;
+}*/
+
+#params {
+  position: absolute;
+  left: 40px;
+  top: 10px;
+}
+
+</style>
+
+<div>
+  <svg></svg>
+</div>
+<div id="params" style="width: 600px">
+  <div>
+    <label># Bins:</label>
+    <input type="range" min="1" max="50" id="nbins" value=15>
+    <label id="nbins-value">15</label>
+  </div>
+  <div>
+    <label>Offset:</label>
+    <input type="range" min="-5" max="5" id="offset" value=0>
+    <label id="offset-value">0</label>
+  </div>
+  <div style="margin-top: 8px">
+    <span>
+      <label>Sort</label>
+      <input type="checkbox" id="checkboxSort">
+    </span>
+    <span style="margin-left: 40px">
+      <label>Normalize</label>
+      <input type="checkbox" id="checkboxNorm" value="normChecked" checked>
+    </span>
+  </div>
+</div>
+
+
+<script src="js/d3.min.js"></script>
+<script>
+
+  const colors = {info: '#00BFFF',
+                  danger: '#fb4c52',
+                  warning: '#FBC15E',
+                  orange: '#FF8B22'}
+
+  const margin =  {top: 15, right: 30, bottom: 140, left: 30},
+        margin2 = {top: 360, right: 30, bottom: 30, left: 30},
+        width = 650 - margin.left - margin.right,
+        height = 450 - margin.top - margin.bottom,
+        height2 = 450 - margin2.top - margin2.bottom;
+
+  const nSample = 150
+
+  // format of text on histogram bars
+  const formatCount = d3.format(",.0f"),
+        formatProportion = d3.format(",.2f");
+
+  // possible distributions and data to plot
+
+  let dist = [
+    { name: 'normal', 
+      data: d3.range(nSample).map(d3.randomNormal(0.5, 0.1))},
+    { name: 'random',
+      data: d3.range(nSample).map(d3.randomUniform(0, 1))},
+    { name: 'exponential', 
+      data: d3.range(nSample).map(d3.randomExponential(9))},
+    { name: 'lognormal', 
+      data: d3.range(nSample).map(d3.randomLogNormal(-1.5,0.5))},
+    { name: 'geyser', 
+      data: [80, 71, 57, 80, 75, 77, 60, 86, 77, 56, 81, 50, 89, 54, 90,
+            73, 60, 83, 65, 82, 84, 54, 85, 58, 79, 57, 88, 68, 76, 78, 74,
+            85, 75, 65, 76, 58, 91, 50, 87, 48, 93, 54, 86, 53, 78, 52, 83,
+            60, 87, 49, 80, 60, 92, 43, 89, 60, 84, 69, 74, 71, 108, 50, 77,
+            57, 80, 61, 82, 48, 81, 73, 62, 79, 54, 80, 73, 81, 62, 81, 71, 79,
+            81, 74, 59, 81, 66, 87, 53, 80, 50, 87, 51, 82, 58, 81, 49, 92, 50,
+            88, 62, 93, 56, 89, 51, 79, 58, 82, 52, 88, 52, 78, 69, 75, 77, 53,
+            80, 55, 87, 53, 85, 61, 93, 54, 76, 80, 81, 59, 86, 78, 71, 77, 76,
+            94, 75, 50, 83, 82, 72, 77, 75, 65, 79, 72, 78, 77, 79, 75, 78, 64,
+            80, 49, 88, 54, 85, 51, 96, 50, 80, 78, 81, 72, 75, 78, 87, 69, 55,
+            83, 49, 82, 57, 84, 57, 84, 73, 78, 57, 79, 57, 90, 62, 87, 78, 52,
+            98, 48, 78, 79, 65, 84, 50, 83, 60, 80, 50, 88, 50, 84, 74, 76, 65,
+            89, 49, 88, 51, 78, 85, 65, 75, 77, 69, 92, 68, 87, 61, 81, 55, 93,
+            53, 84, 70, 73, 93, 50, 87, 77, 74, 72, 82, 74, 80, 49, 91, 53, 86,
+            49, 79, 89, 87, 76, 59, 80, 89, 45, 93, 72, 71, 54, 79, 74, 65, 78,
+            57, 87, 72, 84, 47, 84, 57, 87, 68, 86, 75, 73, 53, 82, 93, 77, 54,
+            96, 48, 89, 63, 84, 76, 62, 83, 50, 85, 78, 78, 81, 78, 76, 74, 81,
+            66, 84, 48, 93, 47, 87, 51, 78, 54, 87, 52, 85, 58, 88, 79,]
+    }   
+  ]
+
+  let dataset = dist.filter(d => d.name=="geyser")[0].data
+  let data = dataset
+
+  // the svg container
+  const svg = d3.select('svg')
+      .attr('width', width + margin.left + margin.right)
+      .attr('height', height + margin.top + margin.bottom)
+
+  // histogram   
+  const svgHist = svg.append("g")
+    .attr("transform", `translate(${margin.left}, ${margin.top})`)
+
+  // individual data plot
+  const svgData = svg.append("g")
+    .attr("transform", `translate(${margin2.left}, ${margin2.top})`)
+
+  const xScale = d3.scaleLinear()
+        .rangeRound([0, width])
+        .domain(d3.extent(data))
+  const xScale2 = d3.scaleLinear()
+        .domain([0, dataset.length])
+        .rangeRound([0, width])
+
+  // x axis for histogram
+  const xAxis = svgHist.append("g")
+    .attr("class", "axis axis--x")
+    .attr("transform", `translate(0, ${height})`)
+    
+  // x axis for data points plot
+  svgData.append("g")
+    .attr("class", "axis axis--x")
+    .attr("transform", `translate(0, ${height2})`)
+    .call(d3.axisBottom(xScale2));
+
+  // initial bounds for brush
+  let minBound = 0,
+      maxBound = data.length;
+  // initial histogram setup
+  let nBins = 15,
+      ymax = data.length,
+      offset = 0
+
+  
+  let bins, bar, databars
+  // Main plot function
+  function update() {
+
+    xScale.domain(d3.extent(data))
+    xAxis.call(d3.axisBottom(xScale));
+
+    let binStart = xScale.domain()[0] + offset,
+        binStop = offset <=0 ? xScale.domain()[1] : xScale.domain()[1] + offset
+
+    // main histogram
+    bins = d3.histogram()
+      .domain([binStart, binStop])
+      .thresholds(d3.range(binStart, binStop, (binStop-binStart)/nBins))
+      (data);
+    
+    bins = bins.filter(d => d.length>0)
+
+    svgHist.selectAll(".bar").remove();
+    svgData.selectAll(".bar").remove();
+    
+    yScale = d3.scaleLinear()
+      .domain([0, ymax])
+      .range([height, 0]);
+    
+    bar = svgHist.selectAll(".bar")
+      .data(bins)
+      .enter().append("g")
+        .attr("class", "bar")
+        .attr("transform", d => `translate(${xScale(d.x0)}, ${yScale(d.length)})`);
+    
+    bar.append("rect")
+      .attr("fill", colors.info)
+      .attr("x", 1)
+      .attr("width", xScale(bins[0].x1) - xScale(bins[0].x0) - 1)
+      .attr("height", d => height - yScale(d.length));
+    
+    bar.append("text")
+      .style("fill", "black")
+      .style("font-size", "0.7em")
+      .style("font-family", "Raleway")
+      .attr("dy", ".75em")
+      .attr("y", -14)
+      .attr("x", (xScale(bins[0].x1) - xScale(bins[0].x0)) / 2)
+      .attr("text-anchor", "middle")
+      .text(function(d) { 
+        if(d3.select("#checkboxNorm").property("checked")){
+          return formatProportion(d.length/nSample)} 
+        else {
+          return formatCount(d.length) }
+        });
+    
+    // individual data
+    const yScale2 = d3.scaleLinear()
+      .domain([0, d3.max(dataset)*1.2])
+      .range([height2, 0])
+    
+    databars = svgData.selectAll(".bar")
+      .data(dataset)
+      .enter()
+      .append("rect")
+        .attr("class", "bar")
+        .attr("fill", colors.danger)
+        .attr("x", (d,i) => xScale2(i))
+        .attr("y", d => yScale2(d))
+        .attr("width", xScale2(1)-1)//the -1 is to space the bar
+        .attr("height", d => height2-yScale2(d));
+  };
+
+  // normalize height of bars in histogram
+  function normalizeBars () {
+    if(d3.select("#checkboxNorm").property("checked")){
+      bins = d3.histogram()
+        .domain(xScale.domain())
+        .thresholds(d3.range(xScale.domain()[0], xScale.domain()[1], (xScale.domain()[1]-xScale.domain()[0])/nBins))
+        (data)
+      ymax = d3.max(bins, d => d.length);
+    } else {
+      ymax = data.length;         
+    }  
+      update();
+  };
+
+  // sort data in data points plot
+  function sortData() {
+    if(d3.select("#checkboxSort").property("checked")){
+        dataset.sort((a, b) => a-b);
+    } else {
+        d3.shuffle(dataset);
+    }
+    data = dataset.slice(minBound, maxBound);
+    normalizeBars();
+    update();
+  };
+
+  // Refresh histogram based on selectd data
+  function selectData (ds, start, end) {
+    data = ds.slice(start, end);
+    update();
+  };
+
+  // brush-select data to be plotted in histogram
+  function brushed() {
+    let Bounds = d3.event.selection.map(xScale2.invert),
+      roundedBounds = Bounds.map(Math.round);
+    selectData(dataset, roundedBounds[0], roundedBounds[1]);
+    normalizeBars();
+    update();
+    minBound = roundedBounds[0];
+    maxBound = roundedBounds[1];
+  };
+
+  function getDataset(name) {
+    dataset = dist.filter(d => d.name == name)[0]
+    update()
+  }
+
+  //brush to select data
+  const brush = d3.brushX()
+      .extent([[0, 0], [width, height2]])
+      .on("brush", brushed);
+
+  svgData.append("g")
+      .attr("class", "brush")
+      .call(brush)
+      .call(brush.move, xScale2.range());
+
+
+  update()
+
+  // number of bins
+  d3.select("#nbins")
+    .on("input", function () {
+      nBins = +this.value;
+      d3.select("#nbins-value").text(+this.value);
+      normalizeBars();
+      update();
+  });
+
+    // number of bins
+  d3.select("#offset")
+    .on("input", function () {
+      offset = +this.value;
+      d3.select("#offset-value").text(+this.value);
+      normalizeBars();
+      update();
+  });
+
+  // normalization of histogram bars height
+  d3.select('#checkboxNorm')
+    .on("change", normalizeBars);
+
+  // sort data in data points plot
+  d3.select('#checkboxSort')
+    .on("change", sortData);
+
+
+
+
+  // var _transitions = [
+  //   {
+  //     transitionForward: () => {
+  //       const binnedData = getBinnedData(data, category=dataToShow)
+  //       drawBinLimits(binnedData)
+  //     },
+  //     transitionBackward: () => removeBinLimits(), 
+  //     index: 0
+  //   },
+  //   {
+  //     transitionForward: () => dropBallsIntoBins(data),
+  //     transitionBackward: () => {
+  //       stopAllTransitions()
+  //       removeHist()
+  //       drawBeeswarm(data)
+  //     }, 
+  //     index: 1
+  //   }
+  // ]
+
+
+</script>

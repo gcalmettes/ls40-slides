@@ -1,0 +1,30 @@
+<section>
+  <h3>Analysis of variance</h3>
+  <div class="small">
+    $F=\frac{\texclass{danger}{\textrm{Mean SS}_{Group}}}{\texclass{info}{\textrm{Mean SS}_{Error}}}$
+  </div>
+  <div class="row flex down-2 smaller">
+    <div class="col-25 flex-center framed border-warning">
+      <p class=" center">
+        $\sum_{i=1}^{n}(x_{i}-\hat{x})^2$
+      </p>
+    </div>
+    <div class="col-7 flex-center">
+        $=$
+    </div>
+    <div class="col-30 flex-center framed border-danger">
+      <p class="center">
+        $\sum_{g=1}^{k}n_{g}(\bar{x}_{g}-\hat{x})^2$
+      </p>
+    </div>
+    <div class="col-7 flex-center">
+        $+$
+    </div>
+    <div class="col-30 flex-center framed border-info">
+      <p class="center">
+        $\sum_{g=1}^{k}\sum_{i=1}^{n_g}(x_{gi}-\bar{x}_{g})^2$
+      </p>
+    </div>
+  </div>
+  <div class="fig-container"  data-file="interactive/anova-variability.html"></div>
+</section>

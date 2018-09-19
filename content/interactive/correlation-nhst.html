@@ -1,0 +1,176 @@
+<!-- Source: modified from https://bl.ocks.org/mbostock/3231298 -->
+
+<!DOCTYPE html>
+<body>
+<style>
+
+</style>
+
+<script src="js/d3.min.js"></script>
+<script src="js/jstat.min.js"></script>
+<script>
+
+const colors = {info: '#00BFFF',
+                danger: '#fb4c52',
+                warning: '#FBC15E',
+                orange: '#FF8B22',
+                muted: '#B4B4B4',
+                pop: '#ce4ad0'}
+
+  const margin = {left: 60, top: 20, right: 20, bottom: 60}
+  const width = 480 - margin.left - margin.right,
+        height = 400 - margin.top - margin.bottom
+
+  const data = [{"footlength":32,"height":74},{"footlength":24,"height":66},{"footlength":29,"height":77},{"footlength":30,"height":67},{"footlength":24,"height":56},{"footlength":26,"height":65},{"footlength":27,"height":64},{"footlength":29.5,"height":70},{"footlength":26,"height":62},{"footlength":26.5,"height":67},{"footlength":28,"height":66},{"footlength":28,"height":64},{"footlength":26,"height":69},{"footlength":35,"height":73},{"footlength":30,"height":74},{"footlength":31,"height":70},{"footlength":29,"height":65},{"footlength":34,"height":72},{"footlength":33,"height":71},{"footlength":22,"height":63}]
+
+  let dataR
+
+  const svg = d3.select("body")
+    .append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+      .attr("transform", `translate(${margin.left}, ${margin.top})`)
+      .attr("width", width)
+      .attr("height", height)
+
+
+  const xScale = d3.scaleLinear()
+    .range([0, width])
+    .domain([20, 40])
+
+  const yScale = d3.scaleLinear()
+    .range([height, 0])
+    .domain([50, 85])
+
+  const xAxis = svg.append('g')
+      .attr('class', 'axis xAxis')
+      .attr('transform', `translate(0, ${height})`)
+      .call(d3.axisBottom(xScale))
+
+  svg.append('text')
+      .attr('class', 'axisLabel')
+      .attr('x', width/2)
+      .attr('y', height+margin.bottom/1.3)
+      .style("text-anchor", "middle")
+      .style("font-size","1.5em")
+      .style("font-family", "Raleway")
+      .text('Height (in)');
+
+  const yAxis = svg.append('g')
+      .attr('class', 'axis yAxis')
+      .call(d3.axisLeft(yScale))
+  svg.append('text')
+      .attr('class', 'axisLabel')
+      .attr('transform', `translate(${-margin.left/2}, ${height/2}) rotate(-90)`)
+      .style("text-anchor", "middle")
+      .style("font-size","1.5em")
+      .style("font-family", "Raleway")
+      .text('Foot length (cm)');
+
+  const rText = svg.append('text')
+      .attr('class', 'rLabel')
+      .attr('x', 15)
+      .attr('y', 15)
+      .style("text-anchor", "start")
+      .style("font-size","2em")
+      .style("font-family", "Raleway")
+      .style("fill", colors.pop)
+      .text(`r = ${getCorrCoeff(data).toFixed(3)}`);
+
+
+
+
+
+  plotDataset(data)
+
+
+  // Original data as outline
+  svg.selectAll(".circleOriginal")
+    .data(data)
+    .enter()  
+      .append("circle")
+        .attr("class", "circleOriginal")
+        .attr("cx", d => xScale(d["footlength"]))
+        .attr("cy", d => yScale(d["height"]))
+        .attr("fill", "none")
+        .attr("stroke", "black")
+        .attr("stroke-width", 2)
+        .attr("r", 8)
+
+
+
+  function plotDataset(data, shuffle=false, xName="footlength", yName="height") {
+    let selectedData
+    if (shuffle) {
+      selectedData = breakPair(data)
+    } else {
+      selectedData = data
+    }
+
+    let circles = svg.selectAll(".circle")
+      .data(selectedData)
+     circles.exit().remove()
+     circles.enter()
+      .append("circle")
+        .attr("class", "circle")
+        .attr("cx", d => xScale(d[xName]))
+        .attr("cy", d => yScale(d[yName]))
+        .attr("fill", colors.danger)
+        .attr("r", 8)
+      .merge(circles)
+        .transition().duration(500)
+        .attr("cx", d => xScale(d[xName]))
+        .attr("cy", d => yScale(d[yName]))
+
+    rText.text(`r = ${getCorrCoeff(selectedData).toFixed(3)}`)
+  }
+
+  function breakPair(data, xName="footlength") {
+    const shuffledX = d3.shuffle([...new Array(data.length)].map((d,i) => data[i][xName]))
+    
+    return data.map((d,i) => {
+      return {"footlength": shuffledX[i],
+              "height": d.height}
+    })
+  }
+
+  function getCorrCoeff(data, xName="footlength", yName="height"){
+    let x = [],
+        y = []
+
+    data.forEach(d => {
+      x.push(d[xName])
+      y.push(d[yName])
+    })
+    return jStat.corrcoeff(x, y)
+  }
+
+  var _transitions = [
+    {
+      transitionForward: () => plotDataset(data, true),
+      transitionBackward: () => plotDataset(data, false),
+      index: 1
+    },
+    {
+      transitionForward: () => plotDataset(data, true),
+      transitionBackward: () => plotDataset(data, true),
+      index: 2
+    },
+    {
+      transitionForward: () => plotDataset(data, true),
+      transitionBackward: () => plotDataset(data, true),
+      index: 3
+    },
+    {
+      transitionForward: () => plotDataset(data, true),
+      transitionBackward: () => plotDataset(data, true),
+      index: 4
+    },
+    {
+      transitionForward: () => plotDataset(data, true),
+      transitionBackward: () => plotDataset(data, true),
+      index: 5
+    }
+  ]
+</script>

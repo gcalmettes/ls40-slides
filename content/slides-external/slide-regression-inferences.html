@@ -1,0 +1,48 @@
+<section>
+  <h3>Inference</h3>
+  <p>
+    So far, we only used regression methods to describe a sample (dataset) and did not make statistical inferences about the larger population. Now, we consider how to make inferences about a <span class="danger">relationship in the population</span> represented by the sample. This involves estimating the <span class="danger">uncertainty of the parameters</span> of our model.
+  </p>
+  <p class="em u">
+    Some questions involving the population that we might ask when analyzing a relationship are:
+  </p>
+  <ul class="small">
+    <li>
+      Does the observed relationship <span class="pop">also occur</span> in the population?
+    </li>  
+    <li>
+      For a linear relationship, what is the <span class="pop">slope of the regression line</span> in the population?
+    </li>
+    <li>
+      What is the <span class="pop">mean value of the response variable</span> (y) for individuals with a specific value of the explanatory variable (x)?
+    </li>
+    <li>
+      What <span class="pop">interval of values</span> predicts the value of the response variable (y) for an individual with a specific value of the explanatory variable (x)?
+    </li>
+</ul> 
+</section>
+
+<section>
+  <h3>Linear regression to describe a population</h3>
+  <div class="small">
+    The regression equation for a simple linear relationship in a population can be written as:
+  </div>
+  <div class="small danger right-30 up-2">
+    $E(Y) = \beta_0 + \beta_1X + \epsilon$
+  </div>
+  <ul class="small down-4">
+    <li>
+      $E(Y)$ represents the <span class="info">mean or expected value of y</span> for individuals in the population who all have the same particular value of x. Note that $\hat{y}$ is an estimate of $E(Y)$
+    </li>
+    <li>
+      $\beta_0$ is the <span class="info">intercept</span> of the line in the <span class="info">population</span>
+    </li>
+    <li>
+      $\beta_1$ is the <span class="info">slope</span> of the regression line in the <span class="info">population</span>. <span class="em"> Note that if the slope $\beta_1 = 0$, there is no linear relationship in the population</span>.
+    </li>
+  </ul>
+  <p class="framed border-danger">
+    <i class="fas fa-arrow-circle-right danger"></i>
+    Unless we measure the entire population, we cannot know the numerical values of $\beta_0$ and $\beta_1$. These are population parameters that we <span class="danger">estimate using the corresponding sample statistics</span>.
+  </p>
+</section>

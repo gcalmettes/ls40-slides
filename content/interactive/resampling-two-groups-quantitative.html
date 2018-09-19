@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<svg width="960" height="680" style="position: absolute"></svg>
+<canvas width="960" height="500"></canvas>
+<script src="js/d3.min.js"></script>
+<script src="js/jstat.min.js"></script>
+<script src="js/chroma.min.js"></script>
+
+
+<style type="text/css">
+  .bar {
+    fill: #9fc857;
+    stroke: white;
+  }
+
+  .label {
+    font-family: helvetica;
+    font-size: 2em;
+    text-anchor: middle
+  }
+
+  .textChart {
+    font-family: helvetica;
+    font-size: 1em;
+    text-anchor: beginning
+  }
+
+  .textChartDif {
+    font-family: helvetica;
+    font-size: 1.5em;
+    text-anchor: beginning;
+  }
+
+  .textNum {
+    font-family: helvetica;
+    font-size: 1.5em;
+    text-anchor: beginning;
+    fill: #B4B4B4;
+  }
+
+</style>
+
+<script>
+
+////////////////////
+// CANVAS
+
+Math.nrand = function() {
+  var x1, x2, rad, y1;
+  do {
+    x1 = 2 * this.random() - 1;
+    x2 = 2 * this.random() - 1;
+    rad = x1 * x1 + x2 * x2;
+  } while(rad >= 1 || rad == 0);
+  var c = this.sqrt(-2 * Math.log(rad) / rad);
+  return x1 * c;
+};
+
+
+var n = 20;
+var colors = {
+  grp1: "#fb4c52",
+  grp2: "#00BFFF"
+}
+
+const cScale_g1 = chroma.scale('Reds').padding(0.2, 0.2)
+const cScale_g2 = chroma.scale('Blues').padding(0.2, 0.2)
+
+const nodes = d3.range(n * n).map(function(i) {
+  return {
+    index: i,
+    // color: i < (n*n)/2 ? colors['grp1'] : colors['grp2'],
+    color: i < (n*n)/2 ? cScale_g1(Math.random()) : cScale_g2(Math.random()),
+    group: i < (n*n)/2 ? 1 : 2,
+    value: i < (n*n)/2 ? jStat.normal.sample(10, 3.4) : jStat.normal.sample(10.8, 3.5)
+  };
+});
+
+const canvas = document.querySelector("canvas"),
+      context = canvas.getContext("2d"),
+      width = canvas.width,
+      height = canvas.height;
+
+const forceXScaleGroup = d3.scaleOrdinal()
+  .range([0, -width/6, width/6, -width/3, width/3])
+  .domain(d3.range(5))
+
+const simulation = d3.forceSimulation(nodes)
+    .force("xGroup", d3.forceX().x(d => forceXScaleGroup(d.group)))
+    .force("yGroup", d3.forceY().y(d => d.group > 2 ? 0 : -70))
+    .force("charge", d3.forceManyBody().strength(-8))
+    .on("tick", ticked);
+
+function ticked() {
+  context.clearRect(0, 0, width, height);
+  context.save();
+  context.translate(width / 2, height / 2);
+  nodes.forEach(drawNode);
+  context.restore();
+}
+
+function drawNode(d) {
+  context.beginPath();
+  context.moveTo(d.x + 3, d.y);
+  context.arc(d.x, d.y, 7, 0, 2 * Math.PI);
+  context.fillStyle = d.color;
+  context.fill();
+}
+
+
+////////////////
+// SVG
+
+var svg = d3.select('svg')
+
+//SVG setup
+const marginHist = {top: 380, right: 30, bottom: 70, left: 30},
+      widthHist = +svg.attr("width") - marginHist.left - marginHist.right,
+      heightHist = +svg.attr("height") - marginHist.top - marginHist.bottom;
+
+//x scales
+const x = d3.scaleLinear()
+    .rangeRound([0, widthHist])
+    .domain([-2, 2]);
+
+const y = d3.scaleLinear()
+    .range([heightHist, 0]);
+
+let nbins = 20,
+    data = []
+
+let chart = svg.append("g")
+  .attr("transform", `translate(${marginHist.left}, ${marginHist.top})`);
+
+// add x axis
+chart.append("g")
+  .attr("class", "axis axis--x")
+  .attr("transform", `translate(0, ${heightHist})`)
+  .call(d3.axisBottom(x));
+
+chart.append("text")
+  .text("Difference")
+  .attr('class', 'label')
+  .attr('dx', widthHist/2)
+  .attr('dy', heightHist + 50)
+
+let grp1Mean = d3.mean(nodes.filter(d => d.group == 1).map(d => d.value))
+let grp2Mean = d3.mean(nodes.filter(d => d.group == 2).map(d => d.value))
+let initialDif = grp2Mean - grp1Mean
+
+let mean1 = svg.append("text")
+  .text(grp1Mean.toFixed(2))
+  .attr('class', 'textNum')
+  .attr('dx', 50)
+  .attr('dy', 100)
+
+let mean2 = svg.append("text")
+  .text(grp2Mean.toFixed(2))
+  .attr('class', 'textNum')
+  .attr('dx', 850)
+  .attr('dy', 100)
+
+chart.append("line")
+  .attr('x1', x(initialDif))
+  .attr('x2', x(initialDif))
+  .attr('y1', -20)
+  .attr('y2', heightHist)
+  .attr('stroke', 'black')
+  .attr('stroke-width', 5)
+
+chart.append("text")
+  .html("Observed<tspan dx=-70 dy=25>difference</tspan>")
+  .attr('class', 'textChart')
+  .attr('dx', x(initialDif) + 10)
+  .attr('dy', -30)
+chart.append("text")
+  .text(initialDif.toFixed(2))
+  .attr('class', 'textChartDif')
+  .attr('dx', x(initialDif) + 85)
+  .attr('dy', -20)
+  
+let count = chart.append("text")
+  .text(`n = ${0}`)
+  .attr('class', 'textNum')
+  .attr('dx', 0)
+  .attr('dy', 0)
+let above = chart.append("text")
+  .text(` `)
+  .attr('class', 'textNum')
+  .attr('dx', 0)
+  .attr('dy', 30)
+
+
+
+function drawHistogram(){
+
+    //histogram binning
+    const histogram = d3.histogram()
+      .domain(x.domain())
+      .thresholds(x.ticks(nbins))
+      // .value(function(d) { return d.value;} )
+
+    var bins = histogram(data)//.filter(d => d.length>0);
+
+    y.domain([0, d3.max(bins, d => d.length)]);
+
+    var bar = chart.selectAll(".bar")
+        .data(bins);
+
+    bar.exit().remove();
+
+    // new data:
+    bar.enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", d => x(d.x0))
+      .attr("width", d => x(d.x1) - x(d.x0))
+      .attr("y", d => y(d.length))
+      .attr("height", d => heightHist - y(d.length))
+    .merge(bar)
+      
+    bar.transition().duration(300)
+      .attr("y", d => y(d.length))
+      .attr("height", d => heightHist - y(d.length))
+
+};
+
+
+
+/////////////////////
+// Transitions
+
+const updateSimulation = (nodes) => {
+  simulation.nodes(nodes);
+  simulation.alpha(1).restart()
+}
+
+const gatherGroups = () => {
+  d3.range(n * n).forEach((d, i) => {
+    nodes[i]['group'] = 0
+  })
+  updateSimulation(nodes);
+}
+
+
+/////////////////
+// RANDOMIZATION
+////////////////
+function getNewData() {
+  d3.shuffle(d3.range(n * n)).forEach((d, i) => {
+        nodes[i]['group'] = d < (n*n)/2 ? 1 : 2
+  })
+  //simulate new data by randomizing/slicing
+  grp1Mean = d3.mean(nodes.filter(d => d.group == 1).map(d => d.value))
+  grp2Mean = d3.mean(nodes.filter(d => d.group == 2).map(d => d.value))
+  // let group1 = nodes.filter(d => d.group == 1).map(d => d.value)
+  // let group2 = nodes.filter(d => d.group == 2).map(d => d.value)
+  data.push(grp2Mean-grp1Mean)
+}
+
+const randomizeGroups = (n) => {
+
+  d3.range(n).forEach(k => {
+    getNewData(nodes)
+  })
+
+  updateSimulation(nodes);
+  // getNewData()
+  drawHistogram();
+  mean2.text(grp2Mean.toFixed(2))
+  mean1.text(grp1Mean.toFixed(2))
+  count.text(`n = ${data.length}`)
+  above.text(`${d3.sum(data.map(d => d > initialDif))}/${data.length}`)
+  
+}
+
+/////////////////
+// BOOTSTRAP
+////////////////
+const getRandom = (arr, n, replace=true) => {
+  let result = new Array(n),
+      len = arr.length,
+      taken = new Array(len);
+  if (!replace) {
+    if (n > len)
+      throw new RangeError("getRandom: more elements taken than available");
+    while (n--) {
+      let x = Math.floor(Math.random() * len);
+      result[n] = arr[x in taken ? taken[x] : x];
+      taken[x] = --len in taken ? taken[len] : len;
+    }
+  } else {
+    while (n--) {
+      let x = Math.floor(Math.random() * len);
+      result[n] = arr[x];
+    }
+  }
+  return result;
+}
+
+const clearNodesFromGroups = (grpsToClear) => {
+  return nodes.filter(d => !grpsToClear.includes(d.group))
+}
+
+const drawBootstrapSamples = (n1, n2) => {
+  nodes = clearNodesFromGroups([3, 4])
+  const g1 = getRandom(nodes, n1, replace=true).map(d => {
+    return {
+      index: d.index,
+      color: d.color,
+      group: 3,
+      value: d.value
+    }
+  })
+  const g2 = getRandom(nodes, n2, replace=true).map(d => {
+    return {
+      index: d.index,
+      color: d.color,
+      group: 4,
+      value: d.value
+    }
+  })
+  return [g1, g2]
+}
+
+
+function getNewBootstrapData(n1, n2) {
+  const [g1,g2] = drawBootstrapSamples(n1, n2)
+  //simulate new data by randomizing/slicing
+  grp1Mean = d3.mean(g1.map(d => d.value))
+  grp2Mean = d3.mean(g2.map(d => d.value))
+  data.push(grp2Mean-grp1Mean)
+  return [g1,g2]
+}
+
+const bootstrapGroups = (nBoot, n1, n2) => {
+  let g1, g2
+  d3.range(nBoot).forEach(k => {
+    [g1, g2] = getNewBootstrapData(n1, n2)
+  })
+
+
+  nodes = [...nodes, ...g1, ...g2]
+  updateSimulation(nodes);
+
+  // getNewData()
+  drawHistogram();
+  mean2.text(grp2Mean.toFixed(2))
+  mean1.text(grp1Mean.toFixed(2))
+  count.text(`n = ${data.length}`)
+  above.text(`${d3.sum(data.map(d => d > initialDif))}/${data.length}`)
+  
+}
+
+
+
+
+
+var _transitions = [
+      {
+        transitionForward: () => gatherGroups(),
+        transitionBackward: () => {
+          nodes.forEach(d => {
+            d['group'] = d.color == colors['grp1'] ? 1 : 2
+          })
+          simulation.nodes(nodes);
+          simulation.alpha(1).restart()
+        },
+        index: 0
+      },
+      {
+        transitionForward: () => randomizeGroups(1),
+        index: 1
+      },
+      {
+        transitionForward: () => randomizeGroups(1),
+        index: 2
+      },
+      {
+        transitionForward: () => randomizeGroups(1),
+        index: 3
+      },
+      {
+        transitionForward: () => randomizeGroups(100),
+        index: 4
+      },
+      {
+        transitionForward: () => randomizeGroups(1000),
+        index: 5
+      },
+      {
+        transitionForward: () => randomizeGroups(1000),
+        index: 6
+      },
+      {
+        transitionForward: () => randomizeGroups(7897),
+        index: 7
+      },
+    ]
+</script>

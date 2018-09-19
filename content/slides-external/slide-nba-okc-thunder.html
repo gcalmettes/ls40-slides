@@ -1,0 +1,193 @@
+<section>
+  <h3>Today: Investigating association</h3>
+  <p class="down-2">
+    When we investigate how the values of one variable relate in some way to the values of another variable, we are examining the <span class="danger">association</span> of the two variables.
+  </p>
+  <div class="row flex">
+    <div class="col-20 flex-center right-15">
+      <div class="center small bg-info framed">
+        Variable <br>
+        (explanatory, independant)
+      </div>
+    </div>
+    <div class="col-30 center flex-center">
+      <div class="center">
+        Association <br>
+        <i class="fas fa-arrows-alt-h fa-2x"></i>
+      </div>
+    </div>
+    <div class="col-20 flex-center">
+      <div class="center small bg-warning framed">
+        Variable <br>
+        (response, dependant)
+      </div>
+    </div>
+  </div>
+  <p class="down-2">
+    A <span class="u-warning"> response variable</span> is the variable <span class="bg-warning-light">about which questions are asked</span>, it measures the outcome of the study.
+  </p>
+  <p>
+    An <span class="u-info">explanatory variable</span> is any factor that can <span class="bg-info-light">influence, explain or predict</span> the response variable.
+  </p>
+  <p class="down-2">
+    <span class="em u muted">Note:</span> The response variable is usually called <span class="danger">dependent</span>, while the explanatory variable is sometimes called <span class="pop">independent</span>.
+  </p>
+</section>
+
+<section data-transition="slide-in">
+  <h3>Playing for a sold-out crowd</h3>
+  <div class="sided border-danger small">
+    Sports teams prefer to play in front of their own fans rather
+    than at the opposing team's site. <br>
+  </div>
+  <div class="small">
+    <i class="fas fa-arrow-circle-right danger"></i> <span class="danger">Having a sell out crowd</span> for a home game should provide even more excitement and <span class="danger">lead to an even better performance</span> right?
+  </div>
+  <div class="row down-2">
+    <div class="col-35 small">
+        Well, let's consider the Oklahoma City Thunder (NBA team) in its second season (2008-2009) after moving from Seattle... <br>
+        <span class="fragment em muted">
+          If you wanted to investigate this question, what kind of data would you need?
+        </span>
+    </div>
+    <div class="col-65">
+      <img class="framed" src="content/img/nba-OKC-thunder-stadium.jpg">
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide-out">
+  <h3>Playing for a sold-out crowd</h3>
+  <div class="row flex framed border-orange down-2">
+    <div class="col-10 flex-center">
+      <img src="content/img/nba-okc-thunder-logo.png">
+    </div>
+    <div class="col-90 small flex-center center">
+      <span>Oklahoma City Thunder Home games <br> - Season 2008-2009 -</span>
+    </div>
+  </div>
+  <div class="row down-2">
+    <div class="col-45">
+      <p>
+        The OKC Thunder played 41 times in its own stadium. <br>
+        <ul>
+          <li>
+            18 of those games were played in front of a sold-out crowd
+          </li>
+          <li>
+            The other 23 games were not sold-out
+          </li>
+        </ul>
+      </p>
+    </div>
+    <div class="col-55">
+      <table class="small center">
+        <tbody>
+          <tr>
+            <td class="border-right" rowspan=2>Game <br>outcome?</td>
+            <td class="border-right border-nobottom" colspan=2 >Sold-out crowd?</td>
+            <td class="border-nobottom"></td>
+          </tr>
+         <tr>
+           <td>Yes</td>
+           <td class="border-right">No</td>
+           <td>Total</td>
+         </tr>
+         <tr>
+           <td class="border-right border-nobottom">Win</td>
+           <td class="border-nobottom">3</td>
+           <td class="border-right border-nobottom">12</td>
+           <td class="border-nobottom">15</td>
+         </tr>
+         <tr>
+           <td class="border-right">Loss</td>
+           <td>15</td>
+           <td class="border-right">11</td>
+           <td>26</td>
+         </tr>
+         <tr>
+           <td class="border-right">Total</td>
+           <td>18</td>
+           <td class="border-right">23</td>
+           <td>41</td>
+         </tr>
+       </tbody>
+      </table> 
+    </div>
+  </div>
+  <p class="fragment">
+    <i class="fas fa-arrow-circle-right pop"></i> This team had a win-loss record that was actually worse for 
+    home games <span class="pop">with a sold-out crowd (3 wins and 15 losses)</span> than
+    for home games <span class="pop">without a sold-out crowd (12 wins and 11 losses) </span>.
+  </p>
+</section>
+
+<section data-external-replace="slide-definition-two-way-table.html"></section>
+
+
+<section>
+  <h3>Playing for a sold-out crowd</h3>
+  <div class="row flex framed border-orange down-2">
+    <div class="col-10 flex-center">
+      <img src="content/img/nba-okc-thunder-logo.png">
+    </div>
+    <div class="col-90 small flex-center center">
+      <span>Oklahoma City Thunder Home games <br> - Season 2008-2009 -</span>
+    </div>
+  </div>
+  <div class="row down-2">
+    <div class="col-45">
+      <svg width="100%" viewBox="0 0 380 300">
+        <use xlink:href="content/img/nba-okc-thunder-games-pattern.svg#axes_1"></use>
+      </svg>
+    </div>
+    <div class="col-55">
+      <table class="small center">
+        <tbody>
+          <tr>
+            <td class="border-right" rowspan=2>Game <br>outcome?</td>
+            <td class="border-right border-nobottom" colspan=2 >Sold-out crowd?</td>
+            <td class="border-nobottom"></td>
+          </tr>
+         <tr>
+           <td>Yes</td>
+           <td class="border-right">No</td>
+           <td>Total</td>
+         </tr>
+         <tr>
+           <td class="border-right border-nobottom">Win</td>
+           <td class="border-nobottom">3</td>
+           <td class="border-right border-nobottom">12</td>
+           <td class="border-nobottom">15</td>
+         </tr>
+         <tr>
+           <td class="border-right">Loss</td>
+           <td>15</td>
+           <td class="border-right">11</td>
+           <td>26</td>
+         </tr>
+         <tr>
+           <td class="border-right">Total</td>
+           <td>18</td>
+           <td class="border-right">23</td>
+           <td>41</td>
+         </tr>
+       </tbody>
+      </table> 
+    </div>
+  </div>
+  <p class="em muted">
+    What could we do to the data to get a better understanding of the difference in the two conditions?
+  </p>
+</section>
+
+<section data-external-replace="slide-definition-conditional-proportions.html"></section>
+
+<section>
+  <h3>Normalization: conditional proportions</h3>
+  <img src="content/img/nba-okc-thunder-games-pattern.svg">
+  <p class="sided">
+    The goal of our study is to see whether we can find an association between the presence of a sold-out crowd during a game and the proportion of wins by the team. <br>
+    <i class="fas fa-arrow-circle-right"></i> <span class="em strong">How do the two conditional proportions compare?</span>
+  </p>
+</section>
