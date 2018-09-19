@@ -1,0 +1,54 @@
+/** Site header */
+.site-header { border-top: 0px solid #424242; border-bottom: 4px solid #522d80; min-height: 56px; background: #00cd00; position: relative; }
+
+.site-title {
+  font-size: 26px;
+  letter-spacing: -1px;
+  margin-bottom: 0;
+  float: left;
+  font-weight: 500;
+  font-family: 'Titillium Web',
+  sans-serif; color: #ffffff;
+}
+.site-title, .site-title:visited { color: #ffffff; }
+.site-title, .site-title:hover { text-decoration: none; }
+
+.site-header .wrapper { padding-top: 20px; position: relative; }
+
+/** Reset some basic elements */
+body, h1, h2, h3, h4, h5, h6, p, blockquote, pre, hr, dl, dd, ol, ul, figure { margin: 0; padding: 0; }
+
+/** Basic styling */
+body { font-family: "Open Sans", Helvetica, Arial, sans-serif; font-size: 0.95em; line-height: 1.5; font-weight: 300; color: #111; background-color: #fdfdfd; -webkit-text-size-adjust: 100%; }
+
+/** Set `margin-bottom` to maintain vertical rhythm */
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, ul, ol, dl, figure, .highlight { margin-bottom: 15px; }
+
+/** Headings */
+h1, h2, h3, h4, h5, h6 { font-weight: 200; }
+
+/** Links */
+a { color: #0077CC; text-decoration: none; }
+a:visited { /*    color: darken($brand-color, 15%); */ }
+a:hover { color: #111; text-decoration: underline; }
+
+
+/** Wrapper */
+.wrapper { max-width: -webkit-calc(950px - (30px * 2)); max-width: calc(950px - (30px * 2)); margin-right: auto; margin-left: auto; padding-right: 30px; padding-left: 30px; }
+@media screen and (max-width: 950px) { .wrapper { max-width: -webkit-calc(950px - (30px)); max-width: calc(950px - (30px)); padding-right: 15px; padding-left: 15px; } }
+
+/** Clearfix */
+.wrapper:after, .footer-col-wrapper:after { content: ""; display: table; clear: both; }
+
+/** Page content */
+.page-content { padding: 30px 0; }
+
+.page-heading { font-size: 20px; }
+
+
+/** Posts */
+.post-header { margin-bottom: 30px; }
+
+h1 {letter-spacing: -1px; line-height: 1; font-family: 'Titillium Web', sans-serif; color: #522d80; }
+
+html { overflow-y: scroll; }
